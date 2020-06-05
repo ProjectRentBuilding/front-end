@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
@@ -15,11 +15,17 @@ import {MatInputModule} from "@angular/material/input";
 import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxModule} from "@angular/material/checkbox";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app-routing.module";
-import { BuildingListComponent } from './component/building/building-list/building-list.component';
-import { ContractListComponent } from './component/contract/contract-list/contract-list.component';
-import { CustomerListComponent } from './component/customer/customer-list/customer-list.component';
-import { EquipmentListComponent } from './component/equipment/equipment-list/equipment-list.component';
-import { FloorListComponent } from './component/floor/floor-list/floor-list.component';
+import {BuildingListComponent} from './component/building/building-list/building-list.component';
+import {ContractListComponent} from './component/contract/contract-list/contract-list.component';
+import {CustomerListComponent} from './component/customer/customer-list/customer-list.component';
+import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
+import {FloorListComponent} from './component/floor/floor-list/floor-list.component';
+import {ContractsComponent} from './component/contract/contracts/contracts.component';
+import {ContractEditComponent} from './component/contract/contract-edit/contract-edit.component';
+import {ContractDetailComponent} from './component/contract/contract-detail/contract-detail.component';
+import {ContractDeleteComponent} from './component/contract/contract-delete/contract-delete.component';
+import {ContractAddComponent} from './component/contract/contract-add/contract-add.component';
+import {HomeComponent} from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,13 @@ import { FloorListComponent } from './component/floor/floor-list/floor-list.comp
     ContractListComponent,
     CustomerListComponent,
     EquipmentListComponent,
-    FloorListComponent
+    FloorListComponent,
+    ContractsComponent,
+    ContractEditComponent,
+    ContractDetailComponent,
+    ContractDeleteComponent,
+    ContractAddComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -47,10 +59,12 @@ import { FloorListComponent } from './component/floor/floor-list/floor-list.comp
     MatInputModule,
     MatCheckboxModule
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'},{provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
   bootstrap: [AppComponent],
   entryComponents: [
+    ContractDeleteComponent
 
   ]
 })
-export class AppModule { }
+export class AppModule {
+}
