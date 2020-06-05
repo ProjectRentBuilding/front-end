@@ -32,6 +32,7 @@ import {ViewBuildingComponent} from './component/building/view-building/view-bui
 import {ListBuildingComponent} from './component/building/list-building/list-building.component';
 import { CustomersComponent } from './component/customer/customers/customers.component';
 import { CustomerDeleteComponent } from './component/customer/customer-delete/customer-delete.component';
+import { EquipmentDeleteComponent } from './component/equipment/equipment-delete/equipment-delete.component';
 
 
 
@@ -54,7 +55,8 @@ import { CustomerDeleteComponent } from './component/customer/customer-delete/cu
     ViewBuildingComponent,
     ListBuildingComponent,
     CustomersComponent,
-    CustomerDeleteComponent
+    CustomerDeleteComponent,
+    EquipmentDeleteComponent
 
   ],
   imports: [
@@ -83,7 +85,9 @@ import { CustomerDeleteComponent } from './component/customer/customer-delete/cu
     ViewBuildingComponent,
     ListBuildingComponent,
     DeleteBuildingComponent,
-    CustomerDeleteComponent
+    CustomerDeleteComponent,
+    EquipmentDeleteComponent,
+    DeleteBuildingComponent
   ]
 })
 export class AppModule {

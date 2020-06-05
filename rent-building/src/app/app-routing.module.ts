@@ -9,9 +9,11 @@ import {ContractDetailComponent} from './component/contract/contract-detail/cont
 import {ListBuildingComponent} from './component/building/list-building/list-building.component';
 import {CustomerListComponent} from './component/customer/customer-list/customer-list.component';
 import {CustomersComponent} from './component/customer/customers/customers.component';
+import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
 
 
 const routes: Routes = [
+  {path: 'equipment-list', component: EquipmentListComponent},
   {
     path: 'buildings',
     component: ListBuildingComponent,
