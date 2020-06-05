@@ -1,0 +1,58 @@
+<div class="row justify-content-between">
+  <h2>Danh sách hợp đồng</h2>
+  <div class="d-flex">
+    <input type="text" class="form-control mr-2" style="width: 450px;" placeholder="Tìm kiếm thông tin hợp đồng"
+           [(ngModel)]="search">
+  </div>
+</div>
+
+
+<div class="row m-3 px-3">
+  <button class="btn btn-outline-danger" routerLink="/contracts/add" style="font-size: 30px">Thêm mới</button>
+
+
+  <table class="table table-bordered" style="margin-top: 40px" id="myTable">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Tên Khách Hàng</th>
+      <th>Tên Mặt Bằng</th>
+      <th>Đang Thuê</th>
+      <th>Chi Tiết</th>
+      <th>Sửa</th>
+      <th>Xóa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 4, currentPage: page,totalItems:totalRec,id:'listing_pagination' } ;let i  = index">
+      <td>{{contract.id}}</td>
+      <td>{{contract.customerName}}</td>
+      <td>{{contract.groundName}}</td>
+      <!--      <td>{{contract.status}}</td>-->
+
+      <td><input type="checkbox" [checked]="contract.status" [disabled]="true"></td>
+      <td width="100">
+        <button class="btn btn-group-vertical ml-3" [routerLink]="['/contracts',contract.id,'detail']">Chi tiết</button>
+      </td>
+
+      <td width="100">
+        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Sửa</button>
+
+
+      </td>
+      <td width="100">
+
+        <button class="btn btn-danger ml-3" (click)="openDialog(contract.id)">Xóa</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
+                       nextLabel="Trang sau"></pagination-controls>
+</div>
+
+<div class="text-danger">
+  {{message}}
+</div>
+

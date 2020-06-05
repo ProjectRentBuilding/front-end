@@ -1,0 +1,67 @@
+<form class="col-md-12 offset-md-4" >
+  <fieldset>
+    <legend style="color: red;text-align: center"  >Xem chi tiết hợp đồng</legend>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Tên khách hàng: </span>
+        <div>
+          <input type="text" class="form-control col-md-7" value="{{contract.customerName}}" disabled>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">CMND:</span>
+        <input type="text" class="form-control col-md-7" value="{{contract.idCardCustomer}}" disabled>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Tên Mặt Bằng:</span>
+        <input type="text" class="form-control col-md-7" value="{{contract.groundName}}" disabled>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Kì Hạn:</span>
+        <div>
+          <input type="text" class="form-control col-md-7" value="{{contract.term}}" disabled>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Từ Ngày:</span>
+        <input type="text" class="form-control col-md-7" value="{{contract.startRentDay| date: formatsDate}}" disabled>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Đến Ngày:</span>
+        <input type="text" class="form-control col-md-7" value="{{contract.endRentDay | date: formatsDate}}" disabled>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Giá tiền:</span>
+        <input type="text" class="form-control col-md-7" value="{{contract.price}}" disabled>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Tổng tiền:</span>
+        <input type="text" class="form-control col-md-7" value="{{contract.total}}" disabled>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-12">
+        <span class="col-md-5">Nội dung hợp đồng:</span>
+      </div>
+      <div class="col-md-12" style="margin-top: 15px">
+        <textarea rows="5" type="text" class="form-control col-md-11" value="{{contract.content}} " disabled></textarea>
+      </div>
+
+    </label>
+  </fieldset>
+
+  <label class="row">
+    <div class="col-md-4">
+      <mat-checkbox [checked]="contract.unified" disabled="true">Hai bên đã thống nhất với hợp đồng</mat-checkbox>
+    </div>
+  </label>
+
+  <div class="form-group d-flex justify-content-center">
+    <button class="btn btn-outline-dark mt-3" routerLink="/contracts">Quay về danh sách hợp đồng
+    </button>
+  </div>
+</form>

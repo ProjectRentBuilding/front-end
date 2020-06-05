@@ -1,0 +1,16 @@
+h2{
+  margin-bottom: 50px;
+}
+form {
+  margin-left: 0px;
+  width: 100%;
+}
+form fieldset{
+  margin-top: 50px;
+}
+form fieldset label {
+  margin-top: 60px;
+}
+form fieldset label div span{
+  float: left;
+}

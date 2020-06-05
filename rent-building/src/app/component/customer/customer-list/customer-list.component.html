@@ -1,0 +1,166 @@
+<div class="row justify-content-between">
+  <h1>Danh sách nhân viên</h1>
+  <div class="d-flex">
+    <input type="text" class="form-control mr-2" style="width: 450px;" placeholder="Tìm kiếm thông tin khách hàng"
+           [(ngModel)]="search">
+
+  </div>
+</div>
+
+
+<div class="row m-3 px-3 scroll-table">
+
+  <form action="" [formGroup]="formAddNewCustomer">
+
+
+    <!--  <button class="btn btn-outline-danger" (click)="openDialogAdd()" style="font-size: 30px">Thêm mới</button>-->
+    <table  class="table table-bordered table-sm  table-hover " style="margin-top: 40px" id="myTable">
+      <thead class="thead-dark">
+      <tr>
+        <th>STT</th>
+        <th>Họ Tên</th>
+        <th>Id Card</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Birthday</th>
+        <th>Address</th>
+        <th>Website</th>
+        <th>Company</th>
+        <th>Tên Mặt Bằng</th>
+        <th>Đang thuê</th>
+        <th colspan="2">Tác vụ</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 4, currentPage: page,totalItems:totalRec,id:'listing_pagination' } ;let i  = index">
+        <td> {{customer.id}}</td>
+
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.name}}</td>
+        <td *ngIf="checkEdit  && customer.id===flag ">
+          <input type="text" class="form-control" formControlName="name" value="{{customer.name}}">
+        </td>
+
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.idCard}}</td>
+        <td *ngIf="checkEdit && customer.id===flag ">
+          <input type="text"
+                 class="form-control"
+                 formControlName="idCard"
+                 value="{{customer.idCard}}">
+        </td>
+
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.email}}</td>
+        <td *ngIf="checkEdit && customer.id===flag ">
+          <input type="text"
+                 class="form-control"
+                 formControlName="email"
+                 value="{{customer.email}}">
+        </td>
+
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.phone}}</td>
+        <td *ngIf="checkEdit && customer.id===flag ">
+          <input type="text"
+                 class="form-control"
+                 formControlName="phone"
+                 value="{{customer.phone}}">
+        </td>
+
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.birthday | date:'dd/MM/yyyy'}}</td>
+        <td *ngIf="checkEdit && customer.id===flag">
+          <label>
+            <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
+                   [matDatepicker]="picker1" value="{{customer.birthday}}">
+          </label>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+        </td>
+
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.address}}</td>
+        <td *ngIf="checkEdit && customer.id===flag">
+          <input type="text"
+                 class="form-control"
+                 formControlName="address"
+                 value="{{customer.address}}">
+        </td>
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.website}}</td>
+        <td *ngIf="checkEdit && customer.id===flag">
+          <input type="text" class="form-control"
+                 formControlName="website"
+                 value="{{customer.website}}">
+        </td>
+
+        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.nameCompany}}</td>
+        <td *ngIf="checkEdit && customer.id===flag">
+          <input type="text" class="form-control"
+                 formControlName="nameCompany"
+                 value="{{customer.nameCompany}}">
+        </td>
+
+
+        <td>{{customer.nameGround}}</td>
+        <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>
+
+        <td>
+          <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-success ml-3"
+                  (click)="checkEditCustomer(customer.id)">Edit
+          </button>
+          <button *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
+                  (click)="editCustomer()">Save
+          </button>
+
+        </td>
+
+        <td>
+          <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-danger ml-3" (click)="openDialogDelete(customer.id)">Delete</button>
+          <button    *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
+                     (click)="resetCustomer()">Reset
+          </button>
+        </td>
+      </tr>
+      </tbody>
+
+      <!--      add customer-->
+
+      <tr *ngIf="checkAdd">
+        <td></td>
+        <td>
+          <input type="text" class="form-control" formControlName="name">
+        </td>
+        <td><input type="text" class="form-control" formControlName="idCard"></td>
+        <td><input type="text" class="form-control" formControlName="email"></td>
+        <td><input type="text" class="form-control" formControlName="phone"></td>
+        <td>
+          <label>
+            <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
+                   [matDatepicker]="picker1">
+          </label>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+        </td>
+        <td><input type="text" class="form-control" formControlName="address"></td>
+        <td><input type="text" class="form-control" formControlName="website"></td>
+        <td><input type="text" class="form-control" formControlName="nameCompany"></td>
+        <td colspan="4">
+          <button class="button btn btn-warning" (click)="addNewCustomer()">ADD</button>
+        </td>
+      </tr>
+    </table>
+    <button class="button btn btn-warning" (click)="checkAddCustomer()">Thêm mới</button>
+  </form>
+
+  <pagination-controls id="listing_pagination" (pageChange)="page = $event" previousLabel="previous"
+                       nextLabel="next"></pagination-controls>
+</div>
+<div class="text-danger">
+  {{message}}
+</div>
+
+

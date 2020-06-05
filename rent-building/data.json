@@ -1,0 +1,237 @@
+{
+  "contracts": [
+    {
+      "customerName": "asdas123",
+      "groundName": "MB001",
+      "idCardCustomer": "123123123",
+      "status": true,
+      "term": 3.06,
+      "startRentDay": "2020-05-10T17:00:00.000Z",
+      "endRentDay": "2020-08-11T17:00:00.000Z",
+      "price": 123,
+      "total": 376.38,
+      "content": "dsffdf23",
+      "unified": true,
+      "id": 1
+    },
+    {
+      "customerName": "Anh Trung",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": true,
+      "term": 9.49,
+      "startRentDay": "2020-02-18T17:00:00.000Z",
+      "endRentDay": "2020-12-03T17:00:00.000Z",
+      "price": 2312,
+      "total": 21940.88,
+      "content": "123213",
+      "unified": true,
+      "id": 2
+    },
+    {
+      "customerName": "123",
+      "groundName": "MB003",
+      "idCardCustomer": "123131231",
+      "status": true,
+      "term": 4.76,
+      "startRentDay": "2020-02-13T17:00:00.000Z",
+      "endRentDay": "2020-07-07T17:00:00.000Z",
+      "price": 123123,
+      "total": 586065.48,
+      "content": "545",
+      "unified": true,
+      "id": 3
+    },
+    {
+      "customerName": "Tan",
+      "groundName": "MB004",
+      "idCardCustomer": "123123123",
+      "status": true,
+      "term": 5.06,
+      "startRentDay": "2020-02-03T17:00:00.000Z",
+      "endRentDay": "2020-07-06T17:00:00.000Z",
+      "price": 10000,
+      "total": 50599.99999999999,
+      "content": "dfdfdf",
+      "unified": true,
+      "id": 4
+    },
+    {
+      "customerName": "dfdf",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": true,
+      "term": 8.08,
+      "startRentDay": "2020-03-10T17:00:00.000Z",
+      "endRentDay": "2020-11-11T17:00:00.000Z",
+      "price": 12222,
+      "total": 98753.76,
+      "content": "ffg",
+      "unified": true,
+      "id": 5
+    },
+    {
+      "customerName": "123123123",
+      "groundName": "MB004",
+      "idCardCustomer": "123123123",
+      "status": true,
+      "term": 9.23,
+      "startRentDay": "2020-02-03T17:00:00.000Z",
+      "endRentDay": "2020-11-10T17:00:00.000Z",
+      "price": 1231231,
+      "total": 11364262.13,
+      "content": "dff",
+      "unified": true,
+      "id": 6
+    },
+    {
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
+      "id": 7
+    },
+    {
+      "customerName": "asdasd1",
+      "groundName": "MB002",
+      "idCardCustomer": "124124141",
+      "status": true,
+      "term": 10.94,
+      "startRentDay": "2020-01-04T17:00:00.000Z",
+      "endRentDay": "2020-12-02T17:00:00.000Z",
+      "price": 124,
+      "total": 1356.56,
+      "content": "14124",
+      "unified": true,
+      "id": 1
+    }
+  ],
+  "buildings": [
+    {
+      "abbreviationName": "142",
+      "fullName": "124",
+      "taxCode": "4124",
+      "phone": "241212122",
+      "email": "123@414",
+      "fax": "142",
+      "address": "4124",
+      "management": "14",
+      "manager": "414",
+      "accountNumber": "41241",
+      "recipientName": "124",
+      "bank": "41",
+      "logo": "4124",
+      "id": 1
+    }
+  ],
+  "customers": [
+    {
+      "name": "anh quoc non non",
+      "idCard": "13213213213",
+      "email": "anhquoc@gmail.com",
+      "phone": "13123123123",
+      "birthday": "02/02/1980",
+      "address": "da nangg",
+      "website": "sdadsadsad",
+      "nameCompany": "sadsadsa",
+      "name1": "",
+      "idCard1": "",
+      "email1": "",
+      "phone1": "",
+      "birthday1": "",
+      "address1": "",
+      "website1": "",
+      "nameCompany1": "",
+      "id": 1
+    }
+    ],
+  "equipment": [
+    {
+      "type": "Bóng đèn",
+      "deviceName": "14",
+      "amount": "14",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "13",
+      "codeSpace": "mb1",
+      "id": 1
+    },
+    {
+      "type": "Điều hoà",
+      "deviceName": "23",
+      "amount": "23",
+      "status": "Hỏng",
+      "amountOfBroken": "23",
+      "note": "14",
+      "codeSpace": "mb2",
+      "id": 2
+    },
+    {
+      "type": "13",
+      "deviceName": "13",
+      "amount": "13",
+      "status": "Mới",
+      "amountOfBroken": "13",
+      "note": "12",
+      "codeSpace": "mb3",
+      "id": 3
+    },
+    {
+      "type": "14",
+      "deviceName": "14",
+      "amount": "14",
+      "status": "Mới",
+      "amountOfBroken": "14",
+      "note": "13",
+      "codeSpace": "mb1",
+      "id": 4
+    },
+    {
+      "type": "23",
+      "deviceName": "23",
+      "amount": "23",
+      "status": "Mới",
+      "amountOfBroken": "23",
+      "note": "23",
+      "codeSpace": "mb2",
+      "id": 5
+    },
+    {
+      "type": "13",
+      "deviceName": "13",
+      "amount": "13",
+      "status": "Hỏng",
+      "amountOfBroken": "13",
+      "note": "13",
+      "codeSpace": "mb3",
+      "id": 6
+    },
+    {
+      "type": "12",
+      "deviceName": "12",
+      "amount": "12",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "12",
+      "codeSpace": "mb1",
+      "id": 7
+    },
+    {
+      "type": "123",
+      "deviceName": "1231",
+      "amount": "123",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "121",
+      "codeSpace": "123",
+      "id": 8
+    }
+  ]
+}
