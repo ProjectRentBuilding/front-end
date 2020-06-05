@@ -1,9 +1,6 @@
 {
   "contracts": [
     {
-<<<<<<< HEAD
-      "customerName": "4214",
-=======
       "customerName": "asdas123",
       "groundName": "MB001",
       "idCardCustomer": "123123123",
@@ -103,7 +100,6 @@
     },
     {
       "customerName": "asdasd1",
->>>>>>> 7a313af83c92ccbe4c6200a0849c8be5b75bad74
       "groundName": "MB002",
       "idCardCustomer": "124124141",
       "status": true,
