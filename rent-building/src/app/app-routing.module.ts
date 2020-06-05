@@ -6,13 +6,19 @@ import {ContractListComponent} from "./component/contract/contract-list/contract
 import {ContractEditComponent} from "./component/contract/contract-edit/contract-edit.component";
 import {ContractAddComponent} from "./component/contract/contract-add/contract-add.component";
 import {ContractDetailComponent} from "./component/contract/contract-detail/contract-detail.component";
-import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+import {BuildingListComponent} from './component/building/building-list/building-list.component';
+import {FloorListComponent} from './component/floor/floor-list/floor-list.component';
+
 
 
 const routes: Routes = [
   {
     path: 'buildings',
-    component: ListBuildingComponent,
+    component: BuildingListComponent,
+  },
+  {
+    path: 'floors',
+    component: FloorListComponent,
   },
   {path: '', component: HomeComponent},
   {

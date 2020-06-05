@@ -1,17 +1,18 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {BuildingService} from '../../../Service/building.service';
+import {BuildingService} from '../../../service/building.service';
 
 @Component({
-  selector: 'app-delete-building',
-  templateUrl: './delete-building.component.html',
-  styleUrls: ['./delete-building.component.css']
+  selector: 'app-building-delete',
+  templateUrl: './building-delete.component.html',
+  styleUrls: ['./building-delete.component.css']
 })
-export class DeleteBuildingComponent implements OnInit {
+export class BuildingDeleteComponent implements OnInit {
+
   public buildingName;
   public buildingId;
   constructor(
-    public dialogRef: MatDialogRef<DeleteBuildingComponent>,
+    public dialogRef: MatDialogRef<BuildingDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public buildingService: BuildingService,
   ) { }
@@ -31,3 +32,4 @@ export class DeleteBuildingComponent implements OnInit {
   }
 
 }
+

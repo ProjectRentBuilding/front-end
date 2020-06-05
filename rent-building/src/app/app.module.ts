@@ -18,18 +18,23 @@ import {AppRoutingModule} from "./app-routing.module";
 import {ContractListComponent} from './component/contract/contract-list/contract-list.component';
 import {CustomerListComponent} from './component/customer/customer-list/customer-list.component';
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
-import {FloorListComponent} from './component/floor/floor-list/floor-list.component';
 import {ContractsComponent} from './component/contract/contracts/contracts.component';
 import {ContractEditComponent} from './component/contract/contract-edit/contract-edit.component';
 import {ContractDetailComponent} from './component/contract/contract-detail/contract-detail.component';
 import {ContractDeleteComponent} from './component/contract/contract-delete/contract-delete.component';
 import {ContractAddComponent} from './component/contract/contract-add/contract-add.component';
 import {HomeComponent} from './component/home/home.component';
-import {AddBuildingComponent} from './component/building/add-building/add-building.component';
-import {EditBuildingComponent} from './component/building/edit-building/edit-building.component';
-import {DeleteBuildingComponent} from './component/building/delete-building/delete-building.component';
-import {ViewBuildingComponent} from './component/building/view-building/view-building.component';
-import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+import { BuildingEditComponent } from './component/building/building-edit/building-edit.component';
+import { BuildingDeleteComponent } from './component/building/building-delete/building-delete.component';
+import { BuildingDetailComponent } from './component/building/building-detail/building-detail.component';
+import {BuildingAddComponent} from './component/building/building-add/building-add.component';
+import {BuildingListComponent} from './component/building/building-list/building-list.component';
+import { FloorListComponent } from './component/floor/floor-list/floor-list.component';
+import { FloorAddComponent } from './component/floor/floor-add/floor-add.component';
+import { FloorEditComponent } from './component/floor/floor-edit/floor-edit.component';
+import { FloorDeleteComponent } from './component/floor/floor-delete/floor-delete.component';
+
+
 
 
 
@@ -39,18 +44,22 @@ import {ListBuildingComponent} from './component/building/list-building/list-bui
     ContractListComponent,
     CustomerListComponent,
     EquipmentListComponent,
-    FloorListComponent,
     ContractsComponent,
     ContractEditComponent,
     ContractDetailComponent,
     ContractDeleteComponent,
     ContractAddComponent,
     HomeComponent,
-    AddBuildingComponent,
-    EditBuildingComponent,
-    DeleteBuildingComponent,
-    ViewBuildingComponent,
-    ListBuildingComponent
+    BuildingListComponent,
+    BuildingEditComponent,
+    BuildingDeleteComponent,
+    BuildingDetailComponent,
+    BuildingAddComponent,
+    FloorListComponent,
+    FloorAddComponent,
+    FloorEditComponent,
+    FloorDeleteComponent
+
 
   ],
   imports: [
@@ -74,11 +83,16 @@ import {ListBuildingComponent} from './component/building/list-building/list-bui
   bootstrap: [AppComponent],
   entryComponents: [
     ContractDeleteComponent,
-    AddBuildingComponent,
-    EditBuildingComponent,
-    ViewBuildingComponent,
-    ListBuildingComponent,
-    DeleteBuildingComponent
+    BuildingListComponent,
+    BuildingAddComponent,
+    BuildingEditComponent,
+    BuildingDeleteComponent,
+    BuildingDetailComponent,
+    FloorAddComponent,
+    FloorDeleteComponent,
+    FloorEditComponent,
+    FloorListComponent
+
   ]
 })
 export class AppModule {

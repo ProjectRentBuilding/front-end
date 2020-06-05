@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import {CrudService} from './CrudService';
-import {BuildingModel} from '../model/building.model';
 import {HttpClient} from '@angular/common/http';
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
+import {FloorModel} from '../model/floor.model';
+import {Observable} from 'rxjs';
 
 let $: any = jQuery;
 
 @Injectable({
   providedIn: 'root'
 })
-export class BuildingService extends CrudService<BuildingModel, number> {
+export class FloorService extends CrudService<FloorModel, number> {
+  public API = 'http://localhost:3000/floors';
   constructor(protected  http: HttpClient) {
-    super(http, 'http://localhost:3000/buildings');
+    super(http, 'http://localhost:3000/floors');
   }
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
@@ -41,4 +43,12 @@ export class BuildingService extends CrudService<BuildingModel, number> {
         '</div>'
     });
   }
+
+  getFloorById(floorId: Observable<any>) {
+    return this.http.get(this.API + '/' + floorId);
+  }
+  editEquipment(floor, floorId): Observable<any> {
+    return this.http.put(this.API + '/' + floorId, floor);
+  }
 }
+
