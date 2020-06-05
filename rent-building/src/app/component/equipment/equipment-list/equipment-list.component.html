@@ -19,8 +19,8 @@
           </div>
 
           <div class="search-hero">
-            <input class="form-control mt-2 autoSearch" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                   placeholder="Nhập từ khoá tìm kiếm" id="keySearch">
+            <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                   placeholder="Nhập từ khoá tìm kiếm">
           </div>
         </div>
       </div>
@@ -44,8 +44,9 @@
 
         <tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
                                                                             itemsPerPage:4,
-                                                                            currentPage:page,
-                                                                            totalItems:totalRec}">
+                                                                            currentPage:page
+                                                                           }">
+<!--<tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate: { itemsPerPage: 4, currentPage: page }; let i = index">-->
           <td>{{i+1}}</td>
           <td *ngIf="!checkEdit ||  equipment.id!==flag">
             {{equipment.type}}
@@ -188,7 +189,8 @@
       </div>
     </form>
     <div>
-      <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+      <pagination-controls id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"
+                            nextLabel="Trang sau" autoHide="true" responsive="true"></pagination-controls>
     </div>
   </div>
 </div>
