@@ -30,7 +30,7 @@
         <thead>
         <tr>
           <th>STT</th>
-          <th>Loại</th>
+          <th style="width: 140px">Loại</th>
           <th>Tên thiết bị</th>
           <th>Số lượng</th>
           <th>Trạng thái</th>
@@ -51,7 +51,13 @@
             {{equipment.type}}
           </td>
           <td *ngIf="checkEdit && equipment.id===flag">
-            <input type="text" class="form-control" formControlName="type" value="{{equipment.type}}">
+<!--            <input type="text" class="form-control" formControlName="type" value="{{equipment.type}}">-->
+            <select class="form-control" style="width: 120px" formControlName="type">
+              <option value="Bóng đèn">Bóng đèn</option>
+              <option value="Điều hoà">Điều hoà</option>
+              <option value="Quạt">Quạt</option>
+              <option value="Router Wifi">Router Wifi</option>
+            </select>
             <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('type').invalid && formAddNewEquipment.get('type').touched">
               Loại không được để trống!
             </p>
@@ -111,7 +117,13 @@
         <tr *ngIf="checkAdd">
           <td></td>
           <td>
-            <input type="text" class="form-control" formControlName="type">
+<!--            <input type="text" class="form-control" formControlName="type">-->
+            <select class="form-control" style="width: 120px" formControlName="type">
+              <option value="Bóng đèn">Bóng đèn</option>
+              <option value="Điều hoà">Điều hoà</option>
+              <option value="Quạt">Quạt</option>
+              <option value="Router Wifi">Router Wifi</option>
+            </select>
             <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('type').invalid && formAddNewEquipment.get('type').touched">
             Loại không được để trống!
           </span>
