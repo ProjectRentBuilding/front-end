@@ -102,5 +102,8 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     });
   }
-
+  searchType(text) {
+    console.log(text);
+    this.searchText = document.getElementById(text).innerText;
+  }
 }
