@@ -44,7 +44,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       note: ['', [Validators.required]],
       codeSpace: ['', [Validators.required]],
     });
-
   }
 
   ngOnDestroy(): void {
@@ -63,6 +62,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.equipmentService.addNewEquipment(this.formAddNewEquipment.value).subscribe(data => {
       this.checkAdd = false;
       this.redirectTo('equipment-list');
+      this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
     });
     console.log(this.formAddNewEquipment);
   }
@@ -84,6 +84,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   editEquipment() {
     this.equipmentService.editEquipment(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
       this.redirectTo('equipment-list');
+      this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
   }
   close() {
@@ -102,5 +103,8 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     });
   }
-
+  searchType(text) {
+    console.log(text);
+    this.searchText = document.getElementById(text).innerText;
+  }
 }
