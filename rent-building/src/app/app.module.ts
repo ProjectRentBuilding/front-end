@@ -15,10 +15,20 @@ import {MatInputModule} from "@angular/material/input";
 import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxModule} from "@angular/material/checkbox";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app-routing.module";
+import { BuildingListComponent } from './component/building/building-list/building-list.component';
+import { ContractListComponent } from './component/contract/contract-list/contract-list.component';
+import { CustomerListComponent } from './component/customer/customer-list/customer-list.component';
+import { EquipmentListComponent } from './component/equipment/equipment-list/equipment-list.component';
+import { FloorListComponent } from './component/floor/floor-list/floor-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BuildingListComponent,
+    ContractListComponent,
+    CustomerListComponent,
+    EquipmentListComponent,
+    FloorListComponent
   ],
   imports: [
     BrowserModule,
