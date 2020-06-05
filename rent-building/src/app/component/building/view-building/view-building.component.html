@@ -1,0 +1,87 @@
+<h2 class="text-center">Chi tiết thông tin tòa nhà</h2>
+<form  [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4" >
+  <fieldset >
+    <legend>Thông tin chung</legend>
+    <label class="row">
+      <div class="col-md-4">
+        <span  class="col-md-5">Tên viết tắt:</span>
+        <div >
+          <input type="button" class="form-control col-md-7"   formControlName="abbreviationName" >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Điện thoại:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="phone">
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5"> Địa chỉ:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="address">
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span  class="col-md-5">Tên tòa nhà:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="fullName">
+      </div>
+      <div class="col-md-4">
+        <span  class="col-md-5">Fax:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="fax">
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span  class="col-md-5">Mã số thuế:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="taxCode">
+      </div>
+      <div class="col-md-4">
+        <span  class="col-md-5">Email:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="email">
+      </div>
+    </label>
+  </fieldset>
+</form>
+<form  [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4" >
+  <fieldset>
+    <legend>Thông tin trên báo cáo</legend>
+    <label class="row">
+      <div class="col-md-4">
+        <span  class="col-md-5">Ban quản lý:</span>
+        <div >
+          <input type="button" class="form-control col-md-7"   formControlName="management" >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Số tài khoản:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="accountNumber">
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Ngân hàng:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="bank">
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span  class="col-md-5">Người quản lý:</span>
+        <div >
+          <input type="button" class="form-control col-md-7"   formControlName="manager" >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Tên người nhận:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="recipientName">
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Logo:</span>
+        <input type="button" class="form-control col-md-7"   formControlName="logo">
+      </div>
+    </label>
+  </fieldset>
+</form>
+<div >
+  <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" (click)="onViewBuilding()">
+    Chỉnh sửa
+  </button>
+  <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" mat-dialog-close>
+    Hủy chỉnh
+  </button>
+</div>

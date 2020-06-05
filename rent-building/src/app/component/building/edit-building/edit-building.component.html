@@ -1,0 +1,193 @@
+<h2 class="text-center">Chỉnh sửa thông tin tòa nhà</h2>
+<form [formGroup]="editBuildingForm" class="col-md-12 offset-md-4">
+  <fieldset>
+    <legend>Thông tin chung</legend>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Tên viết tắt:</span>
+        <div>
+          <input type="text" class="form-control col-md-7" formControlName="abbreviationName">
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('abbreviationName').hasError('required')
+         && editBuildingForm.get('abbreviationName').touched">Tên viết tắt không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('abbreviationName').hasError('minlength')
+         && editBuildingForm.get('abbreviationName').touched">Tên viết tắt tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('abbreviationName').hasError('maxlength')
+         && editBuildingForm.get('abbreviationName').touched">Tên viết tắt tối đa 25 ký tự.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Điện thoại:</span>
+        <input type="text" class="form-control col-md-7" formControlName="phone">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('phone').hasError('required')
+         && editBuildingForm.get('phone').touched">Số điện thoại không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('phone').hasError('pattern')
+         && editBuildingForm.get('phone').touched">Số điện thoại gồm 9 hoặc 12 số.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5"> Địa chỉ:</span>
+        <input type="text" class="form-control col-md-7" formControlName="address">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('address').hasError('required')
+         && editBuildingForm.get('address').touched">Địa chỉ không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('address').hasError('minlength')
+         && editBuildingForm.get('address').touched">Địa chỉ tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('address').hasError('maxlength')
+         && editBuildingForm.get('address').touched">Địa chỉ tối đa 50 ký tự.
+        </div>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Tên tòa nhà:</span>
+        <input type="text" class="form-control col-md-7" formControlName="fullName">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('fullName').hasError('required')
+         && editBuildingForm.get('fullName').touched">Tên tòa nhà không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('fullName').hasError('minlength')
+         && editBuildingForm.get('fullName').touched">Tên tòa nhà tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('fullName').hasError('maxlength')
+         && editBuildingForm.get('fullName').touched">Tên tòa nhà tối đa 50 ký tự.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Fax:</span>
+        <input type="text" class="form-control col-md-7" formControlName="fax">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('fax').hasError('required')
+         && editBuildingForm.get('fax').touched">Fax không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('fax').hasError('minlength')
+         && editBuildingForm.get('fax').touched">Fax tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('fax').hasError('maxlength')
+         && editBuildingForm.get('fax').touched">Fax tối đa 25 ký tự.
+        </div>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Mã số thuế:</span>
+        <input type="text" class="form-control col-md-7" formControlName="taxCode">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('required')
+         && editBuildingForm.get('taxCode').touched">Mã số thuế không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('minlength')
+         && editBuildingForm.get('taxCode').touched">Mã số thuế tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('maxlength')
+         && editBuildingForm.get('taxCode').touched">Mã số thuế tối đa 25 ký tự.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Email:</span>
+        <input type="text" class="form-control col-md-7" formControlName="email">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('email').hasError('required')
+         && editBuildingForm.get('email').touched">Email không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('email').hasError('email')
+         && editBuildingForm.get('email').touched">Email phải đúng định dạng.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('email').hasError('maxlength')
+         && editBuildingForm.get('email').touched">Email tối đa 25 ký tự.
+        </div>
+      </div>
+    </label>
+  </fieldset>
+</form>
+<form [formGroup]="editBuildingForm" class="col-md-12 offset-md-4">
+  <fieldset>
+    <legend>Thông tin trên báo cáo</legend>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Ban quản lý:</span>
+        <div>
+          <input type="text" class="form-control col-md-7" formControlName="management">
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('management').hasError('required')
+         && editBuildingForm.get('management').touched">Ban quản lý không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('management').hasError('minlength')
+         && editBuildingForm.get('management').touched">Ban quản lý tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('management').hasError('maxlength')
+         && editBuildingForm.get('management').touched">Ban quản lý tối đa 50 ký tự.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Số tài khoản:</span>
+        <input type="text" class="form-control col-md-7" formControlName="accountNumber">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('accountNumber').hasError('required')
+         && editBuildingForm.get('accountNumber').touched">Số tài khoản không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('accountNumber').hasError('minlength')
+         && editBuildingForm.get('accountNumber').touched">Số tài khoản tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('accountNumber').hasError('maxlength')
+         && editBuildingForm.get('accountNumber').touched">Số tài khoản tối đa 25 ký tự.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Ngân hàng:</span>
+        <input type="text" class="form-control col-md-7" formControlName="bank">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('bank').hasError('required')
+         && editBuildingForm.get('bank').touched">Tên ngân hàng không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('bank').hasError('minlength')
+         && editBuildingForm.get('bank').touched">Tên ngân hàng tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('bank').hasError('maxlength')
+         && editBuildingForm.get('bank').touched">Tên ngân hàng tối đa 50 ký tự.
+        </div>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5">Người quản lý:</span>
+        <div>
+          <input type="text" class="form-control col-md-7" formControlName="manager">
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('manager').hasError('required')
+         && editBuildingForm.get('manager').touched">Tên người quản lý không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('manager').hasError('minlength')
+         && editBuildingForm.get('manager').touched">Tên người quản lý tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('manager').hasError('maxlength')
+         && editBuildingForm.get('manager').touched">Tên người quản lý tối đa 50 ký tự.
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Tên người nhận:</span>
+        <input type="text" class="form-control col-md-7" formControlName="recipientName">
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5">Logo:</span>
+        <input type="text" class="form-control col-md-7" formControlName="logo">
+      </div>
+    </label>
+  </fieldset>
+</form>
+<div>
+  <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" [disabled]="editBuildingForm.invalid"
+          (click)="onEditBuilding()">
+    Chỉnh sửa
+  </button>
+  <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" mat-dialog-close>
+    Hủy chỉnh
+  </button>
+</div>
+
+
+
+
+
+
+
+
+

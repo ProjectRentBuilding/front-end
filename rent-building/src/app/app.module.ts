@@ -15,7 +15,6 @@ import {MatInputModule} from "@angular/material/input";
 import {MAT_CHECKBOX_CLICK_ACTION, MatCheckboxModule} from "@angular/material/checkbox";
 import {AppComponent} from "./app.component";
 import {AppRoutingModule} from "./app-routing.module";
-import {BuildingListComponent} from './component/building/building-list/building-list.component';
 import {ContractListComponent} from './component/contract/contract-list/contract-list.component';
 import {CustomerListComponent} from './component/customer/customer-list/customer-list.component';
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
@@ -26,11 +25,17 @@ import {ContractDetailComponent} from './component/contract/contract-detail/cont
 import {ContractDeleteComponent} from './component/contract/contract-delete/contract-delete.component';
 import {ContractAddComponent} from './component/contract/contract-add/contract-add.component';
 import {HomeComponent} from './component/home/home.component';
+import {AddBuildingComponent} from './component/building/add-building/add-building.component';
+import {EditBuildingComponent} from './component/building/edit-building/edit-building.component';
+import {DeleteBuildingComponent} from './component/building/delete-building/delete-building.component';
+import {ViewBuildingComponent} from './component/building/view-building/view-building.component';
+import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    BuildingListComponent,
     ContractListComponent,
     CustomerListComponent,
     EquipmentListComponent,
@@ -40,7 +45,13 @@ import {HomeComponent} from './component/home/home.component';
     ContractDetailComponent,
     ContractDeleteComponent,
     ContractAddComponent,
-    HomeComponent
+    HomeComponent,
+    AddBuildingComponent,
+    EditBuildingComponent,
+    DeleteBuildingComponent,
+    ViewBuildingComponent,
+    ListBuildingComponent
+
   ],
   imports: [
     BrowserModule,
@@ -62,8 +73,12 @@ import {HomeComponent} from './component/home/home.component';
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
   bootstrap: [AppComponent],
   entryComponents: [
-    ContractDeleteComponent
-
+    ContractDeleteComponent,
+    AddBuildingComponent,
+    EditBuildingComponent,
+    ViewBuildingComponent,
+    ListBuildingComponent,
+    DeleteBuildingComponent
   ]
 })
 export class AppModule {
