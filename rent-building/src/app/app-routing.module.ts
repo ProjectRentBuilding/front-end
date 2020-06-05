@@ -7,9 +7,11 @@ import {ContractEditComponent} from "./component/contract/contract-edit/contract
 import {ContractAddComponent} from "./component/contract/contract-add/contract-add.component";
 import {ContractDetailComponent} from "./component/contract/contract-detail/contract-detail.component";
 import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
 
 
 const routes: Routes = [
+  {path: 'equipment-list', component: EquipmentListComponent},
   {
     path: 'buildings',
     component: ListBuildingComponent,

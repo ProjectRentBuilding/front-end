@@ -130,5 +130,87 @@
       "logo": "4124",
       "id": 1
     }
+  ],
+  "equipment": [
+    {
+      "type": "Bóng đèn",
+      "deviceName": "14",
+      "amount": "14",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "13",
+      "codeSpace": "mb1",
+      "id": 1
+    },
+    {
+      "type": "Điều hoà",
+      "deviceName": "23",
+      "amount": "23",
+      "status": "Hỏng",
+      "amountOfBroken": "23",
+      "note": "14",
+      "codeSpace": "mb2",
+      "id": 2
+    },
+    {
+      "type": "13",
+      "deviceName": "13",
+      "amount": "13",
+      "status": "Mới",
+      "amountOfBroken": "13",
+      "note": "12",
+      "codeSpace": "mb3",
+      "id": 3
+    },
+    {
+      "type": "14",
+      "deviceName": "14",
+      "amount": "14",
+      "status": "Mới",
+      "amountOfBroken": "14",
+      "note": "13",
+      "codeSpace": "mb1",
+      "id": 4
+    },
+    {
+      "type": "23",
+      "deviceName": "23",
+      "amount": "23",
+      "status": "Mới",
+      "amountOfBroken": "23",
+      "note": "23",
+      "codeSpace": "mb2",
+      "id": 5
+    },
+    {
+      "type": "13",
+      "deviceName": "13",
+      "amount": "13",
+      "status": "Hỏng",
+      "amountOfBroken": "13",
+      "note": "13",
+      "codeSpace": "mb3",
+      "id": 6
+    },
+    {
+      "type": "12",
+      "deviceName": "12",
+      "amount": "12",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "12",
+      "codeSpace": "mb1",
+      "id": 7
+    },
+    {
+      "type": "123",
+      "deviceName": "1231",
+      "amount": "123",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "121",
+      "codeSpace": "123",
+      "id": 8
+    }
   ]
 }
