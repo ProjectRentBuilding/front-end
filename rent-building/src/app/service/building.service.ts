@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CrudService} from './CrudService';
 import {BuildingModel} from '../Model/building.model';
 import {HttpClient} from '@angular/common/http';
@@ -10,10 +10,11 @@ let $: any = jQuery;
 @Injectable({
   providedIn: 'root'
 })
-export class BuildingService extends CrudService<BuildingModel, number>{
+export class BuildingService extends CrudService<BuildingModel, number> {
   constructor(protected  http: HttpClient) {
     super(http, 'http://localhost:3000/buildings');
   }
+
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
     const color = Math.floor((Math.random() * 4) + 1);

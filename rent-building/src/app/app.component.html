@@ -19,7 +19,7 @@
           Tuyển Dụng
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" [routerLink]="['contracts']">Bảo Vệ</a>
+          <a class="dropdown-item" [routerLink]="['buildings']">Bảo Vệ</a>
           <a class="dropdown-item" [routerLink]="['contracts']">Bới Cơm</a>
           <a class="dropdown-item" [routerLink]="['contracts']">Rót Nước</a>
           <a class="dropdown-item" [routerLink]="['contracts']">Lao Công</a>
@@ -28,8 +28,30 @@
     </ul>
   </nav>
 
-  <div class="col-10 p-5 ">
-    <router-outlet></router-outlet>
+  <div class="row px-0 mx-0" style="height: 90%;">
+    <div class="col-2 px-0 mx-0">
+      <div class="list-group border border-dark rounded h-100">
+        <a href="#" class="list-group-item list-group-item-action active " [routerLink]="['']"
+           routerLinkActive="router-link-active">Home</a>
+        <a href="#" class="list-group-item list-group-item-action" [routerLink]="['employees']"
+           routerLinkActive="router-link-active">Quản lý nhân viên</a>
+        <a href="#" class="list-group-item list-group-item-action" [routerLink]="['services']"
+           routerLinkActive="router-link-active">Quản lý dịch vụ</a>
+        <a href="#" class="list-group-item list-group-item-action" [routerLink]="['customers']">Quản lý khách hàng</a>
+        <a href="#" class="list-group-item list-group-item-action" [routerLink]="['contracts']"
+           routerLinkActive="router-link-active">Quản lý hợp đồng</a>
+        <a href="#" class="list-group-item list-group-item-action" [routerLink]="['contractDetails']"
+           routerLinkActive="router-link-active">Quản lý HĐ chi tiết</a>
+
+      </div>
+    </div>
+    <div class="col-10 p-5 ">
+      <router-outlet></router-outlet>
+    </div>
   </div>
+
+<!--  <div class="col-10 p-5 ">-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
 </div>
 
