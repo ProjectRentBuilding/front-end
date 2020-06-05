@@ -1,3 +1,36 @@
 {
-
+  "contracts": [
+    {
+      "customerName": "4214",
+      "groundName": "MB002",
+      "idCardCustomer": "124124141",
+      "status": true,
+      "term": 10.94,
+      "startRentDay": "2020-01-04T17:00:00.000Z",
+      "endRentDay": "2020-12-02T17:00:00.000Z",
+      "price": 124,
+      "total": 1356.56,
+      "content": "14124",
+      "unified": true,
+      "id": 1
+    }
+  ],
+  "buildings": [
+    {
+      "abbreviationName": "142",
+      "fullName": "124",
+      "taxCode": "4124",
+      "phone": "241212122",
+      "email": "123@414",
+      "fax": "142",
+      "address": "4124",
+      "management": "14",
+      "manager": "414",
+      "accountNumber": "41241",
+      "recipientName": "124",
+      "bank": "41",
+      "logo": "4124",
+      "id": 1
+    }
+  ]
 }
