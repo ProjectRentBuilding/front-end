@@ -1,144 +1,156 @@
 <h3 class="text-center" style="color: red">Chỉnh sửa hợp đồng</h3>
 
-<form class="w-75 mx-auto mt-3" [formGroup]="formEditContract">
+<form class="w-75 mx-auto mt-3 col-md-12 offset-md-4" [formGroup]="formEditContract">
 
-  <div class="form-group">
-    <div class="form-group">
-      <p>Mặt bằng</p>
-      <select type="text" formControlName="groundName" style="height: 35px; width: 215px;">
-        <option value="MB001">MB001</option>
-        <option value="MB002">MB002</option>
-        <option value="MB003">MB003</option>
-        <option value="MB004">MB004</option>
-      </select>
-      <p
-        *ngIf="formEditContract.controls.groundName.errors?.required && formEditContract.controls.groundName.touched"
-        class="text-danger">Vui lòng chọn mặt bằng</p>
-      <p
-        *ngIf="formEditContract.controls.groundName.errors?.pattern && formEditContract.controls.groundName.touched"
-        class="text-danger">Mặt bằng phải đúng định dạng</p>
-    </div>
-    <div class="form-group">
-      <p>Họ Và Tên Khách Hàng</p>
-      <input type="text" class="form-control" formControlName="customerName">
-      <p
-        *ngIf="formEditContract.controls.customerName.errors?.required && formEditContract.controls.customerName.touched"
-        class="text-danger">Vui lòng nhập họ tên khách hàng</p>
-    </div>
+  <fieldset>
+    <label class="row">
+      <div class="form-group col-md-4">
+        <p>Mặt bằng</p>
+        <select type="text" formControlName="groundName" style="height: 35px; width: 215px;">
+          <option value="MB001">MB001</option>
+          <option value="MB002">MB002</option>
+          <option value="MB003">MB003</option>
+          <option value="MB004">MB004</option>
+        </select>
+        <p
+          *ngIf="formEditContract.controls.groundName.errors?.required && formEditContract.controls.groundName.touched"
+          class="text-danger">Vui lòng chọn mặt bằng</p>
+        <p
+          *ngIf="formEditContract.controls.groundName.errors?.pattern && formEditContract.controls.groundName.touched"
+          class="text-danger">Mặt bằng phải đúng định dạng</p>
+      </div>
 
 
-    <div class="form-group">
-      <p>Số CMND Khách Hàng</p>
-      <input type="text" class="form-control" formControlName="idCardCustomer">
-      <p
-        *ngIf="formEditContract.controls.idCardCustomer.errors?.required && formEditContract.controls.idCardCustomer.touched"
-        class="text-danger">Vui lòng nhập số CMND khách hàng</p>
-      <p
-        *ngIf="formEditContract.controls.idCardCustomer.errors?.pattern && formEditContract.controls.idCardCustomer.touched"
-        class="text-danger">Số CMND phải có 9 hoặc 12 số</p>
-    </div>
-
-    <div class="form-group">
-      <p>Giá Tiền</p>
-      <input type="number" class="form-control" formControlName="price" [(ngModel)]="priceCalculate"
-             (keyup)="checkValidateTimeInput(startDayCheck,endDayCheck)">
-      <p
-        *ngIf="formEditContract.controls.price.errors?.required&&formEditContract.controls.price.touched"
-        class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
-      <p
-        *ngIf="formEditContract.controls.price.errors?.required&&formEditContract.controls.endRentDay.touched"
-        class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
-      <p
-        *ngIf="formEditContract.controls.price.errors?.pattern && formEditContract.controls.price.touched"
-        class="text-danger">Phải là số dương</p>
-    </div>
+      <div class="form-group col-md-4">
+        <p>Họ Và Tên Khách Hàng</p>
+        <input type="text" class="form-control" formControlName="customerName">
+        <p
+          *ngIf="formEditContract.controls.customerName.errors?.required && formEditContract.controls.customerName.touched"
+          class="text-danger">Vui lòng nhập họ tên khách hàng</p>
+      </div>
 
 
-    <div class="form-group">
+      <div class="form-group col-md-4">
+        <p>Số CMND Khách Hàng</p>
+        <input type="text" class="form-control" formControlName="idCardCustomer">
+        <p
+          *ngIf="formEditContract.controls.idCardCustomer.errors?.required && formEditContract.controls.idCardCustomer.touched"
+          class="text-danger">Vui lòng nhập số CMND khách hàng</p>
+        <p
+          *ngIf="formEditContract.controls.idCardCustomer.errors?.pattern && formEditContract.controls.idCardCustomer.touched"
+          class="text-danger">Số CMND phải có 9 hoặc 12 số</p>
+      </div>
+    </label>
+  </fieldset>
 
-      <p>Từ</p>
-      <label>
+  <fieldset>
+    <label class="row">
+      <div class="form-group col-md-4">
+        <p>Kì Hạn</p>
+        <input type="text" class="form-control" formControlName="term" disabled [(ngModel)]="termCalculate">
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <p>Từ</p>
         <input class="form-control" formControlName="startRentDay" [(ngModel)]="startDayCheck"
                placeholder="Choose a date"
                matInput
                [matDatepicker]="picker1" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
-      </label>
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
-      <p
-        *ngIf="(formEditContract.controls.startRentDay.errors?.required && formEditContract.controls.startRentDay.touched)"
-        class="text-danger">Vui lòng chọn ngày bắt đầu thuê
-      </p>
-      <p
-        *ngIf="(formEditContract.controls.startRentDay.errors?.required && formEditContract.controls.endRentDay.touched)"
-        class="text-danger">Vui lòng chọn ngày bắt đầu thuê
-      </p>
-    </div>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+        <p
+          *ngIf="(formEditContract.controls.startRentDay.errors?.required && formEditContract.controls.startRentDay.touched)"
+          class="text-danger">Vui lòng chọn ngày bắt đầu thuê
+        </p>
+        <p
+          *ngIf="(formEditContract.controls.startRentDay.errors?.required && formEditContract.controls.endRentDay.touched)"
+          class="text-danger">Vui lòng chọn ngày bắt đầu thuê
+        </p>
+      </div>
 
-    <div class="form-group">
-      <p>Đến</p>
-      <label>
-        <input class="form-control" formControlName="endRentDay" [(ngModel)]="endDayCheck" placeholder="Choose a date"
+      <div class="form-group col-md-4">
+        <p>Đến</p>
+        <input class="form-control" formControlName="endRentDay"
+               [(ngModel)]="endDayCheck" placeholder="Choose a date"
                matInput
                [matDatepicker]="picker2" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
-      </label>
-      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-      <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
-      <p
-        *ngIf="formEditContract.controls.endRentDay.errors?.required && formEditContract.controls.endRentDay.touched"
-        class="text-danger">Vui lòng chọn ngày kết thúc thuê
-      </p>
-      <p *ngIf="messageTimeValidate" class="text-danger">{{messageTimeValidate}}</p>
+
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+        <p
+          *ngIf="formEditContract.controls.endRentDay.errors?.required && formEditContract.controls.endRentDay.touched"
+          class="text-danger">Vui lòng chọn ngày kết thúc thuê
+        </p>
+        <p *ngIf="messageTimeValidate" class="text-danger">{{messageTimeValidate}}</p>
+      </div>
+
+
+    </label>
+  </fieldset>
+
+
+  <fieldset>
+    <label class="row">
+      <div class="form-group col-md-6">
+        <p>Giá Tiền</p>
+        <input type="number" class="form-control" formControlName="price" [(ngModel)]="priceCalculate"
+               (keyup)="checkValidateTimeInput(startDayCheck,endDayCheck)">
+        <p
+          *ngIf="formEditContract.controls.price.errors?.required&&formEditContract.controls.price.touched"
+          class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
+        <p
+          *ngIf="formEditContract.controls.price.errors?.required&&formEditContract.controls.endRentDay.touched"
+          class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
+        <p
+          *ngIf="formEditContract.controls.price.errors?.pattern && formEditContract.controls.price.touched"
+          class="text-danger">Phải là số dương</p>
+      </div>
+
+      <div class="form-group col-md-6">
+        <p>Tổng Tiền</p>
+        <input type="text" class="form-control" formControlName="total" disabled [(ngModel)]="totalCalculate">
+      </div>
+    </label>
+  </fieldset>
+  <div class="form-group">
+    <p>Nội dung hợp đồng</p>
+    <textarea rows="5" type="text" class="form-control" formControlName="content"></textarea>
+    <p
+      *ngIf="formEditContract.controls.content.errors?.required && formEditContract.controls.content.touched"
+      class="text-danger">Vui lòng nhập nội dung</p>
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName="status" hidden [(ngModel)]="statusCalculate">
+  </div>
+
+  <div class="form-group">
+    <mat-checkbox class="form-control" formControlName="unified" value="{{false}}">Hai bên đã thống nhất với hợp đồng
+    </mat-checkbox>
+  </div>
+
+</form>
+
+<fieldset>
+  <label class="row " style="margin-left: 43%">
+
+    <div class="form-group d-flex justify-content-center mr-5">
+      <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
     </div>
-
-    <div class="form-group">
-      <p>Kì Hạn</p>
-      <input type="text" class="form-control" formControlName="term" disabled [(ngModel)]="termCalculate">
-    </div>
-
-
-    <div class="form-group">
-      <p>Tổng Tiền</p>
-      <input type="text" class="form-control" formControlName="total" disabled [(ngModel)]="totalCalculate">
-    </div>
-
-    <div class="form-group">
-      <p>Nội dung hợp đồng</p>
-      <textarea rows="5" type="text" class="form-control" formControlName="content"></textarea>
-      <p
-        *ngIf="formEditContract.controls.content.errors?.required && formEditContract.controls.content.touched"
-        class="text-danger">Vui lòng nhập nội dung</p>
-    </div>
-
-    <div class="form-group">
-      <input type="text" class="form-control" formControlName="status" hidden [(ngModel)]="statusCalculate">
-    </div>
-
-    <div class="form-group">
-      <!--    <p>Hợp đồng đã được kí </p>-->
-      <!--    <input type="checkbox"  class="form-control" formControlName="unified"  >-->
-
-      <mat-checkbox class="form-control" formControlName="unified" value="{{false}}">Hai bên đã thống nhất với hợp
-        đồng
-      </mat-checkbox>
-
-
-    </div>
-
-
-    <div class="form-group d-flex justify-content-center">
+    <div class="form-group d-flex justify-content-center mr-5 ">
       <button [disabled]="formEditContract.invalid" class="btn btn-success mt-3" (click)="editContract()">Chỉnh sửa
       </button>
 
     </div>
-    <div class="form-group d-flex justify-content-center">
+    <div class="form-group d-flex justify-content-center " style="align-content: center">
       <button class="btn btn-outline-dark mt-3" routerLink="/contracts">Quay về danh sách hợp đồng
       </button>
     </div>
-    <div class="form-group d-flex justify-content-center">
-      <button class="btn btn-info mt-3" (click)="clearFilters()">Clear</button>
-    </div>
+  </label>
+
+</fieldset>
 
 
-  </div>
-</form>
+
+

@@ -25,11 +25,12 @@ import {ContractDetailComponent} from './component/contract/contract-detail/cont
 import {ContractDeleteComponent} from './component/contract/contract-delete/contract-delete.component';
 import {ContractAddComponent} from './component/contract/contract-add/contract-add.component';
 import {HomeComponent} from './component/home/home.component';
-import { ViewBuildingComponent } from './component/building/view-building/view-building.component';
-import { AddBuildingComponent } from './component/building/add-building/add-building.component';
-import { ListBuildingComponent } from './component/building/list-building/list-building.component';
-import { DeleteBuildingComponent } from './component/building/delete-building/delete-building.component';
-import { EditBuildingComponent } from './component/building/edit-building/edit-building.component';
+import {AddBuildingComponent} from './component/building/add-building/add-building.component';
+import {EditBuildingComponent} from './component/building/edit-building/edit-building.component';
+import {DeleteBuildingComponent} from './component/building/delete-building/delete-building.component';
+import {ViewBuildingComponent} from './component/building/view-building/view-building.component';
+import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+
 
 
 @NgModule({
@@ -45,11 +46,12 @@ import { EditBuildingComponent } from './component/building/edit-building/edit-b
     ContractDeleteComponent,
     ContractAddComponent,
     HomeComponent,
-    ViewBuildingComponent,
     AddBuildingComponent,
-    ListBuildingComponent,
+    EditBuildingComponent,
     DeleteBuildingComponent,
-    EditBuildingComponent
+    ViewBuildingComponent,
+    ListBuildingComponent
+
   ],
   imports: [
     BrowserModule,
@@ -73,10 +75,10 @@ import { EditBuildingComponent } from './component/building/edit-building/edit-b
   entryComponents: [
     ContractDeleteComponent,
     AddBuildingComponent,
-    ViewBuildingComponent,
     EditBuildingComponent,
+    ViewBuildingComponent,
+    ListBuildingComponent,
     DeleteBuildingComponent
-
   ]
 })
 export class AppModule {
