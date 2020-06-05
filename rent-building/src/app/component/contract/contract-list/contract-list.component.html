@@ -34,17 +34,17 @@
 
       <td><input type="checkbox" [checked]="contract.status" [disabled]="true"></td>
       <td width="100">
-        <button class="btn btn-group-vertical ml-3" [routerLink]="['/contracts',contract.id,'detail']">Detail</button>
+        <button class="btn btn-group-vertical ml-3" [routerLink]="['/contracts',contract.id,'detail']">Chi tiết</button>
       </td>
 
       <td width="100">
-        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Edit</button>
+        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Sửa</button>
 
 
       </td>
       <td width="100">
 
-        <button class="btn btn-danger ml-3" (click)="openDialog(contract.id)">Delete</button>
+        <button class="btn btn-danger ml-3" (click)="openDialog(contract.id)">Xóa</button>
       </td>
     </tr>
     </tbody>
