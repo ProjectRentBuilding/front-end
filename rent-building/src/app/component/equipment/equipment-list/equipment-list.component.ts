@@ -61,7 +61,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   addNewEquipment() {
     this.equipmentService.addNewEquipment(this.formAddNewEquipment.value).subscribe(data => {
       this.checkAdd = false;
-      this.redirectTo('equipment-list');
+      this.redirectTo('equipments');
       this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
     });
     console.log(this.formAddNewEquipment);
@@ -83,12 +83,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
   editEquipment() {
     this.equipmentService.editEquipment(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
-      this.redirectTo('equipment-list');
+      this.redirectTo('equipments');
       this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
   }
   close() {
-    this.redirectTo('equipment-list');
+    this.redirectTo('equipments');
   }
   openDialogDelete(id): void {
     this.equipmentService.getEquipmentById(id).subscribe(dataOfEquipment => {

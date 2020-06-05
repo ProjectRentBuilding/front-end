@@ -102,7 +102,12 @@
             {{equipment.codeSpace}}
           </td>
           <td *ngIf="checkEdit && equipment.id===flag">
-            <input type="text" class="form-control" formControlName="codeSpace" value="{{equipment.codeSpace}}">
+            <select class="form-control" style="width:120px" formControlName="codeSpace">
+              <option value="MB001">MB001</option>
+              <option value="MB002">MB002</option>
+              <option value="MB003">MB003</option>
+              <option value="MB004">MB004</option>
+            </select>
           </td>
           <td *ngIf="!checkEdit || equipment.id!==flag">
             <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)" style="margin-right: 10px">Edit</button>
@@ -162,7 +167,12 @@
           </span>
           </td>
           <td>
-            <input type="text" class="form-control" formControlName="codeSpace">
+            <select class="form-control" style="width:120px" formControlName="codeSpace">
+              <option value="MB001">MB001</option>
+              <option value="MB002">MB002</option>
+              <option value="MB003">MB003</option>
+              <option value="MB004">MB004</option>
+            </select>
             <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeSpace').invalid && formAddNewEquipment.get('codeSpace').touched">
             Mã mặt bằng không được để trống!
           </span>
