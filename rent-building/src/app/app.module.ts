@@ -24,6 +24,7 @@ import {ContractDetailComponent} from './component/contract/contract-detail/cont
 import {ContractDeleteComponent} from './component/contract/contract-delete/contract-delete.component';
 import {ContractAddComponent} from './component/contract/contract-add/contract-add.component';
 import {HomeComponent} from './component/home/home.component';
+<<<<<<< HEAD
 import { BuildingEditComponent } from './component/building/building-edit/building-edit.component';
 import { BuildingDeleteComponent } from './component/building/building-delete/building-delete.component';
 import { BuildingDetailComponent } from './component/building/building-detail/building-detail.component';
@@ -35,6 +36,16 @@ import { FloorEditComponent } from './component/floor/floor-edit/floor-edit.comp
 import { FloorDeleteComponent } from './component/floor/floor-delete/floor-delete.component';
 
 
+=======
+import {AddBuildingComponent} from './component/building/add-building/add-building.component';
+import {EditBuildingComponent} from './component/building/edit-building/edit-building.component';
+import {DeleteBuildingComponent} from './component/building/delete-building/delete-building.component';
+import {ViewBuildingComponent} from './component/building/view-building/view-building.component';
+import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+import { CustomersComponent } from './component/customer/customers/customers.component';
+import { CustomerDeleteComponent } from './component/customer/customer-delete/customer-delete.component';
+import { EquipmentDeleteComponent } from './component/equipment/equipment-delete/equipment-delete.component';
+>>>>>>> 7a313af83c92ccbe4c6200a0849c8be5b75bad74
 
 
 
@@ -50,6 +61,7 @@ import { FloorDeleteComponent } from './component/floor/floor-delete/floor-delet
     ContractDeleteComponent,
     ContractAddComponent,
     HomeComponent,
+<<<<<<< HEAD
     BuildingListComponent,
     BuildingEditComponent,
     BuildingDeleteComponent,
@@ -60,6 +72,16 @@ import { FloorDeleteComponent } from './component/floor/floor-delete/floor-delet
     FloorEditComponent,
     FloorDeleteComponent
 
+=======
+    AddBuildingComponent,
+    EditBuildingComponent,
+    DeleteBuildingComponent,
+    ViewBuildingComponent,
+    ListBuildingComponent,
+    CustomersComponent,
+    CustomerDeleteComponent,
+    EquipmentDeleteComponent
+>>>>>>> 7a313af83c92ccbe4c6200a0849c8be5b75bad74
 
   ],
   imports: [
@@ -83,6 +105,7 @@ import { FloorDeleteComponent } from './component/floor/floor-delete/floor-delet
   bootstrap: [AppComponent],
   entryComponents: [
     ContractDeleteComponent,
+<<<<<<< HEAD
     BuildingListComponent,
     BuildingAddComponent,
     BuildingEditComponent,
@@ -93,6 +116,16 @@ import { FloorDeleteComponent } from './component/floor/floor-delete/floor-delet
     FloorEditComponent,
     FloorListComponent
 
+=======
+    AddBuildingComponent,
+    EditBuildingComponent,
+    ViewBuildingComponent,
+    ListBuildingComponent,
+    DeleteBuildingComponent,
+    CustomerDeleteComponent,
+    EquipmentDeleteComponent,
+    DeleteBuildingComponent
+>>>>>>> 7a313af83c92ccbe4c6200a0849c8be5b75bad74
   ]
 })
 export class AppModule {
