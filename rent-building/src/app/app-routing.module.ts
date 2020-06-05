@@ -1,22 +1,29 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {HomeComponent} from './component/home/home.component';
-import {ContractsComponent} from './component/contract/contracts/contracts.component';
-import {ContractListComponent} from './component/contract/contract-list/contract-list.component';
-import {ContractEditComponent} from './component/contract/contract-edit/contract-edit.component';
-import {ContractAddComponent} from './component/contract/contract-add/contract-add.component';
-import {ContractDetailComponent} from './component/contract/contract-detail/contract-detail.component';
-import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import {HomeComponent} from "./component/home/home.component";
+import {ContractsComponent} from "./component/contract/contracts/contracts.component";
+import {ContractListComponent} from "./component/contract/contract-list/contract-list.component";
+import {ContractEditComponent} from "./component/contract/contract-edit/contract-edit.component";
+import {ContractAddComponent} from "./component/contract/contract-add/contract-add.component";
+import {ContractDetailComponent} from "./component/contract/contract-detail/contract-detail.component";
+import {BuildingListComponent} from './component/building/building-list/building-list.component';
+import {FloorListComponent} from './component/floor/floor-list/floor-list.component';
 import {CustomerListComponent} from './component/customer/customer-list/customer-list.component';
 import {CustomersComponent} from './component/customer/customers/customers.component';
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
+
 
 
 const routes: Routes = [
   {path: 'equipment-list', component: EquipmentListComponent},
   {
     path: 'buildings',
-    component: ListBuildingComponent,
+    component: BuildingListComponent,
+  },
+  {
+    path: 'floors',
+    component: FloorListComponent,
   },
   {path: '', component: HomeComponent},
   {

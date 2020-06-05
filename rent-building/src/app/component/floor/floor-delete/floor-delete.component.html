@@ -1,0 +1,12 @@
+<div id="modal-content-wrapper" class="d-fex justify-content-center">
+  <header id="modal-header">
+    <h1 id="modal-title">Xóa thông tin tầng lầu</h1>
+  </header>
+  <section id="modal-body">
+    <p style="color: red">Xác nhận xóa <span class="text-primary font-weight-bold">{{floorName}}</span> không? <br> Lưu ý: Xóa xong không thể hoàn tác!!!</p>
+  </section>
+  <footer id="modal-footer">
+    <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" (click)="deleteFloor()">Xác nhận</button>
+    <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" mat-dialog-close>Hủy lệnh</button>
+  </footer>
+</div>

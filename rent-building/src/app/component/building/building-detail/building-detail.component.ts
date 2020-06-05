@@ -1,22 +1,22 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {BuildingService} from '../../../Service/building.service';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {BuildingService} from '../../../service/building.service';
 
 @Component({
-  selector: 'app-view-building',
-  templateUrl: './view-building.component.html',
-  styleUrls: ['./view-building.component.css']
+  selector: 'app-building-detail',
+  templateUrl: './building-detail.component.html',
+  styleUrls: ['./building-detail.component.css']
 })
-export class ViewBuildingComponent implements OnInit, OnDestroy {
+export class BuildingDetailComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
   viewBuildingForm: FormGroup;
   public id: number;
   constructor(
-    public dialogRef: MatDialogRef<ViewBuildingComponent>,
+    public dialogRef: MatDialogRef<BuildingDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public buildingService: BuildingService,
     public routerService: Router,
@@ -56,3 +56,4 @@ export class ViewBuildingComponent implements OnInit, OnDestroy {
     }
   }
 }
+

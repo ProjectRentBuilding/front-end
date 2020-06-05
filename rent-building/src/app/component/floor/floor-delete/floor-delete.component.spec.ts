@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddBuildingComponent } from './add-building.component';
+import { FloorDeleteComponent } from './floor-delete.component';
 
-describe('AddBuildingComponent', () => {
-  let component: AddBuildingComponent;
-  let fixture: ComponentFixture<AddBuildingComponent>;
+describe('FloorDeleteComponent', () => {
+  let component: FloorDeleteComponent;
+  let fixture: ComponentFixture<FloorDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddBuildingComponent ]
+      declarations: [ FloorDeleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddBuildingComponent);
+    fixture = TestBed.createComponent(FloorDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

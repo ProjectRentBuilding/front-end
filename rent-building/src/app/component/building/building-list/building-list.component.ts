@@ -1,26 +1,25 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {BuildingModel} from '../../../Model/building.model';
-import {BuildingService} from '../../../Service/building.service';
-import {DeleteBuildingComponent} from '../delete-building/delete-building.component';
+import {BuildingModel} from '../../../model/building.model';
+import {BuildingService} from '../../../service/building.service';
 import {MatDialog} from '@angular/material';
-import {AddBuildingComponent} from '../add-building/add-building.component';
-import {EditBuildingComponent} from '../edit-building/edit-building.component';
-import {ViewBuildingComponent} from '../view-building/view-building.component';
+import {BuildingAddComponent} from '../building-add/building-add.component';
+import {BuildingDeleteComponent} from '../building-delete/building-delete.component';
+import {BuildingEditComponent} from '../building-edit/building-edit.component';
+import {BuildingDetailComponent} from '../building-detail/building-detail.component';
 
 @Component({
-  selector: 'app-list-building',
-  templateUrl: './list-building.component.html',
-  styleUrls: ['./list-building.component.css']
+  selector: 'app-building-list',
+  templateUrl: './building-list.component.html',
+  styleUrls: ['./building-list.component.css']
 })
-export class ListBuildingComponent implements OnInit, OnDestroy {
+export class BuildingListComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
   public buildings: BuildingModel[];
   public totalRec: number;
   public page = 1;
   public searchText;
-  message = '';
 
   constructor(
     public buildingService: BuildingService,
@@ -42,7 +41,7 @@ export class ListBuildingComponent implements OnInit, OnDestroy {
   }
 
   openDialogAddNew(): void {
-    const dialogRef = this.dialog.open(AddBuildingComponent, {
+    const dialogRef = this.dialog.open(BuildingAddComponent, {
       width: '1200px',
       height: '840px',
       disableClose: true,
@@ -54,7 +53,7 @@ export class ListBuildingComponent implements OnInit, OnDestroy {
   }
   openDialogView(id): void {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
-      const dialogRef = this.dialog.open(ViewBuildingComponent, {
+      const dialogRef = this.dialog.open(BuildingDetailComponent, {
         width: '1200px',
         height: '840px',
         data: {data1: dataOfBuildingModel},
@@ -68,7 +67,7 @@ export class ListBuildingComponent implements OnInit, OnDestroy {
 
   openDialogEdit(id): void {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
-      const dialogRef = this.dialog.open(EditBuildingComponent, {
+      const dialogRef = this.dialog.open(BuildingEditComponent, {
         width: '1200px',
         height: '840px',
         data: {data1: dataOfBuildingModel},
@@ -83,7 +82,7 @@ export class ListBuildingComponent implements OnInit, OnDestroy {
 
   openDialogDelete(id): void {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
-      const dialogRef = this.dialog.open(DeleteBuildingComponent, {
+      const dialogRef = this.dialog.open(BuildingDeleteComponent, {
         width: '500px',
         height: '240px',
         data: {data1: dataOfBuildingModel},
