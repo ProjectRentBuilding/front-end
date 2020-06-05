@@ -47,11 +47,11 @@
       "groundName": "MB004",
       "idCardCustomer": "123123123",
       "status": true,
-      "term": 5.78,
-      "startRentDay": "2020-01-12T17:00:00.000Z",
+      "term": 5.06,
+      "startRentDay": "2020-02-03T17:00:00.000Z",
       "endRentDay": "2020-07-06T17:00:00.000Z",
       "price": 10000,
-      "total": 57800,
+      "total": 50599.99999999999,
       "content": "dfdfdf",
       "unified": true,
       "id": 4
@@ -128,6 +128,27 @@
       "recipientName": "124",
       "bank": "41",
       "logo": "4124",
+      "id": 1
+    }
+  ],
+  "customers": [
+    {
+      "name": "anh quoc non non",
+      "idCard": "13213213213",
+      "email": "anhquoc@gmail.com",
+      "phone": "13123123123",
+      "birthday": "02/02/1980",
+      "address": "da nangg",
+      "website": "sdadsadsad",
+      "nameCompany": "sadsadsa",
+      "name1": "",
+      "idCard1": "",
+      "email1": "",
+      "phone1": "",
+      "birthday1": "",
+      "address1": "",
+      "website1": "",
+      "nameCompany1": "",
       "id": 1
     }
   ]

@@ -1,0 +1,32 @@
+.left{
+  padding-left: 0px;
+  margin-top:66px;
+  /*position: fixed;*/
+  /*left: 0;*/
+  /*top:30px;*/
+}
+.hover-li:hover{
+  background: #4134B6;
+}
+.vip {
+  color: aqua;
+  height: 100px;
+  width: 100%;
+  /*background: linear-gradient(black, white);*/
+  background:#2C2C34 ;
+  /*position: fixed;*/
+  /*bottom:0;*/
+
+}
+li{
+  background: #2C2C34;
+}
+a{
+  text-decoration: none;
+  color: #D5D5D6;
+}
+
+.content{
+  margin-top: 65px;
+}
+

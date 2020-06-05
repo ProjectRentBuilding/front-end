@@ -1,0 +1,27 @@
+.table td, .table th {
+  padding: 8px;
+  font-size: 17px;
+
+}
+
+.scroll-table {
+  overflow-x: auto;
+}
+
+input {
+  font-size: 17px;
+  width: 195px;
+}
+table{
+  /*background-color: #d9ffd9;*/
+  background-image: url(src/assets/image/anh1.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+h1{
+  font-family: "Times New Roman";
+  color: yellow;
+  font-size: 200%;
+}
+
+

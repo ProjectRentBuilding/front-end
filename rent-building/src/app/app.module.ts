@@ -30,6 +30,8 @@ import {EditBuildingComponent} from './component/building/edit-building/edit-bui
 import {DeleteBuildingComponent} from './component/building/delete-building/delete-building.component';
 import {ViewBuildingComponent} from './component/building/view-building/view-building.component';
 import {ListBuildingComponent} from './component/building/list-building/list-building.component';
+import { CustomersComponent } from './component/customer/customers/customers.component';
+import { CustomerDeleteComponent } from './component/customer/customer-delete/customer-delete.component';
 
 
 
@@ -50,7 +52,9 @@ import {ListBuildingComponent} from './component/building/list-building/list-bui
     EditBuildingComponent,
     DeleteBuildingComponent,
     ViewBuildingComponent,
-    ListBuildingComponent
+    ListBuildingComponent,
+    CustomersComponent,
+    CustomerDeleteComponent
 
   ],
   imports: [
@@ -78,7 +82,8 @@ import {ListBuildingComponent} from './component/building/list-building/list-bui
     EditBuildingComponent,
     ViewBuildingComponent,
     ListBuildingComponent,
-    DeleteBuildingComponent
+    DeleteBuildingComponent,
+    CustomerDeleteComponent
   ]
 })
 export class AppModule {
