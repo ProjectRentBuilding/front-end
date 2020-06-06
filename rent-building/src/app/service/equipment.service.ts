@@ -4,35 +4,40 @@ import {Observable} from 'rxjs';
 
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
+import {CrudService} from './CrudService';
+import {EquipmentModel} from '../model/equipment.model';
 
 let $: any = jQuery;
 @Injectable({
   providedIn: 'root'
 })
-export class EquipmentService {
-  public API = 'http://localhost:3000/equipments';
-  constructor(
-    public http: HttpClient
-  ) { }
-  getAllEquipment(): Observable<any> {
-    return this.http.get(this.API);
+export class EquipmentService extends CrudService<EquipmentModel, number> {
+  // public API = 'http://localhost:3000/equipments';
+  // constructor(
+  //   public http: HttpClient
+  // ) { }
+  constructor(protected http: HttpClient) {
+    super(http, 'http://localhost:3000/equipments');
   }
-
-  addNewEquipment(equipment): Observable<any> {
-    return this.http.post(this.API, equipment);
-  }
-
-  getEquipmentById(equipmentId): Observable<any> {
-    return this.http.get(this.API + '/' + equipmentId);
-  }
-
-  deleteEquipment(equipmentId): Observable<any> {
-    return this.http.delete(this.API + '/' + equipmentId);
-  }
-
-  editEquipment(equipment, equipmentId): Observable<any> {
-    return this.http.put(this.API + '/' + equipmentId, equipment);
-  }
+  // getAllEquipment(): Observable<any> {
+  //   return this.http.get(this.API);
+  // }
+  //
+  // addNewEquipment(equipment): Observable<any> {
+  //   return this.http.post(this.API, equipment);
+  // }
+  //
+  // getEquipmentById(equipmentId): Observable<any> {
+  //   return this.http.get(this.API + '/' + equipmentId);
+  // }
+  //
+  // deleteEquipment(equipmentId): Observable<any> {
+  //   return this.http.delete(this.API + '/' + equipmentId);
+  // }
+  //
+  // editEquipment(equipment, equipmentId): Observable<any> {
+  //   return this.http.put(this.API + '/' + equipmentId, equipment);
+  // }
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
     const color = Math.floor((Math.random() * 4) + 1);

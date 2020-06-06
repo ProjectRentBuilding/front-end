@@ -15,7 +15,7 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          Xem thêm
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Action</a>
@@ -24,14 +24,11 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <i class="fas fa-bell fas-nav" style="color: red"></i>
+    <i class="fas fa-sms fas-nav" style="color: yellow"></i>
+    <i class="fas fa-th-large fas-nav " style="color: green"></i>
+    <img src="../assets/image/wp2752752.jpg" width="30" height="30" alt="" style="border-radius: 50px">
   </div>
 </nav>
 <div class="container-fluid">
@@ -43,6 +40,18 @@
         <li class="list-group-item hover-li" ><a [routerLink]="['/equipments']"><i class="fas fa-tools"></i>&nbsp;Danh sách Trang thiết bị</a></li>
         <li class="list-group-item hover-li" ><a [routerLink]="['/contracts']"><i class="fas fa-file-signature"></i>&nbsp;Danh sách hợp đồng</a></li>
         <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="fas fa-building"></i>&nbsp;Danh sách tòa nhà</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-calendar-alt"></i>&nbsp;Lịch</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-copy"></i>&nbsp;Sao chép</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-chart-pie"></i>&nbsp;Thống kê</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-envelope"></i>&nbsp;Hộp thư</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-table"></i>&nbsp;Danh sách tòa nhà</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-image"></i>&nbsp;Hình ảnh</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-plus-square"></i>&nbsp;Danh sách tòa nhà</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-file"></i>&nbsp;Thư mục</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Giám đốc</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Thư ký</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Nhân viên</a></li>
+        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Khách hàng</a></li>
 
 
       </ul>
@@ -52,7 +61,10 @@
     </div>
   </div>
 </div>
-<!--<footer class="vip fixed-bottom" >-->
-<!--  @Design By TNT-->
-
-<!--</footer>-->
+<footer class="main-footer">
+  <strong >Copyright © 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+  All rights reserved.
+  <div class="float-right d-none d-sm-inline-block">
+    <b>Version</b> 3.0.3
+  </div>
+</footer>

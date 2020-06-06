@@ -26,9 +26,9 @@
     <thead>
     <tr>
       <th>ID</th>
-      <th>Tên Khách Hàng</th>
+      <th >Tên Khách Hàng</th>
       <th>Tên Mặt Bằng</th>
-      <th>Đang Thuê</th>
+      <th style="width: 120px" >Đang Thuê</th>
       <th>Chi Tiết</th>
       <th style="width: 200px">Tác vụ</th>
     </tr>
@@ -36,23 +36,25 @@
     <tbody>
     <tr
       *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
-      <td>{{contract.id}}</td>
-      <td>{{contract.customerName}}</td>
+      <td>{{(i+1)+(page-1)*5}}</td>
+      <td style="text-align: left">{{contract.customerName}}</td>
       <td>{{contract.groundName}}</td>
       <!--      <td>{{contract.status}}</td>-->
 
-      <td><input type="checkbox" [checked]="contract.status" [disabled]="true"></td>
+      <td><input type="checkbox"  [checked]="contract.status" [disabled]="true"></td>
       <td width="110px">
         <button class="btn btn-outline-danger" [routerLink]="['/contracts',contract.id,'detail']">Chi tiết</button>
       </td>
 
-<!--      <td width="100">-->
-<!--        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Sửa</button>-->
+      <!--      <td width="100">-->
+      <!--        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Sửa</button>-->
 
 
-<!--      </td>-->
+      <!--      </td>-->
       <td>
-        <button class="btn btn-warning"  [routerLink]="['/contracts',contract.id,'edit'] " style="margin-right: 10px">Sửa</button>
+        <button class="btn btn-warning" [routerLink]="['/contracts',contract.id,'edit'] " style="margin-right: 10px">
+          Sửa
+        </button>
         <button class="btn btn-danger" (click)="openDialog(contract.id)">Xóa</button>
       </td>
     </tr>

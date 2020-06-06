@@ -6,6 +6,8 @@ import {MatDialog} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {CustomerDeleteComponent} from '../customer-delete/customer-delete.component';
+import {GroundService} from '../../../service/ground.service';
+import {GroundModel} from '../../../model/ground.model';
 
 
 @Component({
@@ -24,6 +26,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public search;
   public subscription: Subscription;
   public customers: Customer[] = [];
+  public grounds: GroundModel[] = [];
   message = '';
 
   public flag;
@@ -34,6 +37,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
               public formBuilder: FormBuilder,
               public router: Router,
               public activateRouter: ActivatedRoute,
+              public groundService: GroundService
   ) {
   }
 
@@ -47,10 +51,21 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       address: ['', Validators.required],
       website: ['', Validators.required],
       nameCompany: ['', Validators.required],
+      nameGround: ['', Validators.required],
+      rentStatus: ['']
     });
     this.customerService.findAll().subscribe(data => {
       this.customers = data;
       // this.totalRec = this.customers.length;
+    });
+    this.groundService.findAll().subscribe(data => {
+      this.grounds = data;
+      // this.totalRec = this.customers.length;
+    });
+    this.formAddNewCustomer.patchValue({
+      // startRentDay: new Date().toJSON(),
+      // endRentDay: new Date().toJSON(),
+      rentStatus: false
     });
   }
 
@@ -128,4 +143,5 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   cancelAdd() {
     this.redirectTo('customers');
   }
+
 }
