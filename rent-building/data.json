@@ -164,7 +164,7 @@
     },
     {
       "abbreviationName": "Hoa1",
-      "fullName": "DinhHoa1",
+      "fullName": "DinhHoa2",
       "taxCode": "124",
       "phone": "213123123",
       "email": "123@421",
@@ -181,11 +181,11 @@
   ],
   "floors": [
     {
-      "nameFloor": "Tầng 2",
+      "nameFloor": "Tầng 5",
       "id": 1
     },
     {
-      "nameFloor": "Tầng 1",
+      "nameFloor": "Tầng 2",
       "id": 2
     },
     {
@@ -213,7 +213,7 @@
       "nameCompany1": "",
       "id": 1
     }
-    ],
+  ],
   "equipment": [
     {
       "type": "Bóng đèn",
@@ -294,6 +294,18 @@
       "note": "121",
       "codeSpace": "123",
       "id": 8
+    }
+  ],
+  "grounds": [
+    {
+      "codeGround": "mb01",
+      "typeGround": "dsad",
+      "area": "",
+      "id": 1
+    },
+    {
+      "codeGround": "mb02",
+      "id": 2
     }
   ]
 }

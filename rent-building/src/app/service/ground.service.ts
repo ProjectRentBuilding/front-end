@@ -3,17 +3,16 @@ import {CrudService} from './CrudService';
 import {HttpClient} from '@angular/common/http';
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
-import {FloorModel} from '../model/floor.model';
-
+import {GroundModel} from '../model/ground.model';
 
 let $: any = jQuery;
 
 @Injectable({
   providedIn: 'root'
 })
-export class FloorService extends CrudService<FloorModel, number> {
+export class GroundService extends CrudService<GroundModel, number>{
   constructor(protected  http: HttpClient) {
-    super(http, 'http://localhost:3000/floors');
+    super(http, 'http://localhost:3000/grounds');
   }
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
@@ -42,6 +41,5 @@ export class FloorService extends CrudService<FloorModel, number> {
         '</div>'
     });
   }
-
 }
 

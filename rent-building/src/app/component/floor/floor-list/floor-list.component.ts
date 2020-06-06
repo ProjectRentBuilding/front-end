@@ -2,13 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {FloorModel} from '../../../model/floor.model';
 import {FloorService} from '../../../service/floor.service';
-import {MatDialog, MatDialogRef} from '@angular/material';
-import {FloorAddComponent} from '../floor-add/floor-add.component';
-import {FloorEditComponent} from '../floor-edit/floor-edit.component';
+import {MatDialog} from '@angular/material';
+
 import {FloorDeleteComponent} from '../floor-delete/floor-delete.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BuildingService} from '../../../service/building.service';
-import {ActivatedRoute, Router} from '@angular/router';
+
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -32,7 +31,6 @@ export class FloorListComponent implements OnInit, OnDestroy {
   constructor(
     public floorService: FloorService,
     public dialog: MatDialog,
-    public activateRouter: ActivatedRoute,
     public routerService: Router,
     private fb: FormBuilder
   ) {
@@ -78,13 +76,13 @@ export class FloorListComponent implements OnInit, OnDestroy {
       this.checkAdd = false;
       this.flag = id;
       this.floorOfId = id;
-      this.floorService.getFloorById(this.floorOfId).subscribe(data => {
+      this.floorService.findOne(this.floorOfId).subscribe(data => {
         this.addFloorForm.patchValue(data);
       });
     }
   }
   editFloor() {
-    this.floorService.editEquipment(this.addFloorForm.value, this.floorOfId).subscribe(data => {
+    this.floorService.update(this.addFloorForm.value, this.floorOfId).subscribe(data => {
       this.redirectTo('floors');
       this.floorService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
