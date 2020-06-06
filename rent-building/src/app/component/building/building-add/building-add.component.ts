@@ -1,22 +1,22 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {BuildingService} from '../../../Service/building.service';
-import {Router} from '@angular/router';
 import {MatDialogRef} from '@angular/material';
+import {BuildingService} from '../../../service/building.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-add-building',
-  templateUrl: './add-building.component.html',
-  styleUrls: ['./add-building.component.css']
+  selector: 'app-building-add',
+  templateUrl: './building-add.component.html',
+  styleUrls: ['./building-add.component.css']
 })
-export class AddBuildingComponent implements OnInit, OnDestroy {
+export class BuildingAddComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
   addBuildingForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<AddBuildingComponent>,
+    public dialogRef: MatDialogRef<BuildingAddComponent>,
     public buildingService: BuildingService,
     public routerService: Router,
     private fb: FormBuilder
@@ -63,4 +63,5 @@ export class AddBuildingComponent implements OnInit, OnDestroy {
   }
 
 }
+
 

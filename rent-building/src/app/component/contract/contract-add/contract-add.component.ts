@@ -62,6 +62,10 @@ export class ContractAddComponent implements OnInit {
 
   checkValidateTimeInput(a: Date, b: Date) {
 
+    if (a == null || b == null) {
+      return 0;
+    }
+
 
     if (a.getTime() <= b.getTime()) {
       this.termCalculate = parseFloat(((b.getTime() - a.getTime()) / 2629800000).toFixed(2));

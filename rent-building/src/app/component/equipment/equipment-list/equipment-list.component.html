@@ -3,7 +3,7 @@
     <div class="table-title">
       <div class="row">
         <div class="col-sm-6">
-          <h2>Manage <b>Equipment</b></h2>
+            <h2>Danh sách trang thiết bị</h2>
           <div class="dropdown open">
             <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
                     id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -18,9 +18,11 @@
             </div>
           </div>
 
-          <div class="search-hero">
-            <input class="form-control mt-2 autoSearch" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                   placeholder="Nhập từ khoá tìm kiếm" id="keySearch">
+        </div>
+        <div class="col-sm-6">
+          <div class="search-hero d-flex" style="margin-right: auto">
+            <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                   placeholder="Nhập từ khoá tìm kiếm">
           </div>
         </div>
       </div>
@@ -30,29 +32,37 @@
         <thead>
         <tr>
           <th>STT</th>
-          <th>Loại</th>
+          <th style="width: 140px">Loại</th>
           <th>Tên thiết bị</th>
           <th>Số lượng</th>
           <th>Trạng thái</th>
           <th>Số lượng hỏng</th>
           <th>Ghi chú</th>
           <th>Mã mặt bằng</th>
-          <th style="width: 200px">Hành động</th>
+          <th style="width: 200px">Tác vụ</th>
         </tr>
         </thead>
         <tbody>
 
-        <!--      <tr *ngFor="let equipment of equipmentModel; let i = index">-->
         <tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
-                                                                            itemsPerPage:4,
+
+                                                                            itemsPerPage:5,
                                                                             currentPage:page
-                                                                          }">
+                                                                           }">
+<!--<tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate: { itemsPerPage: 4, currentPage: page }; let i = index">-->
+
           <td>{{i+1}}</td>
           <td *ngIf="!checkEdit ||  equipment.id!==flag">
             {{equipment.type}}
           </td>
           <td *ngIf="checkEdit && equipment.id===flag">
-            <input type="text" class="form-control" formControlName="type" value="{{equipment.type}}">
+<!--            <input type="text" class="form-control" formControlName="type" value="{{equipment.type}}">-->
+            <select class="form-control" style="width: 120px" formControlName="type">
+              <option value="Bóng đèn">Bóng đèn</option>
+              <option value="Điều hoà">Điều hoà</option>
+              <option value="Quạt">Quạt</option>
+              <option value="Router Wifi">Router Wifi</option>
+            </select>
             <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('type').invalid && formAddNewEquipment.get('type').touched">
               Loại không được để trống!
             </p>
@@ -97,7 +107,12 @@
             {{equipment.codeSpace}}
           </td>
           <td *ngIf="checkEdit && equipment.id===flag">
-            <input type="text" class="form-control" formControlName="codeSpace" value="{{equipment.codeSpace}}">
+            <select class="form-control" style="width:120px" formControlName="codeSpace">
+              <option value="MB001">MB001</option>
+              <option value="MB002">MB002</option>
+              <option value="MB003">MB003</option>
+              <option value="MB004">MB004</option>
+            </select>
           </td>
           <td *ngIf="!checkEdit || equipment.id!==flag">
             <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)" style="margin-right: 10px">Edit</button>
@@ -112,7 +127,13 @@
         <tr *ngIf="checkAdd">
           <td></td>
           <td>
-            <input type="text" class="form-control" formControlName="type">
+<!--            <input type="text" class="form-control" formControlName="type">-->
+            <select class="form-control" style="width: 120px" formControlName="type">
+              <option value="Bóng đèn">Bóng đèn</option>
+              <option value="Điều hoà">Điều hoà</option>
+              <option value="Quạt">Quạt</option>
+              <option value="Router Wifi">Router Wifi</option>
+            </select>
             <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('type').invalid && formAddNewEquipment.get('type').touched">
             Loại không được để trống!
           </span>
@@ -151,7 +172,12 @@
           </span>
           </td>
           <td>
-            <input type="text" class="form-control" formControlName="codeSpace">
+            <select class="form-control" style="width:120px" formControlName="codeSpace">
+              <option value="MB001">MB001</option>
+              <option value="MB002">MB002</option>
+              <option value="MB003">MB003</option>
+              <option value="MB004">MB004</option>
+            </select>
             <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeSpace').invalid && formAddNewEquipment.get('codeSpace').touched">
             Mã mặt bằng không được để trống!
           </span>
@@ -167,7 +193,8 @@
       </div>
     </form>
     <div>
-      <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+      <pagination-controls id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"
+                            nextLabel="Trang sau" autoHide="true" responsive="true"></pagination-controls>
     </div>
   </div>
 </div>

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditBuildingComponent } from './edit-building.component';
+import { GroundListComponent } from './ground-list.component';
 
-describe('EditBuildingComponent', () => {
-  let component: EditBuildingComponent;
-  let fixture: ComponentFixture<EditBuildingComponent>;
+describe('GroundListComponent', () => {
+  let component: GroundListComponent;
+  let fixture: ComponentFixture<GroundListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditBuildingComponent ]
+      declarations: [ GroundListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditBuildingComponent);
+    fixture = TestBed.createComponent(GroundListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

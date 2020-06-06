@@ -37,7 +37,7 @@ export class ContractListComponent implements OnInit , OnDestroy {
     }
   }
 
-  formatsDate: string[] = [
+  formatsDate : string[] = [
     'dd/MM/yyyy',
   ];
 
@@ -47,7 +47,7 @@ export class ContractListComponent implements OnInit , OnDestroy {
     this.contractService.findOne(contractId).subscribe(dataOfContract => {
       const dialogRef = this.dialog.open(ContractDeleteComponent, {
         width: '500px',
-        height:'250px',
+        height: '250px',
         data: {data1: dataOfContract},
         disableClose: true,
       });

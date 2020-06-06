@@ -115,20 +115,82 @@
   ],
   "buildings": [
     {
-      "abbreviationName": "142",
-      "fullName": "124",
-      "taxCode": "4124",
-      "phone": "241212122",
-      "email": "123@414",
-      "fax": "142",
-      "address": "4124",
-      "management": "14",
-      "manager": "414",
-      "accountNumber": "41241",
-      "recipientName": "124",
-      "bank": "41",
-      "logo": "4124",
+      "abbreviationName": "22",
+      "fullName": "12",
+      "taxCode": "12",
+      "phone": "123123456",
+      "email": "12@e",
+      "fax": "12",
+      "address": "12",
+      "management": "12",
+      "manager": "12",
+      "accountNumber": "12",
+      "recipientName": "12",
+      "bank": "12",
+      "logo": "12",
       "id": 1
+    },
+    {
+      "abbreviationName": "12341",
+      "fullName": "234",
+      "taxCode": "23",
+      "phone": "124324234",
+      "email": "234@4234",
+      "fax": "234",
+      "address": "23",
+      "management": "2342",
+      "manager": "2344",
+      "accountNumber": "234234",
+      "recipientName": "234234",
+      "bank": "234",
+      "logo": "24324",
+      "id": 2
+    },
+    {
+      "abbreviationName": "213",
+      "fullName": "1414",
+      "taxCode": "14",
+      "phone": "123123123",
+      "email": "123@44",
+      "fax": "123",
+      "address": "123",
+      "management": "124",
+      "manager": "414",
+      "accountNumber": "141",
+      "recipientName": "144",
+      "bank": "144",
+      "logo": "1414",
+      "id": 3
+    },
+    {
+      "abbreviationName": "Hoa1",
+      "fullName": "DinhHoa2",
+      "taxCode": "124",
+      "phone": "213123123",
+      "email": "123@421",
+      "fax": "12",
+      "address": "12",
+      "management": "14",
+      "manager": "14",
+      "accountNumber": "14",
+      "recipientName": "124",
+      "bank": "142",
+      "logo": "142",
+      "id": 4
+    }
+  ],
+  "floors": [
+    {
+      "nameFloor": "Tầng 5",
+      "id": 1
+    },
+    {
+      "nameFloor": "Tầng 2",
+      "id": 2
+    },
+    {
+      "nameFloor": "Tầng 4",
+      "id": 3
     }
   ],
   "customers": [
@@ -188,7 +250,7 @@
       "id": 5
     }
   ],
-  "equipment": [
+  "equipments": [
     {
       "type": "Bóng đèn",
       "deviceName": "14",
@@ -196,7 +258,7 @@
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "13",
-      "codeSpace": "mb1",
+      "codeSpace": "MB001",
       "id": 1
     },
     {
@@ -206,68 +268,80 @@
       "status": "Hỏng",
       "amountOfBroken": "23",
       "note": "14",
-      "codeSpace": "mb2",
+      "codeSpace": "MB002",
       "id": 2
     },
     {
-      "type": "13",
+      "type": "Router Wifi",
       "deviceName": "13",
       "amount": "13",
       "status": "Mới",
       "amountOfBroken": "13",
       "note": "12",
-      "codeSpace": "mb3",
+      "codeSpace": "MB003",
       "id": 3
     },
     {
-      "type": "14",
+      "type": "Quạt",
       "deviceName": "14",
       "amount": "14",
       "status": "Mới",
       "amountOfBroken": "14",
       "note": "13",
-      "codeSpace": "mb1",
+      "codeSpace": "MB004",
       "id": 4
     },
     {
-      "type": "23",
+      "type": "Điều hoà",
       "deviceName": "23",
       "amount": "23",
       "status": "Mới",
       "amountOfBroken": "23",
       "note": "23",
-      "codeSpace": "mb2",
+      "codeSpace": "MB002",
       "id": 5
     },
     {
-      "type": "13",
+      "type": "Bóng đèn",
       "deviceName": "13",
       "amount": "13",
       "status": "Hỏng",
       "amountOfBroken": "13",
       "note": "13",
-      "codeSpace": "mb3",
+      "codeSpace": "MB001",
       "id": 6
     },
     {
-      "type": "12",
+      "type": "Router Wifi",
       "deviceName": "12",
       "amount": "12",
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeSpace": "mb1",
+      "codeSpace": "MB003",
       "id": 7
     },
     {
-      "type": "123",
+      "type": "Quạt",
       "deviceName": "1231",
       "amount": "123",
-      "status": "Mới",
-      "amountOfBroken": "12",
+      "status": "Hỏng",
+      "amountOfBroken": "4",
       "note": "121",
-      "codeSpace": "123",
+      "codeSpace": "MB004",
       "id": 8
+    }
+  ],
+  "grounds": [
+    {
+      "codeGround": "mb01",
+      "typeGround": "dsad",
+      "area": "",
+      "id": 1
+    },
+    {
+      "codeGround": "mb02",
+      "id": 2
     }
   ]
 }

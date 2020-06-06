@@ -39,13 +39,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.formAddNewEquipment = this.formBuilder.group({
       type: ['', [Validators.required]],
       deviceName: ['', [Validators.required]],
-      amount: ['', [Validators.required]],
-      status: ['', [Validators.required]],
+      amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
+      status: ['', [Validators.required], Validators.pattern('^(Mới|Hỏng)$')],
       amountOfBroken: ['', [Validators.required]],
       note: ['', [Validators.required]],
-      codeSpace: ['', [Validators.required]],
+      codeSpace: ['', [Validators.required, Validators.pattern('^MB[0-9]{3}$')]],
     });
-
   }
 
   ngOnDestroy(): void {
@@ -65,7 +64,8 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   addNewEquipment() {
     this.equipmentService.addNewEquipment(this.formAddNewEquipment.value).subscribe(data => {
       this.checkAdd = false;
-      this.redirectTo('equipment-list');
+      this.redirectTo('equipments');
+      this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
     });
     console.log(this.formAddNewEquipment);
   }
@@ -89,12 +89,13 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
   editEquipment() {
     this.equipmentService.editEquipment(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
-      this.redirectTo('equipment-list');
+      this.redirectTo('equipments');
+      this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
   }
 
   close() {
-    this.redirectTo('equipment-list');
+    this.redirectTo('equipments');
   }
 
   openDialogDelete(id): void {
@@ -110,5 +111,8 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     });
   }
-
+  searchType(text) {
+    console.log(text);
+    this.searchText = document.getElementById(text).innerText;
+  }
 }

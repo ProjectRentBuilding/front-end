@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListBuildingComponent } from './list-building.component';
+import { GroundDeleteComponent } from './ground-delete.component';
 
-describe('ListBuildingComponent', () => {
-  let component: ListBuildingComponent;
-  let fixture: ComponentFixture<ListBuildingComponent>;
+describe('GroundDeleteComponent', () => {
+  let component: GroundDeleteComponent;
+  let fixture: ComponentFixture<GroundDeleteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListBuildingComponent ]
+      declarations: [ GroundDeleteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListBuildingComponent);
+    fixture = TestBed.createComponent(GroundDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
