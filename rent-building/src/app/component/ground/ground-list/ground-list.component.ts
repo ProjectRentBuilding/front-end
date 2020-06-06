@@ -1,11 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {GroundModel} from '../../../model/ground.model';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material';
-import {Router} from '@angular/router';
 import {GroundService} from '../../../service/ground.service';
 import {GroundDeleteComponent} from '../ground-delete/ground-delete.component';
+import {GroundAddComponent} from '../ground-add/ground-add.component';
+import {GroundDetailComponent} from '../ground-detail/ground-detail.component';
+import {GroundEditComponent} from '../ground-edit/ground-edit.component';
+
 
 @Component({
   selector: 'app-ground-list',
@@ -13,23 +15,15 @@ import {GroundDeleteComponent} from '../ground-delete/ground-delete.component';
   styleUrls: ['./ground-list.component.css']
 })
 export class GroundListComponent implements OnInit, OnDestroy {
-
   public subscription: Subscription;
   public grounds: GroundModel[];
   public totalRec: number;
-  public flag = false;
-  public checkEdit = false;
-  public checkAdd = false;
   public page = 1;
   public searchText;
-  addGroundForm: FormGroup;
-  public groundOfId;
 
   constructor(
     public groundService: GroundService,
-    public dialog: MatDialog,
-    public routerService: Router,
-    private fb: FormBuilder
+    public dialog: MatDialog
   ) {
   }
 
@@ -38,57 +32,53 @@ export class GroundListComponent implements OnInit, OnDestroy {
       this.grounds = data;
       this.totalRec = this.grounds.length;
     });
-    this.addGroundForm = this.fb.group({
-      codeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      typeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      area: ['',[Validators.minLength(2), Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|([0-9]([1-9])?)$/)]]
-    });
   }
+
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
 
-  addNewGround() {
-    this.groundService.save(this.addGroundForm.value).subscribe(data => {
-      this.redirectTo('grounds');
-      this.groundService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+  openDialogAddNew(): void {
+    const dialogRef = this.dialog.open(GroundAddComponent, {
+      width: '1200px',
+      height: '840px',
+      disableClose: true,
     });
-  }
-  redirectTo(uri:string) {
-    this.routerService.navigateByUrl('/', {skipLocationChange: true}).then(() =>
-      this.routerService.navigate([uri]));
-  }
 
-  checkAddNewGround() {
-    if (!this.checkAdd) {
+    dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
-      this.checkAdd = true;
-      this.checkEdit = false;
-    }
-  }
-
-  checkEditGround(id) {
-    if (!this.checkEdit) {
-      this.checkEdit = !this.checkEdit;
-      this.checkAdd = false;
-      this.flag = id;
-      this.groundOfId = id;
-      this.groundService.findOne(this.groundOfId).subscribe(data => {
-        this.addGroundForm.patchValue(data);
-      });
-    }
-  }
-  editGround() {
-    this.groundService.update(this.addGroundForm.value, this.groundOfId).subscribe(data => {
-      this.redirectTo('grounds');
-      this.groundService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
   }
-  close() {
-    this.redirectTo('grounds');
+  openDialogView(id): void {
+    this.groundService.findOne(id).subscribe(dataOfGroundModel => {
+      const dialogRef = this.dialog.open(GroundDetailComponent, {
+        width: '1200px',
+        height: '840px',
+        data: {data1: dataOfGroundModel},
+        disableClose: true,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.ngOnInit();
+      });
+    });
   }
+
+  openDialogEdit(id): void {
+    this.groundService.findOne(id).subscribe(dataOfGroundModel => {
+      const dialogRef = this.dialog.open(GroundEditComponent, {
+        width: '1200px',
+        height: '840px',
+        data: {data1: dataOfGroundModel},
+        disableClose: true,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.ngOnInit();
+      });
+    });
+  }
+
 
   openDialogDelete(id): void {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
@@ -104,3 +94,6 @@ export class GroundListComponent implements OnInit, OnDestroy {
     });
   }
 }
+
+
+
