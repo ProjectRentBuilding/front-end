@@ -1,12 +1,22 @@
-<div id="modal-content-wrapper" class="d-fex justify-content-center">
-  <header id="modal-header">
-    <h1 id="modal-title">DELETE CONFIRM</h1>
-  </header>
-  <section id="modal-body">
-    <p>Bạn có chắc chắc muốn xóa <span class="text-primary font-weight-bold">{{equipmentOfType}}</span> không? <br> Lưu ý: Thao tác không thể hoàn tác!!!</p>
-  </section>
-  <footer id="modal-footer">
-    <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" (click)="deleteEmployee()">Yes</button>
-    <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" mat-dialog-close>No</button>
-  </footer>
+<!--<div id="modal-content-wrapper" class="d-fex justify-content-center">-->
+<!--  <header id="modal-header">-->
+<!--    <h1 id="modal-title">DELETE CONFIRM</h1>-->
+<!--  </header>-->
+<!--  <section id="modal-body">-->
+<!--    <p>Bạn có chắc chắc muốn xóa <span class="text-primary font-weight-bold">{{equipmentOfType}}</span> không? <br> Lưu ý: Thao tác không thể hoàn tác!!!</p>-->
+<!--  </section>-->
+<!--  <footer id="modal-footer">-->
+<!--    <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" (click)="deleteEmployee()">Yes</button>-->
+<!--    <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" mat-dialog-close>No</button>-->
+<!--  </footer>-->
+<!--</div>-->
+
+<h4>DELETE CONFIRM</h4>
+<hr>
+<p class="my-3">Bạn có chắc chắc muốn xóa trang thiết bị có id <span
+  class="text-primary font-weight-bold">{{equipmentOfId}}</span> và tên thiết bị <span
+  class="text-primary font-weight-bold">{{equipmentOfName}}</span> không? <br> Lưu ý: Thao tác không thể hoàn tác!!!</p>
+<div class="row d-flex justify-content-end">
+  <button mat-dialog-close class="btn btn-warning mr-3" style="width: 80px;">Cancel</button>
+  <button class="btn btn-danger mr-3" style="width: 80px;" (click)="deleteEquipment()">Delete</button>
 </div>

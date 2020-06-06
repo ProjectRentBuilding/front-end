@@ -3,7 +3,7 @@
     <div class="table-title">
       <div class="row">
         <div class="col-sm-6">
-          <h2>Manage <b>Equipment</b></h2>
+            <h2>Danh sách trang thiết bị</h2>
           <div class="dropdown open">
             <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
                     id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -18,7 +18,9 @@
             </div>
           </div>
 
-          <div class="search-hero">
+        </div>
+        <div class="col-sm-6">
+          <div class="search-hero d-flex" style="margin-right: auto">
             <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
                    placeholder="Nhập từ khoá tìm kiếm">
           </div>
@@ -37,13 +39,13 @@
           <th>Số lượng hỏng</th>
           <th>Ghi chú</th>
           <th>Mã mặt bằng</th>
-          <th style="width: 200px">Hành động</th>
+          <th style="width: 200px">Tác vụ</th>
         </tr>
         </thead>
         <tbody>
 
         <tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
-                                                                            itemsPerPage:4,
+                                                                            itemsPerPage:5,
                                                                             currentPage:page
                                                                            }">
 <!--<tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate: { itemsPerPage: 4, currentPage: page }; let i = index">-->
