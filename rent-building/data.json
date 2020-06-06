@@ -217,12 +217,12 @@
   "equipments": [
     {
       "type": "Bóng đèn",
-      "deviceName": "14",
-      "amount": "14",
+      "deviceName": "12",
+      "amount": "12",
       "status": "Mới",
       "amountOfBroken": "12",
-      "note": "13",
-      "codeSpace": "MB001",
+      "note": "12",
+      "codeGround": "mb01",
       "id": 1
     },
     {
@@ -230,9 +230,9 @@
       "deviceName": "23",
       "amount": "23",
       "status": "Hỏng",
-      "amountOfBroken": "23",
-      "note": "14",
-      "codeSpace": "MB002",
+      "amountOfBroken": "",
+      "note": "",
+      "codeGround": "mb02",
       "id": 2
     },
     {
@@ -240,9 +240,9 @@
       "deviceName": "13",
       "amount": "13",
       "status": "Mới",
-      "amountOfBroken": "13",
+      "amountOfBroken": "12",
       "note": "12",
-      "codeSpace": "MB003",
+      "codeGround": "",
       "id": 3
     },
     {
@@ -250,9 +250,9 @@
       "deviceName": "14",
       "amount": "14",
       "status": "Mới",
-      "amountOfBroken": "14",
-      "note": "13",
-      "codeSpace": "MB004",
+      "amountOfBroken": "",
+      "note": "",
+      "codeGround": "mb01",
       "id": 4
     },
     {
@@ -260,9 +260,9 @@
       "deviceName": "23",
       "amount": "23",
       "status": "Mới",
-      "amountOfBroken": "23",
-      "note": "23",
-      "codeSpace": "MB002",
+      "amountOfBroken": "",
+      "note": "",
+      "codeGround": "mb03",
       "id": 5
     },
     {
@@ -272,7 +272,7 @@
       "status": "Hỏng",
       "amountOfBroken": "13",
       "note": "13",
-      "codeSpace": "MB001",
+      "codeGround": "MB001",
       "id": 6
     },
     {
@@ -282,7 +282,7 @@
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeSpace": "MB003",
+      "codeGround": "MB003",
       "id": 7
     },
     {
@@ -292,7 +292,7 @@
       "status": "Hỏng",
       "amountOfBroken": "4",
       "note": "121",
-      "codeSpace": "MB004",
+      "codeGround": "MB004",
       "id": 8
     }
   ],
@@ -306,6 +306,12 @@
     {
       "codeGround": "mb02",
       "id": 2
+    },
+    {
+      "codeGround": "mb03",
+      "typeGround": "12",
+      "area": "12",
+      "id": 3
     }
   ]
 }
