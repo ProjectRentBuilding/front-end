@@ -268,7 +268,7 @@
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeGround": "mb02",
+      "codeGround": "mb03",
       "id": 2
     },
     {
@@ -280,6 +280,36 @@
       "note": "12",
       "codeGround": "mb01",
       "id": 3
+    },
+    {
+      "type": "Quạt",
+      "deviceName": "23",
+      "amount": "23",
+      "status": "Hỏng",
+      "amountOfBroken": "21",
+      "note": "23",
+      "codeGround": "mb02",
+      "id": 4
+    },
+    {
+      "type": "Router Wifi",
+      "deviceName": "12",
+      "amount": "12",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "12",
+      "codeGround": "mb01",
+      "id": 5
+    },
+    {
+      "type": "Điều hoà",
+      "deviceName": "123",
+      "amount": "123",
+      "status": "Mới",
+      "amountOfBroken": "123",
+      "note": "123",
+      "codeGround": "mb01",
+      "id": 6
     }
   ],
   "grounds": [
