@@ -1,20 +1,6 @@
 {
   "contracts": [
     {
-      "customerName": "asdas123",
-      "groundName": "MB001",
-      "idCardCustomer": "123123123",
-      "status": true,
-      "term": 3.06,
-      "startRentDay": "2020-05-10T17:00:00.000Z",
-      "endRentDay": "2020-08-11T17:00:00.000Z",
-      "price": 123,
-      "total": 376.38,
-      "content": "dsffdf23",
-      "unified": true,
-      "id": 1
-    },
-    {
       "customerName": "Anh Trung",
       "groundName": "MB003",
       "idCardCustomer": "123123123",
@@ -57,7 +43,7 @@
       "id": 4
     },
     {
-      "customerName": "dfdf",
+      "customerName": "12332",
       "groundName": "MB003",
       "idCardCustomer": "123123123",
       "status": true,
@@ -97,20 +83,6 @@
       "content": "hghg",
       "unified": true,
       "id": 7
-    },
-    {
-      "customerName": "asdasd1",
-      "groundName": "MB002",
-      "idCardCustomer": "124124141",
-      "status": true,
-      "term": 10.94,
-      "startRentDay": "2020-01-04T17:00:00.000Z",
-      "endRentDay": "2020-12-02T17:00:00.000Z",
-      "price": 124,
-      "total": 1356.56,
-      "content": "14124",
-      "unified": true,
-      "id": 1
     }
   ],
   "buildings": [
