@@ -11,5 +11,5 @@ export class EquipmentModel {
   // chú thích
   note: string;
   // mã mặt bằng
-  codeSpace: string;
+  codeGround: string;
 }
