@@ -25,4 +25,5 @@ export class EquipmentDeleteComponent implements OnInit {
       this.dialogRef.close();
     });
   }
+
 }

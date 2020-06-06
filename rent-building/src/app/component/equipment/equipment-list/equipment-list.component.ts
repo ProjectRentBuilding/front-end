@@ -6,6 +6,8 @@ import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 import {EquipmentModel} from '../../../model/equipment.model';
 import {EquipmentDeleteComponent} from '../equipment-delete/equipment-delete.component';
+import {GroundModel} from '../../../model/ground.model';
+import {GroundService} from '../../../service/ground.service';
 
 @Component({
   selector: 'app-equipment-list',
@@ -18,6 +20,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public equipmentOfId;
   public flag;
   public equipmentModel: EquipmentModel[];
+  public grounds: GroundModel[] = [];
   public totalRec: number;
   public page = 1;
   public checkEdit = false;
@@ -26,11 +29,15 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   constructor(
     public formBuilder: FormBuilder,
     public equipmentService: EquipmentService,
+    public groundService: GroundService,
     public dialog: MatDialog,
     public router: Router
   ) { }
 
   ngOnInit() {
+    this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
+      this.grounds = data;
+    });
     this.subscription = this.equipmentService.getAllEquipment().subscribe((data: EquipmentModel[]) => {
       this.equipmentModel = data;
       this.totalRec = this.equipmentModel.length;
@@ -42,7 +49,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       status: ['', [Validators.required], Validators.pattern('^(Mới|Hỏng)$')],
       amountOfBroken: ['', [Validators.required]],
       note: ['', [Validators.required]],
-      codeSpace: ['', [Validators.required, Validators.pattern('^MB[0-9]{3}$')]],
+      codeGround: ['', [Validators.required]],
     });
   }
 
@@ -106,5 +113,10 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   searchType(text) {
     console.log(text);
     this.searchText = document.getElementById(text).innerText;
+  }
+  checkSearch(){
+    alert("ad");
+    let tem = document.getElementById("listing_pagination").innerHTML;
+    console.log(tem);
   }
 }
