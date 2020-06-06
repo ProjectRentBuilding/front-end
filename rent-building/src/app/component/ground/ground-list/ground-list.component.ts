@@ -41,7 +41,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.addGroundForm = this.fb.group({
       codeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       typeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      area: ['',[Validators.minLength(2), Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|(0[1-9]([0-9])?)$/)]]
+      area: ['',[Validators.minLength(2), Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|([0-9]([1-9])?)$/)]]
     });
   }
   ngOnDestroy() {
