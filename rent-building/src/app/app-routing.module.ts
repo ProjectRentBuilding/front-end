@@ -12,6 +12,7 @@ import {FloorListComponent} from './component/floor/floor-list/floor-list.compon
 import {CustomerListComponent} from './component/customer/customer-list/customer-list.component';
 import {CustomersComponent} from './component/customer/customers/customers.component';
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
+import {GroundListComponent} from './component/ground/ground-list/ground-list.component';
 
 
 
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: 'floors',
     component: FloorListComponent,
+  },
+  {
+    path: 'grounds',
+    component: GroundListComponent,
   },
   {path: '', component: HomeComponent},
   {
