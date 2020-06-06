@@ -34,7 +34,7 @@
       </thead>
       <tbody>
       <tr
-        *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 4, currentPage: page,totalItems:totalRec,id:'listing_pagination' } ;let i  = index">
+        *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 4, currentPage: page,id:'listing_pagination' } ;let i  = index">
         <td> {{customer.id}}</td>
 
 

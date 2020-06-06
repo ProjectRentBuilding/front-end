@@ -10,7 +10,7 @@ let $: any = jQuery;
   providedIn: 'root'
 })
 export class EquipmentService {
-  public API = 'http://localhost:3000/equipment';
+  public API = 'http://localhost:3000/equipments';
   constructor(
     public http: HttpClient
   ) { }

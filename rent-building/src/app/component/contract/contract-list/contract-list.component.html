@@ -25,7 +25,7 @@
     </thead>
     <tbody>
     <tr
-      *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 4, currentPage: page,totalItems:totalRec,id:'listing_pagination' } ;let i  = index">
+      *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 4, currentPage: page,id:'listing_pagination' } ;let i  = index">
       <td>{{contract.id}}</td>
       <td>{{contract.customerName}}</td>
       <td>{{contract.groundName}}</td>
