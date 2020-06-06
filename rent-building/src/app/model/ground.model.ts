@@ -11,7 +11,7 @@ export class GroundModel {
   // Giá bán
   public price: number;
   // Phí quản lý
-  public priceMannager: number;
+  public priceManager: number;
   // Tên khách hàng
   public nameCustomer: string;
 

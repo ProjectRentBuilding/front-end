@@ -22,10 +22,10 @@
     </thead>
     <tbody>
     <tr *ngFor="let i=index;let item of buildings|filter:searchText | paginate:{id:'listing_pagination',
-                                                                            itemsPerPage:4,
+                                                                            itemsPerPage:5,
                                                                             currentPage:page
                                                                             }">
-      <td>{{i+1}}</td>
+      <td>{{(i+1)+(page-1)*5}}</td>
       <td>{{item.fullName}}</td>
       <td>{{item.taxCode}}</td>
       <td>{{item.phone}}</td>
