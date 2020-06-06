@@ -1,7 +1,7 @@
 <div class="row justify-content-between">
-  <h1>Danh sách nhân viên</h1>
+  <h1>DANH SÁCH NHÂN VIÊN</h1>
   <div class="d-flex">
-    <input type="text" class="form-control mr-2" style="width: 450px;" placeholder="Tìm kiếm thông tin khách hàng"
+    <i class="fas fa-search"></i><input type="text" class="form-control mr-2" style="width: 450px;" placeholder="Tìm kiếm thông tin khách hàng"
            [(ngModel)]="search">
 
   </div>
@@ -14,8 +14,8 @@
 
 
     <!--  <button class="btn btn-outline-danger" (click)="openDialogAdd()" style="font-size: 30px">Thêm mới</button>-->
-    <table  class="table table-bordered table-sm  table-hover " style="margin-top: 40px" id="myTable">
-      <thead class="thead-dark">
+    <table class="table table-bordered table-sm table-hover " style="margin-top: 40px" id="myTable">
+      <thead class="thead-light">
       <tr>
         <th>STT</th>
         <th>Họ Tên</th>
@@ -34,7 +34,7 @@
       </thead>
       <tbody>
       <tr
-        *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 4, currentPage: page,totalItems:totalRec,id:'listing_pagination' } ;let i  = index">
+        *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
         <td> {{customer.id}}</td>
 
 
@@ -119,9 +119,11 @@
         </td>
 
         <td>
-          <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-danger ml-3" (click)="openDialogDelete(customer.id)">Delete</button>
-          <button    *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
-                     (click)="resetCustomer()">Reset
+          <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-danger ml-3"
+                  (click)="openDialogDelete(customer.id)">Delete
+          </button>
+          <button *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
+                  (click)="resetCustomer()">Reset
           </button>
         </td>
       </tr>
@@ -133,10 +135,28 @@
         <td></td>
         <td>
           <input type="text" class="form-control" formControlName="name">
+          <p
+            *ngIf="formAddNewCustomer.controls.name.errors?.required && formAddNewCustomer.controls.name.touched"
+            class="text-danger">Vui lòng nhập tên !!!</p>
         </td>
-        <td><input type="text" class="form-control" formControlName="idCard"></td>
-        <td><input type="text" class="form-control" formControlName="email"></td>
-        <td><input type="text" class="form-control" formControlName="phone"></td>
+        <td>
+          <input type="text" class="form-control" formControlName="idCard">
+          <p
+          *ngIf="formAddNewCustomer.controls.idCard.errors?.required && formAddNewCustomer.controls.idCard.touched"
+          class="text-danger">Vui lòng nhập CMND!!!</p>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="email">
+          <p
+            *ngIf="formAddNewCustomer.controls.email.errors?.required && formAddNewCustomer.controls.email.touched"
+            class="text-danger">Vui lòng nhập email!!!</p>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="phone">
+          <p
+            *ngIf="formAddNewCustomer.controls.phone.errors?.required && formAddNewCustomer.controls.phone.touched"
+            class="text-danger">Vui lòng nhập phone!!!</p>
+        </td>
         <td>
           <label>
             <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
@@ -144,12 +164,32 @@
           </label>
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+          <p
+            *ngIf="formAddNewCustomer.controls.birthday.errors?.required && formAddNewCustomer.controls.birthday.touched"
+            class="text-danger">Vui lòng nhập birthday!!!</p>
         </td>
-        <td><input type="text" class="form-control" formControlName="address"></td>
-        <td><input type="text" class="form-control" formControlName="website"></td>
-        <td><input type="text" class="form-control" formControlName="nameCompany"></td>
+        <td>
+          <input type="text" class="form-control" formControlName="address">
+          <p
+            *ngIf="formAddNewCustomer.controls.address.errors?.required && formAddNewCustomer.controls.address.touched"
+            class="text-danger">Vui lòng nhập address!!!</p>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="website">
+          <p
+            *ngIf="formAddNewCustomer.controls.website.errors?.required && formAddNewCustomer.controls.website.touched"
+            class="text-danger">Vui lòng nhập website!!!</p>
+        </td>
+        <td>
+          <input type="text" class="form-control" formControlName="nameCompany">
+          <p
+            *ngIf="formAddNewCustomer.controls.nameCompany.errors?.required && formAddNewCustomer.controls.nameCompany.touched"
+            class="text-danger">Vui lòng nhập nameCompany!!!</p>
+        </td>
         <td colspan="4">
-          <button class="button btn btn-warning" (click)="addNewCustomer()">ADD</button>
+          <button [disabled]="formAddNewCustomer.invalid" class="button btn btn-warning" (click)="addNewCustomer()" >ADD</button>
+          <button class="button btn btn-warning ml-5" (click)="cancelAdd()">CANCEL</button>
+
         </td>
       </tr>
     </table>

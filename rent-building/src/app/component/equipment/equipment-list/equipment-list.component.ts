@@ -18,22 +18,23 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public equipmentOfId;
   public flag;
   public equipmentModel: EquipmentModel[];
-  public totalRec: number;
+
   public page = 1;
   public checkEdit = false;
   public checkAdd = false;
   public searchText;
+
   constructor(
     public formBuilder: FormBuilder,
     public equipmentService: EquipmentService,
     public dialog: MatDialog,
     public router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.subscription = this.equipmentService.getAllEquipment().subscribe((data: EquipmentModel[]) => {
       this.equipmentModel = data;
-      this.totalRec = this.equipmentModel.length;
     });
     this.formAddNewEquipment = this.formBuilder.group({
       type: ['', [Validators.required]],
@@ -52,6 +53,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+
   checkaddNewEquipment() {
     if (!this.checkAdd) {
       this.ngOnInit();
@@ -59,6 +61,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.checkEdit = false;
     }
   }
+
   addNewEquipment() {
     this.equipmentService.addNewEquipment(this.formAddNewEquipment.value).subscribe(data => {
       this.checkAdd = false;
@@ -66,10 +69,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     });
     console.log(this.formAddNewEquipment);
   }
+
   redirectTo(uri: string) {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
   }
+
   checkEditEquipment(id) {
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
@@ -81,14 +86,17 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     }
   }
+
   editEquipment() {
     this.equipmentService.editEquipment(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
       this.redirectTo('equipment-list');
     });
   }
+
   close() {
     this.redirectTo('equipment-list');
   }
+
   openDialogDelete(id): void {
     this.equipmentService.getEquipmentById(id).subscribe(dataOfEquipment => {
       const dialogRef = this.dialog.open(EquipmentDeleteComponent, {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
-import {ContractService} from "../../../service/contract.service";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {ContractService} from '../../../service/contract.service';
 
 @Component({
   selector: 'app-contract-add',
@@ -19,7 +19,6 @@ export class ContractAddComponent implements OnInit {
   public totalCalculate: number;
   public priceCalculate: number;
   public statusCalculate: boolean;
-
 
 
   constructor(
@@ -56,7 +55,7 @@ export class ContractAddComponent implements OnInit {
   addNewContract() {
 
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
-      this.router.navigateByUrl('contracts').then(r => this.contractService.showNotification("", "Thêm mới thành công, chúc mừng bạn"));
+      this.router.navigateByUrl('contracts').then(r => this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn'));
     });
 
   }
@@ -64,13 +63,12 @@ export class ContractAddComponent implements OnInit {
   checkValidateTimeInput(a: Date, b: Date) {
 
 
-
     if (a.getTime() <= b.getTime()) {
       this.termCalculate = parseFloat(((b.getTime() - a.getTime()) / 2629800000).toFixed(2));
       this.totalCalculate = this.termCalculate * this.priceCalculate;
-      this.messageTimeValidate = "";
+      this.messageTimeValidate = '';
     } else {
-      this.messageTimeValidate = "Ngày bắt đầu phải nhỏ hơn ngày kết thúc";
+      this.messageTimeValidate = 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc';
     }
 
     this.statusCalculate = (a.getTime() <= this.currentDay) && (b.getTime() >= this.currentDay);

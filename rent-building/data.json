@@ -133,25 +133,61 @@
   ],
   "customers": [
     {
-      "name": "anh quoc non non",
-      "idCard": "13213213213",
-      "email": "anhquoc@gmail.com",
-      "phone": "13123123123",
-      "birthday": "02/02/1980",
-      "address": "da nangg",
-      "website": "sdadsadsad",
-      "nameCompany": "sadsadsa",
-      "name1": "",
-      "idCard1": "",
-      "email1": "",
-      "phone1": "",
-      "birthday1": "",
-      "address1": "",
-      "website1": "",
-      "nameCompany1": "",
+      "name": "Tran Ngoc Tan",
+      "idCard": "2017032031",
+      "email": "tan@gmail.com",
+      "phone": "090923123123",
+      "birthday": "1989-12-31T17:00:00.000Z",
+      "address": "da nang",
+      "website": "tan.com",
+      "nameCompany": "tanvip",
       "id": 1
+    },
+    {
+      "name": "",
+      "idCard": "",
+      "email": "ádsad",
+      "phone": "",
+      "birthday": "",
+      "address": "",
+      "website": "",
+      "nameCompany": "",
+      "id": 2
+    },
+    {
+      "name": "ewqeqw",
+      "idCard": "ưqewq",
+      "email": "ưqeqwe",
+      "phone": "ưqewqe",
+      "birthday": "1990-10-22T17:00:00.000Z",
+      "address": "we",
+      "website": "qqweqw",
+      "nameCompany": "ádsadda",
+      "id": 3
+    },
+    {
+      "name": "sadsad",
+      "idCard": "sada",
+      "email": "dsadsa",
+      "phone": "dsadsad",
+      "birthday": "1990-10-23T17:00:00.000Z",
+      "address": "sadsad",
+      "website": "sadad",
+      "nameCompany": "sadsad",
+      "id": 4
+    },
+    {
+      "name": "sadsad",
+      "idCard": "sadsad",
+      "email": "ádsa",
+      "phone": "dsadsa",
+      "birthday": "1990-10-22T17:00:00.000Z",
+      "address": "bap",
+      "website": "sad",
+      "nameCompany": "edit",
+      "id": 5
     }
-    ],
+  ],
   "equipment": [
     {
       "type": "Bóng đèn",
