@@ -17,7 +17,7 @@ import {GroundListComponent} from './component/ground/ground-list/ground-list.co
 
 
 const routes: Routes = [
-  {path: 'equipment-list', component: EquipmentListComponent},
+  {path: 'equipments', component: EquipmentListComponent},
   {
     path: 'buildings',
     component: BuildingListComponent,

@@ -222,7 +222,7 @@
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "13",
-      "codeSpace": "mb1",
+      "codeSpace": "MB001",
       "id": 1
     },
     {
@@ -232,67 +232,67 @@
       "status": "Hỏng",
       "amountOfBroken": "23",
       "note": "14",
-      "codeSpace": "mb2",
+      "codeSpace": "MB002",
       "id": 2
     },
     {
-      "type": "13",
+      "type": "Router Wifi",
       "deviceName": "13",
       "amount": "13",
       "status": "Mới",
       "amountOfBroken": "13",
       "note": "12",
-      "codeSpace": "mb3",
+      "codeSpace": "MB003",
       "id": 3
     },
     {
-      "type": "14",
+      "type": "Quạt",
       "deviceName": "14",
       "amount": "14",
       "status": "Mới",
       "amountOfBroken": "14",
       "note": "13",
-      "codeSpace": "mb1",
+      "codeSpace": "MB004",
       "id": 4
     },
     {
-      "type": "23",
+      "type": "Điều hoà",
       "deviceName": "23",
       "amount": "23",
       "status": "Mới",
       "amountOfBroken": "23",
       "note": "23",
-      "codeSpace": "mb2",
+      "codeSpace": "MB002",
       "id": 5
     },
     {
-      "type": "13",
+      "type": "Bóng đèn",
       "deviceName": "13",
       "amount": "13",
       "status": "Hỏng",
       "amountOfBroken": "13",
       "note": "13",
-      "codeSpace": "mb3",
+      "codeSpace": "MB001",
       "id": 6
     },
     {
-      "type": "12",
+      "type": "Router Wifi",
       "deviceName": "12",
       "amount": "12",
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeSpace": "mb1",
+      "codeSpace": "MB003",
       "id": 7
     },
     {
-      "type": "123",
+      "type": "Quạt",
       "deviceName": "1231",
       "amount": "123",
-      "status": "Mới",
-      "amountOfBroken": "12",
+      "status": "Hỏng",
+      "amountOfBroken": "4",
       "note": "121",
-      "codeSpace": "123",
+      "codeSpace": "MB004",
       "id": 8
     }
   ],

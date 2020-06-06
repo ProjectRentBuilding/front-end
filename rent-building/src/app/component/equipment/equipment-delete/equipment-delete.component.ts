@@ -8,7 +8,7 @@ import {EquipmentService} from '../../../service/equipment.service';
   styleUrls: ['./equipment-delete.component.css']
 })
 export class EquipmentDeleteComponent implements OnInit {
-  public equipmentOfType;
+  public equipmentOfName;
   public equipmentOfId;
   constructor(
     public dialogRef: MatDialogRef<EquipmentDeleteComponent>,
@@ -17,10 +17,10 @@ export class EquipmentDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.equipmentOfType = this.data.data1.type;
+    this.equipmentOfName = this.data.data1.deviceName;
     this.equipmentOfId = this.data.data1.id;
   }
-  deleteEmployee() {
+  deleteEquipment() {
     this.equipmentService.deleteEquipment(this.equipmentOfId).subscribe(data => {
       this.dialogRef.close();
     });
