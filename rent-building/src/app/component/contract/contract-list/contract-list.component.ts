@@ -11,7 +11,7 @@ import {ContractDeleteComponent} from "../contract-delete/contract-delete.compon
   styleUrls: ['./contract-list.component.css']
 })
 export class ContractListComponent implements OnInit , OnDestroy {
-  public page;
+  public page = 1;
   public search;
   public subscription: Subscription;
   public contracts: ContractModel[] = [];

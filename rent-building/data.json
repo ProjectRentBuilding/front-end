@@ -85,18 +85,103 @@
       "id": 7
     },
     {
-      "customerName": "tan",
-      "groundName": "MB002",
-      "idCardCustomer": "232131231",
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
       "status": false,
-      "term": 0.95,
-      "startRentDay": "2020-01-05T17:00:00.000Z",
-      "endRentDay": "2020-02-03T17:00:00.000Z",
-      "price": 213213,
-      "total": 202552.34999999998,
-      "content": "sadasdsad",
-      "unified": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
       "id": 8
+    },
+    {
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
+      "id": 9
+    },
+    {
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
+      "id": 10
+    },
+    {
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
+      "id": 11
+    },
+    {
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
+      "id": 12
+    },
+    {
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
+      "id": 13
+    },
+    {
+      "customerName": "ghhgh",
+      "groundName": "MB003",
+      "idCardCustomer": "123123123",
+      "status": false,
+      "term": 4.63,
+      "startRentDay": "2020-07-12T17:00:00.000Z",
+      "endRentDay": "2020-11-30T17:00:00.000Z",
+      "price": 3212,
+      "total": 14871.56,
+      "content": "hghg",
+      "unified": true,
+      "id": 14
+
     }
   ],
   "buildings": [
@@ -264,7 +349,7 @@
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeGround": "mb02",
+      "codeGround": "mb03",
       "id": 2
     },
     {
@@ -276,6 +361,36 @@
       "note": "12",
       "codeGround": "mb01",
       "id": 3
+    },
+    {
+      "type": "Quạt",
+      "deviceName": "23",
+      "amount": "23",
+      "status": "Hỏng",
+      "amountOfBroken": "21",
+      "note": "23",
+      "codeGround": "mb02",
+      "id": 4
+    },
+    {
+      "type": "Router Wifi",
+      "deviceName": "12",
+      "amount": "12",
+      "status": "Mới",
+      "amountOfBroken": "12",
+      "note": "12",
+      "codeGround": "mb01",
+      "id": 5
+    },
+    {
+      "type": "Điều hoà",
+      "deviceName": "123",
+      "amount": "123",
+      "status": "Mới",
+      "amountOfBroken": "123",
+      "note": "123",
+      "codeGround": "mb01",
+      "id": 6
     }
   ],
   "grounds": [
