@@ -40,7 +40,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       type: ['', [Validators.required]],
       deviceName: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
-      status: ['', [Validators.required], Validators.pattern('^(Mới|Hỏng)$')],
+      status: ['', [Validators.required, Validators.pattern('^(Mới|Hỏng)$')]],
       amountOfBroken: ['', [Validators.required]],
       note: ['', [Validators.required]],
       codeSpace: ['', [Validators.required, Validators.pattern('^MB[0-9]{3}$')]],

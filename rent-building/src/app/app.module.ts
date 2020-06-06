@@ -38,6 +38,9 @@ import { CustomerDeleteComponent } from './component/customer/customer-delete/cu
 import { EquipmentDeleteComponent } from './component/equipment/equipment-delete/equipment-delete.component';
 import { GroundListComponent } from './component/ground/ground-list/ground-list.component';
 import { GroundDeleteComponent } from './component/ground/ground-delete/ground-delete.component';
+import { GroundAddComponent } from './component/ground/ground-add/ground-add.component';
+import { GroundEditComponent } from './component/ground/ground-edit/ground-edit.component';
+import { GroundDetailComponent } from './component/ground/ground-detail/ground-detail.component';
 
 
 
@@ -66,7 +69,10 @@ import { GroundDeleteComponent } from './component/ground/ground-delete/ground-d
     CustomerDeleteComponent,
     EquipmentDeleteComponent,
     GroundListComponent,
-    GroundDeleteComponent
+    GroundDeleteComponent,
+    GroundAddComponent,
+    GroundEditComponent,
+    GroundDetailComponent
 
 
 
@@ -101,6 +107,9 @@ import { GroundDeleteComponent } from './component/ground/ground-delete/ground-d
     FloorListComponent,
     GroundDeleteComponent,
     GroundListComponent,
+    GroundAddComponent,
+    GroundEditComponent,
+    GroundDetailComponent,
     CustomerDeleteComponent,
     EquipmentDeleteComponent
 
