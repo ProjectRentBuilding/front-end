@@ -21,8 +21,9 @@ export class EquipmentDeleteComponent implements OnInit {
     this.equipmentOfId = this.data.data1.id;
   }
   deleteEquipment() {
-    this.equipmentService.deleteEquipment(this.equipmentOfId).subscribe(data => {
+    this.equipmentService.delete(this.equipmentOfId).subscribe(data => {
       this.dialogRef.close();
     });
   }
+
 }
