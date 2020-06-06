@@ -36,7 +36,7 @@
     <tbody>
     <tr
       *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
-      <td>{{contract.id}}</td>
+      <td>{{(i+1)+(page-1)*5}}</td>
       <td>{{contract.customerName}}</td>
       <td>{{contract.groundName}}</td>
       <!--      <td>{{contract.status}}</td>-->

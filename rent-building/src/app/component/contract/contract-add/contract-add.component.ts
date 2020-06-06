@@ -24,7 +24,7 @@ export class ContractAddComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
-    public contractService: ContractService
+    public contractService: ContractService,
   ) {
   }
 
@@ -44,8 +44,6 @@ export class ContractAddComponent implements OnInit {
       unified: ['']
     });
     this.formAddNewContract.patchValue({
-      // startRentDay: new Date().toJSON(),
-      // endRentDay: new Date().toJSON(),
       unified: false
     });
 
