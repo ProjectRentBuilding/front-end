@@ -1,6 +1,20 @@
 {
   "contracts": [
     {
+      "customerName": "Hoa",
+      "groundName": "MB002",
+      "idCardCustomer": "123123123",
+      "status": true,
+      "term": 3.06,
+      "startRentDay": "2020-05-10T17:00:00.000Z",
+      "endRentDay": "2020-08-11T17:00:00.000Z",
+      "price": 123,
+      "total": 376.38,
+      "content": "dsffdf23",
+      "unified": true,
+      "id": 1
+    },
+    {
       "customerName": "Anh Trung",
       "groundName": "MB003",
       "idCardCustomer": "123123123",
@@ -247,6 +261,38 @@
       "bank": "142",
       "logo": "142",
       "id": 4
+    },
+    {
+      "abbreviationName": "424",
+      "fullName": "5345",
+      "taxCode": "355",
+      "phone": "432234234",
+      "email": "234@53535",
+      "fax": "234",
+      "address": "4234",
+      "management": "5435",
+      "manager": "5345",
+      "accountNumber": "5354",
+      "recipientName": "435",
+      "bank": "5345",
+      "logo": "",
+      "id": 5
+    },
+    {
+      "abbreviationName": "21414",
+      "fullName": "5235",
+      "taxCode": "35",
+      "phone": "414124342",
+      "email": "124@33",
+      "fax": "4124",
+      "address": "42",
+      "management": "5325",
+      "manager": "5235",
+      "accountNumber": "5235",
+      "recipientName": "525",
+      "bank": "3525",
+      "logo": "",
+      "id": 6
     }
   ],
   "floors": [
@@ -328,6 +374,17 @@
       "nameGround": "mb03",
       "rentStatus": true,
       "id": 5
+    },
+    {
+      "name": "reewr",
+      "idCard": "wqee",
+      "email": "weqwqe",
+      "phone": "ewwqe",
+      "birthday": "1990-09-15T17:00:00.000Z",
+      "address": "wqe",
+      "website": "wqe",
+      "nameCompany": "wqe",
+      "id": 6
     }
   ],
   "equipments": [
@@ -365,6 +422,16 @@
       "type": "Quạt",
       "deviceName": "23",
       "amount": "23",
+      "status": "Mới",
+      "amountOfBroken": "23",
+      "note": "23",
+      "codeSpace": "MB001",
+      "id": 5
+    },
+    {
+      "type": "Bóng đèn",
+      "deviceName": "13",
+      "amount": "13",
       "status": "Hỏng",
       "amountOfBroken": "21",
       "note": "23",
