@@ -26,27 +26,28 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public checkEdit = false;
   public checkAdd = false;
   public searchText;
+
   constructor(
     public formBuilder: FormBuilder,
     public equipmentService: EquipmentService,
     public groundService: GroundService,
     public dialog: MatDialog,
     public router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
-    this.subscription = this.equipmentService.getAllEquipment().subscribe((data: EquipmentModel[]) => {
+    this.subscription = this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
       this.equipmentModel = data;
-      this.totalRec = this.equipmentModel.length;
     });
     this.formAddNewEquipment = this.formBuilder.group({
       type: ['', [Validators.required]],
       deviceName: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
-      status: ['', [Validators.required], Validators.pattern('^(Mới|Hỏng)$')],
+      status: ['', [Validators.required, Validators.pattern('^(Mới|Hỏng)$')]],
       amountOfBroken: ['', [Validators.required]],
       note: ['', [Validators.required]],
       codeGround: ['', [Validators.required]],
@@ -58,6 +59,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+
   checkaddNewEquipment() {
     if (!this.checkAdd) {
       this.ngOnInit();
@@ -65,40 +67,46 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.checkEdit = false;
     }
   }
+
   addNewEquipment() {
-    this.equipmentService.addNewEquipment(this.formAddNewEquipment.value).subscribe(data => {
+    this.equipmentService.save(this.formAddNewEquipment.value).subscribe(data => {
       this.checkAdd = false;
       this.redirectTo('equipments');
       this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
     });
     console.log(this.formAddNewEquipment);
   }
+
   redirectTo(uri: string) {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));
   }
+
   checkEditEquipment(id) {
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
       this.checkAdd = false;
       this.flag = id;
       this.equipmentOfId = id;
-      this.equipmentService.getEquipmentById(this.equipmentOfId).subscribe(data => {
+      this.equipmentService.findOne(this.equipmentOfId).subscribe(data => {
         this.formAddNewEquipment.patchValue(data);
       });
     }
   }
+
   editEquipment() {
-    this.equipmentService.editEquipment(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
+    this.equipmentService.update(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
       this.redirectTo('equipments');
       this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
   }
+
   close() {
     this.redirectTo('equipments');
   }
+
   openDialogDelete(id): void {
-    this.equipmentService.getEquipmentById(id).subscribe(dataOfEquipment => {
+    this.equipmentService.findOne(id).subscribe(dataOfEquipment => {
       const dialogRef = this.dialog.open(EquipmentDeleteComponent, {
         width: '500px',
         data: {data1: dataOfEquipment},
@@ -113,10 +121,5 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   searchType(text) {
     console.log(text);
     this.searchText = document.getElementById(text).innerText;
-  }
-  checkSearch(){
-    alert("ad");
-    let tem = document.getElementById("listing_pagination").innerHTML;
-    console.log(tem);
   }
 }

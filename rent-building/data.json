@@ -195,23 +195,59 @@
   ],
   "customers": [
     {
-      "name": "anh quoc non non",
-      "idCard": "13213213213",
-      "email": "anhquoc@gmail.com",
-      "phone": "13123123123",
-      "birthday": "02/02/1980",
-      "address": "da nangg",
-      "website": "sdadsadsad",
-      "nameCompany": "sadsadsa",
-      "name1": "",
-      "idCard1": "",
-      "email1": "",
-      "phone1": "",
-      "birthday1": "",
-      "address1": "",
-      "website1": "",
-      "nameCompany1": "",
+      "name": "Tran Ngoc Tan",
+      "idCard": "2017032031",
+      "email": "tan@gmail.com",
+      "phone": "090923123123",
+      "birthday": "1989-12-31T17:00:00.000Z",
+      "address": "da nang",
+      "website": "tan.com",
+      "nameCompany": "tanvip",
       "id": 1
+    },
+    {
+      "name": "",
+      "idCard": "",
+      "email": "ádsad",
+      "phone": "",
+      "birthday": "",
+      "address": "",
+      "website": "",
+      "nameCompany": "",
+      "id": 2
+    },
+    {
+      "name": "ewqeqw",
+      "idCard": "ưqewq",
+      "email": "ưqeqwe",
+      "phone": "ưqewqe",
+      "birthday": "1990-10-22T17:00:00.000Z",
+      "address": "we",
+      "website": "qqweqw",
+      "nameCompany": "ádsadda",
+      "id": 3
+    },
+    {
+      "name": "sadsad",
+      "idCard": "sada",
+      "email": "dsadsa",
+      "phone": "dsadsad",
+      "birthday": "1990-10-23T17:00:00.000Z",
+      "address": "sadsad",
+      "website": "sadad",
+      "nameCompany": "sadsad",
+      "id": 4
+    },
+    {
+      "name": "sadsad",
+      "idCard": "sadsad",
+      "email": "ádsa",
+      "phone": "dsadsa",
+      "birthday": "1990-10-22T17:00:00.000Z",
+      "address": "bap",
+      "website": "sad",
+      "nameCompany": "edit",
+      "id": 5
     }
   ],
   "equipments": [
@@ -222,78 +258,28 @@
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeGround": "mb01",
+      "codeGround": "mb02",
       "id": 1
     },
     {
       "type": "Điều hoà",
-      "deviceName": "23",
-      "amount": "23",
-      "status": "Hỏng",
-      "amountOfBroken": "",
-      "note": "",
-      "codeGround": "mb02",
-      "id": 2
-    },
-    {
-      "type": "Router Wifi",
       "deviceName": "13",
       "amount": "13",
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeGround": "",
-      "id": 3
-    },
-    {
-      "type": "Quạt",
-      "deviceName": "14",
-      "amount": "14",
-      "status": "Mới",
-      "amountOfBroken": "",
-      "note": "",
-      "codeGround": "mb01",
-      "id": 4
-    },
-    {
-      "type": "Điều hoà",
-      "deviceName": "23",
-      "amount": "23",
-      "status": "Mới",
-      "amountOfBroken": "",
-      "note": "",
-      "codeGround": "mb03",
-      "id": 5
+      "codeGround": "mb02",
+      "id": 2
     },
     {
       "type": "Bóng đèn",
-      "deviceName": "13",
-      "amount": "13",
-      "status": "Hỏng",
-      "amountOfBroken": "13",
-      "note": "13",
-      "codeGround": "MB001",
-      "id": 6
-    },
-    {
-      "type": "Router Wifi",
       "deviceName": "12",
       "amount": "12",
       "status": "Mới",
       "amountOfBroken": "12",
       "note": "12",
-      "codeGround": "MB003",
-      "id": 7
-    },
-    {
-      "type": "Quạt",
-      "deviceName": "1231",
-      "amount": "123",
-      "status": "Hỏng",
-      "amountOfBroken": "4",
-      "note": "121",
-      "codeGround": "MB004",
-      "id": 8
+      "codeGround": "mb01",
+      "id": 3
     }
   ],
   "grounds": [

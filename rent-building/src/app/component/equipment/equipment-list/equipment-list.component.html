@@ -22,7 +22,7 @@
         <div class="col-sm-6">
           <div class="search-hero d-flex" style="margin-right: auto">
             <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
-                   placeholder="Nhập từ khoá tìm kiếm" (change)="checkSearch()" id="keySeach">
+                   placeholder="Nhập từ khoá tìm kiếm">
           </div>
         </div>
       </div>
@@ -49,6 +49,7 @@
                                                                             currentPage:page
                                                                            }">
 <!--<tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate: { itemsPerPage: 4, currentPage: page }; let i = index">-->
+
           <td>{{i+1}}</td>
           <td *ngIf="!checkEdit ||  equipment.id!==flag">
             {{equipment.type}}
@@ -105,15 +106,15 @@
             {{equipment.codeGround}}
           </td>
           <td *ngIf="checkEdit && equipment.id===flag">
-<!--            <select class="form-control" style="width:120px" formControlName="codeSpace" value="{{equipment.codeSpace}}">-->
+            <select class="form-control" formControlName="codeGround" style="width:120px">
+              <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>
+            </select>
+<!--            <select class="form-control" style="width:120px" formControlName="codeGround">-->
 <!--              <option value="MB001">MB001</option>-->
 <!--              <option value="MB002">MB002</option>-->
 <!--              <option value="MB003">MB003</option>-->
 <!--              <option value="MB004">MB004</option>-->
 <!--            </select>-->
-            <select type="text" formControlName="codeGround" style="width:120px" >
-              <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>
-            </select>
             <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeGround').invalid && formAddNewEquipment.get('codeGround').touched">
             Mã mặt bằng không được để trống!
             </span>
@@ -127,6 +128,7 @@
             <button class="btn btn-danger" type="button" (click)="close()">Thoát</button>
           </td>
         </tr>
+
         <!--thêm mới-->
         <tr *ngIf="checkAdd">
           <td></td>
@@ -182,7 +184,7 @@
 <!--              <option value="MB003">MB003</option>-->
 <!--              <option value="MB004">MB004</option>-->
 <!--            </select>-->
-            <select type="text" formControlName="codeGround" style="width:120px" >
+            <select class="form-control" formControlName="codeGround" style="width:120px" >
               <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>
             </select>
             <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeGround').invalid && formAddNewEquipment.get('codeGround').touched">

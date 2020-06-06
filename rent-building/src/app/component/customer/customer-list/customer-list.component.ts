@@ -25,12 +25,16 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public customers: Customer[] = [];
   message = '';
-  totalRec: number;
+
   public flag;
   public customerOfId;
 
-  constructor(public customerService: CustomerService, public dialog: MatDialog, public formBuilder: FormBuilder,
-              public router: Router, public activateRouter: ActivatedRoute) {
+  constructor(public customerService: CustomerService,
+              public dialog: MatDialog,
+              public formBuilder: FormBuilder,
+              public router: Router,
+              public activateRouter: ActivatedRoute,
+  ) {
   }
 
   ngOnInit() {
@@ -43,18 +47,10 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       address: ['', Validators.required],
       website: ['', Validators.required],
       nameCompany: ['', Validators.required],
-      name1: ['', Validators.required],
-      idCard1: ['', Validators.required],
-      email1: ['', Validators.required],
-      phone1: ['', Validators.required],
-      birthday1: ['', Validators.required],
-      address1: ['', Validators.required],
-      website1: ['', Validators.required],
-      nameCompany1: ['', Validators.required]
     });
     this.customerService.findAll().subscribe(data => {
       this.customers = data;
-      this.totalRec = this.customers.length;
+      // this.totalRec = this.customers.length;
     });
   }
 
@@ -82,21 +78,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   }
 
-  // openDialogAdd(): void {
-  //   const dialogRef = this.dialog.open(CustomerAddComponent, {
-  //     width: '900px',
-  //     height: '550px',
-  //     disableClose: true
-  //   });
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     this.ngOnInit();
-  //
-  //   });
-  // }
   addNewCustomer() {
     this.customerService.save(this.formAddNewCustomer.value).subscribe(data => {
+      this.customerService.showNotification('', 'ok');
       this.redirectTo('customers');
       // this.dialogRef.close();
     });
@@ -128,6 +112,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   editCustomer() {
+    this.customerService.showNotification('', 'Edit success !!!');
     this.customerService.update(this.formAddNewCustomer.value, this.customerOfId).subscribe(data => {
       this.redirectTo('customers');
     });
@@ -138,5 +123,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       this.formAddNewCustomer.patchValue(data);
     });
     console.log(this.formAddNewCustomer.value);
+  }
+
+  cancelAdd() {
+    this.redirectTo('customers');
   }
 }

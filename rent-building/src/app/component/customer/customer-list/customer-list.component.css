@@ -12,16 +12,25 @@ input {
   font-size: 17px;
   width: 195px;
 }
-table{
-  /*background-color: #d9ffd9;*/
-  background-image: url(src/assets/image/anh1.jpg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
+/*table{*/
+/*  !*background-color: #d9ffd9;*!*/
+/*  background-image: url(src/assets/image/anh1.jpg);*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: 100%;*/
+/*}*/
 h1{
   font-family: "Times New Roman";
-  color: yellow;
+  color: #009900;
   font-size: 200%;
+  justify-content: center;
+  font-weight: bold;
+  border-style: outset;
+}
+.fa-search{
+  font-size: 150%;
+  color: crimson;
+  margin-top: 8px;
+  margin-right: 5px;
 }
 
 
