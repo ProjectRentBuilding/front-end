@@ -45,10 +45,12 @@
         <tbody>
 
         <tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
+
                                                                             itemsPerPage:5,
                                                                             currentPage:page
                                                                            }">
 <!--<tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate: { itemsPerPage: 4, currentPage: page }; let i = index">-->
+
           <td>{{i+1}}</td>
           <td *ngIf="!checkEdit ||  equipment.id!==flag">
             {{equipment.type}}
