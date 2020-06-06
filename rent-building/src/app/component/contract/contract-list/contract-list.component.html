@@ -46,13 +46,15 @@
         <button class="btn btn-outline-danger" [routerLink]="['/contracts',contract.id,'detail']">Chi tiết</button>
       </td>
 
-<!--      <td width="100">-->
-<!--        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Sửa</button>-->
+      <!--      <td width="100">-->
+      <!--        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Sửa</button>-->
 
 
-<!--      </td>-->
+      <!--      </td>-->
       <td>
-        <button class="btn btn-warning"  [routerLink]="['/contracts',contract.id,'edit'] " style="margin-right: 10px">Sửa</button>
+        <button class="btn btn-warning" [routerLink]="['/contracts',contract.id,'edit'] " style="margin-right: 10px">
+          Sửa
+        </button>
         <button class="btn btn-danger" (click)="openDialog(contract.id)">Xóa</button>
       </td>
     </tr>
