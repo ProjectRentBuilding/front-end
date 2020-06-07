@@ -188,17 +188,15 @@
       </td>
     </tbody>
   </table>
-  <button style="margin-left: 66em;" class="btn btn-info px-4 py-2" (click)="checkaddNewEquipment()">Thêm mới</button>
+  <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="checkaddNewEquipment()">Thêm mới</button>
 
 </form>
 <!--    pagination-->
 
 
 
-<pagination-controls class="pagination justify-content-center" maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"
-                     nextLabel="Trang sau" autoHide="true" responsive="true">
-
-</pagination-controls>
+<pagination-controls class="pagination justify-content-center" id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"
+                     nextLabel="Trang sau" autoHide="true" responsive="true"></pagination-controls>
 
 
 
