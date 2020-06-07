@@ -1,70 +1,181 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#"><span style="color: aqua">Rent</span><div class="spinner-border text-warning" role="status">
-    <span class="sr-only">Loading...</span> <span style="color: coral">Building</span></div></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">-->
+<!--  <a class="navbar-brand" href="#"><span style="color: aqua">Rent</span><div class="spinner-border text-warning" role="status">-->
+<!--    <span class="sr-only">Loading...</span> <span style="color: coral">Building</span></div></a>-->
+<!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--    <span class="navbar-toggler-icon"></span>-->
+<!--  </button>-->
+
+<!--  <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--    <ul class="navbar-nav mr-auto">-->
+<!--      <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >-->
+<!--        <a class="nav-link" [routerLink]="['/']" >Home <span class="sr-only">(current)</span></a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" [routerLink]="['equipment-list']">Liên Hệ</a>-->
+<!--      </li>-->
+<!--      <li class="nav-item dropdown">-->
+<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          Xem thêm-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          <a class="dropdown-item" href="#">Action</a>-->
+<!--          <a class="dropdown-item" href="#">Another action</a>-->
+<!--          <div class="dropdown-divider"></div>-->
+<!--          <a class="dropdown-item" href="#">Something else here</a>-->
+<!--        </div>-->
+<!--      </li>-->
+<!--    </ul>-->
+<!--    <i class="fas fa-bell fas-nav" style="color: red"></i>-->
+<!--    <i class="fas fa-sms fas-nav" style="color: yellow"></i>-->
+<!--    <i class="fas fa-th-large fas-nav " style="color: green"></i>-->
+<!--    <img src="../assets/image/wp2752752.jpg" width="30" height="30" alt="" style="border-radius: 50px">-->
+<!--  </div>-->
+<!--</nav>-->
+<!--<div class="container-fluid">-->
+<!--  <div class="row">-->
+<!--    <div class="col-md-2 col-lg-2 left ">-->
+<!--      <ul class="list-group ">-->
+<!--        <li routerLinkActive="active" class="list-group-item active hover-li ">Danh mục chức năng</li>-->
+<!--        <li class="list-group-item hover-li"><a [routerLink]="['/customers']"><i class="fas fa-users"></i>&nbsp;Danh sách Khách Hàng</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/equipments']"><i class="fas fa-tools"></i>&nbsp;Danh sách Trang thiết bị</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/contracts']"><i class="fas fa-file-signature"></i>&nbsp;Danh sách hợp đồng</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="fas fa-building"></i>&nbsp;Danh sách tòa nhà</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-calendar-alt"></i>&nbsp;Lịch</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-copy"></i>&nbsp;Sao chép</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-chart-pie"></i>&nbsp;Thống kê</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-envelope"></i>&nbsp;Hộp thư</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-table"></i>&nbsp;Danh sách tòa nhà</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-image"></i>&nbsp;Hình ảnh</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-plus-square"></i>&nbsp;Danh sách tòa nhà</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-file"></i>&nbsp;Thư mục</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Giám đốc</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Thư ký</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Nhân viên</a></li>-->
+<!--        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Khách hàng</a></li>-->
+
+
+<!--      </ul>-->
+<!--    </div>-->
+<!--    <div class="col-md-10 col-lg-10 content">-->
+<!--      <router-outlet></router-outlet>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<footer class="main-footer">-->
+<!--  <strong >Copyright © 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>-->
+<!--  All rights reserved.-->
+<!--  <div class="float-right d-none d-sm-inline-block">-->
+<!--    <b>Version</b> 3.0.3-->
+<!--  </div>-->
+<!--</footer>-->
+<!--navbar-->
+<nav class="navbar navbar-expand-md navbar-light ml-auto mb-2 bg-light">
+  <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >
-        <a class="nav-link" [routerLink]="['/']" >Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['equipment-list']">Liên Hệ</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Xem thêm
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+  <div class="collapse navbar-collapse " id="myNavbar">
+    <div class="container-fluid">
+      <div class="row">
+        <!--  sidebar  -->
+        <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+          <a href="#"
+             class="navbar-brand d-block mx-auto text-center text-white py-3 mb-4 bottom-border">CodeAndCreate</a>
+          <div class="bottom-border pb-3">
+            <img src="../assets/image/anh2.jpg" width="50" height="50" class="rounded-circle mr-3" alt="">
+            <a href="#" class="text-white">Ngoc Tan</a>
+          </div>
+          <ul class="navbar-nav flex-column mt-4">
+            <li routerLinkActive="active" class="nav-item sidebar-link "><a href=""
+                                                                            class="nav-link text-white py-3 mb-2 current"><i
+              class="fa fa-home text-light fa-lg mr-3"></i>Rent Building</a></li>
+            <li class="nav-item sidebar-link"><a [routerLink]="['/customers']" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-users text-light fa-lg mr-3"></i>Danh sách khách hàng</a></li>
+            <li class="nav-item sidebar-link"><a [routerLink]="['/equipments']" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-wrench text-light fa-lg mr-3"></i>Danh sách thiết bị</a></li>
+            <li class="nav-item sidebar-link"><a [routerLink]="['/contracts']" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-pencil-square-o text-light fa-lg mr-3"></i>Danh sách hợp đồng</a></li>
+            <li class="nav-item sidebar-link"><a [routerLink]="['/buildings']" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-building text-light fa-lg mr-3"></i>Danh sách tòa nhà</a></li>
+            <li class="nav-item sidebar-link"><a [routerLink]="['/floors']" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-cubes text-light fa-lg mr-3"></i>Danh sách tầng</a></li>
+            <li class="nav-item sidebar-link"><a [routerLink]="['/grounds']" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-university text-light fa-lg mr-3"></i>Danh sách mặt bằng</a></li>
+            <li class="nav-item sidebar-link"><a href="" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-cog text-light fa-lg mr-3"></i>Settings</a></li>
+            <li class="nav-item sidebar-link"><a href="" class="nav-link text-white py-3 mb-2"><i
+              class="fa fa-file text-light fa-lg mr-3"></i>Documentations</a></li>
+          </ul>
         </div>
-      </li>
-    </ul>
-    <i class="fas fa-bell fas-nav" style="color: red"></i>
-    <i class="fas fa-sms fas-nav" style="color: yellow"></i>
-    <i class="fas fa-th-large fas-nav " style="color: green"></i>
-    <img src="../assets/image/wp2752752.jpg" width="30" height="30" alt="" style="border-radius: 50px">
+
+        <!--end of sidebar  -->
+
+        <!-- top-nav-->
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+          <div class="row align-items-center">
+            <div class="col-md-9">
+              <h4 class="text-light text-uppercase mb-0">DashBoard</h4>
+            </div>
+<!--            <div class="col-md-5">-->
+<!--              <form action="">-->
+<!--                <div class="input-group">-->
+<!--                  <input type="text" class="form-control search-input" placeholder="Search" >-->
+<!--                  <button type="button" class="btn btn-secondary search-button"><i-->
+<!--                    class="fa fa-search text-danger"></i></button>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </div>-->
+            <div class="col-md-3">
+              <ul class="navbar-nav">
+                <li class="nav-item icon-parent"><a href="" class="nav-link icon-bullet"><i
+                  class="fa fa-comments text-muted fa-lg"></i></a></li>
+                <li class="nav-item"><a href="" class="nav-link"><i
+                  class="fa fa-bell text-muted fa-lg"></i></a></li>
+                <li class="nav-item ml-md-auto"><a href="" data-toggle="modal" data-target="#sign-out"
+                                                   class="nav-link"><i
+                  class="fa fa-sign-out text-danger fa-lg"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!--end of top-nav-->
+      </div>
+    </div>
   </div>
 </nav>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2 col-lg-2 left ">
-      <ul class="list-group ">
-        <li routerLinkActive="active" class="list-group-item active hover-li ">Danh mục chức năng</li>
-        <li class="list-group-item hover-li"><a [routerLink]="['/customers']"><i class="fas fa-users"></i>&nbsp;Danh sách Khách Hàng</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/equipments']"><i class="fas fa-tools"></i>&nbsp;Danh sách Trang thiết bị</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/contracts']"><i class="fas fa-file-signature"></i>&nbsp;Danh sách hợp đồng</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="fas fa-building"></i>&nbsp;Danh sách tòa nhà</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-calendar-alt"></i>&nbsp;Lịch</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-copy"></i>&nbsp;Sao chép</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-chart-pie"></i>&nbsp;Thống kê</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-envelope"></i>&nbsp;Hộp thư</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-table"></i>&nbsp;Danh sách tòa nhà</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-image"></i>&nbsp;Hình ảnh</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon far fa-plus-square"></i>&nbsp;Danh sách tòa nhà</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-file"></i>&nbsp;Thư mục</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Giám đốc</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Thư ký</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Nhân viên</a></li>
-        <li class="list-group-item hover-li" ><a [routerLink]="['/buildings']"><i class="nav-icon fas fa-circle"></i>&nbsp;Khách hàng</a></li>
 
-
-      </ul>
-    </div>
-    <div class="col-md-10 col-lg-10 content">
-      <router-outlet></router-outlet>
+<!--end of navbar-->
+<!--   modal-->
+<div class="modal fade" id="sign-out">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Want to leave?</h4>
+        <button type="button" class="close" data-dismiss="modal"> &times;</button>
+      </div>
+      <div class="modal-body">
+        Press logout to leave
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Stay here</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Logout</button>
+      </div>
     </div>
   </div>
 </div>
-<footer class="main-footer">
-  <strong >Copyright © 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-  All rights reserved.
-  <div class="float-right d-none d-sm-inline-block">
-    <b>Version</b> 3.0.3
+<!-- end  of  modal-->
+<section>
+  <div class="container-fluid">
+    <div class="row mb-5">
+      <div class="col-xl-10 col-lg-9 col-md-8  ml-auto">
+        <div class="row align-items-center ">
+          <div class="col-12 mb-xl-0">
+
+            <router-outlet></router-outlet>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</footer>
+</section>
+<!--end of table-->

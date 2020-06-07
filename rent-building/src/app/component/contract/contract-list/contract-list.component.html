@@ -1,36 +1,24 @@
-<!--<div class="row justify-content-between">-->
-<!--  <h2>Danh sách hợp đồng</h2>-->
-<!--  <div class="d-flex">-->
-<!--    <input type="text" class="form-control mr-2" style="width: 450px;" placeholder="Tìm kiếm thông tin hợp đồng"-->
-<!--           [(ngModel)]="search">-->
-<!--  </div>-->
-<!--</div>-->
-<div class="table-title">
-  <div class="row">
-    <div class="col-sm-6">
-      <h2>Danh sách hợp đồng</h2>
-    </div>
-    <div class="col-sm-6">
-      <div class="search-hero d-flex" style="margin-right: auto">
-        <input class="form-control mt-2" type="text" name="search" [(ngModel)]="search" autocomplete="off"
-               placeholder="Nhập từ khoá tìm kiếm">
-      </div>
-    </div>
+
+<div class="col-md-5 mt-5">
+  <div class="input-group">
+    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin khách hàng" [(ngModel)]="search">
+    <button type="button" class="btn btn-secondary search-button"><i
+      class="fa fa-search text-danger"></i></button>
   </div>
+
 </div>
 
-
-<form>
-
-  <table class="table table-bordered table-hover" style="margin-top: 40px" id="myTable">
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH HỢP ĐỒNG</h3>
+<form  >
+  <table class="table bg-light text-center">
     <thead>
-    <tr>
+    <tr class="text-muted">
       <th>ID</th>
       <th >Tên Khách Hàng</th>
       <th>Tên Mặt Bằng</th>
       <th style="width: 120px" >Đang Thuê</th>
       <th>Chi Tiết</th>
-      <th style="width: 200px">Tác vụ</th>
+      <th colspan="2">Tác vụ</th>
     </tr>
     </thead>
     <tbody>
@@ -60,14 +48,88 @@
     </tr>
     </tbody>
   </table>
-  <div style="float: right">
-    <button class="btn btn-primary" routerLink="/contracts/add" style="margin-right: 40px">Thêm mới hợp đồng</button>
-  </div>
+  <button style="margin-left: 66em;" routerLink="/contracts/add" class="btn btn-info px-4 py-2" (click)="checkAddCustomer()">Thêm mới</button>
 
 </form>
-<pagination-controls id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
-                     nextLabel="Trang sau"></pagination-controls>
-<div class="text-danger">
-  {{message}}
-</div>
+<!--    pagination-->
+<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event" previousLabel="previous"
+                     nextLabel="next">
+
+</pagination-controls>
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="table-title">-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-6">-->
+<!--      <h2>Danh sách hợp đồng</h2>-->
+<!--    </div>-->
+<!--    <div class="col-sm-6">-->
+<!--      <div class="search-hero d-flex" style="margin-right: auto">-->
+<!--        <input class="form-control mt-2" type="text" name="search" [(ngModel)]="search" autocomplete="off"-->
+<!--               placeholder="Nhập từ khoá tìm kiếm">-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<!--<form>-->
+
+<!--  <table class="table table-bordered table-hover" style="margin-top: 40px" id="myTable">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>ID</th>-->
+<!--      <th >Tên Khách Hàng</th>-->
+<!--      <th>Tên Mặt Bằng</th>-->
+<!--      <th style="width: 120px" >Đang Thuê</th>-->
+<!--      <th>Chi Tiết</th>-->
+<!--      <th style="width: 200px">Tác vụ</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr-->
+<!--      *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">-->
+<!--      <td>{{(i+1)+(page-1)*5}}</td>-->
+<!--      <td style="text-align: left">{{contract.customerName}}</td>-->
+<!--      <td>{{contract.groundName}}</td>-->
+<!--      &lt;!&ndash;      <td>{{contract.status}}</td>&ndash;&gt;-->
+
+<!--      <td><input type="checkbox"  [checked]="contract.status" [disabled]="true"></td>-->
+<!--      <td width="110px">-->
+<!--        <button class="btn btn-outline-danger" [routerLink]="['/contracts',contract.id,'detail']">Chi tiết</button>-->
+<!--      </td>-->
+
+<!--      &lt;!&ndash;      <td width="100">&ndash;&gt;-->
+<!--      &lt;!&ndash;        <button class="btn btn-success ml-3" [routerLink]="['/contracts',contract.id,'edit']">Sửa</button>&ndash;&gt;-->
+
+
+<!--      &lt;!&ndash;      </td>&ndash;&gt;-->
+<!--      <td>-->
+<!--        <button class="btn btn-warning" [routerLink]="['/contracts',contract.id,'edit'] " style="margin-right: 10px">-->
+<!--          Sửa-->
+<!--        </button>-->
+<!--        <button class="btn btn-danger" (click)="openDialog(contract.id)">Xóa</button>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--  <div style="float: right">-->
+<!--    <button class="btn btn-primary" routerLink="/contracts/add" style="margin-right: 40px">Thêm mới hợp đồng</button>-->
+<!--  </div>-->
+
+<!--</form>-->
+<!--<pagination-controls id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"-->
+<!--                     nextLabel="Trang sau"></pagination-controls>-->
+<!--<div class="text-danger">-->
+<!--  {{message}}-->
+<!--</div>-->
 
