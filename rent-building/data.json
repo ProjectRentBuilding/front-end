@@ -309,22 +309,31 @@
       "id": 3
     },
     {
-      "nameFloor": "Tầng 4",
+      "nameFloor": "tỷtytry",
       "id": 4
+    },
+    {
+      "nameFloor": "",
+      "id": 5
+    },
+    {
+      "nameFloor": "sad",
+      "id": 6
+
     }
   ],
   "customers": [
     {
-      "name": "sadsa",
-      "idCard": "sadsad",
-      "email": "dsad",
-      "phone": "sdadsad",
-      "birthday": "1990-02-04T17:00:00.000Z",
-      "address": "sadsa",
-      "website": "sdsad",
-      "nameCompany": "sads",
-      "nameGround": "mb03",
-      "rentStatus": "",
+      "name": "qưewq",
+      "idCard": "ưqewqe",
+      "email": "ưqe",
+      "phone": "ưqe",
+      "birthday": "",
+      "address": "ưqe",
+      "website": "ewq",
+      "nameCompany": "êwq",
+      "nameGround": "",
+      "rentStatus": false,
       "id": 1
     },
     {
@@ -367,7 +376,7 @@
       "id": 4
     },
     {
-      "name": "qweqw",
+      "name": "tanw",
       "idCard": "wqe",
       "email": "ewqew",
       "phone": "qeqwe",
@@ -380,7 +389,7 @@
       "id": 5
     },
     {
-      "name": "reewr",
+      "name": "tan",
       "idCard": "wqee",
       "email": "weqwqe",
       "phone": "ewwqe",
@@ -388,7 +397,22 @@
       "address": "wqe",
       "website": "wqe",
       "nameCompany": "wqe",
+      "nameGround": "",
+      "rentStatus": false,
       "id": 6
+    },
+    {
+      "name": "tran ngoc tan",
+      "idCard": "2312321",
+      "email": "2132132",
+      "phone": "qưewqewq",
+      "birthday": "1990-09-23T17:00:00.000Z",
+      "address": "ưewqe",
+      "website": "ưqeqwe",
+      "nameCompany": "qưee",
+      "nameGround": "mb03",
+      "rentStatus": false,
+      "id": 7
     }
   ],
   "equipments": [
@@ -421,16 +445,6 @@
       "note": "12",
       "codeGround": "mb01",
       "id": 3
-    },
-    {
-      "type": "Quạt",
-      "deviceName": "23",
-      "amount": "23",
-      "status": "Mới",
-      "amountOfBroken": "23",
-      "note": "23",
-      "codeSpace": "MB001",
-      "id": 5
     },
     {
       "type": "Bóng đèn",
