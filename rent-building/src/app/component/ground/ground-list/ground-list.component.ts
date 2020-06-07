@@ -42,8 +42,8 @@ export class GroundListComponent implements OnInit, OnDestroy {
 
   openDialogAddNew(): void {
     const dialogRef = this.dialog.open(GroundAddComponent, {
-      width: '1200px',
-      height: '840px',
+      width: '800px',
+      height: '540px',
       disableClose: true,
     });
 
@@ -54,8 +54,8 @@ export class GroundListComponent implements OnInit, OnDestroy {
   openDialogView(id): void {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundDetailComponent, {
-        width: '1200px',
-        height: '840px',
+        width: '800',
+        height: '540px',
         data: {data1: dataOfGroundModel},
         disableClose: true,
       });
