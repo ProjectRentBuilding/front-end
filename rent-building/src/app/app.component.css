@@ -104,6 +104,9 @@
 .sidebar-link {
   transition: all .4s;
 }
+.sidebar-title{
+  font-size: 87%;
+}
 
 .current {
   background-color: #f44336;
