@@ -18,8 +18,6 @@ export class BuildingDetailComponent implements OnInit, OnDestroy {
   constructor(
     public dialogRef: MatDialogRef<BuildingDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public buildingService: BuildingService,
-    public routerService: Router,
     private fb: FormBuilder,
   ) {
   }
@@ -44,11 +42,6 @@ export class BuildingDetailComponent implements OnInit, OnDestroy {
   loadData() {
     this.id = this.data.data1.id;
     this.viewBuildingForm.patchValue(this.data.data1);
-  }
-  onViewBuilding() {
-    this.subscription = this.buildingService.update(this.viewBuildingForm.value, this.id).subscribe(data => {
-      this.routerService.navigate(['buildings']).then(r => this.dialogRef.close());
-    });
   }
   ngOnDestroy() {
     if (this.subscription) {

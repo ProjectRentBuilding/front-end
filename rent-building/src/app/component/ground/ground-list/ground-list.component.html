@@ -40,8 +40,8 @@
       <td>{{item.price}}</td>
       <td>{{item.priceManager}}</td>
       <td>{{item.nameCustomer}}</td>
-      <td><button  class="btn btn-primary" (click)="openDialogView(item.id)">Chi tiết</button></td>
-      <td><button  class="btn btn-success" (click)="openDialogEdit(item.id)">Sửa</button></td>
+      <td><button  class="btn btn-outline-danger" style="width: 80px" (click)="openDialogView(item.id)">Chi tiết</button></td>
+      <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button></td>
       <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">
         Xóa
       </button></td>
@@ -49,7 +49,7 @@
     </tbody>
   </table>
   <div style="float: right">
-    <button class="btn btn-primary" (click)="openDialogAddNew()"  style="margin-right: 40px">Thêm mới thông tin tầng lầu</button>
+    <button class="btn btn-primary" (click)="openDialogAddNew()"  style="margin-right: 40px">Thêm mới thông tin mặt bằng</button>
   </div>
 
 </form>

@@ -2,7 +2,7 @@
 
 <form [formGroup]="addGroundForm" class="col-md-12 offset-md-4">
   <fieldset>
-    <legend>Thêm mặt bằng</legend>
+    <legend>Thêm mới thông tin mặt bằng</legend>
     <label class="row">
       <div class="col-md-6">
         <span class="col-md-4">Mã mặt bằng:</span>
@@ -63,13 +63,13 @@
         <div>
           <input type="text" class="form-control col-md-10" formControlName="typeGround" style="margin-top: -5px">
         </div>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('area').hasError('required')
-         && addGroundForm.get('area').touched">Loại mặt bằng không được để trống.
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGround').hasError('required')
+         && addGroundForm.get('typeGround').touched">Loại mặt bằng không được để trống.
         </div>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('area').hasError('maxlength')
-         && addGroundForm.get('area').touched">Loại mặt bằng tối thiểu 25 ký tự.
-          <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('area').hasError('pattern')
-         && addGroundForm.get('area').touched">Loại mặt bằng phải đúng định dạng.
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGround').hasError('maxlength')
+         && addGroundForm.get('typeGround').touched">Loại mặt bằng tối thiểu 25 ký tự.
+          <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGround').hasError('pattern')
+         && addGroundForm.get('typeGround').touched">Loại mặt bằng phải đúng định dạng.
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-2">Chú thích:</p>
-        <textarea type="text" class="form-control col-md-10" formControlName="typeGround"
+        <textarea type="text" class="form-control col-md-10" formControlName="note"
                   style="margin-top: -60px"></textarea>
       </div>
     </label>
@@ -96,7 +96,7 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-2"style="float: left">Ngày bắt đầu tính:</p>
-        <input class="form-control col-md-9" formControlName="startRentDay" style="float: left"
+        <input class="form-control col-md-9" formControlName="beginDay" style="float: left"
                placeholder="/ /"
                matInput
                [matDatepicker]="picker1" >
@@ -107,7 +107,7 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-2"style="float: left">Ngày kết thúc tính:</p>
-        <input class="form-control col-md-9" formControlName="endRentDay" style="float: left"
+        <input class="form-control col-md-9" formControlName="endDay" style="float: left"
                placeholder="/ /"
                matInput
                [matDatepicker]="picker2" >
