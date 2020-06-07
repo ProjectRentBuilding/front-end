@@ -55,6 +55,11 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
     this.buildingService.showNotification('', 'Sửa thành công, chúc mừng bạn');
   }
+
+  clearFilters() {
+    this.ngOnInit();
+  }
+
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();

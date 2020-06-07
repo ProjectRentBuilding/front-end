@@ -263,7 +263,7 @@
       "id": 4
     },
     {
-      "abbreviationName": "424",
+      "abbreviationName": "12",
       "fullName": "5345",
       "taxCode": "355",
       "phone": "432234234",
@@ -305,8 +305,12 @@
       "id": 2
     },
     {
-      "nameFloor": "Tầng 4",
+      "nameFloor": "Tầng 3",
       "id": 3
+    },
+    {
+      "nameFloor": "Tầng 4",
+      "id": 4
     }
   ],
   "customers": [
