@@ -1,1 +1,145 @@
-<p>ground-edit works!</p>
+<h2 class="text-center">Thêm mặt bằng</h2>
+
+<form [formGroup]="editGroundForm" class="col-md-12 offset-md-4">
+  <fieldset>
+    <legend>Thêm mặt bằng</legend>
+    <label class="row">
+      <div class="col-md-6">
+        <span class="col-md-4">Mã mặt bằng:</span>
+        <div>
+          <input type="text" class="form-control col-md-8" formControlName="codeGround">
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('required')
+         && editGroundForm.get('codeGround').touched">Tên viết tắt không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('minlength')
+         && editGroundForm.get('codeGround').touched">Tên viết tắt tối thiểu 2 ký tự.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('maxlength')
+         && editGroundForm.get('codeGround').touched">Tên viết tắt tối đa 25 ký tự.
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <span class="col-md-3">Trạng thái:</span>
+        <select class="form-control col-md-9" formControlName="statusGround">
+          <option value="">Chọn</option>
+          <option value="Chưa bàn giao">Chưa bàn giao</option>
+          <option value="Đang vào ở">Đang vào ở</option>
+          <option value="Đang sửa chữa">Đang sửa chữa</option>
+        </select>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-6">
+        <span class="col-md-4">Diện tích:</span>
+        <div>
+          <input type="number" class="form-control col-md-8" formControlName="area">
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('area').hasError('required')
+         && editGroundForm.get('area').touched">Diện tích không được để trống và phải đúng định dạng.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('area').hasError('maxlength')
+         && editGroundForm.get('area').touched">Diện tích tối đa 25 ký tự.
+          <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('area').hasError('pattern')
+         && editGroundForm.get('area').touched">Diện tích phải đúng định dạng.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <span class="col-md-3">Tầng:</span>
+        <select class="form-control col-md-9" formControlName="floor">
+          <option value="">Chọn</option>
+          <option *ngFor="let floor of floors" [value]="floor.nameFloor">{{floor.nameFloor}}</option>
+        </select>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('floor').hasError('required')
+         && editGroundForm.get('floor').touched">Tên tầng không được để trống.
+        </div>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-12">
+        <span class="col-md-2">Loại mặt bằng:</span>
+        <div>
+          <input type="text" class="form-control col-md-10" formControlName="typeGround" style="margin-top: -5px">
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('area').hasError('required')
+         && editGroundForm.get('area').touched">Loại mặt bằng không được để trống.
+        </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('area').hasError('maxlength')
+         && editGroundForm.get('area').touched">Loại mặt bằng tối thiểu 25 ký tự.
+          <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('area').hasError('pattern')
+         && editGroundForm.get('area').touched">Loại mặt bằng phải đúng định dạng.
+          </div>
+        </div>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-12">
+        <p class="col-md-2">Chú thích:</p>
+        <textarea type="text" class="form-control col-md-10" formControlName="typeGround"
+                  style="margin-top: -60px"></textarea>
+      </div>
+    </label>
+  </fieldset>
+
+  <fieldset>
+    <legend>Giá cho thuê/bán</legend>
+    <label class="row">
+      <div class="col-md-12">
+        <span class="col-md-2">Giá tiền:</span>
+        <div>
+          <input type="number" class="form-control col-md-10" formControlName="price" style="margin-top: -5px">
+        </div>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-12">
+        <p class="col-md-2"style="float: left">Ngày bắt đầu tính:</p>
+        <input class="form-control col-md-9" formControlName="startRentDay" style="float: left"
+               placeholder="/ /"
+               matInput
+               [matDatepicker]="picker1" >
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 startView="year" ></mat-datepicker>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-12">
+        <p class="col-md-2"style="float: left">Ngày kết thúc tính:</p>
+        <input class="form-control col-md-9" formControlName="endRentDay" style="float: left"
+               placeholder="/ /"
+               matInput
+               [matDatepicker]="picker2" >
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 startView="year" ></mat-datepicker>
+      </div>
+    </label>
+
+  </fieldset>
+</form>
+
+<label class="row " style="margin-left: 43%">
+
+  <div class="form-group d-flex justify-content-center mr-5">
+    <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
+  </div>
+  <div class="form-group d-flex justify-content-center mr-5 ">
+    <button [disabled]="editGroundForm.invalid" class="btn btn-success mt-3" (click)="onEditGround()">Chỉnh sửa
+    </button>
+
+  </div>
+  <div class="form-group d-flex justify-content-center " style="align-content: center">
+    <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách mặt bằng
+    </button>
+  </div>
+</label>
+
+
+
+
+
+
+
+
+

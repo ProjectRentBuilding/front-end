@@ -22,3 +22,10 @@ form fieldset label div .col-md-10{
 .mat-icon-button{
   margin-left: 300px;
 }
+legend{
+  color: red;
+}
+form fieldset label div select option{
+  text-align: center;
+}
+

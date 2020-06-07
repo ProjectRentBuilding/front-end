@@ -467,7 +467,12 @@
     {
       "codeGround": "mb01",
       "typeGround": "dsad",
-      "area": "",
+      "area": 2414,
+      "floor": "Tầng 3",
+      "statusGround": "",
+      "price": "",
+      "beginDay": "",
+      "endDay": "",
       "id": 1
     },
     {
