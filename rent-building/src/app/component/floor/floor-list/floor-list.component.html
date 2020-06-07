@@ -1,42 +1,54 @@
-
-<script src="floor-list.component.ts"></script><h1>Danh sách thông tin tầng lầu</h1>
-<div class="search-hero">
-  <input class="form-control mt-2" type="text" name="search" style="width: 50%" [(ngModel)]="searchText"
-         autocomplete="off" placeholder="Tìm kiếm thông tin tầng lầu theo tên tầng lầu">
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Danh sách thông tin tầng lầu</h2>
+    </div>
+    <div class="col-sm-6">
+      <div class="search-hero d-flex" style="margin-right: auto">
+        <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+               placeholder="Nhập từ khoá tìm kiếm">
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-  <button type="button" class="btn btn-warning mr-3" (click)="checkAddNewFloor()" >Thêm mới thông tin tầng lầu</button>
+
   <form [formGroup]="addFloorForm">
-    <table class="table table-striped table-inverse table-responsive">
-      <thead class="thead-inverse">
+    <table class="table table-bordered table-hover" style="margin-top: 40px" id="myTable">
+      <thead>
       <tr>
         <th>Số thứ tự</th>
         <th>Tên tầng lầu</th>
-        <th colspan="2">Thao tác</th>
-
+        <th colspan="2">Tác vụ</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let i=index;let item of floors|filter:searchText | paginate:{id:'listing_pagination',
-                                                                            itemsPerPage:4,
+                                                                            itemsPerPage:5,
                                                                             currentPage:page
                                                                             }">
-        <td>{{i+1}}</td>
+        <td>{{(i + 1) + (page - 1) * 5}}</td>
         <td *ngIf="!checkEdit || item.id!==flag">{{item.nameFloor}}</td>
         <td *ngIf="checkEdit && item.id===flag">
-          <input type="text" class="form-control" formControlName="nameFloor" value="{{item.nameFloor}}">
-          <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">
+          <input style="text-align: center" type="text" class="form-control" formControlName="nameFloor"
+                 value="{{item.nameFloor}}">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">
             Tên tầng lầu không được để trống.
           </p>
-          <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('nameFloor').hasError('minlength') && addFloorForm.get('nameFloor').touched">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="addFloorForm.get('nameFloor').hasError('minlength') && addFloorForm.get('nameFloor').touched">
             Tên tầng lầu tối thiểu 2 ký tự.
           </p>
-          <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('nameFloor').hasError('maxlength') && addFloorForm.get('nameFloor').touched">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="addFloorForm.get('nameFloor').hasError('maxlength') && addFloorForm.get('nameFloor').touched">
             Tên tầng lầu tối đa 25 ký tự.
           </p>
+        <td *ngIf="!checkEdit || item.id!==flag">
+          <button class="btn btn-success" (click)="checkEditFloor(item.id)">Sửa</button>
         </td>
-        <td *ngIf="!checkEdit || item.id!==flag"><button  class="btn btn-success" (click)="checkEditFloor(item.id)">Sửa</button></td>
-        <td *ngIf="!checkEdit || item.id!==flag"><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">Xóa</button></td>
+        <td *ngIf="!checkEdit || item.id!==flag">
+          <button class="btn btn-danger" (click)="openDialogDelete(item.id)">Xóa</button>
+        </td>
         <td *ngIf="checkEdit && item.id===flag">
           <button class="btn btn-primary" type="button" (click)="editFloor()" style="margin-right: 10px">Lưu</button>
         </td>
@@ -44,35 +56,39 @@
           <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">Hủy</button>
         </td>
       </tr>
-      <!--    thêm mới-->
+
       <tr *ngIf="checkAdd">
         <td></td>
         <td>
-          <input type="text" class="form-control" formControlName="nameFloor">
-          <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">
+          <input style="text-align: center" type="text" class="form-control" formControlName="nameFloor">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">
             Tên tầng lầu không được để trống.
           </p>
-          <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('nameFloor').hasError('minlength') && addFloorForm.get('nameFloor').touched">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="addFloorForm.get('nameFloor').hasError('minlength') && addFloorForm.get('nameFloor').touched">
             Tên tầng lầu tối thiểu 2 ký tự.
           </p>
-          <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('nameFloor').hasError('maxlength') && addFloorForm.get('nameFloor').touched">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="addFloorForm.get('nameFloor').hasError('maxlength') && addFloorForm.get('nameFloor').touched">
             Tên tầng lầu tối đa 25 ký tự.
           </p>
         </td>
         <td colspan="2">
-          <button class="btn btn-primary" type="button" (click)="addNewFloor()" [disabled]="addFloorForm.invalid">Thêm mới</button>
+          <button class="btn btn-primary" type="button" (click)="addNewFloor()" [disabled]="addFloorForm.invalid">Thêm
+            mới
+          </button>
         </td>
       </tr>
+
       </tbody>
     </table>
+    <div style="float: right">
+      <button class="btn btn-primary" (click)="checkAddNewFloor()" style="margin-right: 40px">Thêm mới thông tin tòa
+        nhà
+      </button>
+    </div>
+
   </form>
-  <div>
-    <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
-                          previousLabel="Trang trước" nextLabel="Trang sau"></pagination-controls>
-  </div>
-</div>
-
-
-
-
-
+  <pagination-controls id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
+                       nextLabel="Trang sau"></pagination-controls>
