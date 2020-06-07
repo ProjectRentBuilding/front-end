@@ -477,13 +477,50 @@
     },
     {
       "codeGround": "mb02",
+      "typeGround": "414",
+      "area": 214,
+      "floor": "Tầng 2",
+      "statusGround": "",
+      "price": 414,
+      "beginDay": "",
+      "endDay": "",
       "id": 2
     },
     {
       "codeGround": "mb03",
-      "typeGround": "12",
+      "typeGround": "21414",
+      "note": "vnnhnlm",
       "area": "12",
+      "floor": "Tầng 2",
+      "statusGround": "Chưa bàn giao",
+      "price": 323,
+      "beginDay": "0413-12-31T17:17:56.000Z",
+      "endDay": "1414-01-01T00:00:00.000Z",
       "id": 3
+    },
+    {
+      "codeGround": "4214",
+      "typeGround": "14",
+      "note": "41",
+      "area": 414,
+      "floor": "Tầng 2",
+      "statusGround": "Chưa bàn giao",
+      "price": 414,
+      "beginDay": "0413-12-31T17:17:56.000Z",
+      "endDay": "0140-12-31T17:17:56.000Z",
+      "id": 4
+    },
+    {
+      "codeGround": "4124",
+      "typeGround": "414",
+      "note": "\nMina Cover\n12,4 N người đăng ký\nEm không sai, chúng ta sai -  Erik | ANODT#2 | Mina Cover\n\nNguồn: https://www.youtube.com/watch?v=iwGui...\nTác quyền: Erik\nComposed by Nguyen Phuc Thien\nBeat: Trung Ngon\nRecording/Mix Master/Background Vocal: Kenny Đại Dương\nCamera: Tulio Nguyễn\n\nChân thành cám ơn ca sỹ Erik vì đã cho phép Mina cover bài hát này.\n\n----------------\nCẢM ƠN CÁC BẠN ĐÃ XEM \n- ĐĂNG KÍ KÊNH ĐỂ XEM VIDEO NHIỀU HƠN NHÉ \nFOLLOW ĐỂ XEM MÌNH LIVE STREAM ",
+      "area": 414,
+      "floor": "Tầng 2",
+      "statusGround": "Đang vào ở",
+      "price": 4414,
+      "beginDay": "2020-11-12T17:00:00.000Z",
+      "endDay": "4214-01-01T00:00:00.000Z",
+      "id": 5
     }
   ]
 }
