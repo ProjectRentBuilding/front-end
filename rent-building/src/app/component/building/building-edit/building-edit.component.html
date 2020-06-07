@@ -173,15 +173,25 @@
     </label>
   </fieldset>
 </form>
-<div>
-  <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" [disabled]="editBuildingForm.invalid"
-          (click)="onEditBuilding()">
-    Chỉnh sửa
-  </button>
-  <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" mat-dialog-close>
-    Hủy chỉnh
-  </button>
-</div>
+
+<fieldset>
+  <label class="row " style="margin-left: 43%">
+
+    <div class="form-group d-flex justify-content-center mr-5">
+      <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
+    </div>
+    <div class="form-group d-flex justify-content-center mr-5 ">
+      <button [disabled]="editBuildingForm.invalid" class="btn btn-success mt-3" (click)="onEditBuilding()">Chỉnh sửa
+      </button>
+
+    </div>
+    <div class="form-group d-flex justify-content-center " style="align-content: center">
+      <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách tòa nhà
+      </button>
+    </div>
+  </label>
+</fieldset>
+
 
 
 

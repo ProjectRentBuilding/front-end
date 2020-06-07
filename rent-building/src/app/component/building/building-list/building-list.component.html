@@ -1,13 +1,21 @@
-
-<h1>Danh sách thông tin tòa nhà</h1>
-<div class="search-hero">
-  <input class="form-control mt-2" type="text" name="search" style="width: 50%" [(ngModel)]="searchText"
-         autocomplete="off" placeholder="Tìm kiếm thông tin tòa nhà theo tên,mã số thuế,địa chỉ">
+<div class="table-title">
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Danh sách thông tin tòa nhà</h2>
+    </div>
+    <div class="col-sm-6">
+      <div class="search-hero d-flex" style="margin-right: auto">
+        <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+               placeholder="Nhập từ khoá tìm kiếm">
+      </div>
+    </div>
+  </div>
 </div>
-<div>
-  <button type="button" class="btn btn-warning mr-3" (click)="openDialogAddNew()" >Thêm mới thông tin tòa nhà</button>
-  <table class="table table-striped table-inverse table-responsive">
-    <thead class="thead-inverse">
+
+
+<form >
+  <table class="table table-bordered table-hover" style="margin-top: 40px" id="myTable">
+    <thead>
     <tr>
       <th>Số thứ tự</th>
       <th>Tên tòa nhà</th>
@@ -16,8 +24,7 @@
       <th>Email</th>
       <th>Fax</th>
       <th>Địa chỉ</th>
-      <th colspan="3">Thao tác</th>
-
+      <th colspan="3">Tác vụ</th>
     </tr>
     </thead>
     <tbody>
@@ -32,8 +39,8 @@
       <td>{{item.email}}</td>
       <td>{{item.fax}}</td>
       <td>{{item.address}}</td>
-      <td><button  class="btn btn-primary" (click)="openDialogView(item.id)">Chi tiết</button></td>
-      <td><button  class="btn btn-success" (click)="openDialogEdit(item.id)">Sửa</button></td>
+      <td><button  class="btn btn-outline-danger" (click)="openDialogView(item.id)">Chi tiết</button></td>
+      <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button></td>
       <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">
         Xóa
       </button></td>
@@ -41,11 +48,14 @@
     </tr>
     </tbody>
   </table>
-  <div>
-    <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"
-                          previousLabel="Trang trước" nextLabel="Trang sau"></pagination-controls>
+  <div style="float: right">
+    <button class="btn btn-primary" (click)="openDialogAddNew()"  style="margin-right: 40px">Thêm mới thông tin tòa nhà</button>
   </div>
-</div>
+
+</form>
+<pagination-controls id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
+                     nextLabel="Trang sau"></pagination-controls>
+
 
 
 

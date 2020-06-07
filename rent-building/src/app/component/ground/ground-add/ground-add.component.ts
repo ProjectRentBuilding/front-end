@@ -63,5 +63,8 @@ export class GroundAddComponent implements OnInit {
     }
   }
 
+  clearFilters() {
+    this.ngOnInit();
+  }
 }
 

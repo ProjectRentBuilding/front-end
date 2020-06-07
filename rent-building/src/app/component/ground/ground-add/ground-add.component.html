@@ -23,6 +23,7 @@
       <div class="col-md-6">
         <span class="col-md-3">Trạng thái:</span>
         <select class="form-control col-md-9" formControlName="statusGround">
+          <option value="">Chọn</option>
           <option value="Chưa bàn giao">Chưa bàn giao</option>
           <option value="Đang vào ở">Đang vào ở</option>
           <option value="Đang sửa chữa">Đang sửa chữa</option>
@@ -48,6 +49,7 @@
       <div class="col-md-6">
         <span class="col-md-3">Tầng:</span>
         <select class="form-control col-md-9" formControlName="floor">
+          <option value="">Chọn</option>
           <option *ngFor="let floor of floors" [value]="floor.nameFloor">{{floor.nameFloor}}</option>
         </select>
         <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('floor').hasError('required')
@@ -87,7 +89,7 @@
       <div class="col-md-12">
         <span class="col-md-2">Giá tiền:</span>
         <div>
-          <input type="text" class="form-control col-md-10" formControlName="price" style="margin-top: -5px">
+          <input type="number" class="form-control col-md-10" formControlName="price" style="margin-top: -5px">
         </div>
       </div>
     </label>
@@ -117,12 +119,22 @@
   </fieldset>
 </form>
 
-<div>
-  <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" [disabled]="addGroundForm.invalid"
-          (click)="onAddGround()">Lưu và đóng
-  </button>
-  <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" mat-dialog-close>Hủy</button>
-</div>
+<label class="row " style="margin-left: 43%">
+
+  <div class="form-group d-flex justify-content-center mr-5">
+    <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
+  </div>
+  <div class="form-group d-flex justify-content-center mr-5 ">
+    <button [disabled]="addGroundForm.invalid" class="btn btn-success mt-3" (click)="onAddGround()">Thêm mới
+    </button>
+
+  </div>
+  <div class="form-group d-flex justify-content-center " style="align-content: center">
+    <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách mặt bằng
+    </button>
+  </div>
+</label>
+
 
 
 
