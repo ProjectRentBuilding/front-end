@@ -309,7 +309,6 @@
       "id": 3
     },
     {
-<<<<<<< HEAD
       "nameFloor": "tỷtytry",
       "id": 4
     },
@@ -320,10 +319,7 @@
     {
       "nameFloor": "sad",
       "id": 6
-=======
-      "nameFloor": "Tầng 4",
-      "id": 4
->>>>>>> ebe55d24f781b2c92acc4d0c1b0f1ae912b56498
+
     }
   ],
   "customers": [

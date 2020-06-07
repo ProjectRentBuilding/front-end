@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .search-input {
   background: transparent;
   border: none;
@@ -22,8 +21,4 @@
 .search-button-button:hover {
   background-color: #eee;
   transform: translateY(-1px);
-=======
-th,td {
-  text-align: center;
->>>>>>> ebe55d24f781b2c92acc4d0c1b0f1ae912b56498
 }
