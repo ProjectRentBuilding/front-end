@@ -4,6 +4,8 @@ export class GroundModel {
   public codeGround: string;
   // Loại mặt bằng
   public typeGround: string;
+  // Chú thích
+  public note: string;
   // Diện tích
   public area: string;
   // Trạng thái
@@ -14,5 +16,9 @@ export class GroundModel {
   public priceManager: number;
   // Tên khách hàng
   public nameCustomer: string;
+  // Ngày bắt đầu
+  public beginDay: string;
+  // Ngày kết thúc
+  public endDay: string;
 
 }

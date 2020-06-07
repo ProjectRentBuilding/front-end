@@ -54,6 +54,10 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
 
   }
 
+  clearFilters() {
+    this.ngOnInit();
+  }
+
 
 
   ngOnDestroy() {
@@ -61,7 +65,6 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
-
 }
 
 

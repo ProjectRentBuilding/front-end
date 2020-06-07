@@ -14,4 +14,7 @@ form fieldset label {
 form fieldset label div span{
   float: left;
 }
+legend{
+  color: red;
+}
 

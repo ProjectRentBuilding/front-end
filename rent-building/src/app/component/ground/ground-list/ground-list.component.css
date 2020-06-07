@@ -47,6 +47,7 @@
   border-bottom: 2px solid #eed8de;
   transition: all .4s;
 }
+<<<<<<< HEAD
 
 .search-input:focus {
   background: transparent;
@@ -64,3 +65,5 @@
   background-color: #eee;
   transform: translateY(-1px);
 }
+=======
+>>>>>>> ebe55d24f781b2c92acc4d0c1b0f1ae912b56498
