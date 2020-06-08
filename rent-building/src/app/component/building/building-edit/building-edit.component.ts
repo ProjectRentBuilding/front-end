@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {BuildingService} from '../../../service/building.service';
 import {Router} from '@angular/router';
+import {ImageModel} from '../../../model/image.model';
+import {ImageService} from '../../../service/image.service';
 
 @Component({
   selector: 'app-building-edit',
@@ -14,17 +16,20 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
   editBuildingForm: FormGroup;
+  public images: ImageModel[];
 
   public id: number;
   constructor(
     public dialogRef: MatDialogRef<BuildingEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public buildingService: BuildingService,
+    public imageService: ImageService,
     public routerService: Router,
     private fb: FormBuilder,
   ) {
   }
   ngOnInit() {
+    this.imageService.findAll().subscribe(data => this.images = data);
     this.editBuildingForm = this.fb.group({
       abbreviationName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],

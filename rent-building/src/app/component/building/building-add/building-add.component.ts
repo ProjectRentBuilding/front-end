@@ -4,6 +4,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
 import {BuildingService} from '../../../service/building.service';
 import {Router} from '@angular/router';
+import {ImageModel} from '../../../model/image.model';
+import {FloorService} from '../../../service/floor.service';
+import {ImageService} from '../../../service/image.service';
 
 @Component({
   selector: 'app-building-add',
@@ -14,16 +17,20 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
   addBuildingForm: FormGroup;
+  public images: ImageModel[];
+  logo;
 
   constructor(
     public dialogRef: MatDialogRef<BuildingAddComponent>,
     public buildingService: BuildingService,
+    public imageService: ImageService,
     public routerService: Router,
     private fb: FormBuilder
   ) {
   }
 
   ngOnInit() {
+    this.imageService.findAll().subscribe(data => this.images = data);
     this.addBuildingForm = this.fb.group({
       abbreviationName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -64,6 +71,12 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  onSelectChange(value) {
+
+    this.logo=value;
+
   }
 }
 

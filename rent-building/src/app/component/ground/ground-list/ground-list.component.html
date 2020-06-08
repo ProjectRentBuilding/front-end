@@ -48,64 +48,13 @@
   </table>
   <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2 " (click)="openDialogAddNew()">Thêm mới</button>
 </form>
+
 <!--    pagination-->
 <pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
                      nextLabel="Trang sau">
 
 </pagination-controls>
 
-
-
-
-
-
-<!--<h1>Danh sách thông tin mặt bằng</h1>-->
-<!--<div class="search-hero">-->
-<!--  <input class="form-control mt-2" type="text" name="search" style="width: 50%" [(ngModel)]="searchText"-->
-<!--         autocomplete="off" placeholder="Tìm kiếm thông tin tòa nhà theo tên,mã số thuế,địa chỉ">-->
-<!--</div>-->
-<!--<div>-->
-<!--  <button type="button" class="btn btn-warning mr-3" (click)="openDialogAddNew()" >Thêm mới thông tin mặt bằng</button>-->
-<!--  <table class="table table-striped table-inverse table-responsive">-->
-<!--    <thead class="thead-inverse">-->
-<!--    <tr>-->
-<!--      <th>Mã mặt bằng</th>-->
-<!--      <th>Loại mặt bằng</th>-->
-<!--      <th>Diện tích</th>-->
-<!--      <th>Trạng thái</th>-->
-<!--      <th>Giá bán</th>-->
-<!--      <th>Phí quản lý</th>-->
-<!--      <th>Khách hàng</th>-->
-<!--      <th colspan="3">Thao tác</th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody>-->
-<!--    <tr *ngFor="let i=index;let item of grounds|filter:searchText | paginate:{id:'listing_pagination',-->
-<!--                                                                            itemsPerPage:4,-->
-<!--                                                                            currentPage:page-->
-<!--                                                                            }">-->
-<!--      <td>{{i+1}}</td>-->
-<!--      <td>{{item.codeGround}}</td>-->
-<!--      <td>{{item.typeGround}}</td>-->
-<!--      <td>{{item.area}}</td>-->
-<!--      <td>{{item.statusGround}}</td>-->
-<!--      <td>{{item.price}}</td>-->
-<!--      <td>{{item.priceManager}}</td>-->
-<!--      <td>{{item.nameCustomer}}</td>-->
-<!--      <td><button  class="btn btn-primary" (click)="openDialogView(item.id)">Chi tiết</button></td>-->
-<!--      <td><button  class="btn btn-success" (click)="openDialogEdit(item.id)">Sửa</button></td>-->
-<!--      <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">-->
-<!--        Xóa-->
-<!--      </button></td>-->
-
-<!--    </tr>-->
-<!--    </tbody>-->
-<!--  </table>-->
-<!--  <div>-->
-<!--    <pagination-controls  id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"-->
-<!--                          previousLabel="Trang trước" nextLabel="Trang sau"></pagination-controls>-->
-<!--  </div>-->
-<!--</div>-->
 
 
 
