@@ -95,7 +95,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   addNewCustomer() {
     this.customerService.save(this.formAddNewCustomer.value).subscribe(data => {
-      this.customerService.showNotification('', 'ok');
+      this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
       this.redirectTo('customers');
       // this.dialogRef.close();
     });

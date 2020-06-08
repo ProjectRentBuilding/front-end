@@ -1,6 +1,6 @@
 <h2 class="text-center">Thêm mới thông tin tòa nhà</h2>
 
-<form [formGroup]="addBuildingForm" class="col-md-12 offset-md-4">
+<form [formGroup]="addBuildingForm" class="col-md-12 offset-md-4" >
   <fieldset>
     <legend>Thông tin chung</legend>
     <label class="row">
@@ -179,7 +179,15 @@
       </div>
       <div class="col-md-4">
         <span class="col-md-5">Logo:</span>
-        <input type="text" class="form-control col-md-7" formControlName="logo">
+        <select class="form-control col-md-7" formControlName="logo">
+          <option value="">Chọn</option>
+          <option *ngFor="let image of images" [value]="image.linkImage" (change)="onSelectChange($event.target.value)">
+            {{image.nameImage}}
+          </option>
+        </select>
+        <div class="bottom-border pb-3">
+          <img src="{{logo}}" width="50" height="50" class="rounded-circle mr-3" alt="">
+        </div>
       </div>
     </label>
   </fieldset>
@@ -187,7 +195,7 @@
 
 
 <fieldset>
-  <label class="row " style="margin-left: 43%">
+  <label class="row " style="margin-left: 30%">
 
     <div class="form-group d-flex justify-content-center mr-5">
       <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>

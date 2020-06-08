@@ -199,19 +199,19 @@
   ],
   "buildings": [
     {
-      "abbreviationName": "22",
-      "fullName": "12",
-      "taxCode": "12",
-      "phone": "123123456",
-      "email": "12@e",
-      "fax": "12",
-      "address": "12",
-      "management": "12",
-      "manager": "12",
-      "accountNumber": "12",
-      "recipientName": "12",
-      "bank": "12",
-      "logo": "12",
+      "abbreviationName": "ĐHMHN",
+      "fullName": "ĐH mở Hà Nội",
+      "taxCode": "MS-0001",
+      "phone": "090512345",
+      "email": "dhmhn@gmail.com",
+      "fax": "12345",
+      "address": "273 Nguyễn Tất Thành,Thanh Khê,Đà Nẵng",
+      "management": "CodeGym",
+      "manager": "Trần Ngọc Tân",
+      "accountNumber": "12345678",
+      "recipientName": "Nguyễn Đình Hòa",
+      "bank": "Sacombank",
+      "logo": "Logo1",
       "id": 1
     },
     {
@@ -534,6 +534,28 @@
       "beginDay": "2020-11-12T17:00:00.000Z",
       "endDay": "4214-01-01T00:00:00.000Z",
       "id": 5
+    }
+  ],
+  "images": [
+    {
+      "nameImage": "Logo1",
+      "linkImage": "../assets/image/logo1.png",
+      "id": 1
+    },
+    {
+      "nameImage": "Logo2",
+      "linkImage": "../assets/image/logo2.png",
+      "id": 2
+    },
+    {
+      "nameImage": "Logo3",
+      "linkImage": "../assets/image/logo3.png",
+      "id": 3
+    },
+    {
+      "nameImage": "Logo4",
+      "linkImage": "../assets/image/logo4.png",
+      "id": 4
     }
   ]
 }

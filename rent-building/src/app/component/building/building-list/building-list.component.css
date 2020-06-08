@@ -60,3 +60,6 @@
   background-color: #eee;
   transform: translateY(-1px);
 }
+.cdk-overlay-pane {
+  margin-left:300px;
+}
