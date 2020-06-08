@@ -32,7 +32,11 @@
 /*  margin-top: 8px;*/
 /*  margin-right: 5px;*/
 /*}*/
-
+table {
+  display: block;
+  overflow-x: auto;
+  /*white-space: nowrap;*/
+}
 .search-input {
   background: transparent;
   border: none;
