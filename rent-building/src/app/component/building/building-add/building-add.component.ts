@@ -5,7 +5,6 @@ import {MatDialogRef} from '@angular/material';
 import {BuildingService} from '../../../service/building.service';
 import {Router} from '@angular/router';
 import {ImageModel} from '../../../model/image.model';
-import {FloorService} from '../../../service/floor.service';
 import {ImageService} from '../../../service/image.service';
 
 @Component({
