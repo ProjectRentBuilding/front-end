@@ -101,7 +101,7 @@
     <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>
 
     <td>
-      <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-success ml-3"
+      <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-warning ml-3"
               (click)="checkEditCustomer(customer.id)">Sửa
       </button>
       <button *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
@@ -114,8 +114,8 @@
       <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-danger ml-3"
               (click)="openDialogDelete(customer.id)">Xóa
       </button>
-      <button *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
-              (click)="resetCustomer()">Làm ại
+      <button style="width: 79px;"  *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
+              (click)="resetCustomer()">Làm lại
       </button>
     </td>
   </tr>
@@ -196,11 +196,11 @@
   </tbody>
 
 </table>
-  <button style="margin-left: 66em;" class="btn btn-info px-4 py-2 " (click)="checkAddCustomer()">Thêm mới</button>
+  <button style="position: absolute;left: 88%;" class="btn btn-info px-2 py-2 " (click)="checkAddCustomer()">Thêm mới</button>
 </form>
 <!--    pagination-->
-<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event" previousLabel="previous"
-                     nextLabel="next">
+<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
+                     nextLabel="Trang sau">
 
 </pagination-controls>
 

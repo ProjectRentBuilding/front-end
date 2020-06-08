@@ -275,7 +275,7 @@
       "accountNumber": "5354",
       "recipientName": "435",
       "bank": "5345",
-      "logo": "",
+      "logo": "../assets/image/logo2.png",
       "id": 5
     },
     {
@@ -336,16 +336,16 @@
       "id": 1
     },
     {
-      "name": "dasd",
-      "idCard": "sada",
-      "email": "sad",
-      "phone": "sada",
-      "birthday": "1990-02-05T17:00:00.000Z",
-      "address": "sad",
-      "website": "sad",
-      "nameCompany": "sdsa",
-      "nameGround": "mb03",
-      "rentStatus": "",
+      "name": "",
+      "idCard": "",
+      "email": "",
+      "phone": "sadsadasd",
+      "birthday": "",
+      "address": "",
+      "website": "",
+      "nameCompany": "",
+      "nameGround": "",
+      "rentStatus": false,
       "id": 2
     },
     {
