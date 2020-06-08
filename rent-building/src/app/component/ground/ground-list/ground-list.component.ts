@@ -83,8 +83,8 @@ export class GroundListComponent implements OnInit, OnDestroy {
   openDialogDelete(id): void {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundDeleteComponent, {
-        width: '500px',
-        height: '240px',
+        width: '800',
+        height: '540px',
         data: {data1: dataOfGroundModel},
         disableClose: true,
       });

@@ -173,3 +173,13 @@
 }
 
 /*end of navbar*/
+/*card*/
+.card-common{
+  box-shadow: 1px 2px 5px #999;
+  transition: all .4s;
+}
+.card-common:hover{
+  box-shadow: 2px 3px 15px #999;
+  transform: translateY(-1px);
+}
+/*end card*/
