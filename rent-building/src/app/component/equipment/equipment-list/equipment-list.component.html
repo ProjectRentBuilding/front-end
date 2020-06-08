@@ -100,22 +100,20 @@
         <select class="form-control" formControlName="codeGround" style="width:120px">
           <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>
         </select>
-        <!--            <select class="form-control" style="width:120px" formControlName="codeGround">-->
-        <!--              <option value="MB001">MB001</option>-->
-        <!--              <option value="MB002">MB002</option>-->
-        <!--              <option value="MB003">MB003</option>-->
-        <!--              <option value="MB004">MB004</option>-->
-        <!--            </select>-->
         <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeGround').invalid && formAddNewEquipment.get('codeGround').touched">
             Mã mặt bằng không được để trống!
             </span>
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag">
         <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)" style="margin-right: 10px">Sửa</button>
+      </td>
+      <td *ngIf="!checkEdit || equipment.id!==flag">
         <button class="btn btn-danger" type="button" (click)="openDialogDelete(equipment.id)">Xoá</button>
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
         <button class="btn btn-primary" type="button" (click)="editEquipment()" style="margin-right: 10px">Lưu</button>
+      </td>
+      <td *ngIf="checkEdit && equipment.id===flag">
         <button class="btn btn-danger" type="button" (click)="close()">Thoát</button>
       </td>
     </tr>
@@ -169,12 +167,6 @@
           </span>
       </td>
       <td>
-        <!--            <select class="form-control" style="width:120px" formControlName="codeGround">-->
-        <!--              <option value="MB001">MB001</option>-->
-        <!--              <option value="MB002">MB002</option>-->
-        <!--              <option value="MB003">MB003</option>-->
-        <!--              <option value="MB004">MB004</option>-->
-        <!--            </select>-->
         <select class="form-control" formControlName="codeGround" style="width:120px" >
           <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>
         </select>
