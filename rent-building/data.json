@@ -333,6 +333,10 @@
     {
       "nameFloor": "sad",
       "id": 6
+    },
+    {
+      "nameFloor": "Tầng 4",
+      "id": 7
     }
   ],
   "customers": [
