@@ -12,12 +12,12 @@ let $: any = jQuery;
   providedIn: 'root'
 })
 export class EquipmentService extends CrudService<EquipmentModel, number> {
-  // public API = 'http://localhost:3000/equipments';
+  // public API = 'http://localhost:8080/equipments';
   // constructor(
   //   public http: HttpClient
   // ) { }
   constructor(protected http: HttpClient) {
-    super(http, 'http://localhost:3000/equipments');
+    super(http, 'http://localhost:8080/equipments');
   }
   // getAllEquipment(): Observable<any> {
   //   return this.http.get(this.API);

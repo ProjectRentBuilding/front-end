@@ -25,7 +25,7 @@
   <table class="table bg-light text-center">
     <thead>
     <tr class="text-muted">
-      <th>STT</th>
+      <th>#</th>
       <th style="width: 140px">Loại</th>
       <th>Tên thiết bị</th>
       <th>Số lượng</th>
@@ -41,13 +41,19 @@
                                                                             itemsPerPage:5,
                                                                             currentPage:page
                                                                            }; ">
-      <td>{{(i+1)+(page-1)*5}}</td>
+      <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" ng:id="${employee.id}" name="options[]" value="1">
+								<label ng:for="${employee.id}"></label>
+							</span>
+      </td>
+<!--      <td>{{(i+1)+(page-1)*5}}</td>-->
       <td *ngIf="!checkEdit ||  equipment.id!==flag">
-        {{equipment.type}}
+        {{equipment.typeEquipment.nameType}}
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
         <!--            <input type="text" class="form-control" formControlName="type" value="{{equipment.type}}">-->
-        <select class="form-control" style="width: 120px" formControlName="type">
+        <select class="form-control" style="width: 120px" formControlName="typeEquipment">
           <option value="Bóng đèn">Bóng đèn</option>
           <option value="Điều hoà">Điều hoà</option>
           <option value="Quạt">Quạt</option>
@@ -58,11 +64,11 @@
         </p>
       </td>
       <td *ngIf="!checkEdit ||  equipment.id!==flag">
-        {{equipment.deviceName}}
+        {{equipment.nameEquipment}}
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
-        <input type="text" class="form-control" formControlName="deviceName" value="{{equipment.deviceName}}">
-        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('deviceName').invalid && formAddNewEquipment.get('deviceName').touched">
+        <input type="text" class="form-control" formControlName="nameEquipment" value="{{equipment.nameEquipment}}">
+        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">
           Loại không được để trống!
         </p>
       </td>
@@ -73,10 +79,10 @@
         <input type="text" class="form-control" formControlName="amount" value="{{equipment.amount}}">
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag">
-        {{equipment.status}}
+        {{equipment.statusEquipment}}
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
-        <select class="form-control" style="width: 100px" formControlName="status" value="{{equipment.status}}">
+        <select class="form-control" style="width: 100px" formControlName="statusEquipment" value="{{equipment.statusEquipment}}">
           <option value="Mới">Mới</option>
           <option value="Hỏng">Hỏng</option>
         </select>
@@ -94,10 +100,10 @@
         <input type="text" class="form-control" formControlName="note" value="{{equipment.note}}">
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag">
-        {{equipment.codeGround}}
+        {{equipment.ground.codeGround}}
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
-        <select class="form-control" formControlName="codeGround" style="width:120px">
+        <select class="form-control" formControlName="ground.codeGround" style="width:120px">
           <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>
         </select>
         <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeGround').invalid && formAddNewEquipment.get('codeGround').touched">
@@ -105,13 +111,13 @@
             </span>
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag">
-        <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)" style="margin-right: 10px">Sửa</button>
+        <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)" >Sửa</button>
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag">
         <button class="btn btn-danger" type="button" (click)="openDialogDelete(equipment.id)">Xoá</button>
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
-        <button class="btn btn-primary" type="button" (click)="editEquipment()" style="margin-right: 10px">Lưu</button>
+        <button class="btn btn-primary" type="button" (click)="editEquipment()">Lưu</button>
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
         <button class="btn btn-danger" type="button" (click)="close()">Thoát</button>
