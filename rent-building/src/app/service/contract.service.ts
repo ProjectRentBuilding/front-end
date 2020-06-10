@@ -14,7 +14,7 @@ let $: any = jQuery;
 export class ContractService extends CrudService<ContractModel, number> {
 
   constructor(protected _http: HttpClient) {
-    super(_http, 'http://localhost:3000/contracts');
+    super(_http, 'http://localhost:8080/contracts');
   }
 
   showNotification(title, message) {
