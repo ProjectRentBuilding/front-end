@@ -44,13 +44,13 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.equipmentModel = data;
     });
     this.formAddNewEquipment = this.formBuilder.group({
-      type: ['', [Validators.required]],
-      deviceName: ['', [Validators.required]],
+      typeEquipment: ['', [Validators.required]],
+      nameEquipment: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
-      status: ['', [Validators.required, Validators.pattern('^(Mới|Hỏng)$')]],
+      statusEquipment: ['', [Validators.required, Validators.pattern('^(Mới|Hỏng)$')]],
       amountOfBroken: ['', [Validators.required]],
       note: ['', [Validators.required]],
-      codeGround: ['', [Validators.required]],
+      ground: ['', [Validators.required]],
     });
   }
 
