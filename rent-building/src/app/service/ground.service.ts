@@ -12,7 +12,7 @@ let $: any = jQuery;
 })
 export class GroundService extends CrudService<GroundModel, number>{
   constructor(protected  http: HttpClient) {
-    super(http, 'http://localhost:3000/grounds');
+    super(http, 'http://localhost:8080/grounds');
   }
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];

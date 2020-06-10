@@ -12,7 +12,7 @@ let $: any = jQuery;
 })
 export class BuildingService extends CrudService<BuildingModel, number> {
   constructor(protected  http: HttpClient) {
-    super(http, 'http://localhost:3000/buildings');
+    super(http, 'http://localhost:8080/buildings');
   }
 
   showNotification(title, message) {

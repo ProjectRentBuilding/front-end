@@ -7,7 +7,7 @@ export class GroundModel {
   // Chú thích
   public note: string;
   // Diện tích
-  public area: string;
+  public area: number;
   // Trạng thái
   public statusGround: string;
   // Giá bán
