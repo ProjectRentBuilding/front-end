@@ -13,7 +13,7 @@ let $: any = jQuery;
 })
 export class FloorService extends CrudService<FloorModel, number> {
   constructor(protected  http: HttpClient) {
-    super(http, 'http://localhost:3000/floors');
+    super(http, 'http://localhost:8080/floors');
   }
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
