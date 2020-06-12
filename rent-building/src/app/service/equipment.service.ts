@@ -12,32 +12,11 @@ let $: any = jQuery;
   providedIn: 'root'
 })
 export class EquipmentService extends CrudService<EquipmentModel, number> {
-  // public API = 'http://localhost:8080/equipments';
-  // constructor(
-  //   public http: HttpClient
-  // ) { }
+
   constructor(protected http: HttpClient) {
     super(http, 'http://localhost:8080/equipments');
   }
-  // getAllEquipment(): Observable<any> {
-  //   return this.http.get(this.API);
-  // }
-  //
-  // addNewEquipment(equipment): Observable<any> {
-  //   return this.http.post(this.API, equipment);
-  // }
-  //
-  // getEquipmentById(equipmentId): Observable<any> {
-  //   return this.http.get(this.API + '/' + equipmentId);
-  // }
-  //
-  // deleteEquipment(equipmentId): Observable<any> {
-  //   return this.http.delete(this.API + '/' + equipmentId);
-  // }
-  //
-  // editEquipment(equipment, equipmentId): Observable<any> {
-  //   return this.http.put(this.API + '/' + equipmentId, equipment);
-  // }
+
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
     const color = Math.floor((Math.random() * 4) + 1);
