@@ -63,7 +63,7 @@
         <div>
           <select class="form-control col-md-10" formControlName="typeGround" style="margin-top: -5px">
             <option value="">Chọn</option>
-            <option *ngFor="let typeGround of typeGrounds" [value]="typeGround.nameTypeGround">{{typeGround.nameTypeGround}}</option>
+            <option *ngFor="let typeGround of typeGrounds" [value]="typeGround.id">{{typeGround.nameTypeGround}}</option>
           </select>
         </div>
         <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGround').hasError('required')
