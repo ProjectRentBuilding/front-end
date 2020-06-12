@@ -5,33 +5,33 @@
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Tên khách hàng: </span>
         <div>
-          <input type="text" class="form-control col-md-7" value="{{contract.customer.name}}" disabled>
+          <input type="text" class="form-control col-md-7" value="{{customer.name}}" disabled>
         </div>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">CMND:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.customer.idCard}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{customer.idCard}}" disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Địa chỉ KH:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.customer.address}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{customer.address}}" disabled>
       </div>
     </label>
     <label class="row">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Ngày sinh: </span>
         <div>
-          <input type="text" class="form-control col-md-7" value="{{contract.customer.birthday|date:formatsDate}}"
+          <input type="text" class="form-control col-md-7" value="{{customer.birthday|date:formatsDate}}"
                  disabled>
         </div>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Email:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.customer.email}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{customer.email}}" disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Mã Mặt Bằng:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.ground.codeGround}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{ground.codeGround}}" disabled>
       </div>
     </label>
     <label class="row">
@@ -53,15 +53,29 @@
     <label class="row">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Giá tiền:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.price}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{contract.price|number}}" disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Tổng tiền:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.total}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{contract.total|number}}" disabled>
       </div>
       <div class="col-md-4">
+        <span class="col-md-5" style="font-weight: bold">Tiền đặt cọc:</span>
+        <input type="text" class="form-control col-md-7" value="{{contract.deposits}}" disabled>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Nhân viên:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.employee.name}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{employee.name}}" disabled>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5" style="font-weight: bold">SĐT Nhân Viên:</span>
+        <input type="text" class="form-control col-md-7" value="{{employee.phone}}" disabled>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5" style="font-weight: bold">Email Nhân Viên:</span>
+        <input type="text" class="form-control col-md-7" value="{{employee.email}}" disabled>
       </div>
     </label>
     <label class="row">
@@ -78,7 +92,8 @@
 
   <label class="row">
     <div class="col-md-4">
-      <mat-checkbox [checked]="contract.unified" disabled="true" style="font-weight: bold">Hai bên đã thống nhất với hợp đồng</mat-checkbox>
+<!--      <mat-checkbox [checked]="contract.unified" disabled="true" style="font-weight: bold">Hai bên đã thống nhất với hợp đồng</mat-checkbox>-->
+      <input type="checkbox" disabled checked="{{contract.unified}}"> Hai bên đã thống nhất với hợp đồng
     </div>
   </label>
 
