@@ -32,12 +32,15 @@
                                                                             }">
       <td>{{(i+1)+(page-1)*5}}</td>
       <td>{{item.codeGround}}</td>
-      <td>{{item.typeGround}}</td>
+      <td>{{item.typeGround.nameTypeGround}}</td>
       <td>{{item.area}}</td>
       <td>{{item.statusGround}}</td>
       <td>{{item.price}}</td>
       <td>{{item.priceManager}}</td>
-      <td></td>
+      <ng-container *ngFor="let contract of contracts">
+        <td *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>
+      </ng-container>
+
 
 
 
