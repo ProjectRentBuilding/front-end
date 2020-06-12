@@ -15,7 +15,7 @@ let $: any = jQuery;
 export class CustomerService extends CrudService<Customer, number> {
 
   constructor(protected http: HttpClient) {
-    super(http, 'http://localhost:3000/customers');
+    super(http, 'http://localhost:8080/customers');
   }
 
   showNotification(title, message) {
