@@ -1,15 +1,13 @@
 export class EquipmentModel {
   id: number;
-  // loại
-  typeEquipment: string;
+  // id loại
+  typeEquipmentId: number;
   // số lượng
   amount: number;
-  // trạng thái
-  status: string;
   // số lượng hỏng
   amountOfBroken;
   // chú thích
   note: string;
-  // mã mặt bằng
-  codeGround: string;
+  // id bằng
+  groundId: number;
 }
