@@ -7,7 +7,7 @@
       <div class="col-md-6">
         <span class="col-md-4">Mã mặt bằng:</span>
         <div>
-          <input type="text" class="form-control col-md-8" formControlName="codeGround" disabled>
+          <input type="text" class="form-control col-md-8" value="1" formControlName="codeGround" disabled>
         </div>
       </div>
 
@@ -25,14 +25,14 @@
       </div>
       <div class="col-md-6">
         <span class="col-md-3">Tầng:</span>
-        <input type="text" class="form-control col-md-9" formControlName="floor" disabled>
+        <input type="text" class="form-control col-md-9" value="{{floor.nameFloor}}" disabled>
       </div>
     </label>
     <label class="row">
       <div class="col-md-12">
         <span class="col-md-2">Loại mặt bằng:</span>
         <div>
-          <input type="text" class="form-control col-md-10" formControlName="typeGround" style="margin-top: -5px" disabled>
+          <input type="text" class="form-control col-md-10" value="{{typeGround.nameTypeGround}}" style="margin-top: -5px" disabled>
         </div>
       </div>
     </label>

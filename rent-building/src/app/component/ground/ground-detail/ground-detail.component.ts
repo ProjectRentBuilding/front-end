@@ -13,6 +13,8 @@ export class GroundDetailComponent implements OnInit {
   public subscription: Subscription;
   viewGroundForm: FormGroup;
   public id: number;
+  public typeGround;
+  public floor;
   constructor(
     public dialogRef: MatDialogRef<GroundDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,6 +38,8 @@ export class GroundDetailComponent implements OnInit {
   loadData() {
     this.id = this.data.data1.id;
     this.viewGroundForm.patchValue(this.data.data1);
+    this.typeGround = this.data.data1.typeGround;
+    this.floor=this.data.data1.floor;
   }
   ngOnDestroy() {
     if (this.subscription) {

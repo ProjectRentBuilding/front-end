@@ -6,6 +6,8 @@ import {GroundService} from '../../../service/ground.service';
 import {Router} from '@angular/router';
 import {FloorModel} from '../../../model/floor.model';
 import {FloorService} from '../../../service/floor.service';
+import { TypeGroundService } from 'src/app/service/type-ground.service';
+import {TypeGroundModel} from "../../../model/typeGround.model";
 
 @Component({
   selector: 'app-ground-add',
@@ -17,11 +19,13 @@ export class GroundAddComponent implements OnInit {
   public subscription: Subscription;
   addGroundForm: FormGroup;
   public floors: FloorModel[];
+  public typeGrounds: TypeGroundModel[];
 
   constructor(
     public dialogRef: MatDialogRef<GroundAddComponent>,
     public groundService: GroundService,
     public floorService: FloorService,
+    public typeGroundService: TypeGroundService,
     public routerService: Router,
     private fb: FormBuilder
   ) {
@@ -29,6 +33,7 @@ export class GroundAddComponent implements OnInit {
 
   ngOnInit() {
     this.floorService.findAll().subscribe(data => this.floors = data);
+    this.typeGroundService.findAll().subscribe(data => this.typeGrounds = data);
 
     this.addGroundForm = this.fb.group({
       codeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
