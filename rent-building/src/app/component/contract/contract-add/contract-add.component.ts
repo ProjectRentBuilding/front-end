@@ -60,8 +60,8 @@ export class ContractAddComponent implements OnInit {
     });
 
     this.formAddNewContract = this.formBuilder.group({
-      customerId: ['', [Validators.required]],
       groundId: ['', [Validators.required]],
+      customerId: ['', [Validators.required]],
       employeeId: ['', [Validators.required]],
       statusContract: [''],
       term: [''],
@@ -70,7 +70,7 @@ export class ContractAddComponent implements OnInit {
       price: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       total: [''],
       deposits: [''],
-      taxCode: [''],
+      taxCode: ['', [Validators.required]],
       urlImage: [''],
       content: ['', [Validators.required]],
       unified: ['']
