@@ -29,7 +29,7 @@
       <th style="width: 140px">Loại</th>
       <th>Tên thiết bị</th>
       <th>Số lượng</th>
-      <th>Trạng thái</th>
+<!--      <th>Trạng thái</th>-->
       <th>Số lượng hỏng</th>
       <th>Ghi chú</th>
       <th>Mã mặt bằng</th>
@@ -79,15 +79,6 @@
         <input type="text" class="form-control" formControlName="amount" value="{{equipment.amount}}">
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag">
-        {{equipment.statusEquipment}}
-      </td>
-      <td *ngIf="checkEdit && equipment.id===flag">
-        <select class="form-control" style="width: 100px" formControlName="statusEquipment" value="{{equipment.statusEquipment}}">
-          <option value="Mới">Mới</option>
-          <option value="Hỏng">Hỏng</option>
-        </select>
-      </td>
-      <td *ngIf="!checkEdit || equipment.id!==flag">
         {{equipment.amountOfBroken}}
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
@@ -128,20 +119,16 @@
     <tr *ngIf="checkAdd">
       <td></td>
       <td>
-        <!--            <input type="text" class="form-control" formControlName="type">-->
-        <select class="form-control" style="width: 120px" formControlName="type">
-          <option value="Bóng đèn">Bóng đèn</option>
-          <option value="Điều hoà">Điều hoà</option>
-          <option value="Quạt">Quạt</option>
-          <option value="Router Wifi">Router Wifi</option>
-        </select>
-        <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('type').invalid && formAddNewEquipment.get('type').touched">
+          <select class="form-control" formControlName="typeEquipment" style="width:120px" >
+            <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>
+          </select>
+        <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('typeEquipment').invalid && formAddNewEquipment.get('typeEquipment').touched">
             Loại không được để trống!
           </span>
       </td>
       <td>
-        <input type="text" class="form-control" formControlName="deviceName">
-        <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('deviceName').invalid && formAddNewEquipment.get('deviceName').touched">
+        <input type="text" class="form-control" formControlName="nameEquipment">
+        <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">
             Tên thiết bị không được để trống!
           </span>
       </td>
@@ -149,15 +136,6 @@
         <input type="text" class="form-control" formControlName="amount">
         <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('amount').invalid && formAddNewEquipment.get('amount').touched">
             Số lượng không được để trống!
-          </span>
-      </td>
-      <td>
-        <select class="form-control" style="width: 100px" formControlName="status">
-          <option value="Mới">Mới</option>
-          <option value="Hỏng">Hỏng</option>
-        </select>
-        <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('status').invalid && formAddNewEquipment.get('status').touched">
-            Trạng thái không được để trống!
           </span>
       </td>
       <td>
@@ -173,10 +151,10 @@
           </span>
       </td>
       <td>
-        <select class="form-control" formControlName="codeGround" style="width:120px" >
-          <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>
+        <select class="form-control" formControlName="ground" style="width:120px" >
+          <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
         </select>
-        <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeGround').invalid && formAddNewEquipment.get('codeGround').touched">
+        <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('ground').invalid && formAddNewEquipment.get('ground').touched">
             Mã mặt bằng không được để trống!
           </span>
       </td>
@@ -190,7 +168,6 @@
 
 </form>
 <!--    pagination-->
-
 
 
 <pagination-controls class="pagination justify-content-center" id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"

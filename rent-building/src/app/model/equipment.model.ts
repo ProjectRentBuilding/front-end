@@ -1,7 +1,7 @@
 export class EquipmentModel {
   id: number;
   // loại
-  type: string;
+  typeEquipment: string;
   // số lượng
   amount: number;
   // trạng thái

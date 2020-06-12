@@ -8,6 +8,8 @@ import {EquipmentModel} from '../../../model/equipment.model';
 import {EquipmentDeleteComponent} from '../equipment-delete/equipment-delete.component';
 import {GroundModel} from '../../../model/ground.model';
 import {GroundService} from '../../../service/ground.service';
+import {TypeEquipmentService} from '../../../service/type-equipment.service';
+import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
 
 @Component({
   selector: 'app-equipment-list',
@@ -21,6 +23,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public flag;
   public equipmentModel: EquipmentModel[];
   public grounds: GroundModel[] = [];
+  public typeEquipment: TypeEquipmentModel[];
   public totalRec: number;
   public page = 1;
   public checkEdit = false;
@@ -31,12 +34,16 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     public formBuilder: FormBuilder,
     public equipmentService: EquipmentService,
     public groundService: GroundService,
+    public typeElementService : TypeEquipmentService,
     public dialog: MatDialog,
     public router: Router
   ) {
   }
 
   ngOnInit() {
+    this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
+      this.typeEquipment = data;
+    });
     this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
@@ -47,7 +54,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       typeEquipment: ['', [Validators.required]],
       nameEquipment: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
-      statusEquipment: ['', [Validators.required, Validators.pattern('^(Mới|Hỏng)$')]],
       amountOfBroken: ['', [Validators.required]],
       note: ['', [Validators.required]],
       ground: ['', [Validators.required]],
@@ -62,7 +68,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
   checkaddNewEquipment() {
     if (!this.checkAdd) {
-      this.ngOnInit();
+      // this.ngOnInit();
       this.checkAdd = true;
       this.checkEdit = false;
     }
