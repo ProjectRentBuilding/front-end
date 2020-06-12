@@ -2,6 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ContractService} from "../../../service/contract.service";
+import {GroundService} from "../../../service/ground.service";
+import {CustomerService} from "../../../service/customer.service";
+import {EmployeeService} from "../../../service/employee.service";
+import {Subscription} from "rxjs";
+import {GroundModel} from "../../../model/ground.model";
+import {Customer} from "../../../model/customer.model";
+import {EmployeeModel} from "../../../model/employee";
 
 @Component({
   selector: 'app-contract-edit',
@@ -11,7 +18,8 @@ import {ContractService} from "../../../service/contract.service";
 export class ContractEditComponent implements OnInit {
 
   public formEditContract: FormGroup;
-  public contractId;
+  public currentDayValue = new Date();
+  public subscription: Subscription;
   public startDayCheck: Date;
   public endDayCheck: Date;
   public currentDay = Date.now();
@@ -20,28 +28,54 @@ export class ContractEditComponent implements OnInit {
   public totalCalculate: number;
   public priceCalculate: number;
   public statusCalculate: boolean;
+  public grounds: GroundModel[] = [];
+  public customers: Customer[] = [];
+  public customerId: number;
+  public groundId: number;
+  public employees : EmployeeModel[] = [];
+  public contractId: number;
 
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
     public activatedRouter: ActivatedRoute,
-    public contractService: ContractService
+    public contractService: ContractService,
+    public groundService: GroundService,
+    public customerService: CustomerService,
+    public employeeService: EmployeeService
   ) {
   }
 
   ngOnInit() {
+
+    this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
+      this.grounds = data;
+    });
+
+    this.subscription = this.customerService.findAll().subscribe((data: Customer[]) => {
+      this.customers = data;
+    });
+
+    this.subscription = this.employeeService.findAll().subscribe((data: EmployeeModel[]) => {
+      this.employees = data;
+    });
+
     this.formEditContract = this.formBuilder.group({
-      customerName: ['', [Validators.required]],
-      groundName: ['', [Validators.required, Validators.pattern('^MB[0-9]{3}$')]],
-      idCardCustomer: ['', [Validators.required, Validators.pattern('^(([0-9]{9})|([0-9]{12}))$')]],
-      status: [''],
+      id: [""],
+      groundId: ['', [Validators.required]],
+      customerId: ['', [Validators.required]],
+      employeeId: ['', [Validators.required]],
+      statusContract: [''],
       term: [''],
       startRentDay: ['', [Validators.required]],
       endRentDay: ['', [Validators.required]],
       price: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       total: [''],
+      deposits: [''],
+      taxCode: ['', [Validators.required]],
+      urlImage: [''],
       content: ['', [Validators.required]],
-      unified: ['', [Validators.required]]
+      unified: ['']
     });
 
     this.activatedRouter.params.subscribe(data => {
@@ -53,6 +87,8 @@ export class ContractEditComponent implements OnInit {
   }
 
   editContract() {
+    console.log(this.formEditContract.value);
+    console.log(this.contractId);
     this.contractService.update(this.formEditContract.value, this.contractId).subscribe(data => {
       this.router.navigateByUrl('contracts').then(r => this.contractService.showNotification("", "Chỉnh sửa thành công, chúc mừng bạn"));
     });
