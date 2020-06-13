@@ -18,7 +18,6 @@ import {ContractModel} from "../../../model/contract";
 })
 export class GroundListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
-  public subscription2: Subscription;
   public grounds: GroundModel[];
   public contracts: ContractModel[];
   public totalRec: number;
@@ -37,9 +36,10 @@ export class GroundListComponent implements OnInit, OnDestroy {
       this.grounds = data;
       this.totalRec = this.grounds.length;
     });
-    // this.subscription2=this.contractService.findAll().subscribe((data2: ContractModel[])=>{
-    //   this.contracts=data2;
-    // });
+    this.subscription = this.contractService.findAll().subscribe((data: ContractModel[]) => {
+      this.contracts = data;
+    });
+
 
 
   }
@@ -64,7 +64,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
   openDialogView(id): void {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundDetailComponent, {
-        width: '800',
+        width: '60%',
         height: '540px',
         data: {data1: dataOfGroundModel},
         disableClose: true,
@@ -78,7 +78,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
   openDialogEdit(id): void {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundEditComponent, {
-        width: '800',
+        width: '60%',
         height: '540px',
         data: {data1: dataOfGroundModel},
         disableClose: true,
@@ -93,8 +93,8 @@ export class GroundListComponent implements OnInit, OnDestroy {
   openDialogDelete(id): void {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundDeleteComponent, {
-        width: '800',
-        height: '540px',
+        width: '500px',
+        height: '250px',
         data: {data1: dataOfGroundModel},
         disableClose: true,
       });

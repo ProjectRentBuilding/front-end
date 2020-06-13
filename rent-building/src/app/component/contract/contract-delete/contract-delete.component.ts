@@ -1,6 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ContractService} from "../../../service/contract.service";
+import {CustomerService} from "../../../service/customer.service";
+import {ContractModel} from "../../../model/contract";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-contract-delete',
@@ -13,22 +16,36 @@ export class ContractDeleteComponent implements OnInit {
   public contractId;
   public endDayCheck: Date;
   public currentDay = Date.now();
+  public customer : any;
+  public contract: any;
+  public subscription: Subscription;
 
   constructor(
     public dialogRef: MatDialogRef<ContractDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public contractService: ContractService,
+    public customerService: CustomerService,
   ) {
 
   }
 
   ngOnInit() {
-    this.customerName = this.data.data1.customer.name;
     this.contractId = this.data.data1.id;
+    this.contractService.findOne(this.contractId).subscribe(data => {
+      this.contract = data;
+      this.customerService.findOne(Number(this.contract.customerId)).subscribe(data1 => {
+        this.customer = data1;
+        console.log(this.customer)
+      });
+
+    });
     this.endDayCheck = this.data.data1.endRentDay;
   }
 
   deleteContract() {
+    // this.contractService.delete(this.contractId).subscribe(data => {
+    //   this.dialogRef.close();
+    // });
 
 
     let subTime;
