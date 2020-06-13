@@ -168,10 +168,15 @@
       </div>
       <div class="col-md-4">
         <span class="col-md-5">Logo:</span>
-        <select class="form-control col-md-7" formControlName="logo">
+        <select class="form-control col-md-7" formControlName="logo" (change)="onSelectChange($event.target.value)">
           <option value="">Chọn</option>
-          <option *ngFor="let image of images" [value]="image.nameImage">{{image.nameImage}}</option>
+          <option *ngFor="let image of images" [value]="image.linkImage" >
+            {{image.nameImage}}
+          </option>
         </select>
+        <div class="bottom-border pb-3">
+          <img src="{{logo}}" width="50" height="50" class="rounded-circle mr-3" alt="">
+        </div>
       </div>
     </label>
   </fieldset>

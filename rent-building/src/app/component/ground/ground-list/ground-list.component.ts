@@ -7,6 +7,8 @@ import {GroundDeleteComponent} from '../ground-delete/ground-delete.component';
 import {GroundAddComponent} from '../ground-add/ground-add.component';
 import {GroundDetailComponent} from '../ground-detail/ground-detail.component';
 import {GroundEditComponent} from '../ground-edit/ground-edit.component';
+import {ContractService} from "../../../service/contract.service";
+import {ContractModel} from "../../../model/contract";
 
 
 @Component({
@@ -16,13 +18,16 @@ import {GroundEditComponent} from '../ground-edit/ground-edit.component';
 })
 export class GroundListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
+  public subscription2: Subscription;
   public grounds: GroundModel[];
+  public contracts: ContractModel[];
   public totalRec: number;
   public page = 1;
   public searchText;
 
   constructor(
     public groundService: GroundService,
+    public contractService: ContractService,
     public dialog: MatDialog
   ) {
   }
@@ -32,6 +37,11 @@ export class GroundListComponent implements OnInit, OnDestroy {
       this.grounds = data;
       this.totalRec = this.grounds.length;
     });
+    // this.subscription2=this.contractService.findAll().subscribe((data2: ContractModel[])=>{
+    //   this.contracts=data2;
+    // });
+
+
   }
 
   ngOnDestroy() {

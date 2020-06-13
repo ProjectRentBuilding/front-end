@@ -195,6 +195,20 @@
       "content": "hghg",
       "unified": true,
       "id": 14
+    },
+    {
+      "customerName": "123",
+      "groundName": "MB002",
+      "idCardCustomer": "123123123",
+      "status": true,
+      "term": 6.21,
+      "startRentDay": "2019-12-31T17:00:00.000Z",
+      "endRentDay": "2020-07-07T17:00:00.000Z",
+      "price": 123,
+      "total": 763.83,
+      "content": "123123",
+      "unified": true,
+      "id": 15
     }
   ],
   "buildings": [
@@ -275,7 +289,7 @@
       "accountNumber": "5354",
       "recipientName": "435",
       "bank": "5345",
-      "logo": "",
+      "logo": "../assets/image/logo2.png",
       "id": 5
     },
     {
@@ -319,6 +333,10 @@
     {
       "nameFloor": "sad",
       "id": 6
+    },
+    {
+      "nameFloor": "Tầng 4",
+      "id": 7
     }
   ],
   "customers": [
@@ -412,6 +430,19 @@
       "nameGround": "mb03",
       "rentStatus": false,
       "id": 7
+    },
+    {
+      "name": "gfhfgh",
+      "idCard": "fghfg",
+      "email": "hfgh",
+      "phone": "fghfg",
+      "birthday": "1990-06-11T17:00:00.000Z",
+      "address": "fgh",
+      "website": "fgh",
+      "nameCompany": "fgh",
+      "nameGround": "mb03",
+      "rentStatus": false,
+      "id": 8
     }
   ],
   "equipments": [

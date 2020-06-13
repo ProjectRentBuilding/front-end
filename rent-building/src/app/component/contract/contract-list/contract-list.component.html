@@ -13,7 +13,8 @@
   <table class="table bg-light text-center">
     <thead>
     <tr class="text-muted">
-      <th>ID</th>
+<!--      <th>ID</th>-->
+      <th>#</th>
       <th >Tên Khách Hàng</th>
       <th>Tên Mặt Bằng</th>
       <th style="width: 120px" >Đang Thuê</th>
@@ -24,12 +25,17 @@
     <tbody>
     <tr
       *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
-      <td>{{(i+1)+(page-1)*5}}</td>
-      <td style="text-align: left">{{contract.customerName}}</td>
-      <td>{{contract.groundName}}</td>
+<!--      <td>{{(i+1)+(page-1)*5}}</td>-->
+      <td>
+							<span class="custom-checkbox">
+								<input type="checkbox" value="${contract.id}">
+							</span>
+      </td>
+      <td style="text-align: center">{{contract.customer.name}}</td>
+      <td>{{contract.ground.codeGround}}</td>
       <!--      <td>{{contract.status}}</td>-->
 
-      <td><input type="checkbox"  [checked]="contract.status" [disabled]="true"></td>
+      <td><input type="checkbox"  [checked]="contract.statusContract" [disabled]="true"></td>
       <td width="110px">
         <button class="btn btn-outline-danger" [routerLink]="['/contracts',contract.id,'detail']">Chi tiết</button>
       </td>

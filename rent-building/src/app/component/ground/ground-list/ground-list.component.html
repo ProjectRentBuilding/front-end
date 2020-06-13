@@ -14,6 +14,7 @@
   <table class="table bg-light text-center">
     <thead>
     <tr class="text-muted">
+      <th>STT</th>
       <th>Mã mặt bằng</th>
       <th>Loại mặt bằng</th>
       <th>Diện tích</th>
@@ -36,7 +37,10 @@
       <td>{{item.statusGround}}</td>
       <td>{{item.price}}</td>
       <td>{{item.priceManager}}</td>
-      <td>{{item.nameCustomer}}</td>
+      <td></td>
+
+
+
       <td><button  class="btn btn-outline-danger" style="width: 80px" (click)="openDialogView(item.id)">Chi tiết</button></td>
       <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button></td>
       <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">
@@ -49,10 +53,9 @@
   <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2 " (click)="openDialogAddNew()">Thêm mới</button>
 </form>
 
-<!--    pagination-->
+
 <pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
                      nextLabel="Trang sau">
-
 </pagination-controls>
 
 

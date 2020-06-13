@@ -17,6 +17,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   editBuildingForm: FormGroup;
   public images: ImageModel[];
+  logo;
 
   public id: number;
   constructor(
@@ -29,6 +30,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   ) {
   }
   ngOnInit() {
+
     this.imageService.findAll().subscribe(data => this.images = data);
     this.editBuildingForm = this.fb.group({
       abbreviationName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -69,6 +71,11 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+  onSelectChange(value) {
+
+    this.logo=value;
+
   }
 }
 

@@ -23,7 +23,7 @@ export class ContractDeleteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.customerName = this.data.data1.customerName;
+    this.customerName = this.data.data1.customer.name;
     this.contractId = this.data.data1.id;
     this.endDayCheck = this.data.data1.endRentDay;
   }
