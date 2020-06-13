@@ -2,8 +2,10 @@ export class GroundModel {
   public id: number;
   // Mã mặt bằng
   public codeGround: string;
-  // Loại mặt bằng
-  public typeGround: string;
+  // Id Loại mặt bằng
+  public typeGroundId: number;
+  // Id Loại tầng
+  public floorId:number;
   // Chú thích
   public note: string;
   // Diện tích

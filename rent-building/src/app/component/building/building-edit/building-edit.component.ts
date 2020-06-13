@@ -18,8 +18,8 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   editBuildingForm: FormGroup;
   public images: ImageModel[];
   logo;
-
   public id: number;
+
   constructor(
     public dialogRef: MatDialogRef<BuildingEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -29,6 +29,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
   ) {
   }
+
   ngOnInit() {
 
     this.imageService.findAll().subscribe(data => this.images = data);
@@ -45,19 +46,23 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
       accountNumber: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       recipientName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       bank: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      logo: ['']
+      logo: [''],
+      id: ['']
     });
     this.loadData();
   }
+
   loadData() {
     this.id = this.data.data1.id;
     this.editBuildingForm.patchValue(this.data.data1);
   }
+
   onEditBuilding() {
     this.subscription = this.buildingService.update(this.editBuildingForm.value, this.id).subscribe(data => {
       this.routerService.navigate(['buildings']).then(r => this.afterOnEditBuilding());
     });
   }
+
   afterOnEditBuilding() {
     this.dialogRef.close();
     this.buildingService.showNotification('', 'Sửa thành công, chúc mừng bạn');
@@ -72,9 +77,10 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+
   onSelectChange(value) {
 
-    this.logo=value;
+    this.logo = value;
 
   }
 }

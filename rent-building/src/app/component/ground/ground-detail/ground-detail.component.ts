@@ -2,6 +2,10 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {FloorService} from "../../../service/floor.service";
+import {FloorModel} from "../../../model/floor.model";
+import {ContractModel} from "../../../model/contract";
+import {ContractService} from "../../../service/contract.service";
 
 @Component({
   selector: 'app-ground-detail',
@@ -14,20 +18,29 @@ export class GroundDetailComponent implements OnInit {
   viewGroundForm: FormGroup;
   public id: number;
   public typeGround;
-  public floor;
+  public floors: FloorModel[];
+  public contracts: ContractModel[];
+
   constructor(
     public dialogRef: MatDialogRef<GroundDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
+    public floorService: FloorService,
+    public contractService: ContractService,
   ) {
+
   }
   ngOnInit() {
+    this.floorService.findAll().subscribe(data => this.floors = data);
+    this.subscription = this.contractService.findAll().subscribe((data: ContractModel[]) => {
+      this.contracts = data;
+    });
     this.viewGroundForm = this.fb.group({
       codeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      typeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      typeGroundId: ['',[Validators.required]],
       note:[''],
       area: ['',[Validators.required, Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|([0-9]([1-9])?)$/)]],
-      floor:['',[Validators.required]],
+      floorId:['',[Validators.required]],
       statusGround:[''],
       price:[''],
       beginDay:[''],
@@ -39,7 +52,6 @@ export class GroundDetailComponent implements OnInit {
     this.id = this.data.data1.id;
     this.viewGroundForm.patchValue(this.data.data1);
     this.typeGround = this.data.data1.typeGround;
-    this.floor=this.data.data1.floor;
   }
   ngOnDestroy() {
     if (this.subscription) {

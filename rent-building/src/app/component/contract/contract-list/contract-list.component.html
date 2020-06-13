@@ -25,12 +25,12 @@
     <tbody>
     <tr
       *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
-<!--      <td>{{(i+1)+(page-1)*5}}</td>-->
-      <td>
-							<span class="custom-checkbox">
-								<input type="checkbox" value="${contract.id}">
-							</span>
-      </td>
+      <td>{{(i+1)+(page-1)*5}}</td>
+<!--      <td>-->
+<!--							<span class="custom-checkbox">-->
+<!--								<input type="checkbox" value="${contract.id}">-->
+<!--							</span>-->
+<!--      </td>-->
       <td style="text-align: center">{{contract.customer.name}}</td>
       <td>{{contract.ground.codeGround}}</td>
       <!--      <td>{{contract.status}}</td>-->
