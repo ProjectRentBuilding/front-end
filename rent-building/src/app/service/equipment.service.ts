@@ -17,7 +17,7 @@ export class EquipmentService extends CrudService<EquipmentModel, number> {
   //   public http: HttpClient
   // ) { }
   constructor(protected http: HttpClient) {
-    super(http, 'http://localhost:3000/equipments');
+    super(http, 'http://localhost:8080/equipments');
   }
   // getAllEquipment(): Observable<any> {
   //   return this.http.get(this.API);

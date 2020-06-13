@@ -3,11 +3,13 @@ import {Customer} from '../../../model/customer.model';
 import {Subscription} from 'rxjs';
 import {CustomerService} from '../../../service/customer.service';
 import {MatDialog} from '@angular/material';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {CustomerDeleteComponent} from '../customer-delete/customer-delete.component';
 import {GroundService} from '../../../service/ground.service';
 import {GroundModel} from '../../../model/ground.model';
+import {ContractService} from '../../../service/contract.service';
+import {ContractModel} from '../../../model/contract';
 
 
 @Component({
@@ -18,8 +20,8 @@ import {GroundModel} from '../../../model/ground.model';
 export class CustomerListComponent implements OnInit, OnDestroy {
   public checkEdit = false;
   public checkAdd = false;
+  public flag;
   public formAddNewCustomer: FormGroup;
-  public addCustomer: FormGroup;
   public count: number;
   startDate = new Date(1990, 0, 1);
   public page = 1;
@@ -27,9 +29,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public customers: Customer[] = [];
   public grounds: GroundModel[] = [];
+  public contracts: ContractModel[] = [];
   message = '';
-
-  public flag;
   public customerOfId;
 
   constructor(public customerService: CustomerService,
@@ -37,12 +38,13 @@ export class CustomerListComponent implements OnInit, OnDestroy {
               public formBuilder: FormBuilder,
               public router: Router,
               public activateRouter: ActivatedRoute,
-              public groundService: GroundService
+              public groundService: GroundService,
+              public contractService: ContractService
   ) {
   }
-
   ngOnInit() {
     this.formAddNewCustomer = this.formBuilder.group({
+      id: [''],
       name: ['', Validators.required],
       idCard: ['', Validators.required],
       email: ['', Validators.required],
@@ -60,6 +62,10 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     });
     this.groundService.findAll().subscribe(data => {
       this.grounds = data;
+      // this.totalRec = this.customers.length;
+    });
+    this.contractService.findAll().subscribe(data => {
+      this.contracts = data;
       // this.totalRec = this.customers.length;
     });
     this.formAddNewCustomer.patchValue({
@@ -107,6 +113,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   checkEditCustomer(id) {
+    alert(this.checkEdit);
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
       this.checkAdd = false;
@@ -120,9 +127,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   checkAddCustomer() {
     if (!this.checkAdd) {
-      this.checkAdd = !this.checkAdd;
-      this.ngOnInit();
-      this.checkEdit = false;
+    this.checkAdd = !this.checkAdd;
+    this.ngOnInit();
+    this.checkEdit = false;
     }
   }
 

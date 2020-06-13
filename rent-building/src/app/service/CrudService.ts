@@ -1,14 +1,17 @@
 import {CrudOperations} from './CrudOperations';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 export abstract class CrudService<T, ID> implements CrudOperations<T, ID> {
-
-
+  // httpOptions: any;
   protected constructor(
     protected _http: HttpClient,
     protected _base: string
   ) {
+    // this.httpOptions = {
+    //   headers: new HttpHeaders({'Content-Type': 'application/json'})
+    //   , 'Access-Control-Allow-Origin': 'http://localhost:4200', 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+    // };
   }
 
   save(t: T): Observable<T> {
@@ -27,7 +30,7 @@ export abstract class CrudService<T, ID> implements CrudOperations<T, ID> {
     return this._http.get<T[]>(this._base);
   }
 
-  delete(id: ID): Observable<any> {
+  delete(id: ID): Observable<T> {
     return this._http.delete<T>(`${this._base}/${id}`);
   }
 

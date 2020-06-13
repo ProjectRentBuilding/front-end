@@ -9,6 +9,6 @@ import {ImageModel} from '../model/image.model';
 export class ImageService extends CrudService<ImageModel,number> {
 
   constructor(protected  http: HttpClient) {
-    super(http, 'http://localhost:3000/images');
+    super(http, 'http://localhost:8080/images');
   }
 }
