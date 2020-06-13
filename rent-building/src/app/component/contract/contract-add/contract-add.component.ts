@@ -33,6 +33,7 @@ export class ContractAddComponent implements OnInit {
   public customerId: number;
   public groundId: number;
   public employees : EmployeeModel[] = [];
+  public contractId: number;
 
 
 
@@ -61,6 +62,7 @@ export class ContractAddComponent implements OnInit {
     });
 
     this.formAddNewContract = this.formBuilder.group({
+      id: [""],
       groundId: ['', [Validators.required]],
       customerId: ['', [Validators.required]],
       employeeId: ['', [Validators.required]],
@@ -84,12 +86,12 @@ export class ContractAddComponent implements OnInit {
   }
 
   addNewContract() {
-    // console.log(this.formAddNewContract.value);
+    console.log(this.formAddNewContract.value);
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
-
+      console.log(data);
       this.router.navigateByUrl('contracts').then(r => this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn'));
 
-      // console.log(data);
+
 
 
     });
