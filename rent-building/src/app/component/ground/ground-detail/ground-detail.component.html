@@ -25,14 +25,14 @@
       </div>
       <div class="col-md-6">
         <span class="col-md-3">Tầng:</span>
-        <input type="text" class="form-control col-md-9" value="{{floor.nameFloor}}" disabled>
+        <input class="form-control col-md-9" formControlName="floorId" disabled>
       </div>
     </label>
     <label class="row">
       <div class="col-md-12">
         <span class="col-md-2">Loại mặt bằng:</span>
         <div>
-          <input type="text" class="form-control col-md-10" value="{{typeGround.nameTypeGround}}" style="margin-top: -5px" disabled>
+          <input class="form-control col-md-10" formControlName="typeGroundId" style="margin-top: -5px" disabled>
         </div>
       </div>
     </label>
@@ -55,19 +55,29 @@
         </div>
       </div>
     </label>
+
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-2" style="float: left">Ngày bắt đầu tính:</p>
-        <input type="text" class="form-control col-md-10" formControlName="beginDay" style="margin-top: -10px" disabled>
+        <ng-container *ngFor="let contract of contracts">
+          <input style="text-align: center;margin-top: -1px" type="text" class="form-control col-md-10" disabled
+                 *ngIf="contract.ground.id==id" [value]=contract.startRentDay>
+          <input style="text-align: center;margin-top: -1px" type="text" class="form-control col-md-10" disabled
+                 *ngIf="contract.ground.id!=id" value="Chưa làm hợp đồng">
+        </ng-container>
       </div>
     </label>
     <label class="row">
       <div class="col-md-12">
-        <p class="col-md-2"style="float: left">Ngày kết thúc tính:</p>
-        <input type="text" class="form-control col-md-10" formControlName="endDay" style="margin-top: -10px" disabled>
+        <p class="col-md-2" style="float: left">Ngày kết thúc tính:</p>
+        <ng-container *ngFor="let contract of contracts">
+          <input style="text-align: center;margin-top: -1px" type="text" class="form-control col-md-10" disabled
+                 *ngIf="contract.ground.id==id" [value]=contract.endRentDay>
+          <input style="text-align: center;margin-top: -1px" type="text" class="form-control col-md-10" disabled
+                 *ngIf="contract.ground.id!=id" value="Chưa làm hợp đồng">
+        </ng-container>
       </div>
     </label>
-
   </fieldset>
 </form>
 

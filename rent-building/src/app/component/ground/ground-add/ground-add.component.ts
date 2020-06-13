@@ -37,14 +37,13 @@ export class GroundAddComponent implements OnInit {
 
     this.addGroundForm = this.fb.group({
       codeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      typeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      typeGroundId: ['',[Validators.required]],
       note:[''],
       area: ['',[Validators.required, Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|([0-9]([1-9])?)$/)]],
-      floor:['',[Validators.required]],
+      floorId:['',[Validators.required]],
       statusGround:[''],
       price:[''],
-      beginDay:[''],
-      endDay:['']
+      priceManager:['']
     });
   }
   onAddGround() {
