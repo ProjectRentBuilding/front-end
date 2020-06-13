@@ -48,12 +48,12 @@
       </div>
       <div class="col-md-6">
         <span class="col-md-3">Tầng:</span>
-        <select class="form-control col-md-9" formControlName="floor">
+        <select class="form-control col-md-9" formControlName="floorId">
           <option value="">Chọn</option>
-          <option *ngFor="let floor of floors" [value]="floor.nameFloor">{{floor.nameFloor}}</option>
+          <option *ngFor="let floor of floors" [value]="floor.id">{{floor.nameFloor}}</option>
         </select>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('floor').hasError('required')
-         && addGroundForm.get('floor').touched">Tên tầng không được để trống.
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('floorId').hasError('required')
+         && addGroundForm.get('floorId').touched">Tên tầng không được để trống.
         </div>
       </div>
     </label>
@@ -61,19 +61,13 @@
       <div class="col-md-12">
         <span class="col-md-2">Loại mặt bằng:</span>
         <div>
-          <select class="form-control col-md-10" formControlName="typeGround" style="margin-top: -5px">
+          <select class="form-control col-md-10" formControlName="typeGroundId" style="margin-top: -5px">
             <option value="">Chọn</option>
             <option *ngFor="let typeGround of typeGrounds" [value]="typeGround.id">{{typeGround.nameTypeGround}}</option>
           </select>
         </div>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGround').hasError('required')
-         && addGroundForm.get('typeGround').touched">Loại mặt bằng không được để trống.
-        </div>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGround').hasError('maxlength')
-         && addGroundForm.get('typeGround').touched">Loại mặt bằng tối thiểu 25 ký tự.
-          <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGround').hasError('pattern')
-         && addGroundForm.get('typeGround').touched">Loại mặt bằng phải đúng định dạng.
-          </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addGroundForm.get('typeGroundId').hasError('required')
+         && addGroundForm.get('typeGroundId').touched">Loại mặt bằng không được để trống.
         </div>
       </div>
     </label>
@@ -98,24 +92,10 @@
     </label>
     <label class="row">
       <div class="col-md-12">
-        <p class="col-md-2"style="float: left">Ngày bắt đầu tính:</p>
-        <input class="form-control col-md-9" formControlName="beginDay" style="float: left"
-               placeholder="/ /"
-               matInput
-               [matDatepicker]="picker1" >
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1 startView="year" ></mat-datepicker>
-      </div>
-    </label>
-    <label class="row">
-      <div class="col-md-12">
-        <p class="col-md-2"style="float: left">Ngày kết thúc tính:</p>
-        <input class="form-control col-md-9" formControlName="endDay" style="float: left"
-               placeholder="/ /"
-               matInput
-               [matDatepicker]="picker2" >
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2 startView="year" ></mat-datepicker>
+        <span class="col-md-2">Phí quản lý:</span>
+        <div>
+          <input type="number" class="form-control col-md-10" formControlName="priceManager" style="margin-top: -5px">
+        </div>
       </div>
     </label>
 
@@ -128,7 +108,7 @@
     <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
   </div>
   <div class="form-group d-flex justify-content-center mr-5 ">
-    <button [disabled]="addGroundForm.invalid" class="btn btn-success mt-3" (click)="onAddGround()">Thêm mới
+    <button  class="btn btn-success mt-3" [disabled]="addGroundForm.invalid" (click)="onAddGround()">Thêm mới
     </button>
 
   </div>

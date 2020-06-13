@@ -14,9 +14,9 @@
   <table class="table bg-light text-center">
     <thead>
     <tr class="text-muted">
-      <th>Số thứ tự</th>
+<!--      <th>Số thứ tự</th>-->
       <th>Tên tầng lầu</th>
-      <th colspan="2">Tác vụ</th>
+<!--      <th colspan="2">Tác vụ</th>-->
     </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
                                                                             itemsPerPage:5,
                                                                             currentPage:page
                                                                             }">
-      <td>{{i+1}}</td>
+<!--      <td>{{(i+1)+(page-1)*5}}</td>-->
       <td *ngIf="!checkEdit || item.id!==flag">{{item.nameFloor}}</td>
       <td *ngIf="checkEdit && item.id===flag">
         <input type="text" class="form-control" formControlName="nameFloor" value="{{item.nameFloor}}">

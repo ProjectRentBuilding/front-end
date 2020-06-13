@@ -3,6 +3,7 @@
 <form [formGroup]="editGroundForm" class="col-md-12 offset-md-4">
   <fieldset>
     <legend>Sửa thông tin mặt bằng</legend>
+    <input type="text" hidden class="form-control" formControlName="id" [value]=id>
     <label class="row">
       <div class="col-md-6">
         <span class="col-md-4">Mã mặt bằng:</span>
@@ -48,12 +49,12 @@
       </div>
       <div class="col-md-6">
         <span class="col-md-3">Tầng:</span>
-        <select class="form-control col-md-9" formControlName="floor">
+        <select class="form-control col-md-9" formControlName="floorId">
           <option value="">Chọn</option>
-          <option *ngFor="let floor of floors" [value]="floor.nameFloor">{{floor.nameFloor}}</option>
+          <option *ngFor="let floor of floors" [value]="floor.id">{{floor.nameFloor}}</option>
         </select>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('floor').hasError('required')
-         && editGroundForm.get('floor').touched">Tên tầng không được để trống.
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('floorId').hasError('required')
+         && editGroundForm.get('floorId').touched">Tên tầng không được để trống.
         </div>
       </div>
     </label>
@@ -61,16 +62,14 @@
       <div class="col-md-12">
         <span class="col-md-2">Loại mặt bằng:</span>
         <div>
-          <input type="text" class="form-control col-md-10" formControlName="typeGround" style="margin-top: -5px">
+          <select class="form-control col-md-10" formControlName="typeGroundId" style="margin-top: -5px">
+            <option value="">Chọn</option>
+            <option *ngFor="let typeGround of typeGrounds"
+                    [value]="typeGround.id">{{typeGround.nameTypeGround}}</option>
+          </select>
         </div>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('typeGround').hasError('required')
-         && editGroundForm.get('typeGround').touched">Loại mặt bằng không được để trống.
-        </div>
-        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('typeGround').hasError('maxlength')
-         && editGroundForm.get('typeGround').touched">Loại mặt bằng tối thiểu 25 ký tự.
-          <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('typeGround').hasError('pattern')
-         && editGroundForm.get('typeGround').touched">Loại mặt bằng phải đúng định dạng.
-          </div>
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="editGroundForm.get('typeGroundId').hasError('required')
+         && editGroundForm.get('typeGroundId').touched">Loại mặt bằng không được để trống.
         </div>
       </div>
     </label>
@@ -95,24 +94,10 @@
     </label>
     <label class="row">
       <div class="col-md-12">
-        <p class="col-md-2"style="float: left">Ngày bắt đầu tính:</p>
-        <input class="form-control col-md-9" formControlName="beginDay" style="float: left"
-               placeholder="/ /"
-               matInput
-               [matDatepicker]="picker1" >
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1 startView="year" ></mat-datepicker>
-      </div>
-    </label>
-    <label class="row">
-      <div class="col-md-12">
-        <p class="col-md-2"style="float: left">Ngày kết thúc tính:</p>
-        <input class="form-control col-md-9" formControlName="endDay" style="float: left"
-               placeholder="/ /"
-               matInput
-               [matDatepicker]="picker2" >
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2 startView="year" ></mat-datepicker>
+        <span class="col-md-2">Phí quản lý:</span>
+        <div>
+          <input type="number" class="form-control col-md-10" formControlName="priceManager" style="margin-top: -5px">
+        </div>
       </div>
     </label>
 
