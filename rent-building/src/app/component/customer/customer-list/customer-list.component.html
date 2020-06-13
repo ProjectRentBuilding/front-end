@@ -9,10 +9,10 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH KHÁCH HÀNG</h3>
-<form action="" [formGroup]="formAddNewCustomer" >
-<table class="table bg-light text-center">
+<form action=""  [formGroup]="formAddNewCustomer" >
+<table class="table bg-light text-center table-bordered">
   <thead>
-  <tr class="text-muted">
+  <tr  class="text-muted">
     <th>STT</th>
     <th>Họ Tên</th>
     <th>Id Card</th>
@@ -29,8 +29,8 @@
   </thead>
   <tbody>
   <tr *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
-
-    <td> {{(i+1)+(page-1)*5}}</td>
+    <input type="text" hidden value="{{customer.id}}" formControlName="id">
+    <td > {{(i+1)+(page-1)*5}}</td>
     <td *ngIf="!checkEdit || customer.id!==flag">{{customer.name}}</td>
     <td *ngIf="checkEdit  && customer.id===flag ">
       <input type="text" class="form-control" formControlName="name" value="{{customer.name}}">
@@ -96,9 +96,19 @@
     </td>
 
 
-    <td>{{customer.nameGround}}</td>
+    <ng-container *ngFor="let contract of contracts" >
+      <td *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</td>
+<!--      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>-->
 
-    <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>
+    </ng-container>
+
+<!--    <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>-->
+    <ng-container *ngFor="let contract of contracts" >
+      <td *ngIf="contract.customer.id == customer.id"><input type="checkbox" [checked]="contract.statusContract" disabled></td>
+      <!--      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>-->
+
+    </ng-container>
+
 
     <td>
       <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-warning ml-3"
@@ -123,8 +133,9 @@
 
   <!--      add customer-->
 
+
   <tr *ngIf="checkAdd" style="border-top: 5px solid slateblue">
-    <input hidden type="text" class="form-control" formControlName="rentStatus"  value="{{true}}">
+<!--    <input hidden type="text" class="form-control" formControlName="rentStatus"  value="{{true}}">-->
     <td></td>
     <td>
       <input type="text" class="form-control" formControlName="name">
@@ -180,21 +191,22 @@
         class="text-danger">Vui lòng nhập nameCompany!!!</p>
     </td>
 
-    <td>
+<!--    <td>-->
 
-      <select style="width: 100px;" class="form-control"  formControlName="nameGround">
-        <option  [value]="ground.codeGround" *ngFor="let ground of grounds ">{{ground.codeGround}}
+<!--      <select style="width: 100px;" class="form-control"  formControlName="nameGround">-->
+<!--        <option  [value]="ground.codeGround" *ngFor="let ground of grounds ">{{ground.codeGround}}-->
 
-        </option>
-      </select>
-    </td>
+<!--        </option>-->
+<!--      </select>-->
+<!--    </td>-->
 
     <td colspan="4">
-      <button [disabled]="formAddNewCustomer.invalid" class="button btn btn-warning" (click)="addNewCustomer()" >Xác Nhận</button>
+      <button  class="button btn btn-warning" (click)="addNewCustomer()" >Xác Nhận</button>
       <button class="button btn btn-warning ml-5" (click)="cancelAdd()">Hủy</button>
 
     </td>
   </tr>
+
   </tbody>
 
 </table>

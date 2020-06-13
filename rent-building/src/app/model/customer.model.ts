@@ -8,6 +8,5 @@ export class Customer {
   public website: string;
   public phone: number;
   public nameGround: string;
-  public rentStatus: boolean;
   public nameCompany: string;
 }
