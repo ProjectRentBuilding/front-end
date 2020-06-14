@@ -1,3 +1,74 @@
+
+<!--<form [formGroup]="formAddNewEquipment" class="container mt-3" (ngSubmit)="logValue()">-->
+<!--  <div class="row justify-content-center">-->
+<!--    <div class="col-6">-->
+<!--      <button type="button" class="btn btn-primary mb-2" (click)="addNewEquipment()">Add Address</button>-->
+<!--      <section class="container border mb-4 p-3" formArrayName="addEquipment"-->
+<!--               *ngFor="let equipment of equipmentControls; let i = index;">-->
+<!--        <div [formGroupName]="i">-->
+<!--          <div class="row">-->
+<!--            <div class="col-6">-->
+<!--              <h4>Equipment {{i + 1}}</h4>-->
+<!--            </div>-->
+<!--            <div class="col-6 text-right">-->
+<!--              <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">Remove</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <table>-->
+<!--                  <td>-->
+<!--                        <select class="form-control" formControlName="typeEquipmentId" style="width:120px" >-->
+<!--                          <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>-->
+<!--                        </select>-->
+<!--                      <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">-->
+<!--                          Loại không được để trống!-->
+<!--                      </p>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                      <input type="text" class="form-control" formControlName="nameEquipment">-->
+<!--                      <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">-->
+<!--                          Tên thiết bị không được để trống!-->
+<!--                      </p>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                      <input type="text" class="form-control" formControlName="amount">-->
+<!--                      <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('amount').invalid && formAddNewEquipment.get('amount').touched">-->
+<!--                          Số lượng không được để trống!-->
+<!--                      </p>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                      <input type="text" class="form-control" formControlName="amountOfBroken">-->
+<!--                      <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('amountOfBroken').invalid && formAddNewEquipment.get('amountOfBroken').touched">-->
+<!--                          Số lượng hỏng không được để trống!-->
+<!--                      </p>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                      <input type="text" class="form-control" formControlName="note">-->
+<!--                      <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('note').invalid && formAddNewEquipment.get('note').touched">-->
+<!--                          Ghi chú không được để trống!-->
+<!--                      </p>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                      <select class="form-control" formControlName="groundId" style="width:120px" >-->
+<!--                        <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>-->
+<!--                      </select>-->
+<!--                      <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">-->
+<!--                          Mã mặt bằng không được để trống!-->
+<!--                      </p>-->
+<!--                    </td>-->
+<!--          </table>-->
+<!--        </div>-->
+
+<!--      </section>-->
+
+<!--      <div class="text-right">-->
+<!--        <input type="submit" class="btn btn-success" value="Submit"/>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</form>-->
+
 <div class="col-md-5 mt-5">
   <div class="input-group">
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
@@ -15,17 +86,23 @@
     Loại
   </button>
   <div class="dropdown-menu" aria-labelledby="triggerId">
-    <a class="dropdown-item" id="type1" (click)="searchType('type1')">Bóng đèn</a>
-    <a class="dropdown-item" id="type2" (click)="searchType('type2')">Điều hoà</a>
-    <a class="dropdown-item" id="type3" (click)="searchType('type3')">Quạt</a>
-    <a class="dropdown-item" id="type4" (click)="searchType('type4')">Router Wifi</a>
+    <a class="dropdown-item" *ngFor="let type of typeEquipment" id="{{type.id}}">{{type.nameType}}</a>
+<!--    <a class="dropdown-item" id="type2" (click)="searchType('type2')">Điều hoà</a>-->
+<!--    <a class="dropdown-item" id="type3" (click)="searchType('type3')">Quạt</a>-->
+<!--    <a class="dropdown-item" id="type4" (click)="searchType('type4')">Router Wifi</a>-->
   </div>
 </div>
-<form action="" [formGroup]="formAddNewEquipment" >
-  <table class="table bg-light text-center">
+<form action="" [formGroup]="formAddNewEquipment"  (ngSubmit)="logValue()">
+  <table class="table bg-light text-center table-striped">
     <thead>
     <tr class="text-muted">
-      <th>#</th>
+      <th>
+        #
+<!--        <span class="custom-checkbox">-->
+<!--          <input type="checkbox" id="selectAll">-->
+<!--          <label for="selectAll"></label>-->
+<!--        </span>-->
+      </th>
       <th style="width: 140px">Loại</th>
       <th>Tên thiết bị</th>
       <th>Số lượng</th>
@@ -33,11 +110,11 @@
       <th>Số lượng hỏng</th>
       <th>Ghi chú</th>
       <th>Mã mặt bằng</th>
-      <th colspan="2">Tác vụ</th>
+      <th colspan="2"></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
+    <tr *ngFor="let i = index;let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
                                                                             itemsPerPage:5,
                                                                             currentPage:page
                                                                            }; ">
@@ -47,7 +124,7 @@
 								<label ng:for="${equipment.id}"></label>
 							</p>
       </td>
-      <td> <input formControlName="id" hidden>{{equipment.id}}</td>
+<!--      <td hidden> <input formControlName="id" hidden>{{equipment.id}}</td>-->
 <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
       <td *ngIf="!checkEdit ||  equipment.id!==flag">
         {{equipment.typeEquipment.nameType}}
@@ -111,277 +188,75 @@
         <button class="btn btn-danger" type="button" (click)="close()">Thoát</button>
       </td>
     </tr>
-
-    <!--thêm mới-->
-    <tr *ngIf="checkAdd">
-      <td></td>
-      <td>
-          <select class="form-control" formControlName="typeEquipmentId" style="width:120px" >
-            <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>
-          </select>
-        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">
-            Loại không được để trống!
-        </p>
-      </td>
-      <td>
-        <input type="text" class="form-control" formControlName="nameEquipment">
-        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">
-            Tên thiết bị không được để trống!
-        </p>
-      </td>
-      <td>
-        <input type="text" class="form-control" formControlName="amount">
-        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('amount').invalid && formAddNewEquipment.get('amount').touched">
-            Số lượng không được để trống!
-        </p>
-      </td>
-      <td>
-        <input type="text" class="form-control" formControlName="amountOfBroken">
-        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('amountOfBroken').invalid && formAddNewEquipment.get('amountOfBroken').touched">
-            Số lượng hỏng không được để trống!
-        </p>
-      </td>
-      <td>
-        <input type="text" class="form-control" formControlName="note">
-        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('note').invalid && formAddNewEquipment.get('note').touched">
-            Ghi chú không được để trống!
-        </p>
-      </td>
-      <td>
-        <select class="form-control" formControlName="groundId" style="width:120px" >
-          <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
-        </select>
-        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">
-            Mã mặt bằng không được để trống!
-        </p>
-      </td>
-      <td>
-        <button class="btn btn-primary" type="button" (click)="addNewEquipment()" style="margin-right: 10px">Thêm</button>
-        <button class="btn btn-danger" type="button" (click)="close()">Xoá</button>
-      </td>
     </tbody>
   </table>
-  <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="checkaddNewEquipment()">Thêm mới</button>
+<ng-container>
+   <table>
+     <tbody class="border" formArrayName="equipment"
+                *ngFor="let equipment of equipmentControls; let i = index;" >
+     <tr [formGroupName]="i" >
+     <td>
+       <select class="form-control" formControlName="typeEquipmentId" style="width:150px">
+         <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>
+       </select>
+<!--       <p class="alert alert-danger" role="alert"-->
+<!--          *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">-->
+<!--         Loại không được để trống!-->
+<!--       </p>-->
+     </td>
+     <td>
+       <input type="text" class="form-control" formControlName="nameEquipment">
+<!--       <p class="alert alert-danger" role="alert"-->
+<!--          *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">-->
+<!--         Tên thiết bị không được để trống!-->
+<!--       </p>-->
+     </td>
+     <td>
+       <input type="text" class="form-control" formControlName="amount">
+<!--       <p class="alert alert-danger" role="alert"-->
+<!--          *ngIf="formAddNewEquipment.get('amount').invalid && formAddNewEquipment.get('amount').touched">-->
+<!--         Số lượng không được để trống!-->
+<!--       </p>-->
+     </td>
+     <td>
+       <input type="text" class="form-control" formControlName="amountOfBroken">
+<!--       <p class="alert alert-danger" role="alert"-->
+<!--          *ngIf="formAddNewEquipment.get('amountOfBroken').invalid && formAddNewEquipment.get('amountOfBroken').touched">-->
+<!--         Số lượng hỏng không được để trống!-->
+<!--       </p>-->
+     </td>
+     <td>
+       <input type="text" class="form-control" formControlName="note">
+<!--       <p class="alert alert-danger" role="alert"-->
+<!--          *ngIf="formAddNewEquipment.get('note').invalid && formAddNewEquipment.get('note').touched">-->
+<!--         Ghi chú không được để trống!-->
+<!--       </p>-->
+     </td>
+     <td>
+       <select class="form-control" formControlName="groundId" style="width:120px">
+         <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
+       </select>
+<!--       <p class="alert alert-danger" role="alert"-->
+<!--          *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">-->
+<!--         Mã mặt bằng không được để trống!-->
+<!--       </p>-->
+     </td>
+     <td>
+       <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">Xoá</button>
+     </td>
+    </tr>
+   </tbody>
+
+   </table>
+
+    <button class="btn btn-success px-4 py-2" type="button" (click)="addNewEquipment()">Lưu</button>
+</ng-container>
+
+
+  <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="addNewArray()">Thêm mới</button>
 
 </form>
 <!--    pagination-->
 
-
 <pagination-controls class="pagination justify-content-center" id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"
                      nextLabel="Trang sau" autoHide="true" responsive="true"></pagination-controls>
-
-
-
-
-
-
-<!--phan cach -->
-
-<!--<div class="" style="margin: 0px;">-->
-<!--  <div class="table-wrapper">-->
-<!--    <div class="table-title">-->
-<!--      <div class="row">-->
-<!--        <div class="col-sm-6">-->
-<!--            <h2>Danh sách trang thiết bị</h2>-->
-<!--          <div class="dropdown open">-->
-<!--            <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"-->
-<!--                    id="triggerId" data-toggle="dropdown" aria-haspopup="true"-->
-<!--                    aria-expanded="false">-->
-<!--              Loại-->
-<!--            </button>-->
-<!--            <div class="dropdown-menu" aria-labelledby="triggerId">-->
-<!--              <a class="dropdown-item" id="type1" (click)="searchType('type1')">Bóng đèn</a>-->
-<!--              <a class="dropdown-item" id="type2" (click)="searchType('type2')">Điều hoà</a>-->
-<!--              <a class="dropdown-item" id="type3" (click)="searchType('type3')">Quạt</a>-->
-<!--              <a class="dropdown-item" id="type4" (click)="searchType('type4')">Router Wifi</a>-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--        </div>-->
-<!--        <div class="col-sm-6">-->
-<!--          <div class="search-hero d-flex" style="margin-right: auto">-->
-<!--            <input class="form-control mt-2" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"-->
-<!--                   placeholder="Nhập từ khoá tìm kiếm">-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <form [formGroup]="formAddNewEquipment">-->
-<!--      <table class="table table-bordered table-hover">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--          <th>STT</th>-->
-<!--          <th style="width: 140px">Loại</th>-->
-<!--          <th>Tên thiết bị</th>-->
-<!--          <th>Số lượng</th>-->
-<!--          <th>Trạng thái</th>-->
-<!--          <th>Số lượng hỏng</th>-->
-<!--          <th>Ghi chú</th>-->
-<!--          <th>Mã mặt bằng</th>-->
-<!--          <th style="width: 200px">Tác vụ</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-
-<!--        <tr *ngFor="let i=index,let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',-->
-<!--                                                                            itemsPerPage:5,-->
-<!--                                                                            currentPage:page-->
-<!--                                                                           }; ">-->
-<!--          <td>{{(i+1)+(page-1)*5}}</td>-->
-<!--          <td *ngIf="!checkEdit ||  equipment.id!==flag">-->
-<!--            {{equipment.type}}-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--&lt;!&ndash;            <input type="text" class="form-control" formControlName="type" value="{{equipment.type}}">&ndash;&gt;-->
-<!--            <select class="form-control" style="width: 120px" formControlName="type">-->
-<!--              <option value="Bóng đèn">Bóng đèn</option>-->
-<!--              <option value="Điều hoà">Điều hoà</option>-->
-<!--              <option value="Quạt">Quạt</option>-->
-<!--              <option value="Router Wifi">Router Wifi</option>-->
-<!--            </select>-->
-<!--            <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('type').invalid && formAddNewEquipment.get('type').touched">-->
-<!--              Loại không được để trống!-->
-<!--            </p>-->
-<!--          </td>-->
-<!--          <td *ngIf="!checkEdit ||  equipment.id!==flag">-->
-<!--            {{equipment.deviceName}}-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--            <input type="text" class="form-control" formControlName="deviceName" value="{{equipment.deviceName}}">-->
-<!--            <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('deviceName').invalid && formAddNewEquipment.get('deviceName').touched">-->
-<!--              Loại không được để trống!-->
-<!--            </p>-->
-<!--          </td>-->
-<!--          <td *ngIf="!checkEdit || equipment.id!==flag ">-->
-<!--            {{equipment.amount}}-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--            <input type="text" class="form-control" formControlName="amount" value="{{equipment.amount}}">-->
-<!--          </td>-->
-<!--          <td *ngIf="!checkEdit || equipment.id!==flag">-->
-<!--            {{equipment.status}}-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--            <select class="form-control" style="width: 100px" formControlName="status" value="{{equipment.status}}">-->
-<!--              <option value="Mới">Mới</option>-->
-<!--              <option value="Hỏng">Hỏng</option>-->
-<!--            </select>-->
-<!--          </td>-->
-<!--          <td *ngIf="!checkEdit || equipment.id!==flag">-->
-<!--            {{equipment.amountOfBroken}}-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--            <input type="text" class="form-control" formControlName="amountOfBroken" value="{{equipment.amountOfBroken}}">-->
-<!--          </td>-->
-<!--          <td *ngIf="!checkEdit || equipment.id!==flag">-->
-<!--            {{equipment.note}}-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--            <input type="text" class="form-control" formControlName="note" value="{{equipment.note}}">-->
-<!--          </td>-->
-<!--          <td *ngIf="!checkEdit || equipment.id!==flag">-->
-<!--            {{equipment.codeGround}}-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--            <select class="form-control" formControlName="codeGround" style="width:120px">-->
-<!--              <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>-->
-<!--            </select>-->
-<!--&lt;!&ndash;            <select class="form-control" style="width:120px" formControlName="codeGround">&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB001">MB001</option>&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB002">MB002</option>&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB003">MB003</option>&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB004">MB004</option>&ndash;&gt;-->
-<!--&lt;!&ndash;            </select>&ndash;&gt;-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeGround').invalid && formAddNewEquipment.get('codeGround').touched">-->
-<!--            Mã mặt bằng không được để trống!-->
-<!--            </span>-->
-<!--          </td>-->
-<!--          <td *ngIf="!checkEdit || equipment.id!==flag">-->
-<!--            <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)" style="margin-right: 10px">Sửa</button>-->
-<!--            <button class="btn btn-danger" type="button" (click)="openDialogDelete(equipment.id)">Xoá</button>-->
-<!--          </td>-->
-<!--          <td *ngIf="checkEdit && equipment.id===flag">-->
-<!--            <button class="btn btn-primary" type="button" (click)="editEquipment()" style="margin-right: 10px">Lưu</button>-->
-<!--            <button class="btn btn-danger" type="button" (click)="close()">Thoát</button>-->
-<!--          </td>-->
-<!--        </tr>-->
-
-<!--        &lt;!&ndash;thêm mới&ndash;&gt;-->
-<!--        <tr *ngIf="checkAdd">-->
-<!--          <td></td>-->
-<!--          <td>-->
-<!--&lt;!&ndash;            <input type="text" class="form-control" formControlName="type">&ndash;&gt;-->
-<!--            <select class="form-control" style="width: 120px" formControlName="type">-->
-<!--              <option value="Bóng đèn">Bóng đèn</option>-->
-<!--              <option value="Điều hoà">Điều hoà</option>-->
-<!--              <option value="Quạt">Quạt</option>-->
-<!--              <option value="Router Wifi">Router Wifi</option>-->
-<!--            </select>-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('type').invalid && formAddNewEquipment.get('type').touched">-->
-<!--            Loại không được để trống!-->
-<!--          </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <input type="text" class="form-control" formControlName="deviceName">-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('deviceName').invalid && formAddNewEquipment.get('deviceName').touched">-->
-<!--            Tên thiết bị không được để trống!-->
-<!--          </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <input type="text" class="form-control" formControlName="amount">-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('amount').invalid && formAddNewEquipment.get('amount').touched">-->
-<!--            Số lượng không được để trống!-->
-<!--          </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <select class="form-control" style="width: 100px" formControlName="status">-->
-<!--              <option value="Mới">Mới</option>-->
-<!--              <option value="Hỏng">Hỏng</option>-->
-<!--            </select>-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('status').invalid && formAddNewEquipment.get('status').touched">-->
-<!--            Trạng thái không được để trống!-->
-<!--          </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <input type="text" class="form-control" formControlName="amountOfBroken">-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('amountOfBroken').invalid && formAddNewEquipment.get('amountOfBroken').touched">-->
-<!--            Số lượng hỏng không được để trống!-->
-<!--          </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <input type="text" class="form-control" formControlName="note">-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('note').invalid && formAddNewEquipment.get('note').touched">-->
-<!--            Ghi chú không được để trống!-->
-<!--          </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--&lt;!&ndash;            <select class="form-control" style="width:120px" formControlName="codeGround">&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB001">MB001</option>&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB002">MB002</option>&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB003">MB003</option>&ndash;&gt;-->
-<!--&lt;!&ndash;              <option value="MB004">MB004</option>&ndash;&gt;-->
-<!--&lt;!&ndash;            </select>&ndash;&gt;-->
-<!--            <select class="form-control" formControlName="codeGround" style="width:120px" >-->
-<!--              <option  *ngFor="let ground of grounds" [value]="ground.codeGround">{{ground.codeGround}}</option>-->
-<!--            </select>-->
-<!--            <span class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('codeGround').invalid && formAddNewEquipment.get('codeGround').touched">-->
-<!--            Mã mặt bằng không được để trống!-->
-<!--          </span>-->
-<!--          </td>-->
-<!--          <td>-->
-<!--            <button class="btn btn-primary" type="button" (click)="addNewEquipment()" style="margin-right: 10px">Thêm</button>-->
-<!--            <button class="btn btn-danger" type="button" (click)="close()">Xoá</button>-->
-<!--          </td>-->
-<!--        </tbody>-->
-<!--      </table>-->
-<!--      <div style="float: right">-->
-<!--        <button class="btn btn-primary" type="button" (click)="checkaddNewEquipment()" style="margin-right: 40px">Thêm mới thiết bị</button>-->
-<!--      </div>-->
-<!--    </form>-->
-<!--    <div>-->
-<!--      <pagination-controls id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"-->
-<!--                            nextLabel="Trang sau" autoHide="true" responsive="true"></pagination-controls>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
