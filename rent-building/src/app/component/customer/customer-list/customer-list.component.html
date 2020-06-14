@@ -30,7 +30,7 @@
   <tbody>
   <tr *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
     <input type="text" hidden value="{{customer.id}}" formControlName="id">
-    <td > {{(i+1)+(page-1)*5}}</td>
+    <td> {{(i+1)+(page-1)*5}}</td>
     <td *ngIf="!checkEdit || customer.id!==flag">{{customer.name}}</td>
     <td *ngIf="checkEdit  && customer.id===flag ">
       <input type="text" class="form-control" formControlName="name" value="{{customer.name}}">
@@ -64,11 +64,11 @@
 
     <td *ngIf="!checkEdit || customer.id!==flag">{{customer.birthday | date:'dd/MM/yyyy'}}</td>
     <td *ngIf="checkEdit && customer.id===flag">
-      <label>
-        <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
+
+        <input  class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
                [matDatepicker]="picker1" value="{{customer.birthday}}">
-      </label>
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+
+      <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
     </td>
 

@@ -2,7 +2,7 @@ export class ContractModel {
   public customerId: string;
   public groundId: string;
   public employeeId: string;
-  public idCardCustomer:string;
+  public idCardCustomer: string;
   public status: boolean;
   public term: number;
   public startRentDay: string;
