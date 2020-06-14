@@ -11,5 +11,6 @@ export class ContractModel {
   public total: number;
   public content: string;
   public unified: boolean;
+  public deposits: number;
   public id: number;
 }
