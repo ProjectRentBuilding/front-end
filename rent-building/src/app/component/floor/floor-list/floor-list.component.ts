@@ -8,6 +8,11 @@ import {FloorDeleteComponent} from '../floor-delete/floor-delete.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {Router} from '@angular/router';
+import {TypeFloorModel} from "../../../model/typeFloor.model";
+import {TypeEquipmentModel} from "../../../model/typeEquipment.model";
+import {TypeFloorService} from "../../../service/type-floor.service";
+import {BuildingModel} from "../../../model/building.model";
+import {BuildingService} from "../../../service/building.service";
 
 
 @Component({
@@ -27,9 +32,14 @@ export class FloorListComponent implements OnInit, OnDestroy {
   public searchText;
   addFloorForm: FormGroup;
   public floorOfId;
+  public id: number;
+  public typeFloors: TypeFloorModel[];
+  public buildings: BuildingModel[];
 
   constructor(
     public floorService: FloorService,
+    public typeFloorService: TypeFloorService,
+    public buildingService:BuildingService,
     public dialog: MatDialog,
     public routerService: Router,
     private fb: FormBuilder
@@ -37,14 +47,28 @@ export class FloorListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.subscription = this.typeFloorService.findAll().subscribe((data: TypeFloorModel[]) => {
+      this.typeFloors = data;
+    });
+    this.subscription = this.buildingService.findAll().subscribe((data: BuildingModel[]) => {
+      this.buildings = data;
+    });
     this.subscription = this.floorService.findAll().subscribe((data: FloorModel[]) => {
       this.floors = data;
       this.totalRec = this.floors.length;
     });
     this.addFloorForm = this.fb.group({
       nameFloor: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      codeFloor: ['',[Validators.required, Validators.pattern(/^MTL-\d{3}$/)]],
+      area: [''],
+      capacity: [''],
+      statusFloor: ['',[Validators.required]],
+      typeFloorId: ['',[Validators.required]],
+      buildingId: ['',[Validators.required]],
+      id: ['']
     });
   }
+
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
@@ -57,7 +81,8 @@ export class FloorListComponent implements OnInit, OnDestroy {
       this.floorService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
     });
   }
-  redirectTo(uri:string) {
+
+  redirectTo(uri: string) {
     this.routerService.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.routerService.navigate([uri]));
   }
@@ -81,12 +106,14 @@ export class FloorListComponent implements OnInit, OnDestroy {
       });
     }
   }
+
   editFloor() {
     this.floorService.update(this.addFloorForm.value, this.floorOfId).subscribe(data => {
       this.redirectTo('floors');
       this.floorService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
   }
+
   close() {
     this.redirectTo('floors');
   }

@@ -1,5 +1,6 @@
 h2{
   margin-bottom: 50px;
+  margin-top: 50px;
 }
 form {
   margin-left: 0px;
@@ -8,8 +9,8 @@ form {
 form fieldset{
   margin-top: 50px;
 }
-form fieldset label {
-  margin-top: 60px;
+form fieldset label .col-md-12{
+  margin-top: 30px;
 }
 form fieldset label div span{
   float: left;

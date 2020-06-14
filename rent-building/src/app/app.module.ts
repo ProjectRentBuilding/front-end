@@ -41,6 +41,7 @@ import { GroundDeleteComponent } from './component/ground/ground-delete/ground-d
 import { GroundAddComponent } from './component/ground/ground-add/ground-add.component';
 import { GroundEditComponent } from './component/ground/ground-edit/ground-edit.component';
 import { GroundDetailComponent } from './component/ground/ground-detail/ground-detail.component';
+import { ImageGalleryComponent } from './component/building/building-add/image-gallery/image-gallery.component';
 
 
 
@@ -72,7 +73,8 @@ import { GroundDetailComponent } from './component/ground/ground-detail/ground-d
     GroundDeleteComponent,
     GroundAddComponent,
     GroundEditComponent,
-    GroundDetailComponent
+    GroundDetailComponent,
+    ImageGalleryComponent
 
 
 
@@ -111,7 +113,8 @@ import { GroundDetailComponent } from './component/ground/ground-detail/ground-d
     GroundEditComponent,
     GroundDetailComponent,
     CustomerDeleteComponent,
-    EquipmentDeleteComponent
+    EquipmentDeleteComponent,
+    ImageGalleryComponent
 
 
   ]

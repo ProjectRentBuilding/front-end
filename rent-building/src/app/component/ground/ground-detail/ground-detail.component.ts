@@ -6,6 +6,9 @@ import {FloorService} from "../../../service/floor.service";
 import {FloorModel} from "../../../model/floor.model";
 import {ContractModel} from "../../../model/contract";
 import {ContractService} from "../../../service/contract.service";
+import {GroundService} from "../../../service/ground.service";
+import {TypeGroundService} from "../../../service/type-ground.service";
+import {TypeGroundModel} from "../../../model/typeGround.model";
 
 @Component({
   selector: 'app-ground-detail',
@@ -17,7 +20,9 @@ export class GroundDetailComponent implements OnInit {
   public subscription: Subscription;
   viewGroundForm: FormGroup;
   public id: number;
-  public typeGround;
+  public typeGround:TypeGroundModel;
+  public floor: FloorModel;
+  public ground;
   public floors: FloorModel[];
   public contracts: ContractModel[];
 
@@ -26,6 +31,7 @@ export class GroundDetailComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     public floorService: FloorService,
+    public typeGroundService: TypeGroundService,
     public contractService: ContractService,
   ) {
 
@@ -51,7 +57,10 @@ export class GroundDetailComponent implements OnInit {
   loadData() {
     this.id = this.data.data1.id;
     this.viewGroundForm.patchValue(this.data.data1);
-    this.typeGround = this.data.data1.typeGround;
+    this.typeGroundService.findOne(this.data.data1.typeGroundId).subscribe(data => this.typeGround = data);
+    this.floorService.findOne(this.data.data1.floorId).subscribe(data => this.floor = data);
+
+
   }
   ngOnDestroy() {
     if (this.subscription) {

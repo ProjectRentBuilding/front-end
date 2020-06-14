@@ -1,11 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatDialog} from '@angular/material';
 import {BuildingService} from '../../../service/building.service';
 import {Router} from '@angular/router';
 import {ImageModel} from '../../../model/image.model';
 import {ImageService} from '../../../service/image.service';
+import { BuildingEditComponent } from '../building-edit/building-edit.component';
+import {ImageGalleryComponent} from "./image-gallery/image-gallery.component";
 
 @Component({
   selector: 'app-building-add',
@@ -24,7 +26,8 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     public buildingService: BuildingService,
     public imageService: ImageService,
     public routerService: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public dialog: MatDialog
   ) {
   }
 
@@ -72,10 +75,16 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSelectChange(value) {
+  onSelectChange() {
+    const dialogRef = this.dialog.open(ImageGalleryComponent, {
+      width: '800px',
+      height: '540px',
+      disableClose: true,
+    });
 
-    this.logo=value;
-
+    dialogRef.afterClosed().subscribe(result => {
+      this.onAddBuilding();
+    });
   }
 }
 
