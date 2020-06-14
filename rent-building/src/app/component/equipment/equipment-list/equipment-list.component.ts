@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {EquipmentService} from '../../../service/equipment.service';
 import {MatDialog} from '@angular/material';
@@ -18,6 +18,7 @@ import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
 })
 export class EquipmentListComponent implements OnInit, OnDestroy {
   public formAddNewEquipment: FormGroup;
+  public formEditEquipment: FormGroup;
   public subscription: Subscription;
   public equipmentOfId;
   public flag;
@@ -29,29 +30,54 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public checkEdit = false;
   public checkAdd = false;
   public searchText;
-
+  public equipment: FormArray;
+  public getarray = 1;
   constructor(
     public formBuilder: FormBuilder,
     public equipmentService: EquipmentService,
     public groundService: GroundService,
-    public typeElementService : TypeEquipmentService,
+    public typeElementService: TypeEquipmentService,
     public dialog: MatDialog,
     public router: Router
   ) {
+    this.formAddNewEquipment = this.formBuilder.group({
+      equipment: this.formBuilder.array([this.createEquipment()])
+    });
   }
 
   ngOnInit() {
-    this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
+    this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
       this.typeEquipment = data;
     });
-    this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
+    this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
-    this.subscription = this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
+    this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
       this.equipmentModel = data;
     });
-    this.formAddNewEquipment = this.formBuilder.group({
-      id:[''],
+    this.formEditEquipment = this.formBuilder.group({
+      id: ['id'],
+      typeEquipmentId: ['', [Validators.required]],
+      nameEquipment: ['', [Validators.required]],
+      amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
+      amountOfBroken: ['', [Validators.required]],
+      note: ['', [Validators.required]],
+      groundId: ['', [Validators.required]],
+    });
+    // this.formAddNewEquipment = this.formBuilder.group({
+    //   id:[''],
+    //   typeEquipmentId: ['', [Validators.required]],
+    //   nameEquipment: ['', [Validators.required]],
+    //   amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
+    //   amountOfBroken: ['', [Validators.required]],
+    //   note: ['', [Validators.required]],
+    //   groundId: ['', [Validators.required]],
+    // });
+  }
+
+  createEquipment(): FormGroup {
+    return this.formBuilder.group({
+      id: [''],
       typeEquipmentId: ['', [Validators.required]],
       nameEquipment: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
@@ -67,20 +93,50 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkaddNewEquipment() {
-    if (!this.checkAdd) {
-      // this.ngOnInit();
-      this.checkAdd = true;
-      this.checkEdit = false;
-    }
+  logValue() {
+    console.log(this.formAddNewEquipment.value);
+
   }
 
-  addNewEquipment() {
-    this.equipmentService.save(this.formAddNewEquipment.value).subscribe(data => {
-      this.checkAdd = false;
-      this.redirectTo('equipments');
-      this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+  get equipmentControls() {
+    return this.formAddNewEquipment.get('equipment')['controls'];
+  }
+
+  addNewArray(): void {
+    this.checkAdd = true;
+    this.getarray ++;
+    this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
+      this.typeEquipment = data;
     });
+    this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
+    this.equipment.push(this.createEquipment());
+  }
+
+  removeAddress(i: number) {
+    this.equipment.removeAt(i);
+  }
+
+  // checkaddNewEquipment() {
+  //   if (!this.checkAdd) {
+  //     // this.ngOnInit();
+  //     this.checkAdd = true;
+  //     this.checkEdit = false;
+  //   }
+  // }
+
+
+  addNewEquipment() {
+
+    this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
+    console.log((this.equipment.at(0).value));
+    for(let tem =0; tem < this.getarray; tem++){
+      // @ts-ignore
+      this.equipmentService.save(this.equipment.at(tem).value).subscribe(data => {
+        this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+      });
+    }
+    // // this.checkAdd = false;
+    this.redirectTo('equipments');
     console.log(this.formAddNewEquipment);
   }
 
@@ -90,19 +146,27 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   checkEditEquipment(id) {
+
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
       this.checkAdd = false;
       this.flag = id;
       this.equipmentOfId = id;
       this.equipmentService.findOne(this.equipmentOfId).subscribe(data => {
-        this.formAddNewEquipment.patchValue(data);
+        this.formEditEquipment.patchValue(data);
       });
     }
   }
 
+  addArrayEdit(){
+    this.subscription = this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
+      this.equipmentModel = data;
+    });
+    console.log(this.equipmentModel);
+  }
+
   editEquipment() {
-    this.equipmentService.update(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
+    this.equipmentService.update(this.formEditEquipment.value, this.equipmentOfId).subscribe(data => {
       this.redirectTo('equipments');
       this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
@@ -125,8 +189,10 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     });
   }
-  searchType(text) {
-    console.log(text);
-    this.searchText = document.getElementById(text).innerText;
-  }
+  // searchType(text) {
+  //   console.log(text);
+  //   this.searchText = document.getElementById(text).innerText;
+  // }
+
+
 }
