@@ -1,4 +1,5 @@
 h2{
+  margin-top: 50px;
   margin-bottom: 50px;
 }
 form {
@@ -8,18 +9,15 @@ form {
 form fieldset{
   margin-top: 50px;
 }
-form fieldset label {
-  margin-top: 60px;
+
+
+form fieldset label .col-md-12{
+  margin-top: 30px;
 }
-form fieldset label div span{
+
+form fieldset label div p{
   float: left;
-}
-form fieldset label div .col-md-10{
-  margin-left: auto;
-  margin-top: 20px;
-  text-align: center;
 }
 legend{
   color: red;
 }
-

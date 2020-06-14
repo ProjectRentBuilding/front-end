@@ -38,8 +38,12 @@
       <td>{{item.price}}</td>
       <td>{{item.priceManager}}</td>
       <ng-container *ngFor="let contract of contracts">
-        <td *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>
-        <td *ngIf="contract.ground.id!=item.id">Chưa làm hợp đồng</td>
+        <div style="position: relative">
+          <td style="position: absolute" *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>
+          <td style="position: absolute" *ngIf="contract.ground.id!=item.id">Chưa làm hợp đồng</td>
+
+        </div>
+
       </ng-container>
 
 
