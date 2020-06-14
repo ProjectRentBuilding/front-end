@@ -58,13 +58,13 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-3" style="float: left">Ngày bắt đầu tính:</p>
-        <div style="position: relative" class="col-md-9">
+        <div class="col-md-9" >
 
           <ng-container *ngFor="let contract of contracts" >
-            <input style="text-align: center;margin-top: -10px;position: absolute;margin-left: 30%" type="text" class="form-control col-md-12" disabled
+            <input style="text-align: center;margin-top: -10px;margin-left: 30%" type="text" class="form-control col-md-12" disabled
                    *ngIf="contract.ground.id==id" [value]=contract.startRentDay>
-            <input style="text-align: center;margin-top: -10px;position: absolute;margin-left: 30%" type="text" class="form-control col-md-12" disabled
-                   *ngIf="contract.ground.id!=id" value="Chưa làm hợp đồng">
+<!--            <input style="text-align: center;margin-top: -10px;position: absolute;margin-left: 30%" type="text" class="form-control col-md-12" disabled-->
+<!--                   *ngIf="contract.ground.id!=id" value="Chưa làm hợp đồng">-->
           </ng-container>
         </div>
       </div>
@@ -72,12 +72,12 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-3" style="float: left">Ngày kết thúc tính:</p>
-        <div style="position: relative" class="col-md-9">
+        <div  class="col-md-9">
           <ng-container *ngFor="let contract of contracts"   >
-            <input style="text-align: center;margin-top: -10px;position: absolute;margin-left: 30%" type="text" class="form-control col-md-12" disabled
+            <input style="text-align: center;margin-top: -10px;margin-left: 30%" type="text" class="form-control col-md-12" disabled
                    *ngIf="contract.ground.id==id" [value]=contract.endRentDay>
-            <input style="text-align: center;margin-top: -10px;position: absolute;margin-left: 30%" type="text" class="form-control col-md-12" disabled
-                   *ngIf="contract.ground.id!=id" value="Chưa làm hợp đồng">
+<!--            <input style="text-align: center;margin-top: -10px;position: absolute;margin-left: 30%" type="text" class="form-control col-md-12" disabled-->
+<!--                   *ngIf="contract.ground.id!=id" value="Chưa làm hợp đồng">-->
           </ng-container>
         </div>
 

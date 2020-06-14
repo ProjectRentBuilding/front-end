@@ -78,11 +78,8 @@
         <div class="alert alert-danger col-md-10" role="alert" *ngIf="addBuildingForm.get('taxCode').hasError('required')
          && addBuildingForm.get('taxCode').touched">Mã số thuế không được để trống.
         </div>
-        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('taxCode').hasError('minlength')
-         && addBuildingForm.get('taxCode').touched">Mã số thuế tối thiểu 2 ký tự.
-        </div>
-        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('taxCode').hasError('maxlength')
-         && addBuildingForm.get('taxCode').touched">Mã số thuế tối đa 25 ký tự.
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('taxCode').hasError('pattern')
+         && addBuildingForm.get('taxCode').touched">Mã số thuế phải đúng định dạng:MST-xxx.
         </div>
       </div>
       <div class="col-md-12">

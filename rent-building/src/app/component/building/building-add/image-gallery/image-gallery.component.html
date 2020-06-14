@@ -1,12 +1,18 @@
-<p>Hello</p>
-<label class="row " style="margin-left: 30%">
-  <div class="form-group d-flex justify-content-center mr-5 ">
-    <button [disabled]="addBuildingForm.invalid" class="btn btn-success mt-3" >Thêm mới
-    </button>
+<div>
+  <p>Chưa làm được</p>
+  <tr *ngFor="let image of galleryImage">
+    <td><img src="{{image.url}}" (click)="pickImage($event.target.value)"></td>
+  </tr>
 
-  </div>
-  <div class="form-group d-flex justify-content-center " style="align-content: center">
-    <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về
-    </button>
-  </div>
-</label>
+  <label class="row " style="margin-left: 30%">
+    <div class="form-group d-flex justify-content-center mr-5 ">
+      <button [disabled]="addBuildingForm.invalid" class="btn btn-success mt-3" >Thêm mới
+      </button>
+
+    </div>
+    <div class="form-group d-flex justify-content-center " style="align-content: center">
+      <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về
+      </button>
+    </div>
+  </label>
+</div>
