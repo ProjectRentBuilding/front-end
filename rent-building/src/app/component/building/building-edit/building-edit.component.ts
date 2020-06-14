@@ -36,7 +36,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     this.editBuildingForm = this.fb.group({
       abbreviationName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      taxCode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      taxCode: ['',[Validators.required, Validators.pattern(/^MST-\d{3}$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{9}(\d{3})?$/)]],
       email: ['', [Validators.required, Validators.email, Validators.maxLength(25)]],
       fax: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
