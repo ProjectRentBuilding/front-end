@@ -14,18 +14,18 @@
     <thead>
     <tr class="text-muted">
 <!--      <th>ID</th>-->
-      <th>#</th>
-      <th >Tên Khách Hàng</th>
-      <th>Tên Mặt Bằng</th>
-      <th style="width: 120px" >Đang Thuê</th>
-      <th>Chi Tiết</th>
-      <th colspan="2">Tác vụ</th>
+      <th style="font-weight: bold">#</th>
+      <th style="font-weight: bold">Tên Khách Hàng</th>
+      <th style="font-weight: bold">Tên Mặt Bằng</th>
+      <th style="width: 120px;font-weight: bold" >Đang Thuê</th>
+      <th style="font-weight: bold">Chi Tiết</th>
+      <th colspan="2" style="font-weight: bold">Tác vụ</th>
     </tr>
     </thead>
     <tbody>
     <tr
       *ngFor="let contract of contracts  |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
-      <td>{{(i+1)+(page-1)*5}}</td>
+      <td >{{(i+1)+(page-1)*5}}</td>
 <!--      <td>-->
 <!--							<span class="custom-checkbox">-->
 <!--								<input type="checkbox" value="${contract.id}">-->
