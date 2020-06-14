@@ -2,6 +2,7 @@
 <form [formGroup]="editBuildingForm" class="col-md-12 offset-md-4">
   <fieldset>
     <legend>Thông tin chung</legend>
+    <input type="text" hidden class="form-control" formControlName="id" [value]=id>
     <label class="row">
       <div class="col-md-4">
         <span class="col-md-5">Tên viết tắt:</span>

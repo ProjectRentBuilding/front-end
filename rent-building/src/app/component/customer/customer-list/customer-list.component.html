@@ -10,8 +10,8 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH KHÁCH HÀNG</h3>
 <form action=""  [formGroup]="formAddNewCustomer" >
-<table class="table bg-light text-center table-bordered">
-  <thead>
+<table class="table bg-light text-center table-bordered table-striped">
+  <thead class="thead-dark">
   <tr  class="text-muted">
     <th>STT</th>
     <th>Họ Tên</th>
@@ -30,7 +30,7 @@
   <tbody>
   <tr *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
     <input type="text" hidden value="{{customer.id}}" formControlName="id">
-    <td > {{(i+1)+(page-1)*5}}</td>
+    <td> {{(i+1)+(page-1)*5}}</td>
     <td *ngIf="!checkEdit || customer.id!==flag">{{customer.name}}</td>
     <td *ngIf="checkEdit  && customer.id===flag ">
       <input type="text" class="form-control" formControlName="name" value="{{customer.name}}">
@@ -64,11 +64,11 @@
 
     <td *ngIf="!checkEdit || customer.id!==flag">{{customer.birthday | date:'dd/MM/yyyy'}}</td>
     <td *ngIf="checkEdit && customer.id===flag">
-      <label>
-        <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
+
+        <input  class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
                [matDatepicker]="picker1" value="{{customer.birthday}}">
-      </label>
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+
+      <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
     </td>
 
@@ -96,18 +96,27 @@
     </td>
 
 
-    <ng-container *ngFor="let contract of contracts" >
-      <td *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</td>
-<!--      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>-->
+<!--    <ng-container *ngFor="let contract of contracts" >-->
+<!--      <td *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</td>-->
+<!--&lt;!&ndash;      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>&ndash;&gt;-->
 
-    </ng-container>
-
-<!--    <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>-->
+<!--    </ng-container>-->
+    <td >
     <ng-container *ngFor="let contract of contracts" >
-      <td *ngIf="contract.customer.id == customer.id"><input type="checkbox" [checked]="contract.statusContract" disabled></td>
+      <p *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</p>
       <!--      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>-->
 
     </ng-container>
+    </td>
+
+<!--    <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>-->
+    <td>
+    <ng-container *ngFor="let contract of contracts" >
+    <p> <input *ngIf="contract.customer.id == customer.id" type="checkbox" [checked]="contract.statusContract" disabled></p>
+      <!--      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>-->
+
+    </ng-container>
+    </td>
 
 
     <td>

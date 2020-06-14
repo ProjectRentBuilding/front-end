@@ -6,6 +6,8 @@ import {GroundService} from '../../../service/ground.service';
 import {Router} from '@angular/router';
 import {FloorModel} from '../../../model/floor.model';
 import {FloorService} from '../../../service/floor.service';
+import {TypeGroundModel} from "../../../model/typeGround.model";
+import {TypeGroundService} from "../../../service/type-ground.service";
 
 @Component({
   selector: 'app-ground-edit',
@@ -17,6 +19,7 @@ export class GroundEditComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   editGroundForm: FormGroup;
   public floors: FloorModel[];
+  public typeGrounds: TypeGroundModel[];
 
   public id: number;
   constructor(
@@ -24,23 +27,24 @@ export class GroundEditComponent implements OnInit, OnDestroy {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public groundService: GroundService,
     public floorService: FloorService,
+    public typeGroundService: TypeGroundService,
     public routerService: Router,
     private fb: FormBuilder,
   ) {
   }
   ngOnInit() {
     this.floorService.findAll().subscribe(data => this.floors = data);
+    this.typeGroundService.findAll().subscribe(data => this.typeGrounds = data);
     this.editGroundForm = this.fb.group({
       codeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      typeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      typeGroundId: ['',[Validators.required]],
       note:[''],
       area: ['',[Validators.required, Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|([0-9]([1-9])?)$/)]],
-      floor:['',[Validators.required]],
+      floorId:['',[Validators.required]],
       statusGround:[''],
       price:[''],
-      beginDay:[''],
-      endDay:['']
-
+      priceManager:[''],
+      id: ['']
     });
     this.loadData();
   }
