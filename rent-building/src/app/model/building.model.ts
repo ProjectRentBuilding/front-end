@@ -6,7 +6,7 @@ export class BuildingModel {
   // Mã số thuế
   public taxCode: string;
   // Điện thoại
-  public phone: number;
+  public phone: string;
   // Email
   public email: string;
   // Fax
