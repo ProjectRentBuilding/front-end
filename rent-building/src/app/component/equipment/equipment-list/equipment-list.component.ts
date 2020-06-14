@@ -18,6 +18,7 @@ import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
 })
 export class EquipmentListComponent implements OnInit, OnDestroy {
   public formAddNewEquipment: FormGroup;
+  public formEditEquipment: FormGroup;
   public subscription: Subscription;
   public equipmentOfId;
   public flag;
@@ -54,6 +55,15 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
       this.equipmentModel = data;
     });
+    this.formEditEquipment = this.formBuilder.group({
+      id: ['id'],
+      typeEquipmentId: ['', [Validators.required]],
+      nameEquipment: ['', [Validators.required]],
+      amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
+      amountOfBroken: ['', [Validators.required]],
+      note: ['', [Validators.required]],
+      groundId: ['', [Validators.required]],
+    });
     // this.formAddNewEquipment = this.formBuilder.group({
     //   id:[''],
     //   typeEquipmentId: ['', [Validators.required]],
@@ -69,7 +79,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     return this.formBuilder.group({
       id: [''],
       typeEquipmentId: ['', [Validators.required]],
-      // typeEquipmentId: [''],
       nameEquipment: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
       amountOfBroken: ['', [Validators.required]],
@@ -114,11 +123,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   //     this.checkEdit = false;
   //   }
   // }
-  // saveEquipment(model: any, isValid: boolean, e: any){
-  //   e.preventDefault();
-  //   alert('Form data are: ' + model.at(1));
-  //
-  // }
+
 
   addNewEquipment() {
 
@@ -141,19 +146,27 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   checkEditEquipment(id) {
+
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
       this.checkAdd = false;
       this.flag = id;
       this.equipmentOfId = id;
       this.equipmentService.findOne(this.equipmentOfId).subscribe(data => {
-        this.formAddNewEquipment.patchValue(data);
+        this.formEditEquipment.patchValue(data);
       });
     }
   }
 
+  addArrayEdit(){
+    this.subscription = this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
+      this.equipmentModel = data;
+    });
+    console.log(this.equipmentModel);
+  }
+
   editEquipment() {
-    this.equipmentService.update(this.formAddNewEquipment.value, this.equipmentOfId).subscribe(data => {
+    this.equipmentService.update(this.formEditEquipment.value, this.equipmentOfId).subscribe(data => {
       this.redirectTo('equipments');
       this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
@@ -163,19 +176,19 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.redirectTo('equipments');
   }
 
-  // openDialogDelete(id): void {
-  //   this.equipmentService.findOne(id).subscribe(dataOfEquipment => {
-  //     const dialogRef = this.dialog.open(EquipmentDeleteComponent, {
-  //       width: '500px',
-  //       data: {data1: dataOfEquipment},
-  //       disableClose: true,
-  //     });
-  //     dialogRef.afterClosed().subscribe(result => {
-  //       console.log('The dialog was closed');
-  //       this.ngOnInit();
-  //     });
-  //   });
-  // }
+  openDialogDelete(id): void {
+    this.equipmentService.findOne(id).subscribe(dataOfEquipment => {
+      const dialogRef = this.dialog.open(EquipmentDeleteComponent, {
+        width: '500px',
+        data: {data1: dataOfEquipment},
+        disableClose: true,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.ngOnInit();
+      });
+    });
+  }
   // searchType(text) {
   //   console.log(text);
   //   this.searchText = document.getElementById(text).innerText;
