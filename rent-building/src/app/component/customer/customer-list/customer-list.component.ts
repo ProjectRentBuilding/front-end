@@ -113,7 +113,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   checkEditCustomer(id) {
-    alert(this.checkEdit);
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
       this.checkAdd = false;
