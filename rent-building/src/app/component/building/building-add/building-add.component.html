@@ -178,12 +178,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Logo:</p>
-        <select class="form-control col-md-9" formControlName="logo" (change)="onSelectChange($event.target.value)">
-          <option value="">Chọn</option>
-          <option *ngFor="let image of images" [value]="image.linkImage">
-            {{image.nameImage}}
-          </option>
-        </select>
+        <button class="form-control col-md-3" formControlName="logo" (click)="onSelectChange()">Chọn Logo</button>
         <div class="bottom-border pb-3">
           <img src="{{logo}}" width="50" height="50" class="rounded-circle mr-3" alt="">
         </div>
