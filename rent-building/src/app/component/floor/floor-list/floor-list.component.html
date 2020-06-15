@@ -10,9 +10,10 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
+<button   routerLink="/contracts/add" class="btn btn-success px-4 py-2" >Thêm mới</button>
 <form action="" [formGroup]="addFloorForm" >
-  <table class="table bg-light text-center">
-    <thead>
+  <table class="table bg-light text-center table-striped">
+    <thead class="thead-dark">
     <tr class="text-muted">
 <!--      <th>Số thứ tự</th>-->
       <th> <p>Tên tầng lầu(<span style="color: red">*</span>):</p></th>
@@ -22,7 +23,7 @@
       <th><p>Trạng thái(<span style="color: red">*</span>):</p></th>
       <th><p>Loại tầng(<span style="color: red">*</span>):</p></th>
       <th><p>Tên tòa nhà(<span style="color: red">*</span>):</p></th>
-<!--      <th colspan="2">Tác vụ</th>-->
+      <th colspan="2"></th>
 
     </tr>
     </thead>
@@ -109,7 +110,7 @@
       <td *ngIf="!checkEdit || item.id!==flag"><button  class="btn btn-warning" (click)="checkEditFloor(item.id)">Sửa</button></td>
       <td *ngIf="!checkEdit || item.id!==flag"><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">Xóa</button></td>
       <td *ngIf="checkEdit && item.id===flag">
-        <button class="btn btn-primary" type="button" [disabled]="addFloorForm.invalid" (click)="editFloor()" style="margin-right: 10px">Lưu</button>
+        <button class="btn btn-success" type="button" [disabled]="addFloorForm.invalid" (click)="editFloor()" style="margin-right: 10px">Lưu</button>
       </td>
       <td *ngIf="checkEdit && item.id===flag">
         <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">Hủy</button>
