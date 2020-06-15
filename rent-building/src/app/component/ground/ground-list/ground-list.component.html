@@ -1,5 +1,3 @@
-
-
 <div class="col-md-5 mt-5">
   <div class="input-group">
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
@@ -8,12 +6,33 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
-<button   (click)="openDialogAddNew()" class="btn btn-success px-4 py-2" >Thêm mới</button>
-<form action="" >
+<button (click)="openDialogAddNew()" class="btn btn-success px-4 py-2">
+  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
+</button>
+
+<div class="row">
+  <div class="dropdown open col-md-2">
+    <button class="btn btn-dark dropdown-toggle" type="button"
+            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+      <i class="fa fa-codepen" aria-hidden="true" title="Mã tầng"></i>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
+      <a class="dropdown-item" *ngFor="let floor of floors"  (click)="searchType(floor.codeFloor)">{{floor.codeFloor}}</a>
+    </div>
+  </div>
+  <div class="col-md-8"></div>
+  <div class="col-md-2">
+    <button class="btn btn-dark" (click)="deleteAll()">
+      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>
+    </button>
+  </div>
+</div>
+<form action="">
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
     <tr class="text-muted">
-<!--      <th>STT</th>-->
+      <!--      <th>STT</th>-->
       <th><p>Mã mặt bằng(<span style="color: red">*</span>):</p></th>
       <th><p>Loại mặt bằng(<span style="color: red">*</span>):</p></th>
       <th><p>Diện tích(<span style="color: red">*</span>):</p></th>
@@ -29,42 +48,30 @@
                                                                             itemsPerPage:5,
                                                                             currentPage:page
                                                                             }">
-<!--      <td>{{(i+1)+(page-1)*5}}</td>-->
+      <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
       <td>{{item.codeGround}}</td>
       <td>{{item.typeGround.nameTypeGround}}</td>
       <td>{{item.area}}</td>
       <td>{{item.statusGround}}</td>
       <td>{{item.price}}</td>
       <td>{{item.priceManager}}</td>
-      <ng-container *ngFor="let contract of contracts">
-      <div >
-        <td  *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>
-        <!--          <td style="position: absolute" *ngIf="contract.ground.id!=item.id">Chưa làm hợp đồng</td>-->
+      <ng-container class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 20px" >
+        <div *ngFor="let contract of contracts">
+          <td class="dropdown-item"  *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>
+        </div>
+      </ng-container>
 
-      </div>
-    </ng-container>
-<!--      <ng-container *ngFor="let contract of contracts" >-->
-<!--        <p> <input *ngIf="contract.ground.id==item.id" type="checkbox" [checked]="contract.statusContract" disabled></p>-->
-<!--      </ng-container>-->
-
-
-<!--      <ng-container *ngFor="let contract of contracts">-->
-<!--        <div style="position: relative">-->
-<!--&lt;!&ndash;          <td style="position: absolute" *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>&ndash;&gt;-->
-<!--          <td style="position: absolute" *ngIf="contract.ground.id!=item.id">Chưa làm hợp đồng</td>-->
-
-<!--        </div>-->
-
-<!--      </ng-container>-->
-
-
-
-
-      <td><button  class="btn btn-info" style="width: 80px" (click)="openDialogView(item.id)">Chi tiết</button></td>
-      <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button></td>
-      <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">
-        Xóa
-      </button></td>
+      <td>
+        <button class="btn btn-info"  (click)="openDialogView(item.id)"><i class="material-icons" data-toggle="tooltip" title="Xem">&#xe8a0;</i></button>
+      </td>
+      <td>
+        <button class="btn btn-warning" (click)="openDialogEdit(item.id)"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
+          <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+        </button>
+      </td>
     </tr>
     </tbody>
 
@@ -72,7 +79,8 @@
 </form>
 
 
-<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
+<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"
+                     previousLabel="Trang trước"
                      nextLabel="Trang sau">
 </pagination-controls>
 

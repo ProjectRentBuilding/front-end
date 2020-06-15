@@ -59,7 +59,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     });
     this.addFloorForm = this.fb.group({
       nameFloor: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      codeFloor: ['',[Validators.required, Validators.pattern(/^MTL-\d{3}$/)]],
+      codeFloor: ['',[Validators.required, Validators.pattern(/^MTL\d{3}$/)]],
       area: [''],
       capacity: [''],
       statusFloor: ['',[Validators.required]],
@@ -133,5 +133,16 @@ export class FloorListComponent implements OnInit, OnDestroy {
     });
   }
 
+  searchType(fullName: string) {
+    this.searchText = fullName;
+  }
+
+  deleteAll() {
+    for(let item=0;item <this.floors.length;item++)
+      this.floorService.delete(this.floors[item].id).subscribe(data => {
+      });
+    this.redirectTo('floors');
+    this.floorService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+  }
 }
 
