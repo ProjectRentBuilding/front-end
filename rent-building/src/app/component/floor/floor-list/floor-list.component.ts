@@ -59,7 +59,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     });
     this.addFloorForm = this.fb.group({
       nameFloor: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      codeFloor: ['',[Validators.required, Validators.pattern(/^MTL-\d{3}$/)]],
+      codeFloor: ['',[Validators.required, Validators.pattern(/^MTL\d{3}$/)]],
       area: [''],
       capacity: [''],
       statusFloor: ['',[Validators.required]],
@@ -133,5 +133,8 @@ export class FloorListComponent implements OnInit, OnDestroy {
     });
   }
 
+  searchType(codeFloor: string) {
+    this.searchText=codeFloor;
+  }
 }
 

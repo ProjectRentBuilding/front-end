@@ -11,6 +11,16 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
 <button  class="btn btn-success px-4 py-2 " (click)="checkAddNewFloor()">Thêm mới</button>
+<div class="dropdown open">
+  <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
+          id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+    Mã tầng
+  </button>
+  <div class="dropdown-menu" aria-labelledby="triggerId">
+    <a class="dropdown-item" *ngFor="let item of floors"  (click)="searchType(item.codeFloor)">{{item.codeFloor}}</a>
+  </div>
+</div>
 <form action="" [formGroup]="addFloorForm" >
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
@@ -59,7 +69,7 @@
           Mã tầng lầu không được để trống.
         </p>
         <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('codeFloor').hasError('pattern') && addFloorForm.get('codeFloor').touched">
-          Mã tầng lầu phải đúng định dạng:MTL-xxx.
+          Mã tầng lầu phải đúng định dạng:MTLxxx.
         </p>
       </td>
 <!--      Diện tích-->
@@ -138,7 +148,7 @@
           Mã tầng lầu không được để trống.
         </p>
         <p class="alert alert-danger" role="alert" *ngIf="addFloorForm.get('codeFloor').hasError('pattern') && addFloorForm.get('codeFloor').touched">
-          Mã tầng lầu phải đúng định dạng:MTL-xxx.
+          Mã tầng lầu phải đúng định dạng:MTLxxx.
         </p>
       </td>
 <!--      Diện tích-->
