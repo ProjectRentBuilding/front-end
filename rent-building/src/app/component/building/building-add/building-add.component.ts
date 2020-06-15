@@ -79,7 +79,6 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
       height: '540px',
       disableClose: true,
     });
-
     // dialogRef.afterClosed().subscribe(result => {
     //   this.ngOnInit();
     // });

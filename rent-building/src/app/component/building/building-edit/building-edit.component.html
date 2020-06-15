@@ -189,21 +189,23 @@
 </form>
 
 <fieldset>
-  <label class="row " style="margin-left: 30%">
+  <legend>
+    <label class="row " style="margin-left: 30%">
 
-    <div class="form-group d-flex justify-content-center mr-5">
-      <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
-    </div>
-    <div class="form-group d-flex justify-content-center mr-5 ">
-      <button [disabled]="editBuildingForm.invalid" class="btn btn-success mt-3" (click)="onEditBuilding()">Chỉnh sửa
-      </button>
+      <div class="form-group d-flex justify-content-center mr-5">
+        <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
+      </div>
+      <div class="form-group d-flex justify-content-center mr-5 ">
+        <button [disabled]="editBuildingForm.invalid" class="btn btn-success mt-3" (click)="onEditBuilding()">Chỉnh sửa
+        </button>
 
-    </div>
-    <div class="form-group d-flex justify-content-center " style="align-content: center">
-      <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách tòa nhà
-      </button>
-    </div>
-  </label>
+      </div>
+      <div class="form-group d-flex justify-content-center " style="align-content: center">
+        <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách tòa nhà
+        </button>
+      </div>
+    </label>
+  </legend>
 </fieldset>
 
 

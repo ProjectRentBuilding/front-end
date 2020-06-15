@@ -1,89 +1,91 @@
 <h2 class="text-center">Chi tiết thông tin tòa nhà</h2>
-<form  [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4" >
-  <fieldset >
+<form [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4">
+  <fieldset>
     <legend>Thông tin chung</legend>
     <label class="row">
       <div class="col-md-12">
-        <p  class="col-md-3">Tên viết tắt:</p>
-        <div >
-          <input  class="form-control col-md-9"   formControlName="abbreviationName" disabled >
+        <p class="col-md-3">Tên viết tắt:</p>
+        <div>
+          <input class="form-control col-md-9" formControlName="abbreviationName" disabled>
         </div>
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Điện thoại:</p>
-        <input  class="form-control col-md-9"   formControlName="phone" disabled>
+        <input class="form-control col-md-9" formControlName="phone" disabled>
       </div>
       <div class="col-md-12">
         <p class="col-md-3"> Địa chỉ:</p>
-        <input class="form-control col-md-9"   formControlName="address" disabled>
+        <input class="form-control col-md-9" formControlName="address" disabled>
       </div>
     </label>
     <label class="row">
       <div class="col-md-12">
-        <p  class="col-md-3">Tên tòa nhà:</p>
-        <input class="form-control col-md-9"   formControlName="fullName" disabled>
+        <p class="col-md-3">Tên tòa nhà:</p>
+        <input class="form-control col-md-9" formControlName="fullName" disabled>
       </div>
       <div class="col-md-12">
-        <p  class="col-md-3">Fax:</p>
-        <input class="form-control col-md-9"   formControlName="fax" disabled>
+        <p class="col-md-3">Fax:</p>
+        <input class="form-control col-md-9" formControlName="fax" disabled>
       </div>
     </label>
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-3">Mã số thuế:</p>
-        <input class="form-control col-md-9"   formControlName="taxCode" disabled>
+        <input class="form-control col-md-9" formControlName="taxCode" disabled>
       </div>
       <div class="col-md-12">
-        <p  class="col-md-3">Email:</p>
-        <input class="form-control col-md-9"   formControlName="email" disabled>
+        <p class="col-md-3">Email:</p>
+        <input class="form-control col-md-9" formControlName="email" disabled>
       </div>
     </label>
   </fieldset>
 </form>
-<form  [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4" >
+<form [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4">
   <fieldset>
     <legend>Thông tin trên báo cáo</legend>
     <label class="row">
       <div class="col-md-12">
-        <p  class="col-md-3">Ban quản lý:</p>
-        <div >
-          <input class="form-control col-md-9"   formControlName="management" disabled>
+        <p class="col-md-3">Ban quản lý:</p>
+        <div>
+          <input class="form-control col-md-9" formControlName="management" disabled>
         </div>
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Số tài khoản:</p>
-        <input class="form-control col-md-9"   formControlName="accountNumber" disabled>
+        <input class="form-control col-md-9" formControlName="accountNumber" disabled>
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Ngân hàng:</p>
-        <input class="form-control col-md-9"   formControlName="bank" disabled>
+        <input class="form-control col-md-9" formControlName="bank" disabled>
       </div>
     </label>
     <label class="row">
       <div class="col-md-12">
-        <p  class="col-md-3">Người quản lý:</p>
-        <div >
-          <input class="form-control col-md-9"   formControlName="manager" disabled>
+        <p class="col-md-3">Người quản lý:</p>
+        <div>
+          <input class="form-control col-md-9" formControlName="manager" disabled>
         </div>
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Tên người nhận:</p>
-        <input class="form-control col-md-9"   formControlName="recipientName" disabled>
+        <input class="form-control col-md-9" formControlName="recipientName" disabled>
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Logo:</p>
-        <input  class="form-control col-md-9"   formControlName="logo" disabled>
+        <input class="form-control col-md-9" formControlName="logo" disabled>
       </div>
     </label>
   </fieldset>
 </form>
 
 <fieldset>
-  <label class="row " style="margin-left: 65%">
-    <div class="form-group d-flex justify-content-center " style="align-content: center">
-      <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách tòa nhà
-      </button>
-    </div>
-  </label>
+  <legend>
+    <label class="row " style="margin-left: 65%">
+      <div class="form-group d-flex justify-content-center " style="align-content: center">
+        <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách tòa nhà
+        </button>
+      </div>
+    </label>
+  </legend>
 </fieldset>
 
