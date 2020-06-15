@@ -17,7 +17,7 @@
           aria-expanded="false">
     Mã tầng
   </button>
-  <div class="dropdown-menu" aria-labelledby="triggerId">
+  <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
     <a class="dropdown-item" *ngFor="let item of floors"  (click)="searchType(item.codeFloor)">{{item.codeFloor}}</a>
   </div>
 </div>
