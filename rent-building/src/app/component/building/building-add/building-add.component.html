@@ -1,5 +1,6 @@
+<div style="margin-left: 99%;margin-top: -2%;" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x" aria-hidden="true"></i>
+</div>
 <h2 class="text-center">Thêm mới thông tin tòa nhà</h2>
-
 <form [formGroup]="addBuildingForm" class="col-md-12 offset-md-4">
   <fieldset>
     <legend>Thông tin chung</legend>
@@ -183,22 +184,15 @@
     </label>
   </fieldset>
 </form>
-
-
 <fieldset>
   <legend>
-    <label class="row " style="margin-left: 30%">
+    <label class="row " style="margin-left: 60%">
 
       <div class="form-group d-flex justify-content-center mr-5">
         <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
       </div>
       <div class="form-group d-flex justify-content-center mr-5 ">
-        <button [disabled]="addBuildingForm.invalid" class="btn btn-success mt-3" (click)="onAddBuilding()">Thêm mới
-        </button>
-
-      </div>
-      <div class="form-group d-flex justify-content-center " style="align-content: center">
-        <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách tòa nhà
+        <button [disabled]="addBuildingForm.invalid" class="btn btn-success mt-3" (click)="onAddBuilding()">Lưu
         </button>
       </div>
     </label>

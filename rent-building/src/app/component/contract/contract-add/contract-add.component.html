@@ -1,9 +1,5 @@
 <h3 class="text-center" style="color: red">Thêm mới hợp đồng</h3>
-
 <form class="w-75 mx-auto mt-3 col-md-12 offset-md-4" [formGroup]="formAddNewContract">
-
-
-  <fieldset>
     <input type="text" hidden class="form-control" formControlName="id" [value]=contractId>
     <div class="row">
       <div class="form-group col-md-4">
@@ -36,12 +32,9 @@
           *ngIf="formAddNewContract.controls.employeeId.errors?.required && formAddNewContract.controls.employeeId.touched"
           class="text-danger">Vui lòng chọn nhân viên</p>
       </div>
-
-
     </div>
-  </fieldset>
 
-  <fieldset>
+
     <div class="row">
       <div class="form-group col-md-4">
         <p style="font-weight: bold">Kì Hạn(Tháng)</p>
@@ -81,13 +74,8 @@
         </p>
         <p *ngIf="messageTimeValidate" class="text-danger">{{messageTimeValidate}}</p>
       </div>
-
-
     </div>
-  </fieldset>
 
-
-  <fieldset>
     <div class="row">
       <div class="form-group col-md-6">
         <p style="font-weight: bold" >Giá Tiền Mỗi Tháng(VNĐ)(<span style="color: red">*</span>)</p>
@@ -109,8 +97,6 @@
         <input type="text" class="form-control" formControlName="total" disabled [(ngModel)]="totalCalculate">
       </div>
     </div>
-  </fieldset>
-  <fieldset>
     <div class="row">
       <div class="form-group col-md-6">
         <p style="font-weight: bold">Tiền cọc(VNĐ)</p>
@@ -128,7 +114,6 @@
         <input type="text" class="form-control" formControlName="urlImage" >
       </div>
     </div>
-  </fieldset>
   <div class="form-group">
     <p style="font-weight: bold">Nội dung hợp đồng(<span style="color: red">*</span>)</p>
     <textarea rows="5" type="text" class="form-control" formControlName="content"></textarea>
@@ -145,10 +130,7 @@
     <mat-checkbox class="form-control" formControlName="unified" value="{{false}}" style="font-weight: bold">Hai bên đã thống nhất với hợp đồng
     </mat-checkbox>
   </div>
-
 </form>
-
-<fieldset>
   <div class="row " style="margin-left: 43%">
 
     <div class="form-group d-flex justify-content-center mr-5">
@@ -162,8 +144,6 @@
       <button class="btn btn-danger mt-3" routerLink="/contracts">Quay về</button>
     </div>
   </div>
-
-</fieldset>
 
 
 
