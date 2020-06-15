@@ -7,6 +7,7 @@ import {BuildingAddComponent} from '../building-add/building-add.component';
 import {BuildingDeleteComponent} from '../building-delete/building-delete.component';
 import {BuildingEditComponent} from '../building-edit/building-edit.component';
 import {BuildingDetailComponent} from '../building-detail/building-detail.component';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-building-list',
@@ -23,6 +24,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
 
   constructor(
     public buildingService: BuildingService,
+    public routerService: Router,
     public dialog: MatDialog
   ) {
   }
@@ -38,6 +40,10 @@ export class BuildingListComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+  redirectTo(uri: string) {
+    this.routerService.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.routerService.navigate([uri]));
   }
 
   openDialogAddNew(): void {
@@ -93,5 +99,13 @@ export class BuildingListComponent implements OnInit, OnDestroy {
         this.ngOnInit();
       });
     });
+  }
+
+  deleteAll() {
+    for(let item=0;item <this.buildings.length;item++)
+      this.buildingService.delete(this.buildings[item].id).subscribe(data => {
+      });
+    this.redirectTo('buildings');
+    this.buildingService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 }

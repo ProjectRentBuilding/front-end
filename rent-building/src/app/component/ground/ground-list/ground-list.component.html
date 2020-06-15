@@ -7,6 +7,23 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
 <button (click)="openDialogAddNew()" class="btn btn-success px-4 py-2">Thêm mới</button>
+
+<div class="row">
+  <div class="dropdown open col-md-2">
+    <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
+            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+      Mã tầng
+    </button>
+    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
+      <a class="dropdown-item" *ngFor="let floor of floors"  (click)="searchType(floor.codeFloor)">{{floor.codeFloor}}</a>
+    </div>
+  </div>
+  <div class="col-md-8"></div>
+  <div class="col-md-2">
+    <button class="btn btn-light" (click)="deleteAll()">Xoá tất cả</button>
+  </div>
+</div>
 <form action="">
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
