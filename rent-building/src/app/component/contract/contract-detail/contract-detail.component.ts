@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
 import {ContractModel} from "../../../model/contract";
 import {ContractService} from "../../../service/contract.service";
-import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Customer} from "../../../model/customer.model";
 import {CustomerService} from "../../../service/customer.service";

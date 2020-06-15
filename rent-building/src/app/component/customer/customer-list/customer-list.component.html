@@ -2,8 +2,8 @@
 <div class="col-md-5 mt-5">
     <div class="input-group">
       <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin khách hàng" [(ngModel)]="search">
-      <button type="button" class="btn btn-secondary search-button"><i
-        class="fa fa-search text-danger"></i></button>
+      <button type="button" class="btn btn-secondary search-button"><strong><i
+        class="fa fa-search text-danger"></i></strong></button>
     </div>
 
 </div>
@@ -12,6 +12,7 @@
 <form action=""  [formGroup]="formAddNewCustomer" >
   <button class="btn btn-success px-2 py-2 " (click)="checkAddCustomer()">Thêm mới</button>
 <table class="table bg-light text-center table-bordered table-striped">
+
   <thead class="thead-dark">
   <tr  class="text-muted">
     <th>STT</th>
@@ -97,24 +98,17 @@
     </td>
 
 
-<!--    <ng-container *ngFor="let contract of contracts" >-->
-<!--      <td *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</td>-->
-<!--&lt;!&ndash;      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>&ndash;&gt;-->
 
-<!--    </ng-container>-->
     <td >
     <ng-container *ngFor="let contract of contracts" >
       <p *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</p>
-      <!--      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>-->
 
     </ng-container>
     </td>
 
-<!--    <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>-->
     <td>
     <ng-container *ngFor="let contract of contracts" >
     <p> <input *ngIf="contract.customer.id == customer.id" type="checkbox" [checked]="contract.statusContract" disabled></p>
-      <!--      <td *ngIf="(contract.customer.id == customer.id) && (checkEdit || customer.id==flag)" disabled >{{contract.ground.codeGround}}</td>-->
 
     </ng-container>
     </td>
@@ -145,7 +139,6 @@
 
 
   <tr *ngIf="checkAdd" style="border-top: 5px solid slateblue">
-<!--    <input hidden type="text" class="form-control" formControlName="rentStatus"  value="{{true}}">-->
     <td></td>
     <td>
       <input type="text" class="form-control" formControlName="name">
@@ -201,15 +194,6 @@
         class="text-danger">Vui lòng nhập nameCompany!!!</p>
     </td>
 
-<!--    <td>-->
-
-<!--      <select style="width: 100px;" class="form-control"  formControlName="nameGround">-->
-<!--        <option  [value]="ground.codeGround" *ngFor="let ground of grounds ">{{ground.codeGround}}-->
-
-<!--        </option>-->
-<!--      </select>-->
-<!--    </td>-->
-
     <td colspan="4">
       <button  class="button btn btn-warning" (click)="addNewCustomer()" >Xác Nhận</button>
       <button class="button btn btn-danger ml-5" (click)="cancelAdd()">Hủy</button>
@@ -230,246 +214,5 @@
 
 
 
-<!--<nav>-->
-<!--  <ul class="pagination justify-content-center">-->
-<!--    <li class="page-item active">-->
-<!--      <a href="" class="page-link py-2 px-3">-->
-<!--        <span>&laquo;</span>-->
-<!--      </a>-->
-<!--    </li>-->
-<!--    <li class="page-item">-->
-<!--      <a href="" class="page-link py-2 px-3">-->
-<!--        1-->
-<!--      </a>-->
-<!--    </li>-->
-<!--    <li class="page-item">-->
-<!--      <a href="" class="page-link py-2 px-3">-->
-<!--        2-->
-<!--      </a>-->
-<!--    </li>-->
-<!--    <li class="page-item">-->
-<!--      <a href="" class="page-link py-2 px-3">-->
-<!--        3-->
-<!--      </a>-->
-<!--    </li>-->
-<!--    <li class="page-item">-->
-<!--      <a href="" class="page-link py-2 px-3">-->
-<!--        <span>&raquo;</span>-->
-<!--      </a>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</nav>-->
-
-
-<!--<div class="row justify-content-between">-->
-<!--  <h1>DANH SÁCH NHÂN VIÊN</h1>-->
-<!--  <div class="d-flex">-->
-<!--    <i class="fas fa-search"></i><input type="text" class="form-control mr-2" style="width: 450px;" placeholder="Tìm kiếm thông tin khách hàng"-->
-<!--           [(ngModel)]="search">-->
-
-<!--  </div>-->
-<!--</div>-->
-
-
-<!--<div class="row m-3 px-3 scroll-table">-->
-
-<!--  <form action="" [formGroup]="formAddNewCustomer">-->
-
-
-<!--    &lt;!&ndash;  <button class="btn btn-outline-danger" (click)="openDialogAdd()" style="font-size: 30px">Thêm mới</button>&ndash;&gt;-->
-<!--    <table class="table table-bordered table-sm table-hover " style="margin-top: 40px" id="myTable">-->
-<!--      <thead class="thead-light">-->
-<!--      <tr>-->
-<!--        <th>STT</th>-->
-<!--        <th>Họ Tên</th>-->
-<!--        <th>Id Card</th>-->
-<!--        <th>Email</th>-->
-<!--        <th>Phone</th>-->
-<!--        <th>Birthday</th>-->
-<!--        <th>Address</th>-->
-<!--        <th>Website</th>-->
-<!--        <th>Company</th>-->
-<!--        <th>Tên Mặt Bằng</th>-->
-<!--        <th>Đang thuê</th>-->
-<!--        <th colspan="2">Tác vụ</th>-->
-
-<!--      </tr>-->
-<!--      </thead>-->
-<!--      <tbody>-->
-<!--      <tr *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">-->
-
-<!--        <td> {{(i+1)+(page-1)*5}}</td>-->
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.name}}</td>-->
-<!--        <td *ngIf="checkEdit  && customer.id===flag ">-->
-<!--          <input type="text" class="form-control" formControlName="name" value="{{customer.name}}">-->
-<!--        </td>-->
-
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.idCard}}</td>-->
-<!--        <td *ngIf="checkEdit && customer.id===flag ">-->
-<!--          <input type="text"-->
-<!--                 class="form-control"-->
-<!--                 formControlName="idCard"-->
-<!--                 value="{{customer.idCard}}">-->
-<!--        </td>-->
-
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.email}}</td>-->
-<!--        <td *ngIf="checkEdit && customer.id===flag ">-->
-<!--          <input type="text"-->
-<!--                 class="form-control"-->
-<!--                 formControlName="email"-->
-<!--                 value="{{customer.email}}">-->
-<!--        </td>-->
-
-
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.phone}}</td>-->
-<!--        <td *ngIf="checkEdit && customer.id===flag ">-->
-<!--          <input type="text"-->
-<!--                 class="form-control"-->
-<!--                 formControlName="phone"-->
-<!--                 value="{{customer.phone}}">-->
-<!--        </td>-->
-
-
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.birthday | date:'dd/MM/yyyy'}}</td>-->
-<!--        <td *ngIf="checkEdit && customer.id===flag">-->
-<!--          <label>-->
-<!--            <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput-->
-<!--                   [matDatepicker]="picker1" value="{{customer.birthday}}">-->
-<!--          </label>-->
-<!--          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
-<!--          <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>-->
-<!--        </td>-->
-
-
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.address}}</td>-->
-<!--        <td *ngIf="checkEdit && customer.id===flag">-->
-<!--          <input type="text"-->
-<!--                 class="form-control"-->
-<!--                 formControlName="address"-->
-<!--                 value="{{customer.address}}">-->
-<!--        </td>-->
-
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.website}}</td>-->
-<!--        <td *ngIf="checkEdit && customer.id===flag">-->
-<!--          <input type="text" class="form-control"-->
-<!--                 formControlName="website"-->
-<!--                 value="{{customer.website}}">-->
-<!--        </td>-->
-
-<!--        <td *ngIf="!checkEdit || customer.id!==flag">{{customer.nameCompany}}</td>-->
-<!--        <td *ngIf="checkEdit && customer.id===flag">-->
-<!--          <input type="text" class="form-control"-->
-<!--                 formControlName="nameCompany"-->
-<!--                 value="{{customer.nameCompany}}">-->
-<!--        </td>-->
-
-
-<!--        <td>{{customer.nameGround}}</td>-->
-
-<!--        <td><input type="checkbox" [checked]="customer.rentStatus" disabled></td>-->
-
-<!--        <td>-->
-<!--          <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-success ml-3"-->
-<!--                  (click)="checkEditCustomer(customer.id)">Edit-->
-<!--          </button>-->
-<!--          <button *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"-->
-<!--                  (click)="editCustomer()">Save-->
-<!--          </button>-->
-
-<!--        </td>-->
-
-<!--        <td>-->
-<!--          <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-danger ml-3"-->
-<!--                  (click)="openDialogDelete(customer.id)">Delete-->
-<!--          </button>-->
-<!--          <button *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"-->
-<!--                  (click)="resetCustomer()">Reset-->
-<!--          </button>-->
-<!--        </td>-->
-<!--      </tr>-->
-<!--      </tbody>-->
-
-<!--      &lt;!&ndash;      add customer&ndash;&gt;-->
-
-<!--      <tr *ngIf="checkAdd">-->
-<!--        <input hidden type="text" class="form-control" formControlName="rentStatus"  value="{{true}}">-->
-<!--        <td></td>-->
-<!--        <td>-->
-<!--          <input type="text" class="form-control" formControlName="name">-->
-<!--          <p-->
-<!--            *ngIf="formAddNewCustomer.controls.name.errors?.required && formAddNewCustomer.controls.name.touched"-->
-<!--            class="text-danger">Vui lòng nhập tên !!!</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input type="text" class="form-control" formControlName="idCard">-->
-<!--          <p-->
-<!--          *ngIf="formAddNewCustomer.controls.idCard.errors?.required && formAddNewCustomer.controls.idCard.touched"-->
-<!--          class="text-danger">Vui lòng nhập CMND!!!</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input type="text" class="form-control" formControlName="email">-->
-<!--          <p-->
-<!--            *ngIf="formAddNewCustomer.controls.email.errors?.required && formAddNewCustomer.controls.email.touched"-->
-<!--            class="text-danger">Vui lòng nhập email!!!</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input type="text" class="form-control" formControlName="phone">-->
-<!--          <p-->
-<!--            *ngIf="formAddNewCustomer.controls.phone.errors?.required && formAddNewCustomer.controls.phone.touched"-->
-<!--            class="text-danger">Vui lòng nhập phone!!!</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <label>-->
-<!--            <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput-->
-<!--                   [matDatepicker]="picker1">-->
-<!--          </label>-->
-<!--          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
-<!--          <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>-->
-<!--          <p-->
-<!--            *ngIf="formAddNewCustomer.controls.birthday.errors?.required && formAddNewCustomer.controls.birthday.touched"-->
-<!--            class="text-danger">Vui lòng nhập birthday!!!</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input type="text" class="form-control" formControlName="address">-->
-<!--          <p-->
-<!--            *ngIf="formAddNewCustomer.controls.address.errors?.required && formAddNewCustomer.controls.address.touched"-->
-<!--            class="text-danger">Vui lòng nhập address!!!</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input type="text" class="form-control" formControlName="website">-->
-<!--          <p-->
-<!--            *ngIf="formAddNewCustomer.controls.website.errors?.required && formAddNewCustomer.controls.website.touched"-->
-<!--            class="text-danger">Vui lòng nhập website!!!</p>-->
-<!--        </td>-->
-<!--        <td>-->
-<!--          <input type="text" class="form-control" formControlName="nameCompany">-->
-<!--          <p-->
-<!--            *ngIf="formAddNewCustomer.controls.nameCompany.errors?.required && formAddNewCustomer.controls.nameCompany.touched"-->
-<!--            class="text-danger">Vui lòng nhập nameCompany!!!</p>-->
-<!--        </td>-->
-
-<!--        <td>-->
-<!--          <select  class="form-control"  formControlName="nameGround">-->
-<!--            <option [value]="ground.codeGround" *ngFor="let ground of grounds ">{{ground.codeGround}}-->
-<!--            </option>-->
-<!--          </select>-->
-<!--        </td>-->
-
-<!--        <td colspan="4">-->
-<!--          <button [disabled]="formAddNewCustomer.invalid" class="button btn btn-warning" (click)="addNewCustomer()" >ADD</button>-->
-<!--          <button class="button btn btn-warning ml-5" (click)="cancelAdd()">CANCEL</button>-->
-
-<!--        </td>-->
-<!--      </tr>-->
-<!--    </table>-->
-<!--    <button class="button btn btn-warning" (click)="checkAddCustomer()">Thêm mới</button>-->
-<!--  </form>-->
-
-<!--  <pagination-controls id="listing_pagination" (pageChange)="page = $event" previousLabel="previous"-->
-<!--                       nextLabel="next"></pagination-controls>-->
-<!--</div>-->
-<!--<div class="text-danger">-->
-<!--  {{message}}-->
-<!--</div>-->
 
 

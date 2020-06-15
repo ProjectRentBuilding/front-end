@@ -2,7 +2,6 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ContractService} from "../../../service/contract.service";
 import {CustomerService} from "../../../service/customer.service";
-import {ContractModel} from "../../../model/contract";
 import {Subscription} from "rxjs";
 
 @Component({
