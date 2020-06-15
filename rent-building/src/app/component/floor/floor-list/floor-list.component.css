@@ -63,4 +63,9 @@
 table thead  th,td{
   vertical-align: middle;
 }
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
 

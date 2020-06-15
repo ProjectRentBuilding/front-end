@@ -1,5 +1,6 @@
+<div style="margin-left: 99%;margin-top: -2%;" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x" aria-hidden="true"></i>
+</div>
 <h2 class="text-center">Thêm mặt bằng</h2>
-
 <form [formGroup]="addGroundForm" class="col-md-12 offset-md-4">
   <fieldset>
     <legend>Thêm mới thông tin mặt bằng</legend>
@@ -102,7 +103,7 @@
   </fieldset>
 </form>
 
-<label class="row " style="margin-left: 30%">
+<label class="row " style="margin-left: 60%">
 
   <div class="form-group d-flex justify-content-center mr-5">
     <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
@@ -111,10 +112,6 @@
     <button  class="btn btn-success mt-3" [disabled]="addGroundForm.invalid" (click)="onAddGround()">Thêm mới
     </button>
 
-  </div>
-  <div class="form-group d-flex justify-content-center " style="align-content: center">
-    <button class="btn btn-outline-dark mt-3" mat-dialog-close>Quay về danh sách mặt bằng
-    </button>
   </div>
 </label>
 

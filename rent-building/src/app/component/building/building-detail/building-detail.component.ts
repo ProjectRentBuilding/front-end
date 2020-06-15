@@ -1,9 +1,8 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {BuildingService} from '../../../service/building.service';
+
 
 @Component({
   selector: 'app-building-detail',
