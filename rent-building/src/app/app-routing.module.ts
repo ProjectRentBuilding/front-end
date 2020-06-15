@@ -12,10 +12,12 @@ import {CustomerListComponent} from './component/customer/customer-list/customer
 import {CustomersComponent} from './component/customer/customers/customers.component';
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
 import {GroundListComponent} from './component/ground/ground-list/ground-list.component';
+import {EquipmentBuildingComponent} from './component/equipment/equipment-building/equipment-building.component';
 
 
 const routes: Routes = [
   {path: 'equipments', component: EquipmentListComponent},
+  {path: 'equipments-building', component: EquipmentBuildingComponent},
   {
     path: 'buildings',
     component: BuildingListComponent,

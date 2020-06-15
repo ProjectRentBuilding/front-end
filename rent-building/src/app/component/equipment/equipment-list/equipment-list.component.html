@@ -1,10 +1,8 @@
 
-
 <div class="col-md-5 mt-5">
   <div class="input-group">
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
-    <button type="button" class="btn btn-secondary search-button"><i
-      class="fa fa-search text-danger"></i></button>
+    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
   </div>
 
 </div>
@@ -15,25 +13,23 @@
   <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
           id="triggerId" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-    Loại
+    Mã Mặt Bằng
   </button>
   <div class="dropdown-menu" aria-labelledby="triggerId">
-    <a class="dropdown-item" *ngFor="let type of typeEquipment" id="{{type.id}}">{{type.nameType}}</a>
-<!--    <a class="dropdown-item" id="type2" (click)="searchType('type2')">Điều hoà</a>-->
-<!--    <a class="dropdown-item" id="type3" (click)="searchType('type3')">Quạt</a>-->
-<!--    <a class="dropdown-item" id="type4" (click)="searchType('type4')">Router Wifi</a>-->
+    <a class="dropdown-item" *ngFor="let ground of grounds"  (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>
   </div>
 </div>
+<div><button class="" [routerLink]="['/equipments-building/']">building</button></div>
+
 <ng-container>
 <form action="" [formGroup]="formEditEquipment"  (ngSubmit)="logValue()" *ngIf="formEditEquipment">
-  <table class="table bg-light text-center table-striped ">
+  <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
     <tr class="text-muted">
       <th>STT</th>
       <th style="width: 140px">Loại (<span style="color: red">*</span>)</th>
       <th>Tên thiết bị (<span style="color: red">*</span>)</th>
       <th>Số lượng (<span style="color: red">*</span>)</th>
-<!--      <th>Trạng thái</th>-->
       <th>Số lượng hỏng (<span style="color: red">*</span>)</th>
       <th>Ghi chú</th>
       <th>Mã mặt bằng (<span style="color: red">*</span>)</th>
@@ -45,13 +41,7 @@
                                                                             itemsPerPage:5,
                                                                             currentPage:page
                                                                            }; ">
-<!--      <td>-->
-<!--							<p class="custom-checkbox">-->
-<!--								<input type="checkbox" ng:id="${equipment.id}" name="options[]" value="1">-->
-<!--								<label ng:for="${equipment.id}"></label>-->
-<!--							</p>-->
-<!--      </td>-->
-<!--      <td hidden> <input formControlName="id" hidden>{{equipment.id}}</td>-->
+
       <td>{{(i+1)+(page-1)*5}}</td>
       <td *ngIf="!checkEdit ||  equipment.id!==flag">
         {{equipment.typeEquipment.nameType}}
@@ -60,18 +50,18 @@
         <select class="form-control" formControlName="typeEquipmentId" style="width:120px" >
           <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>
         </select>
-<!--        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">-->
-<!--            Loại không được để trống!-->
-<!--        </p>-->
+        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">
+            Loại không được để trống!
+        </p>
       </td>
       <td *ngIf="!checkEdit ||  equipment.id!==flag">
         {{equipment.nameEquipment}}
       </td>
       <td *ngIf="checkEdit && equipment.id===flag">
         <input type="text" class="form-control" formControlName="nameEquipment" >
-<!--        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">-->
-<!--          Loại không được để trống!-->
-<!--        </p>-->
+        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">
+          Loại không được để trống!
+        </p>
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag ">
         {{equipment.amount}}
@@ -98,9 +88,9 @@
         <select class="form-control" formControlName="groundId" style="width:120px" >
           <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
         </select>
-<!--        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">-->
-<!--          Mã mặt bằng không được để trống!-->
-<!--        </p>-->
+        <p class="alert alert-danger" role="alert" *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">
+          Mã mặt bằng không được để trống!
+        </p>
       </td>
       <td *ngIf="!checkEdit || equipment.id!==flag">
         <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)" >Sửa</button>
@@ -180,7 +170,9 @@
 </table>
 </form>
 </ng-container>
+
   <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2"(click)="addNewEquipment()">Lưu</button>
+
 
 <!--    pagination-->
 
