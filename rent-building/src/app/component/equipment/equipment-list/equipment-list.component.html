@@ -13,16 +13,17 @@
   <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
           id="triggerId" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
-    Loại
+    Mã Mặt Bằng
   </button>
   <div class="dropdown-menu" aria-labelledby="triggerId">
-    <a class="dropdown-item" *ngFor="let type of typeEquipment" id="{{type.id}}">{{type.nameType}}</a>
-
+    <a class="dropdown-item" *ngFor="let ground of grounds"  (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>
   </div>
 </div>
+<div><button class="" [routerLink]="['/equipments-building/']">building</button></div>
+
 <ng-container>
 <form action="" [formGroup]="formEditEquipment"  (ngSubmit)="logValue()" *ngIf="formEditEquipment">
-  <table class="table bg-light text-center table-striped ">
+  <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
     <tr class="text-muted">
       <th>STT</th>
@@ -33,7 +34,6 @@
       <th>Ghi chú</th>
       <th>Mã mặt bằng (<span style="color: red">*</span>)</th>
       <th colspan="2"></th>
-
     </tr>
     </thead>
     <tbody>

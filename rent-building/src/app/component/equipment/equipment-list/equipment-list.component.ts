@@ -64,15 +64,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       note: ['', [Validators.required]],
       groundId: ['', [Validators.required]],
     });
-    // this.formAddNewEquipment = this.formBuilder.group({
-    //   id:[''],
-    //   typeEquipmentId: ['', [Validators.required]],
-    //   nameEquipment: ['', [Validators.required]],
-    //   amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
-    //   amountOfBroken: ['', [Validators.required]],
-    //   note: ['', [Validators.required]],
-    //   groundId: ['', [Validators.required]],
-    // });
   }
 
   createEquipment(): FormGroup {
@@ -116,14 +107,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.equipment.removeAt(i);
   }
 
-  // checkaddNewEquipment() {
-  //   if (!this.checkAdd) {
-  //     // this.ngOnInit();
-  //     this.checkAdd = true;
-  //     this.checkEdit = false;
-  //   }
-  // }
-
 
   addNewEquipment() {
 
@@ -135,7 +118,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
         this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
       });
     }
-    // // this.checkAdd = false;
     this.redirectTo('equipments');
     console.log(this.formAddNewEquipment);
   }
@@ -156,13 +138,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
         this.formEditEquipment.patchValue(data);
       });
     }
-  }
-
-  addArrayEdit(){
-    this.subscription = this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
-      this.equipmentModel = data;
-    });
-    console.log(this.equipmentModel);
   }
 
   editEquipment() {
@@ -189,10 +164,9 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     });
   }
-  // searchType(text) {
-  //   console.log(text);
-  //   this.searchText = document.getElementById(text).innerText;
-  // }
-
+  searchType(event) {
+    console.log(event);
+    this.searchText = event;
+  }
 
 }

@@ -42,6 +42,7 @@ import { GroundAddComponent } from './component/ground/ground-add/ground-add.com
 import { GroundEditComponent } from './component/ground/ground-edit/ground-edit.component';
 import { GroundDetailComponent } from './component/ground/ground-detail/ground-detail.component';
 import { ImageGalleryComponent } from './component/building/building-add/image-gallery/image-gallery.component';
+import { EquipmentBuildingComponent } from './component/equipment/equipment-building/equipment-building.component';
 
 
 
@@ -74,7 +75,8 @@ import { ImageGalleryComponent } from './component/building/building-add/image-g
     GroundAddComponent,
     GroundEditComponent,
     GroundDetailComponent,
-    ImageGalleryComponent
+    ImageGalleryComponent,
+    EquipmentBuildingComponent
 
 
 
