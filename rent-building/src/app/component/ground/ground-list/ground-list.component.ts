@@ -9,6 +9,9 @@ import {GroundDetailComponent} from '../ground-detail/ground-detail.component';
 import {GroundEditComponent} from '../ground-edit/ground-edit.component';
 import {ContractService} from "../../../service/contract.service";
 import {ContractModel} from "../../../model/contract";
+import {FloorModel} from "../../../model/floor.model";
+import {FloorService} from "../../../service/floor.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -23,10 +26,13 @@ export class GroundListComponent implements OnInit, OnDestroy {
   public totalRec: number;
   public page = 1;
   public searchText;
+  public floors: FloorModel[];
 
   constructor(
     public groundService: GroundService,
     public contractService: ContractService,
+    public floorService: FloorService,
+    public routerService: Router,
     public dialog: MatDialog
   ) {
   }
@@ -35,6 +41,9 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
       this.totalRec = this.grounds.length;
+    });
+    this.subscription = this.floorService.findAll().subscribe((data: FloorModel[]) => {
+      this.floors = data;
     });
     this.subscription = this.contractService.findAll().subscribe((data: ContractModel[]) => {
       this.contracts = data;
@@ -48,6 +57,10 @@ export class GroundListComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+  redirectTo(uri: string) {
+    this.routerService.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.routerService.navigate([uri]));
   }
 
   openDialogAddNew(): void {
@@ -102,6 +115,18 @@ export class GroundListComponent implements OnInit, OnDestroy {
         this.ngOnInit();
       });
     });
+  }
+
+  searchType(codeFloor: any) {
+    this.searchText = codeFloor;
+  }
+
+  deleteAll() {
+    for(let item=0;item <this.grounds.length;item++)
+      this.groundService.delete(this.grounds[item].id).subscribe(data => {
+      });
+    this.redirectTo('grounds');
+    this.groundService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 }
 

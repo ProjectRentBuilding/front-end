@@ -5,11 +5,18 @@
     <button type="button" class="btn btn-secondary search-button"><i
       class="fa fa-search text-danger"></i></button>
   </div>
-
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TÒA NHÀ</h3>
-<button  class="btn btn-success px-4 py-2" (click)="openDialogAddNew()">Thêm mới</button>
+<div class="row">
+  <div class="dropdown open col-md-2">
+    <button  class="btn btn-success px-4 py-2" (click)="openDialogAddNew()">Thêm mới</button>
+  </div>
+  <div class="col-md-8"></div>
+  <div class="col-md-2">
+    <button class="btn btn-light" (click)="deleteAll()">Xoá tất cả</button>
+  </div>
+</div>
 <form  >
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">

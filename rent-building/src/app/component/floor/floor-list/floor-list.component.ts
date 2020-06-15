@@ -133,8 +133,16 @@ export class FloorListComponent implements OnInit, OnDestroy {
     });
   }
 
-  searchType(codeFloor: string) {
-    this.searchText=codeFloor;
+  searchType(fullName: string) {
+    this.searchText = fullName;
+  }
+
+  deleteAll() {
+    for(let item=0;item <this.floors.length;item++)
+      this.floorService.delete(this.floors[item].id).subscribe(data => {
+      });
+    this.redirectTo('floors');
+    this.floorService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 }
 
