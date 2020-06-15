@@ -10,7 +10,7 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
-<button   routerLink="/contracts/add" class="btn btn-success px-4 py-2" >Thêm mới</button>
+<button  class="btn btn-success px-4 py-2 " (click)="checkAddNewFloor()">Thêm mới</button>
 <form action="" [formGroup]="addFloorForm" >
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
@@ -190,7 +190,7 @@
     </tbody>
   </table>
 
-  <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2 " (click)="checkAddNewFloor()">Thêm mới</button>
+
 
 </form>
 <!--    pagination-->

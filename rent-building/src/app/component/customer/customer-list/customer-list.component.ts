@@ -3,7 +3,7 @@ import {Customer} from '../../../model/customer.model';
 import {Subscription} from 'rxjs';
 import {CustomerService} from '../../../service/customer.service';
 import {MatDialog} from '@angular/material';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {CustomerDeleteComponent} from '../customer-delete/customer-delete.component';
 import {GroundService} from '../../../service/ground.service';
