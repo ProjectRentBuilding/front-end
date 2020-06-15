@@ -118,7 +118,7 @@
       <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-warning ml-3"
               (click)="checkEditCustomer(customer.id)">Sửa
       </button>
-      <button *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3" type="button"
+      <button *ngIf="checkEdit && customer.id===flag" class="btn btn-primary ml-3" type="button"
               (click)="editCustomer()">Lưu
       </button>
 

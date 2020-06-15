@@ -21,3 +21,7 @@ form fieldset label div p{
 legend{
   color: red;
 }
+.cdk-overlay-pane{
+  margin-left: 22%;
+}
+

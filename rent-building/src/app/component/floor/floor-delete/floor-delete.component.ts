@@ -17,7 +17,7 @@ export class FloorDeleteComponent implements OnInit {
     public floorService: FloorService,
   ) { }
   ngOnInit(): void {
-    this.floorName = this.data.data1.fullName;
+    this.floorName = this.data.data1.nameFloor;
     this.floorId = this.data.data1.id;
   }
   deleteFloor() {

@@ -110,7 +110,7 @@
       <td *ngIf="!checkEdit || item.id!==flag"><button  class="btn btn-warning" (click)="checkEditFloor(item.id)">Sửa</button></td>
       <td *ngIf="!checkEdit || item.id!==flag"><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">Xóa</button></td>
       <td *ngIf="checkEdit && item.id===flag">
-        <button class="btn btn-success" type="button" [disabled]="addFloorForm.invalid" (click)="editFloor()" style="margin-right: 10px">Lưu</button>
+        <button class="btn btn-primary" type="button" [disabled]="addFloorForm.invalid" (click)="editFloor()" style="margin-right: 10px">Lưu</button>
       </td>
       <td *ngIf="checkEdit && item.id===flag">
         <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">Hủy</button>
