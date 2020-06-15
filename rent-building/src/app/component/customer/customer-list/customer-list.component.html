@@ -15,16 +15,16 @@
   <tr  class="text-muted">
     <th>STT</th>
     <th>Họ Tên</th>
-    <th>Id Card</th>
+    <th>CMND</th>
     <th>Email</th>
-    <th>Phone</th>
-    <th>Birthday</th>
-    <th>Address</th>
+    <th>Số Điện Thoại</th>
+    <th>Ngày Sinh</th>
+    <th>Địa Chỉ</th>
     <th>Website</th>
-    <th>Company</th>
+    <th>Công Ty</th>
     <th>Tên Mặt Bằng</th>
     <th>Đang thuê</th>
-    <th colspan="2">Tác vụ</th>
+    <th colspan="2"></th>
   </tr>
   </thead>
   <tbody>
@@ -65,7 +65,7 @@
     <td *ngIf="!checkEdit || customer.id!==flag">{{customer.birthday | date:'dd/MM/yyyy'}}</td>
     <td *ngIf="checkEdit && customer.id===flag">
 
-        <input  class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
+        <input   class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
                [matDatepicker]="picker1" value="{{customer.birthday}}">
 
       <mat-datepicker-toggle  matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -171,10 +171,10 @@
         class="text-danger">Vui lòng nhập phone!!!</p>
     </td>
     <td>
-      <label>
+
         <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
                [matDatepicker]="picker1">
-      </label>
+
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
       <p
@@ -211,7 +211,7 @@
 
     <td colspan="4">
       <button  class="button btn btn-warning" (click)="addNewCustomer()" >Xác Nhận</button>
-      <button class="button btn btn-warning ml-5" (click)="cancelAdd()">Hủy</button>
+      <button class="button btn btn-danger ml-5" (click)="cancelAdd()">Hủy</button>
 
     </td>
   </tr>

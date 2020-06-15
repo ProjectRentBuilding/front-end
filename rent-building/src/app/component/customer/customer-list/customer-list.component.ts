@@ -133,7 +133,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   editCustomer() {
-    this.customerService.showNotification('', 'Edit success !!!');
+    this.customerService.showNotification('', 'Chỉnh sửa thành công  !!!');
     this.customerService.update(this.formAddNewCustomer.value, this.customerOfId).subscribe(data => {
       this.redirectTo('customers');
     });
