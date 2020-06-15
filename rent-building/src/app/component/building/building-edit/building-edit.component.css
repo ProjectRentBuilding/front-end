@@ -21,3 +21,6 @@ form fieldset label div p{
 legend{
   color: red;
 }
+.ng-valid{
+  background: deepskyblue;
+}
