@@ -36,7 +36,7 @@ const routes: Routes = [
     component: ContractsComponent,
     children: [
       {
-        path: '',
+        path: 'paging',
         component: ContractListComponent
       },
       {

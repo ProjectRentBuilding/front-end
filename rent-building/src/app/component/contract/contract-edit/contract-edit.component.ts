@@ -90,7 +90,7 @@ export class ContractEditComponent implements OnInit {
     console.log(this.formEditContract.value);
     console.log(this.contractId);
     this.contractService.update(this.formEditContract.value, this.contractId).subscribe(data => {
-      this.router.navigateByUrl('contracts').then(r => this.contractService.showNotification("", "Chỉnh sửa thành công, chúc mừng bạn"));
+      this.router.navigateByUrl('contracts/paging').then(r => this.contractService.showNotification("", "Chỉnh sửa thành công, chúc mừng bạn"));
     });
 
   }
