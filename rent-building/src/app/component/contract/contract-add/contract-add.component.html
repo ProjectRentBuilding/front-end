@@ -1,119 +1,119 @@
 <h3 class="text-center" style="color: red">Thêm mới hợp đồng</h3>
 <form class="w-75 mx-auto mt-3 col-md-12 offset-md-4" [formGroup]="formAddNewContract">
-    <input type="text" hidden class="form-control" formControlName="id" [value]=contractId>
-    <div class="row">
-      <div class="form-group col-md-4">
-        <p style="font-weight: bold">Mặt bằng(<span style="color: red">*</span>)</p>
-        <select class="form-control" formControlName="groundId" style="height: 35px; width: 215px;">
-          <option  *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
-        </select>
-        <p
-          *ngIf="formAddNewContract.controls.groundId.errors?.required && formAddNewContract.controls.groundId.touched"
-          class="text-danger">Vui lòng chọn mặt bằng</p>
-      </div>
-
-
-      <div class="form-group col-md-4">
-        <p style="font-weight: bold">Họ Và Tên Khách Hàng(<span style="color: red">*</span>)</p>
-        <select  class="form-control"   formControlName="customerId" style="height: 35px; width: 215px;">
-          <option  *ngFor="let customer of customers"  [value]="customer.id">{{customer.name}}</option>
-        </select>
-        <p
-          *ngIf="formAddNewContract.controls.customerId.errors?.required && formAddNewContract.controls.customerId.touched"
-          class="text-danger">Vui lòng chọn khách hàng</p>
-      </div>
-
-      <div class="form-group col-md-4">
-        <p style="font-weight: bold">Họ Và Tên Nhân Viên(<span style="color: red">*</span>)</p>
-        <select  class="form-control"   formControlName="employeeId" style="height: 35px; width: 215px;">
-          <option  *ngFor="let employee of employees"  [value]="employee.id">{{employee.name}}</option>
-        </select>
-        <p
-          *ngIf="formAddNewContract.controls.employeeId.errors?.required && formAddNewContract.controls.employeeId.touched"
-          class="text-danger">Vui lòng chọn nhân viên</p>
-      </div>
+  <input type="text" hidden class="form-control" formControlName="id" [value]=contractId>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <p style="font-weight: bold">Mặt bằng(<span style="color: red">*</span>)</p>
+      <select class="form-control" formControlName="groundId" style="height: 35px; width: 215px;">
+        <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
+      </select>
+      <p
+        *ngIf="formAddNewContract.controls.groundId.errors?.required && formAddNewContract.controls.groundId.touched"
+        class="text-danger">Vui lòng chọn mặt bằng</p>
     </div>
 
 
-    <div class="row">
-      <div class="form-group col-md-4">
-        <p style="font-weight: bold">Kì Hạn(Tháng)</p>
-        <input type="text" class="form-control" formControlName="term" disabled [(ngModel)]="termCalculate">
-      </div>
-
-      <div class="form-group col-md-4">
-        <p style="font-weight: bold">Ngày bắt đầu thuê(<span style="color: red">*</span>)</p>
-        <input class="form-control" formControlName="startRentDay" [(ngModel)]="startDayCheck"
-               placeholder="Choose a date"
-               matInput
-               [matDatepicker]="picker1" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
-        <p
-          *ngIf="(formAddNewContract.controls.startRentDay.errors?.required && formAddNewContract.controls.startRentDay.touched)"
-          class="text-danger">Vui lòng chọn ngày bắt đầu thuê
-        </p>
-        <p
-          *ngIf="(formAddNewContract.controls.startRentDay.errors?.required && formAddNewContract.controls.endRentDay.touched)"
-          class="text-danger">Vui lòng chọn ngày bắt đầu thuê
-        </p>
-      </div>
-
-      <div class="form-group col-md-4">
-        <p style="font-weight: bold">Ngày kết thúc thuê(<span style="color: red">*</span>)</p>
-        <input class="form-control" formControlName="endRentDay"
-               [(ngModel)]="endDayCheck" placeholder="Choose a date"
-               matInput
-               [matDatepicker]="picker2" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
-
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
-        <p
-          *ngIf="formAddNewContract.controls.endRentDay.errors?.required && formAddNewContract.controls.endRentDay.touched"
-          class="text-danger">Vui lòng chọn ngày kết thúc thuê
-        </p>
-        <p *ngIf="messageTimeValidate" class="text-danger">{{messageTimeValidate}}</p>
-      </div>
+    <div class="form-group col-md-4">
+      <p style="font-weight: bold">Họ Và Tên Khách Hàng(<span style="color: red">*</span>)</p>
+      <select class="form-control" formControlName="customerId" style="height: 35px; width: 215px;">
+        <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
+      </select>
+      <p
+        *ngIf="formAddNewContract.controls.customerId.errors?.required && formAddNewContract.controls.customerId.touched"
+        class="text-danger">Vui lòng chọn khách hàng</p>
     </div>
 
-    <div class="row">
-      <div class="form-group col-md-6">
-        <p style="font-weight: bold" >Giá Tiền Mỗi Tháng(VNĐ)(<span style="color: red">*</span>)</p>
-        <input type="number" class="form-control" formControlName="price" [(ngModel)]="priceCalculate"
-               (keyup)="checkValidateTimeInput(startDayCheck,endDayCheck)">
-        <p
-          *ngIf="formAddNewContract.controls.price.errors?.required&&formAddNewContract.controls.price.touched"
-          class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
-        <p
-          *ngIf="formAddNewContract.controls.price.errors?.required&&formAddNewContract.controls.endRentDay.touched"
-          class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
-        <p
-          *ngIf="formAddNewContract.controls.price.errors?.pattern && formAddNewContract.controls.price.touched"
-          class="text-danger">Phải là số dương</p>
-      </div>
+    <div class="form-group col-md-4">
+      <p style="font-weight: bold">Họ Và Tên Nhân Viên(<span style="color: red">*</span>)</p>
+      <select class="form-control" formControlName="employeeId" style="height: 35px; width: 215px;">
+        <option *ngFor="let employee of employees" [value]="employee.id">{{employee.name}}</option>
+      </select>
+      <p
+        *ngIf="formAddNewContract.controls.employeeId.errors?.required && formAddNewContract.controls.employeeId.touched"
+        class="text-danger">Vui lòng chọn nhân viên</p>
+    </div>
+  </div>
 
-      <div class="form-group col-md-6">
-        <p style="font-weight: bold">Tổng Tiền(VNĐ)</p>
-        <input type="text" class="form-control" formControlName="total" disabled [(ngModel)]="totalCalculate">
-      </div>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <p style="font-weight: bold">Kì Hạn(Tháng)</p>
+      <input type="text" class="form-control" formControlName="term" disabled [(ngModel)]="termCalculate">
     </div>
-    <div class="row">
-      <div class="form-group col-md-6">
-        <p style="font-weight: bold">Tiền cọc(VNĐ)</p>
-        <input type="text" class="form-control" formControlName="deposits" >
-      </div>
-      <div class="form-group col-md-6">
-        <p style="font-weight: bold">Mã số thuế(<span style="color: red">*</span>)</p>
-        <input type="text" class="form-control" formControlName="taxCode" >
-        <p
-          *ngIf="formAddNewContract.controls.taxCode.errors?.required && formAddNewContract.controls.taxCode.touched"
-          class="text-danger">Vui lòng nhập mã số thuế</p>
-      </div>
-      <div class="form-group col-md-6">
-        <p style="font-weight: bold">Url hình ảnh hợp đồng</p>
-        <input type="text" class="form-control" formControlName="urlImage" >
-      </div>
+
+    <div class="form-group col-md-4">
+      <p style="font-weight: bold">Ngày bắt đầu thuê(<span style="color: red">*</span>)</p>
+      <input class="form-control" formControlName="startRentDay" [(ngModel)]="startDayCheck"
+             placeholder="Choose a date"
+             matInput
+             [matDatepicker]="picker1" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+      <p
+        *ngIf="(formAddNewContract.controls.startRentDay.errors?.required && formAddNewContract.controls.startRentDay.touched)"
+        class="text-danger">Vui lòng chọn ngày bắt đầu thuê
+      </p>
+      <p
+        *ngIf="(formAddNewContract.controls.startRentDay.errors?.required && formAddNewContract.controls.endRentDay.touched)"
+        class="text-danger">Vui lòng chọn ngày bắt đầu thuê
+      </p>
     </div>
+
+    <div class="form-group col-md-4">
+      <p style="font-weight: bold">Ngày kết thúc thuê(<span style="color: red">*</span>)</p>
+      <input class="form-control" formControlName="endRentDay"
+             [(ngModel)]="endDayCheck" placeholder="Choose a date"
+             matInput
+             [matDatepicker]="picker2" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
+
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+      <p
+        *ngIf="formAddNewContract.controls.endRentDay.errors?.required && formAddNewContract.controls.endRentDay.touched"
+        class="text-danger">Vui lòng chọn ngày kết thúc thuê
+      </p>
+      <p *ngIf="messageTimeValidate" class="text-danger">{{messageTimeValidate}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <p style="font-weight: bold">Giá Tiền Mỗi Tháng(VNĐ)(<span style="color: red">*</span>)</p>
+      <input type="number" class="form-control" formControlName="price" [(ngModel)]="priceCalculate"
+             (keyup)="checkValidateTimeInput(startDayCheck,endDayCheck)">
+      <p
+        *ngIf="formAddNewContract.controls.price.errors?.required&&formAddNewContract.controls.price.touched"
+        class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
+      <p
+        *ngIf="formAddNewContract.controls.price.errors?.required&&formAddNewContract.controls.endRentDay.touched"
+        class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>
+      <p
+        *ngIf="formAddNewContract.controls.price.errors?.pattern && formAddNewContract.controls.price.touched"
+        class="text-danger">Phải là số dương</p>
+    </div>
+
+    <div class="form-group col-md-6">
+      <p style="font-weight: bold">Tổng Tiền(VNĐ)</p>
+      <input type="text" class="form-control" formControlName="total" disabled [(ngModel)]="totalCalculate">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <p style="font-weight: bold">Tiền cọc(VNĐ)</p>
+      <input type="text" class="form-control" formControlName="deposits">
+    </div>
+    <div class="form-group col-md-6">
+      <p style="font-weight: bold">Mã số thuế(<span style="color: red">*</span>)</p>
+      <input type="text" class="form-control" formControlName="taxCode">
+      <p
+        *ngIf="formAddNewContract.controls.taxCode.errors?.required && formAddNewContract.controls.taxCode.touched"
+        class="text-danger">Vui lòng nhập mã số thuế</p>
+    </div>
+    <div class="form-group col-md-6">
+      <p style="font-weight: bold">Url hình ảnh hợp đồng</p>
+      <input type="text" class="form-control" formControlName="urlImage">
+    </div>
+  </div>
   <div class="form-group">
     <p style="font-weight: bold">Nội dung hợp đồng(<span style="color: red">*</span>)</p>
     <textarea rows="5" type="text" class="form-control" formControlName="content"></textarea>
@@ -127,23 +127,23 @@
   </div>
 
   <div class="form-group">
-    <mat-checkbox class="form-control" formControlName="unified" value="{{false}}" style="font-weight: bold">Hai bên đã thống nhất với hợp đồng
+    <mat-checkbox class="form-control" formControlName="unified" value="{{false}}" style="font-weight: bold">Hai bên đã
+      thống nhất với hợp đồng
     </mat-checkbox>
   </div>
 </form>
-  <div class="row " style="margin-left: 43%">
+<div class="row " style="margin-left: 70%;margin-top: 5%">
+  <button style="margin-right: 5%" [disabled]="formAddNewContract.invalid" class="btn btn-primary mt-3" (click)="addNewContract()">
+    <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+  </button>
+  <button style="margin-right: 5%" class="btn btn-danger mt-3" (click)="clearFilters()">
+    <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i>
+  </button>
+  <button class="btn btn-success mt-3" routerLink="/contracts">
+    <i class="material-icons" data-toggle="tooltip" title="Quay về">next_plan</i>
+  </button>
+</div>
 
-    <div class="form-group d-flex justify-content-center mr-5">
-      <button class="btn btn-primary mt-3" (click)="clearFilters()">Làm lại</button>
-    </div>
-    <div class="form-group d-flex justify-content-center mr-5 ">
-      <button [disabled]="formAddNewContract.invalid" class="btn btn-success mt-3" (click)="addNewContract()">Lưu</button>
-
-    </div>
-    <div class="form-group d-flex justify-content-center " style="align-content: center">
-      <button class="btn btn-danger mt-3" routerLink="/contracts">Quay về</button>
-    </div>
-  </div>
 
 
 

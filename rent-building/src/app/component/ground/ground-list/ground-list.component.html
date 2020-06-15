@@ -6,14 +6,16 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
-<button (click)="openDialogAddNew()" class="btn btn-success px-4 py-2">Thêm mới</button>
+<button (click)="openDialogAddNew()" class="btn btn-success px-4 py-2">
+  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
+</button>
 
 <div class="row">
   <div class="dropdown open col-md-2">
-    <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
+    <button class="btn btn-dark dropdown-toggle" type="button"
             id="triggerId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-      Mã tầng
+      <i class="fa fa-codepen" aria-hidden="true" title="Mã tầng"></i>
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
       <a class="dropdown-item" *ngFor="let floor of floors"  (click)="searchType(floor.codeFloor)">{{floor.codeFloor}}</a>
@@ -21,7 +23,9 @@
   </div>
   <div class="col-md-8"></div>
   <div class="col-md-2">
-    <button class="btn btn-light" (click)="deleteAll()">Xoá tất cả</button>
+    <button class="btn btn-dark" (click)="deleteAll()">
+      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>
+    </button>
   </div>
 </div>
 <form action="">
@@ -58,14 +62,14 @@
       </ng-container>
 
       <td>
-        <button class="btn btn-info" style="width: 80px" (click)="openDialogView(item.id)">Chi tiết</button>
+        <button class="btn btn-info"  (click)="openDialogView(item.id)"><i class="material-icons" data-toggle="tooltip" title="Xem">&#xe8a0;</i></button>
       </td>
       <td>
-        <button class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button>
+        <button class="btn btn-warning" (click)="openDialogEdit(item.id)"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
-          Xóa
+          <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
         </button>
       </td>
     </tr>

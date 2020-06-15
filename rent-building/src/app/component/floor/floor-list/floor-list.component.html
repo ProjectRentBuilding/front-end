@@ -8,14 +8,16 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
-<button class="btn btn-success px-4 py-2 " (click)="checkAddNewFloor()">Thêm mới</button>
+<button class="btn btn-success px-4 py-2 " (click)="checkAddNewFloor()">
+  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
+</button>
 
 <div class="row">
   <div class="dropdown open col-md-2">
-    <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
+    <button class="btn btn-dark dropdown-toggle" type="button"
             id="triggerId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-      Tên tòa nhà
+      <i class="fa fa-building" aria-hidden="true" title="Tòa nhà"></i>
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
       <a class="dropdown-item" *ngFor="let building of buildings"
@@ -25,7 +27,9 @@
 
   <div class="col-md-8"></div>
   <div class="col-md-2">
-    <button class="btn btn-light" (click)="deleteAll()">Xoá tất cả</button>
+    <button class="btn btn-dark" (click)="deleteAll()">
+      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>
+    </button>
   </div>
 </div>
 
@@ -135,18 +139,23 @@
         </p>
       </td>
       <td *ngIf="!checkEdit || item.id!==flag">
-        <button class="btn btn-warning" (click)="checkEditFloor(item.id)">Sửa</button>
+        <button class="btn btn-warning" (click)="checkEditFloor(item.id)">
+          <i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i>
+        </button>
       </td>
       <td *ngIf="!checkEdit || item.id!==flag">
-        <button class="btn btn-danger" (click)="openDialogDelete(item.id)">Xóa</button>
-      </td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <button class="btn btn-primary" type="button" [disabled]="addFloorForm.invalid" (click)="editFloor()"
-                style="margin-right: 10px">Lưu
+        <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
+          <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
         </button>
       </td>
       <td *ngIf="checkEdit && item.id===flag">
-        <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">Hủy</button>
+        <button class="btn btn-primary" type="button" [disabled]="addFloorForm.invalid" (click)="editFloor()"
+                style="margin-right: 10px"><i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+        </button>
+      </td>
+      <td *ngIf="checkEdit && item.id===flag">
+        <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">
+          <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i></button>
       </td>
     </tr>
     <!--    thêm mới-->

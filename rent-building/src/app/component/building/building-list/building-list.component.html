@@ -10,11 +10,15 @@
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TÒA NHÀ</h3>
 <div class="row">
   <div class="dropdown open col-md-2">
-    <button  class="btn btn-success px-4 py-2" (click)="openDialogAddNew()">Thêm mới</button>
+    <button  class="btn btn-success px-4 py-2" (click)="openDialogAddNew()">
+      <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
+    </button>
   </div>
   <div class="col-md-8"></div>
   <div class="col-md-2">
-    <button class="btn btn-light" (click)="deleteAll()">Xoá tất cả</button>
+    <button style="margin-top: 6%" class="btn btn-dark" (click)="deleteAll()">
+      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>
+    </button>
   </div>
 </div>
 <form  >
@@ -42,10 +46,10 @@
       <td>{{item.email}}</td>
       <td>{{item.fax}}</td>
       <td>{{item.address}}</td>
-      <td><button  class="btn btn-info" style="width:80px" (click)="openDialogView(item.id)">Chi tiết</button></td>
-      <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button></td>
+      <td><button  class="btn btn-info" (click)="openDialogView(item.id)"><i class="material-icons" data-toggle="tooltip" title="Xem">&#xe8a0;</i></button></td>
+      <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></button></td>
       <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">
-        Xóa
+        <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
       </button></td>
 
     </tr>
