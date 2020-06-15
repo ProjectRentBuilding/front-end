@@ -42,7 +42,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
 
   openDialogAddNew(): void {
     const dialogRef = this.dialog.open(BuildingAddComponent, {
-      width: '65%',
+      width: '75%',
       height: '540px',
       disableClose: true,
     });
@@ -54,7 +54,8 @@ export class BuildingListComponent implements OnInit, OnDestroy {
   openDialogView(id): void {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
       const dialogRef = this.dialog.open(BuildingDetailComponent, {
-        width: '65%',
+
+        width: '75%',
         height: '540px',
         data: {data1: dataOfBuildingModel},
         disableClose: true,
@@ -68,7 +69,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
   openDialogEdit(id): void {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
       const dialogRef = this.dialog.open(BuildingEditComponent, {
-        width: '65%',
+        width: '75%',
         height: '540px',
         data: {data1: dataOfBuildingModel},
         disableClose: true,
@@ -83,7 +84,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
   openDialogDelete(id): void {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
       const dialogRef = this.dialog.open(BuildingDeleteComponent, {
-        width: '500px',
+        width: '35%',
         height: '250px',
         data: {data1: dataOfBuildingModel},
         disableClose: true,

@@ -17,7 +17,7 @@ export class EquipmentDeleteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.equipmentOfName = this.data.data1.deviceName;
+    this.equipmentOfName = this.data.data1.nameEquipment;
     this.equipmentOfId = this.data.data1.id;
   }
   deleteEquipment() {

@@ -1,10 +1,11 @@
 
-<h4>DELETE CONFIRM</h4>
+<h4>Xóa thông tin trang thiết bị</h4>
 <hr>
-<p class="my-3">Bạn có chắc chắc muốn xóa trang thiết bị có id <span
-  class="text-primary font-weight-bold">{{equipmentOfId}}</span> và tên thiết bị <span
+<p class="my-3">Bạn có chắc chắc muốn xóa trang thiết bị có id là <span
+  class="text-primary font-weight-bold">{{equipmentOfId}}</span> và tên thiết bị là <span
   class="text-primary font-weight-bold">{{equipmentOfName}}</span> không? <br> Lưu ý: Thao tác không thể hoàn tác!!!</p>
 <div class="row d-flex justify-content-end">
-  <button mat-dialog-close class="btn btn-warning mr-3" style="width: 80px;">Cancel</button>
-  <button class="btn btn-danger mr-3" style="width: 80px;" (click)="deleteEquipment()">Delete</button>
+  <button class="btn btn-danger mr-3" style="width: 120px;" (click)="deleteEquipment()">Xác nhận</button>
+  <button mat-dialog-close class="btn btn-warning mr-3" style="width: 120px;">Hủy</button>
+
 </div>
