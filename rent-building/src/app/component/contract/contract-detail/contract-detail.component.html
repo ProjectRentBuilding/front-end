@@ -5,7 +5,7 @@
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Tên khách hàng: </span>
         <div>
-          <input type="text" class="form-control col-md-7" value="{{customer.name}}" disabled>
+          <input type="text" class="form-control col-md-7" value="{{customer.name}}"  disabled>
         </div>
       </div>
       <div class="col-md-4">
@@ -26,12 +26,26 @@
         </div>
       </div>
       <div class="col-md-4">
-        <span class="col-md-5" style="font-weight: bold">Email:</span>
-        <input type="text" class="form-control col-md-7" value="{{customer.email}}" disabled>
+        <span class="col-md-5" style="font-weight: bold">Email KH:</span>
+          <input type="text" class="form-control col-md-7" [value]="customer.email" disabled>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5" style="font-weight: bold">Số điện thoại KH:</span>
+        <input type="text" class="form-control col-md-7" [value]="customer.phone" disabled>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-4">
+        <span class="col-md-5" style="font-weight: bold">Mã số thuế:</span>
+        <input type="text" class="form-control col-md-7" [value]="contract.taxCode"  disabled>
+      </div>
+      <div class="col-md-4">
+        <span class="col-md-5" style="font-weight: bold">Trạng thái hợp đồng:</span>
+        <input type="text" class="form-control col-md-7" value="{{statusContract}}" disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Mã Mặt Bằng:</span>
-        <input type="text" class="form-control col-md-7" value="{{ground.codeGround}}" disabled>
+        <input type="text" class="form-control col-md-7" [value]="ground.codeGround" disabled>
       </div>
     </label>
     <label class="row">
@@ -67,7 +81,7 @@
     <label class="row">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Nhân viên:</span>
-        <input type="text" class="form-control col-md-7" value="{{employee.name}}" disabled>
+        <input type="text" class="form-control col-md-7" [value]="employee.name"  disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">SĐT Nhân Viên:</span>
