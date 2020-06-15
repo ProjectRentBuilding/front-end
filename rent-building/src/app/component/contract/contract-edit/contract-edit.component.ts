@@ -80,8 +80,8 @@ export class ContractEditComponent implements OnInit {
 
     this.activatedRouter.params.subscribe(data => {
       this.contractId = data.id;
-      this.contractService.findOne(this.contractId).subscribe(data => {
-        this.formEditContract.patchValue(data);
+      this.contractService.findOne(this.contractId).subscribe(data1 => {
+        this.formEditContract.patchValue(data1);
       });
     });
   }
