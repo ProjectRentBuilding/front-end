@@ -197,8 +197,12 @@
     </td>
 
     <td colspan="4">
-      <button  class="button btn btn-warning" (click)="addNewCustomer()" >Xác Nhận</button>
-      <button class="button btn btn-danger ml-5" (click)="cancelAdd()">Hủy</button>
+      <button  class="button btn btn-primary" (click)="addNewCustomer()" >
+        <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+      </button>
+      <button class="button btn btn-danger ml-5" (click)="cancelAdd()">
+        <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i>
+      </button>
 
     </td>
   </tr>
