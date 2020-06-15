@@ -64,4 +64,8 @@
   background-color: #eee;
   transform: translateY(-1px);
 }
+table thead  th,td{
+  vertical-align: middle;
+}
+
 

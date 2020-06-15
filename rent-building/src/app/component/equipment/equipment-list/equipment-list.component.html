@@ -1,15 +1,14 @@
 
-
 <div class="col-md-5 mt-5">
   <div class="input-group">
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
-    <button type="button" class="btn btn-secondary search-button"><i
-      class="fa fa-search text-danger"></i></button>
+    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
   </div>
 
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ</h3>
+<button  class="btn btn-info px-4 py-2" (click)="addNewArray()">Thêm mới</button>
 <div class="dropdown open">
   <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
           id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -23,17 +22,18 @@
 </div>
 <ng-container>
 <form action="" [formGroup]="formEditEquipment"  (ngSubmit)="logValue()" *ngIf="formEditEquipment">
-  <table class="table bg-light text-center table-striped">
-    <thead>
+  <table class="table bg-light text-center table-striped ">
+    <thead class="thead-dark">
     <tr class="text-muted">
-      <th id="th1">STT</th>
-      <th style="width: 140px" id="th2">Loại</th>
-      <th id="th3">Tên thiết bị</th>
-      <th id="th4">Số lượng</th>
-      <th id="th5">Số lượng hỏng</th>
-      <th id="th6">Ghi chú</th>
-      <th id="th7">Mã mặt bằng</th>
-      <th id="th8" colspan="2"></th>
+      <th>STT</th>
+      <th style="width: 140px">Loại (<span style="color: red">*</span>)</th>
+      <th>Tên thiết bị (<span style="color: red">*</span>)</th>
+      <th>Số lượng (<span style="color: red">*</span>)</th>
+      <th>Số lượng hỏng (<span style="color: red">*</span>)</th>
+      <th>Ghi chú</th>
+      <th>Mã mặt bằng (<span style="color: red">*</span>)</th>
+      <th colspan="2"></th>
+
     </tr>
     </thead>
     <tbody>
@@ -170,8 +170,9 @@
 </table>
 </form>
 </ng-container>
-  <button class="btn btn-info px-4 py-2" type="button" (click)="addNewEquipment()">Lưu</button>
-  <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="addNewArray()">Thêm mới</button>
+
+  <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2"(click)="addNewEquipment()">Lưu</button>
+
 
 <!--    pagination-->
 

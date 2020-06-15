@@ -10,19 +10,20 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH KHÁCH HÀNG</h3>
 <form action=""  [formGroup]="formAddNewCustomer" >
+  <button class="btn btn-success px-2 py-2 " (click)="checkAddCustomer()">Thêm mới</button>
 <table class="table bg-light text-center table-bordered table-striped">
   <thead class="thead-dark">
   <tr  class="text-muted">
     <th>STT</th>
-    <th>Họ Tên</th>
-    <th>CMND</th>
-    <th>Email</th>
-    <th>Số Điện Thoại</th>
+    <th>Họ Tên (<span style="color: red">*</span>) </th>
+    <th>CMND (<span style="color: red">*</span>)</th>
+    <th>Email (<span style="color: red">*</span>)</th>
+    <th>Số Điện Thoại (<span style="color: red">*</span>)</th>
     <th>Ngày Sinh</th>
-    <th>Địa Chỉ</th>
+    <th>Địa Chỉ (<span style="color: red">*</span>)</th>
     <th>Website</th>
-    <th>Công Ty</th>
-    <th>Tên Mặt Bằng</th>
+    <th>Công Ty (<span style="color: red">*</span>)</th>
+    <th>Tên Mặt Bằng </th>
     <th>Đang thuê</th>
     <th colspan="2"></th>
   </tr>
@@ -219,7 +220,7 @@
   </tbody>
 
 </table>
-  <button style="position: absolute;left: 88%;" class="btn btn-info px-2 py-2 " (click)="checkAddCustomer()">Thêm mới</button>
+
 </form>
 <!--    pagination-->
 <pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event" previousLabel="Trang trước"
