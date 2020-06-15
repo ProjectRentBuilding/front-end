@@ -10,9 +10,10 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
+<button   routerLink="/contracts/add" class="btn btn-success px-4 py-2" >Thêm mới</button>
 <form action="" >
-  <table class="table bg-light text-center">
-    <thead>
+  <table class="table bg-light text-center table-striped">
+    <thead class="thead-dark">
     <tr class="text-muted">
 <!--      <th>STT</th>-->
       <th>Mã mặt bằng</th>
@@ -22,7 +23,7 @@
       <th>Giá bán</th>
       <th>Phí quản lý</th>
       <th>Khách hàng</th>
-<!--      <th colspan="3">Tác vụ</th>-->
+      <th colspan="3"></th>
     </tr>
     </thead>
     <tbody>
@@ -61,7 +62,7 @@
 
 
 
-      <td><button  class="btn btn-outline-danger" style="width: 80px" (click)="openDialogView(item.id)">Chi tiết</button></td>
+      <td><button  class="btn btn-secondary" style="width: 80px" (click)="openDialogView(item.id)">Chi tiết</button></td>
       <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button></td>
       <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">
         Xóa
