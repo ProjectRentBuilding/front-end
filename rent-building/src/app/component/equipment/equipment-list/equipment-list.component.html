@@ -64,20 +64,20 @@
           <select class="form-control" formControlName="typeEquipmentId" style="width:120px">
             <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>
           </select>
-          <p class="alert alert-danger" role="alert"
-             *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">
-            Loại không được để trống!
-          </p>
+<!--          <p class="alert alert-danger" role="alert"-->
+<!--             *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">-->
+<!--            Loại không được để trống!-->
+<!--          </p>-->
         </td>
         <td *ngIf="!checkEdit ||  equipment.id!==flag">
           {{equipment.nameEquipment}}
         </td>
         <td *ngIf="checkEdit && equipment.id===flag">
           <input type="text" class="form-control" formControlName="nameEquipment">
-          <p class="alert alert-danger" role="alert"
-             *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">
-            Loại không được để trống!
-          </p>
+<!--          <p class="alert alert-danger" role="alert"-->
+<!--             *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">-->
+<!--            Loại không được để trống!-->
+<!--          </p>-->
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag ">
           {{equipment.amount}}
@@ -104,10 +104,10 @@
           <select class="form-control" formControlName="groundId" style="width:120px">
             <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
           </select>
-          <p class="alert alert-danger" role="alert"
-             *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">
-            Mã mặt bằng không được để trống!
-          </p>
+<!--          <p class="alert alert-danger" role="alert"-->
+<!--             *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">-->
+<!--            Mã mặt bằng không được để trống!-->
+<!--          </p>-->
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag">
           <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)">
@@ -143,7 +143,8 @@
       <tr [formGroupName]="i">
         <td>
           <select class="form-control" formControlName="typeEquipmentId" style="width:150px">
-            <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>
+            <option>Vui lòng chọn:</option>
+            <option *ngFor="let type of typeEquipment,let i=index" [value]="type.id">{{i+1}}.{{type.nameType}}</option>
           </select>
           <p class="text-danger"
              *ngIf="equipment.get('typeEquipmentId').invalid && equipment.get('typeEquipmentId').touched">
@@ -180,7 +181,8 @@
         </td>
         <td>
           <select class="form-control" formControlName="groundId" style="width:120px;">
-            <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
+            <option>Vui lòng chọn:</option>
+            <option *ngFor="let ground of grounds,let i=index" [value]="ground.id">{{i+1}}.{{ground.codeGround}}</option>
           </select>
           <p class="text-danger"
              *ngIf="equipment.get('groundId').invalid && equipment.get('groundId').touched">
@@ -196,6 +198,7 @@
       </tbody>
     </table>
   </form>
+
 </ng-container>
 
 <button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="addNewEquipment()">

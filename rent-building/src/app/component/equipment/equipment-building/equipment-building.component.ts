@@ -49,9 +49,11 @@ export class EquipmentBuildingComponent implements OnInit {
     });
     this.buildingService.findAll().subscribe((data: BuildingModel[]) => {
       this.buildings = data;
-      this.totalRec = this.buildings.length;
     });
   }
 
 
+  searchType(codeGround: string) {
+    this.searchText = codeGround;
+  }
 }
