@@ -52,6 +52,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
   }
 
   addNewFloor() {
+    alert(this.addFloorForm.value);
     this.floorService.save(this.addFloorForm.value).subscribe(data => {
       this.redirectTo('floors');
       this.floorService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
@@ -104,5 +105,6 @@ export class FloorListComponent implements OnInit, OnDestroy {
       });
     });
   }
+
 }
 
