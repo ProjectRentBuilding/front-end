@@ -169,4 +169,11 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.searchText = event;
   }
 
+  deleteAll() {
+    for(let item=0;item <=this.equipmentModel.length;item++)
+    this.equipmentService.delete(item).subscribe(data => {
+    });
+    this.redirectTo('equipments');
+    this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+  }
 }

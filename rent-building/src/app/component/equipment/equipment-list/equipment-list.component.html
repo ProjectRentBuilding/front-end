@@ -9,17 +9,23 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ</h3>
 <button  class="btn btn-success px-4 py-2" (click)="addNewArray()">Thêm mới</button>
-<div class="dropdown open">
-  <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
-          id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">
-    Mã Mặt Bằng
-  </button>
-  <div class="dropdown-menu" aria-labelledby="triggerId">
-    <a class="dropdown-item" *ngFor="let ground of grounds"  (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>
+<div class="row">
+  <div class="dropdown open col-md-2">
+    <button class="btn btn-secondary|primary|success|info|warning|danger dropdown-toggle" type="button"
+            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+      Mã Mặt Bằng
+    </button>
+    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">
+      <a class="dropdown-item" *ngFor="let ground of grounds"  (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>
+    </div>
   </div>
+  <div class="col-md-2"><button class="btn btn-light" [routerLink]="['/equipments-building/']">Toà nhà</button></div>
+  <div class="col-md-6"></div>
+  <div class="col-md-2"><button class="btn btn-light" (click)="deleteAll()">Xoá tất cả</button></div>
 </div>
-<div><button class="" [routerLink]="['/equipments-building/']">building</button></div>
+
+
 
 <ng-container>
 <form action="" [formGroup]="formEditEquipment"  (ngSubmit)="logValue()" *ngIf="formEditEquipment">
@@ -154,7 +160,7 @@
        </p>
      </td>
      <td>
-       <select class="form-control" formControlName="groundId" style="width:120px">
+       <select class="form-control" formControlName="groundId" style="width:120px;">
          <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
        </select>
        <p class="text-danger"
