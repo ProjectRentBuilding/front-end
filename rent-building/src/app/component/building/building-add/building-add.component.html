@@ -8,7 +8,7 @@
       <div class="col-md-12">
         <p class="col-md-3">Tên viết tắt(<span style="color: red">*</span>):</p>
         <div>
-          <input type="text" class="form-control col-md-9" formControlName="abbreviationName">
+          <input type="text" class="form-control col-md-9 ng-valid" formControlName="abbreviationName">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('abbreviationName').hasError('required')
          && addBuildingForm.get('abbreviationName').touched">Tên viết tắt không được để trống.
@@ -21,8 +21,8 @@
         </div>
       </div>
       <div class="col-md-12">
-        <p class="col-md-3">Điện thoại(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="phone">
+        <p class="col-md-3 ">Điện thoại(<span style="color: red">*</span>):</p>
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="phone">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('phone').hasError('required')
          && addBuildingForm.get('phone').touched">Số điện thoại không được để trống.
         </div>
@@ -32,7 +32,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3"> Địa chỉ(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="address">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="address">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('address').hasError('required')
          && addBuildingForm.get('address').touched">Địa chỉ không được để trống.
         </div>
@@ -47,7 +47,7 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-3">Tên tòa nhà(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="fullName">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="fullName">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('fullName').hasError('required')
          && addBuildingForm.get('fullName').touched">Tên tòa nhà không được để trống.
         </div>
@@ -60,7 +60,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Fax(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="fax">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="fax">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('fax').hasError('required')
          && addBuildingForm.get('fax').touched">Fax không được để trống.
         </div>
@@ -75,7 +75,7 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-3">Mã số thuế(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="taxCode">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="taxCode">
         <div class="alert alert-danger col-md-10" role="alert" *ngIf="addBuildingForm.get('taxCode').hasError('required')
          && addBuildingForm.get('taxCode').touched">Mã số thuế không được để trống.
         </div>
@@ -85,7 +85,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Email(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="email">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="email">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('email').hasError('required')
          && addBuildingForm.get('email').touched">Email không được để trống.
         </div>
@@ -106,7 +106,7 @@
       <div class="col-md-12">
         <p class="col-md-3">Ban quản lý(<span style="color: red">*</span>):</p>
         <div>
-          <input type="text" class="form-control col-md-9" formControlName="management">
+          <input type="text" class="form-control col-md-9 ng-valid" formControlName="management">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('management').hasError('required')
          && addBuildingForm.get('management').touched">Ban quản lý không được để trống.
@@ -120,7 +120,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Số tài khoản(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="accountNumber">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="accountNumber">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('accountNumber').hasError('required')
          && addBuildingForm.get('accountNumber').touched">Số tài khoản không được để trống.
         </div>
@@ -133,7 +133,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Ngân hàng(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="bank">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="bank">
         <div class="alert alert-danger col-md-10" role="alert" *ngIf="addBuildingForm.get('bank').hasError('required')
          && addBuildingForm.get('bank').touched">Tên ngân hàng không được để trống.
         </div>
@@ -149,7 +149,7 @@
       <div class="col-md-12">
         <p class="col-md-3">Người quản lý(<span style="color: red">*</span>):</p>
         <div>
-          <input type="text" class="form-control col-md-9" formControlName="manager">
+          <input type="text" class="form-control col-md-9 ng-valid" formControlName="manager">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('manager').hasError('required')
          && addBuildingForm.get('manager').touched">Tên người quản lý không được để trống.
@@ -163,7 +163,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Tên người nhận(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="recipientName">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="recipientName">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addBuildingForm.get('recipientName').hasError('required')
          && addBuildingForm.get('recipientName').touched">Tên người nhận không được để trống.
         </div>

@@ -1,7 +1,7 @@
 <div>
   <p>Chưa làm được</p>
   <tr *ngFor="let image of galleryImage">
-    <td><img src="{{image.url}}" (click)="pickImage($event.target.value)"></td>
+    <td><img src="{{image.url}}"  (click)="pickImage($event.target.src)"></td>
   </tr>
 
   <label class="row " style="margin-left: 30%">
