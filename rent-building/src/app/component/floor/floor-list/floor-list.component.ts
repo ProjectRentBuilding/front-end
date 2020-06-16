@@ -105,7 +105,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
   //   });
   // }
   addNewFloor() {
-    this.floor = this.addFloorForm.get('floors') as FormArray;
+    this.floor = this.addFloorForm.get('floor') as FormArray;
     for(let tem =0; tem < this.getarray; tem++){
       // @ts-ignore
       this.floorService.save(this.floor.at(tem).value).subscribe(data => {
@@ -169,7 +169,9 @@ export class FloorListComponent implements OnInit, OnDestroy {
   searchType(fullName: string) {
     this.searchText = fullName;
   }
-
+  removeFloor(i: number) {
+    this.floor.removeAt(i);
+  }
   deleteAll() {
     for(let item=0;item <this.floors.length;item++)
       this.floorService.delete(this.floors[item].id).subscribe(data => {
