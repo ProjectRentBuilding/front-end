@@ -11,13 +11,18 @@
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH KHÁCH HÀNG</h3>
 <ng-container>
   <form action="" [formGroup]="formEditCustomer" (ngSubmit)="logValue()" *ngIf="formEditCustomer">
-    <button class="btn btn-success px-2 py-2 mb-1 " (click)="addNewArray()">Thêm mới</button>
+
+
+
+    <button class="btn btn-success px-4 py-2" (click)="addNewArray()">
+      <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
+    </button>
     <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1" (click)="deleteAll()">Xoá tất cả</button></span>
     <table class="table bg-light text-center table-bordered table-striped">
 
       <thead class="thead-dark">
       <tr class="text-muted">
-        <th>STT</th>
+<!--        <th>STT</th>-->
         <th>Họ Tên (<span style="color: red">*</span>)</th>
         <th>CMND (<span style="color: red">*</span>)</th>
         <th>Email (<span style="color: red">*</span>)</th>
@@ -33,12 +38,12 @@
       </thead>
       <tbody>
       <tr
-        *ngFor="let customer of customers |filter : search |paginate: {  itemsPerPage: 5, currentPage: page,id:'listing_pagination' } ;let i  = index">
+        *ngFor="let customer of customers |filter : search ">
         <input type="text" hidden value="{{customer.id}}" formControlName="id">
-        <td> {{(i + 1) + (page - 1) * 5}}</td>
+<!--        <td> {{(i + 1) + (page - 1) * 5}}</td>-->
         <td *ngIf="!checkEdit || customer.id!==flag">{{customer.name}}</td>
         <td *ngIf="checkEdit  && customer.id===flag ">
-          <input type="text" class="form-control" formControlName="name" value="{{customer.name}}">
+          <input type="text" class="form-control" formControlName="name">
           <p class="alert alert-danger" role="alert"
              *ngIf="formEditCustomer.get('name').invalid && formEditCustomer.get('name').touched">
             Tên không được để trống!
@@ -50,7 +55,7 @@
           <input type="text"
                  class="form-control"
                  formControlName="idCard"
-                 value="{{customer.idCard}}">
+                >
           <p class="alert alert-danger" role="alert"
              *ngIf="formEditCustomer.get('idCard').invalid && formEditCustomer.get('idCard').touched">
             CMND không được để trống!
@@ -62,7 +67,7 @@
           <input type="text"
                  class="form-control"
                  formControlName="email"
-                 value="{{customer.email}}">
+                 >
           <p class="alert alert-danger" role="alert"
              *ngIf="formEditCustomer.get('email').invalid && formEditCustomer.get('email').touched">
             Emailkhông được để trống!
@@ -76,7 +81,7 @@
           <input type="text"
                  class="form-control"
                  formControlName="phone"
-                 value="{{customer.phone}}">
+                 >
           <p class="alert alert-danger" role="alert"
              *ngIf="formEditCustomer.get('phone').invalid && formEditCustomer.get('phone').touched">
             Phone không được để trống!
@@ -88,7 +93,7 @@
         <td *ngIf="checkEdit && customer.id===flag">
 
           <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
-                 [matDatepicker]="picker1" value="{{customer.birthday}}">
+                 [matDatepicker]="picker1" >
 
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
@@ -97,14 +102,12 @@
             Ngày sinh không được để trống!
           </p>
         </td>
-
-
         <td *ngIf="!checkEdit || customer.id!==flag">{{customer.address}}</td>
         <td *ngIf="checkEdit && customer.id===flag">
           <input type="text"
                  class="form-control"
                  formControlName="address"
-                 value="{{customer.address}}">
+                 >
           <p class="alert alert-danger" role="alert"
              *ngIf="formEditCustomer.get('address').invalid && formEditCustomer.get('address').touched">
             Địa chỉ không được để trống!
@@ -115,7 +118,7 @@
         <td *ngIf="checkEdit && customer.id===flag">
           <input type="text" class="form-control"
                  formControlName="website"
-                 value="{{customer.website}}">
+          >
           <p class="alert alert-danger" role="alert"
              *ngIf="formEditCustomer.get('website').invalid && formEditCustomer.get('website').touched">
             Tên website không được để trống!
@@ -126,7 +129,7 @@
         <td *ngIf="checkEdit && customer.id===flag">
           <input type="text" class="form-control"
                  formControlName="nameCompany"
-                 value="{{customer.nameCompany}}">
+                 >
           <p class="alert alert-danger" role="alert"
              *ngIf="formEditCustomer.get('nameCompany').invalid && formEditCustomer.get('nameCompany').touched">
             Tên công ty không được để trống!
@@ -152,21 +155,21 @@
 
         <td>
           <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-warning ml-3"
-                  (click)="checkEditCustomer(customer.id)">Sửa
+                  (click)="checkEditCustomer(customer.id)"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i>
           </button>
           <button *ngIf="checkEdit && customer.id===flag" class="btn btn-primary ml-3" type="button"
-                  (click)="editCustomer()">Lưu
+                  (click)="editCustomer()"><i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
           </button>
 
         </td>
 
         <td>
           <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-danger ml-3"
-                  (click)="openDialogDelete(customer.id)">Xóa
+                  (click)="openDialogDelete(customer.id)"><i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
           </button>
-          <button style="width: 79px;" *ngIf="checkEdit && customer.id===flag" class="btn btn-warning ml-3"
+          <button  *ngIf="checkEdit && customer.id===flag" class="btn btn-danger ml-3"
                   type="button"
-                  (click)="resetCustomer()">Làm lại
+                  (click)="resetCustomer()"><i class="material-icons" data-toggle="tooltip" title="Làm lại">&#xe950;</i>
           </button>
         </td>
       </tr>
@@ -265,7 +268,9 @@
           </p>
         </td>
         <td>
-          <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">Xoá</button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">
+            <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+          </button>
         </td>
       </tr>
       </tbody>
@@ -273,15 +278,31 @@
   </form>
 </ng-container>
 <button  style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2"
-        (click)="addNewCustomer()">Lưu
+        (click)="addNewCustomer()"><i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
 </button>
 
 <!--    pagination-->
-<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"
-                     previousLabel="Trang trước"
-                     nextLabel="Trang sau">
+<!--<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"-->
+<!--                     previousLabel="Trang trước"-->
+<!--                     nextLabel="Trang sau">-->
 
-</pagination-controls>
+<!--</pagination-controls>-->
+<nav aria-label="Page navigation example" *ngIf="customers.length!=0 && totalPages>1">
+  <ul class="pagination">
+    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+      <a class="page-link">Trang trước</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pages" (click)="loadData(page)"
+        [ngClass]="pageClicked == page ? 'active' : ''">
+      <a class="page-link">{{page + 1}}</a>
+    </li>
+    <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+      <a class="page-link">Trang sau</a>
+    </li>
+    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+  </ul>
+</nav>
 
 
 
