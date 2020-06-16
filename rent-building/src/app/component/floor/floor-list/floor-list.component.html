@@ -34,6 +34,7 @@
 </div>
 
 
+
 <form action="" [formGroup]="editFloorForm" *ngIf="editFloorForm">
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
@@ -240,7 +241,11 @@
             Tên tòa nhà không được để trống.
           </p>
         </td>
-
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeFloor(i)">
+            <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+          </button>
+        </td>
       </tr>
       </tbody>
     </table>
