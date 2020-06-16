@@ -24,7 +24,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
   pageClicked:number=0;
 
   public subscription: Subscription;
-  public buildings: BuildingModel[];
+  public buildings: BuildingModel[] = [];
   public searchText="";
 
   constructor(
