@@ -12,13 +12,10 @@
           <input type="text" class="form-control col-md-9 ng-valid" formControlName="codeGround">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('required')
-         && editGroundForm.get('codeGround').touched">Tên viết tắt không được để trống.
+         && editGroundForm.get('codeGround').touched">Mã mặt bằng không được để trống.
         </div>
-        <div class="alert alert-danger col-md-9" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('minlength')
-         && editGroundForm.get('codeGround').touched">Tên viết tắt tối thiểu 2 ký tự.
-        </div>
-        <div class="alert alert-danger col-md-9" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('maxlength')
-         && editGroundForm.get('codeGround').touched">Tên viết tắt tối đa 25 ký tự.
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('pattern')
+         && editGroundForm.get('codeGround').touched">Mã mặt bằng phải đúng định dạng:MBxxx
         </div>
       </div>
 
