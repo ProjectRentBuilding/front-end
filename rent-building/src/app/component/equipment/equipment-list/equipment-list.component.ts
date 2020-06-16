@@ -76,10 +76,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     }
   }
 
-  logValue() {
-    console.log(this.formAddNewEquipment.value);
-
-  }
 
   get equipmentControls() {
     return this.formAddNewEquipment.get('equipment')['controls'];

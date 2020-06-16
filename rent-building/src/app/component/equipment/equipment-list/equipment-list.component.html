@@ -36,7 +36,7 @@
 
 
 <ng-container>
-  <form action="" [formGroup]="formEditEquipment" (ngSubmit)="logValue()" *ngIf="formEditEquipment">
+  <form action="" [formGroup]="formEditEquipment"  *ngIf="formEditEquipment">
     <table class="table bg-light text-center table-striped">
       <thead class="thead-dark">
       <tr class="text-muted">
@@ -64,26 +64,30 @@
           <select class="form-control" formControlName="typeEquipmentId" style="width:120px">
             <option *ngFor="let type of typeEquipment" [value]="type.id">{{type.nameType}}</option>
           </select>
-<!--          <p class="alert alert-danger" role="alert"-->
-<!--             *ngIf="formAddNewEquipment.get('typeEquipmentId').invalid && formAddNewEquipment.get('typeEquipmentId').touched">-->
-<!--            Loại không được để trống!-->
-<!--          </p>-->
+          <p class="text-danger"
+             *ngIf="formEditEquipment.get('typeEquipmentId').invalid && formEditEquipment.get('typeEquipmentId').touched">
+            Loại không được để trống!
+          </p>
         </td>
         <td *ngIf="!checkEdit ||  equipment.id!==flag">
           {{equipment.nameEquipment}}
         </td>
         <td *ngIf="checkEdit && equipment.id===flag">
           <input type="text" class="form-control" formControlName="nameEquipment">
-<!--          <p class="alert alert-danger" role="alert"-->
-<!--             *ngIf="formAddNewEquipment.get('nameEquipment').invalid && formAddNewEquipment.get('nameEquipment').touched">-->
-<!--            Loại không được để trống!-->
-<!--          </p>-->
+          <p class="text-danger"
+             *ngIf="formEditEquipment.get('nameEquipment').invalid && formEditEquipment.get('nameEquipment').touched">
+            Loại không được để trống!
+          </p>
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag ">
           {{equipment.amount}}
         </td>
         <td *ngIf="checkEdit && equipment.id===flag">
           <input type="text" class="form-control" formControlName="amount" value="{{equipment.amount}}">
+          <p class="text-danger"
+             *ngIf="formEditEquipment.get('amount').invalid && formEditEquipment.get('amount').touched">
+            Số lượng không được để trống!
+          </p>
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag">
           {{equipment.amountOfBroken}}
@@ -104,10 +108,10 @@
           <select class="form-control" formControlName="groundId" style="width:120px">
             <option *ngFor="let ground of grounds" [value]="ground.id">{{ground.codeGround}}</option>
           </select>
-<!--          <p class="alert alert-danger" role="alert"-->
-<!--             *ngIf="formAddNewEquipment.get('groundId').invalid && formAddNewEquipment.get('groundId').touched">-->
-<!--            Mã mặt bằng không được để trống!-->
-<!--          </p>-->
+          <p class="text-danger"
+             *ngIf="formEditEquipment.get('groundId').invalid && formEditEquipment.get('groundId').touched">
+            Mã mặt bằng không được để trống!
+          </p>
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag">
           <button class="btn btn-warning" type="button" (click)="checkEditEquipment(equipment.id)">
@@ -136,7 +140,7 @@
 </ng-container>
 
 <ng-container>
-  <form action="" [formGroup]="formAddNewEquipment" (ngSubmit)="logValue()" *ngIf="formAddNewEquipment">
+  <form action="" [formGroup]="formAddNewEquipment" *ngIf="formAddNewEquipment">
     <table>
       <tbody class="border" formArrayName="equipment"
              *ngFor="let equipment of equipmentControls; let i = index;">
@@ -201,7 +205,7 @@
 
 </ng-container>
 
-<button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="addNewEquipment()">
+<button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="addNewEquipment()" [disabled]="formAddNewEquipment.invalid">
   <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
 </button>
 
