@@ -25,8 +25,14 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public equipmentModel: EquipmentModel[];
   public grounds: GroundModel[] = [];
   public typeEquipment: TypeEquipmentModel[];
-  public totalRec: number;
+
   public page = 1;
+  // public equipmentPage: any;
+  // public totalPages = 1;
+  // public pages = [];
+  // public size = 5;
+  // pageClicked = 0;
+  // public searchText = '';
   public checkEdit = false;
   public checkAdd = false;
   public searchText;
@@ -57,7 +63,49 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.equipmentModel = data;
     });
     this.formEditEquipment = this.createEquipment();
+    // this.loadData(0);
   }
+
+  // loadData(page) {
+  //   this.equipmentService.getEquipmentPage(page, this.size, this.searchText)
+  //     .subscribe(
+  //       data => {
+  //         this.pageClicked = page;
+  //         this.equipmentPage = data;
+  //         this.equipmentModel = this.equipmentPage.content;
+  //         this.totalPages = this.equipmentPage.totalPages;
+  //         this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+  //       }
+  //     );
+  // }
+
+  // onNext() {
+  //   // tslint:disable-next-line:triple-equals
+  //   if (this.pageClicked == this.totalPages - 1) {
+  //   } else { this.pageClicked++; }
+  //   this.loadData(this.pageClicked);
+  // }
+  //
+  // onPrevious() {
+  //   // tslint:disable-next-line:triple-equals
+  //   if (this.pageClicked == 0) {
+  //   } else { this.pageClicked--; }
+  //   this.loadData(this.pageClicked);
+  // }
+  //
+  // onFirst() {
+  //   this.pageClicked = 0;
+  //   this.loadData(this.pageClicked);
+  // }
+  //
+  // onLast() {
+  //   this.pageClicked = this.totalPages - 1;
+  //   this.loadData(this.pageClicked);
+  // }
+  //
+  // refreshForm() {
+  //   this.searchText = '';
+  // }
 
   createEquipment(): FormGroup {
     return this.formBuilder.group({
@@ -108,6 +156,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     }
     this.redirectTo('equipments');
+    this.ngOnInit();
     console.log(this.formAddNewEquipment);
   }
 
