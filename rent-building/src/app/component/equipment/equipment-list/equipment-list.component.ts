@@ -32,6 +32,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public searchText;
   public equipment: FormArray;
   public getarray = 1;
+
   constructor(
     public formBuilder: FormBuilder,
     public equipmentService: EquipmentService,
@@ -83,7 +84,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
   addNewArray(): void {
     this.checkAdd = true;
-    this.getarray ++;
+    this.getarray++;
     this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
       this.typeEquipment = data;
     });
@@ -100,7 +101,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
     this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
     console.log((this.equipment.at(0).value));
-    for(let tem =0; tem < this.getarray; tem++){
+    for (let tem = 0; tem < this.getarray; tem++) {
       // @ts-ignore
       this.equipmentService.save(this.equipment.at(tem).value).subscribe(data => {
         this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
@@ -152,15 +153,18 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
     });
   }
+
   searchType(event) {
     console.log(event);
     this.searchText = event;
   }
 
   deleteAll() {
-    for(let item=0;item <this.equipmentModel.length;item++)
-    this.equipmentService.delete(this.equipmentModel[item].id).subscribe(data => {
-    });
+
+    for (let item = 0; item < this.equipmentModel.length; item++) {
+      this.equipmentService.delete(this.equipmentModel[item].id).subscribe(data => {
+      });
+    }
     this.redirectTo('equipments');
     this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }

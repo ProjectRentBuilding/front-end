@@ -3,13 +3,14 @@ import {Customer} from '../../../model/customer.model';
 import {Subscription} from 'rxjs';
 import {CustomerService} from '../../../service/customer.service';
 import {MatDialog} from '@angular/material';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {CustomerDeleteComponent} from '../customer-delete/customer-delete.component';
 import {GroundService} from '../../../service/ground.service';
 import {GroundModel} from '../../../model/ground.model';
 import {ContractService} from '../../../service/contract.service';
 import {ContractModel} from '../../../model/contract';
+import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public checkAdd = false;
   public flag;
   public formAddNewCustomer: FormGroup;
+  public formEditCustomer: FormGroup;
   public count: number;
   startDate = new Date(1990, 0, 1);
   public page = 1;
@@ -32,6 +34,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public contracts: ContractModel[] = [];
   message = '';
   public customerOfId;
+  public customer: FormArray;
+  public getarray = 1;
 
   constructor(public customerService: CustomerService,
               public dialog: MatDialog,
@@ -41,9 +45,29 @@ export class CustomerListComponent implements OnInit, OnDestroy {
               public groundService: GroundService,
               public contractService: ContractService
   ) {
-  }
-  ngOnInit() {
     this.formAddNewCustomer = this.formBuilder.group({
+      customer: this.formBuilder.array([this.createCustomer()])
+    });
+  }
+
+  createCustomer(): FormGroup {
+    return this.formBuilder.group({
+      id: [''],
+      name: ['', Validators.required],
+      idCard: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      birthday: ['', Validators.required],
+      address: ['', Validators.required],
+      website: ['', Validators.required],
+      nameCompany: ['', Validators.required],
+      nameGround: ['', Validators.required],
+      rentStatus: ['']
+    });
+  }
+
+  ngOnInit() {
+    this.formEditCustomer = this.formBuilder.group({
       id: [''],
       name: ['', Validators.required],
       idCard: ['', Validators.required],
@@ -99,12 +123,26 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   }
 
+  // addNewCustomer() {
+  //   this.customerService.save(this.formAddNewCustomer.value).subscribe(data => {
+  //     this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+  //     this.redirectTo('customers');
+  //     // this.dialogRef.close();
+  //   });
+  // }
+
   addNewCustomer() {
-    this.customerService.save(this.formAddNewCustomer.value).subscribe(data => {
-      this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-      this.redirectTo('customers');
-      // this.dialogRef.close();
-    });
+
+    this.customer = this.formAddNewCustomer.get('customer') as FormArray;
+    console.log((this.customer.at(0).value));
+    for (let tem = 0; tem < this.getarray; tem++) {
+      // @ts-ignore
+      this.customerService.save(this.customer.at(tem).value).subscribe(data => {
+      });
+    }
+    this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+    this.redirectTo('customers');
+    console.log(this.formAddNewCustomer);
   }
 
   redirectTo(uri: string) {
@@ -126,9 +164,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   checkAddCustomer() {
     if (!this.checkAdd) {
-    this.checkAdd = !this.checkAdd;
-    this.ngOnInit();
-    this.checkEdit = false;
+      this.checkAdd = !this.checkAdd;
+      this.ngOnInit();
+      this.checkEdit = false;
     }
   }
 
@@ -150,4 +188,34 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.redirectTo('customers');
   }
 
+  deleteAll() {
+    console.log(this.customers.length);
+    // tslint:disable-next-line:prefer-for-of
+    for (let item = 0; item < this.customers.length; item++) {
+      this.customerService.delete(this.customers[item].id).subscribe(data => {
+      });
+      this.redirectTo('customers');
+    }
+    this.customerService.showNotification('', 'Xoá thành công, chúc mừng bạn !!!');
+  }
+
+  logValue() {
+    console.log(this.formAddNewCustomer.value);
+
+  }
+
+  get customerControls() {
+    return this.formAddNewCustomer.get('customer')['controls'];
+  }
+
+  addNewArray(): void {
+    this.checkAdd = true;
+    this.getarray++;
+    this.customer = this.formAddNewCustomer.get('customer') as FormArray;
+    this.customer.push(this.createCustomer());
+  }
+
+  removeAddress(i: number) {
+    this.customer.removeAt(i);
+  }
 }
