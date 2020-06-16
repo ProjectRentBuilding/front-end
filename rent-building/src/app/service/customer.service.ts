@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
+import {Observable} from 'rxjs';
 
 let $: any = jQuery;
 
@@ -16,6 +17,14 @@ export class CustomerService extends CrudService<Customer, number> {
 
   constructor(protected http: HttpClient) {
     super(http, 'http://localhost:8080/customers');
+  }
+
+  getCustomerPage(currentPage, size, search): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/customers/paging`, {
+      params: {
+        page: currentPage, size: size, search: search
+      }
+    });
   }
 
   showNotification(title, message) {
