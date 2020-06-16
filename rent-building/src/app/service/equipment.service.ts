@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
 import {CrudService} from './CrudService';
 import {EquipmentModel} from '../model/equipment.model';
+import {Observable} from 'rxjs';
 
 let $: any = jQuery;
 @Injectable({
@@ -15,6 +15,13 @@ export class EquipmentService extends CrudService<EquipmentModel, number> {
 
   constructor(protected http: HttpClient) {
     super(http, 'http://localhost:8080/equipments');
+  }
+  getEquipmentPage(currentPage, size, search): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/equipments/paging`, {
+      params: {
+        page: currentPage, size: size, search: search
+      }
+    });
   }
 
   showNotification(title, message) {
