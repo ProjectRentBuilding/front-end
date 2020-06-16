@@ -17,7 +17,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
   public totalPages: number = 1;
   public pages = [];
   pageClicked: number = 0;
-  public search;
+  // public search;
   public searchText = "";
   public subscription: Subscription;
 
@@ -27,7 +27,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
 
   constructor(
     public contractService: ContractService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
   }
 
@@ -40,6 +40,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
   }
 
   loadData(page) {
+    console.log(this.searchText);
     this.contractService.getContractPage(page, this.size, this.searchText)
       .subscribe(
         data => {
