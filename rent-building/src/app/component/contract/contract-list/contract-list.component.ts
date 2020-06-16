@@ -10,15 +10,15 @@ import {ContractDeleteComponent} from "../contract-delete/contract-delete.compon
   templateUrl: './contract-list.component.html',
   styleUrls: ['./contract-list.component.css']
 })
-export class ContractListComponent implements OnInit , OnDestroy {
-  public size=5;
+export class ContractListComponent implements OnInit, OnDestroy {
+  public size = 5;
   public contractPage: any;
   public contracts: ContractModel[] = [];
   public totalPages: number = 1;
   public pages = [];
-  pageClicked:number=0;
+  pageClicked: number = 0;
   public search;
-  public searchText="";
+  public searchText = "";
   public subscription: Subscription;
 
   public contract: ContractModel;
@@ -28,7 +28,8 @@ export class ContractListComponent implements OnInit , OnDestroy {
   constructor(
     public contractService: ContractService,
     public dialog: MatDialog
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     // this.contractService.findAll().subscribe(data => {
@@ -37,37 +38,44 @@ export class ContractListComponent implements OnInit , OnDestroy {
     //         // });
     this.loadData(0);
   }
-  loadData(page){
-    this.contractService.getContractPage(page,this.size,this.searchText)
+
+  loadData(page) {
+    this.contractService.getContractPage(page, this.size, this.searchText)
       .subscribe(
-        data=>{
-          this.pageClicked=page;
-          this.contractPage=data;
-          this.contracts=this.contractPage.content;
-          this.totalPages=this.contractPage.totalPages;
-          this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        data => {
+          this.pageClicked = page;
+          this.contractPage = data;
+          this.contracts = this.contractPage.content;
+          this.totalPages = this.contractPage.totalPages;
+          this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
         }
       )
   }
-  onNext(){
-    this.pageClicked++;
-    this.loadData(this.pageClicked);
-  }
-  onPrevious(){
-    this.pageClicked--;
-    this.loadData(this.pageClicked);
-  }
-  onFirst(){
-    this.pageClicked=0;
-    this.loadData(this.pageClicked);
-  }
-  onLast(){
-    this.pageClicked=this.totalPages-1;
+
+  onNext() {
+    if (this.pageClicked == this.totalPages - 1) {
+    } else this.pageClicked++;
     this.loadData(this.pageClicked);
   }
 
-  refreshForm(){
-    this.searchText="";
+  onPrevious() {
+    if (this.pageClicked == 0) {
+    } else this.pageClicked--;
+    this.loadData(this.pageClicked);
+  }
+
+  onFirst() {
+    this.pageClicked = 0;
+    this.loadData(this.pageClicked);
+  }
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
+    this.loadData(this.pageClicked);
+  }
+
+  refreshForm() {
+    this.searchText = "";
   }
 
   ngOnDestroy(): void {
@@ -76,7 +84,7 @@ export class ContractListComponent implements OnInit , OnDestroy {
     }
   }
 
-  formatsDate : string[] = [
+  formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
 
