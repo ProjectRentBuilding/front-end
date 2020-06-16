@@ -177,10 +177,11 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Logo:</p>
-        <button class="form-control col-md-3" formControlName="logo" (click)="onSelectChange()">Chọn Logo</button>
-        <div class="bottom-border pb-3">
-          <img src="{{logo}}" width="50" height="50" class="rounded-circle mr-3" alt="">
-        </div>
+<!--        <button class="form-control col-md-3" formControlName="logo" (click)="onSelectChange()">Chọn Logo</button>-->
+<!--        <div class="bottom-border pb-3">-->
+<!--          <img src="{{logo}}" width="50" height="50" class="rounded-circle mr-3" alt="">-->
+<!--        </div>-->
+        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)"/>
       </div>
     </label>
   </fieldset>
@@ -194,6 +195,25 @@
     <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i>
   </button>
 </label>
+<script>
+  $scope.uploadFile = function(element) {
+    var data = new FormData();
+    data.append('file', $(element)[0].files[0]);
+    jQuery.ajax({
+      url: 'localhost/8080/images',
+      type:'post',
+      data: data,
+      contentType: false,
+      processData: false,
+      success: function(response) {
+        console.log(response);
+      },
+      error: function(jqXHR, textStatus, errorMessage) {
+        alert('Error uploading: ' + errorMessage);
+      }
+    });
+  };
+</script>
 
 
 
