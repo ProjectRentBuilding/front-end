@@ -36,7 +36,7 @@ export class GroundEditComponent implements OnInit, OnDestroy {
     this.floorService.findAll().subscribe(data => this.floors = data);
     this.typeGroundService.findAll().subscribe(data => this.typeGrounds = data);
     this.editGroundForm = this.fb.group({
-      codeGround: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      codeGround: ['', [Validators.required, Validators.pattern(/^MB\d{3}$/)]],
       typeGroundId: ['',[Validators.required]],
       note:[''],
       area: ['',[Validators.required, Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|([0-9]([1-9])?)$/)]],

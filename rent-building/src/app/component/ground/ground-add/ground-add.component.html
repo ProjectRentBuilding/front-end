@@ -11,13 +11,10 @@
           <input type="text" class="form-control col-md-9 ng-valid" formControlName="codeGround">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="addGroundForm.get('codeGround').hasError('required')
-         && addGroundForm.get('codeGround').touched">Tên viết tắt không được để trống.
+         && addGroundForm.get('codeGround').touched">Mã mặt bằng không được để trống.
         </div>
-        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addGroundForm.get('codeGround').hasError('minlength')
-         && addGroundForm.get('codeGround').touched">Tên viết tắt tối thiểu 2 ký tự.
-        </div>
-        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addGroundForm.get('codeGround').hasError('maxlength')
-         && addGroundForm.get('codeGround').touched">Tên viết tắt tối đa 25 ký tự.
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addGroundForm.get('codeGround').hasError('pattern')
+         && addGroundForm.get('codeGround').touched">Mã mặt bằng phải đúng định dạng:MBxxx
         </div>
       </div>
 
@@ -103,7 +100,7 @@
   </fieldset>
 </form>
 
-<label class="row " style="margin-left: 85%;margin-top: 5%">
+<label class="row " style="margin-left: 80%;margin-top: 5%">
   <button  style="margin-right: 15%" class="btn btn-primary mt-3" [disabled]="addGroundForm.invalid" (click)="onAddGround()">
     <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
   </button>
