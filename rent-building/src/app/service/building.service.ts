@@ -4,6 +4,7 @@ import {BuildingModel} from '../model/building.model';
 import {HttpClient} from '@angular/common/http';
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
+import {Observable} from "rxjs";
 
 let $: any = jQuery;
 
@@ -41,5 +42,14 @@ export class BuildingService extends CrudService<BuildingModel, number> {
         '<a href="{3}" target="{4}" data-notify="url"></a>' +
         '</div>'
     });
+  }
+
+  getBuildingPage(currentPage, size, search): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/buildings/paging`, {
+      params: {
+        page: currentPage, size: size, search: search
+      }
+    });
+
   }
 }

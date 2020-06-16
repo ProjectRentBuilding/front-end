@@ -8,6 +8,7 @@ import {BuildingDeleteComponent} from '../building-delete/building-delete.compon
 import {BuildingEditComponent} from '../building-edit/building-edit.component';
 import {BuildingDetailComponent} from '../building-detail/building-detail.component';
 import {Router} from "@angular/router";
+import {ContractModel} from "../../../model/contract";
 
 @Component({
   selector: 'app-building-list',
@@ -15,12 +16,16 @@ import {Router} from "@angular/router";
   styleUrls: ['./building-list.component.css']
 })
 export class BuildingListComponent implements OnInit, OnDestroy {
+  public size=5;
+  public buildingPage: any;
+  public contracts: ContractModel[] = [];
+  public totalPages: number = 1;
+  public pages = [];
+  pageClicked:number=0;
 
   public subscription: Subscription;
-  public buildings: BuildingModel[];
-  public totalRec: number;
-  public page = 1;
-  public searchText;
+  public buildings: BuildingModel[] = [];
+  public searchText="";
 
   constructor(
     public buildingService: BuildingService,
@@ -30,10 +35,35 @@ export class BuildingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.buildingService.findAll().subscribe((data: BuildingModel[]) => {
-      this.buildings = data;
-      this.totalRec = this.buildings.length;
-    });
+    this.loadData(0);
+  }
+  loadData(page){
+    this.buildingService.getBuildingPage(page,this.size,this.searchText)
+      .subscribe(
+        data=>{
+          this.pageClicked=page;
+          this.buildingPage=data;
+          this.buildings=this.buildingPage.content;
+          this.totalPages=this.buildingPage.totalPages;
+          this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }
+      )
+  }
+  onNext(){
+    this.pageClicked++;
+    this.loadData(this.pageClicked);
+  }
+  onPrevious(){
+    this.pageClicked--;
+    this.loadData(this.pageClicked);
+  }
+  onFirst(){
+    this.pageClicked=0;
+    this.loadData(this.pageClicked);
+  }
+  onLast(){
+    this.pageClicked=this.totalPages-1;
+    this.loadData(this.pageClicked);
   }
 
   ngOnDestroy() {
@@ -48,7 +78,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
 
   openDialogAddNew(): void {
     const dialogRef = this.dialog.open(BuildingAddComponent, {
-      width: '75%',
+      width: '65%',
       height: '540px',
       disableClose: true,
     });
@@ -61,7 +91,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
       const dialogRef = this.dialog.open(BuildingDetailComponent, {
 
-        width: '75%',
+        width: '65%',
         height: '540px',
         data: {data1: dataOfBuildingModel},
         disableClose: true,
@@ -75,7 +105,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
   openDialogEdit(id): void {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
       const dialogRef = this.dialog.open(BuildingEditComponent, {
-        width: '75%',
+        width: '65%',
         height: '540px',
         data: {data1: dataOfBuildingModel},
         disableClose: true,

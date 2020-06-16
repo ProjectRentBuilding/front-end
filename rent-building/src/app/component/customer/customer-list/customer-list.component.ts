@@ -26,13 +26,20 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public formEditCustomer: FormGroup;
   public count: number;
   startDate = new Date(1990, 0, 1);
-  public page = 1;
+  public size = 5;
+  public customerPage: any;
+  public totalPages: number = 1;
+  public pages = [];
+  pageClicked: number = 0;
+  public searchText = '';
+  // public page = 1;
   public search;
   public subscription: Subscription;
   public customers: Customer[] = [];
   public grounds: GroundModel[] = [];
   public contracts: ContractModel[] = [];
   message = '';
+  totalRec: number;
   public customerOfId;
   public customer: FormArray;
   public getarray = 1;
@@ -48,6 +55,19 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.formAddNewCustomer = this.formBuilder.group({
       customer: this.formBuilder.array([this.createCustomer()])
     });
+  }
+
+  loadData(page) {
+    this.customerService.getCustomerPage(page, this.size, this.searchText)
+      .subscribe(
+        data => {
+          this.pageClicked = page;
+          this.customerPage = data;
+          this.customers = this.customerPage.content;
+          this.totalPages = this.customerPage.totalPages;
+          this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }
+      );
   }
 
   createCustomer(): FormGroup {
@@ -67,19 +87,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.formEditCustomer = this.formBuilder.group({
-      id: [''],
-      name: ['', Validators.required],
-      idCard: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
-      birthday: ['', Validators.required],
-      address: ['', Validators.required],
-      website: ['', Validators.required],
-      nameCompany: ['', Validators.required],
-      nameGround: ['', Validators.required],
-      rentStatus: ['']
-    });
+    this.formEditCustomer = this.createCustomer();
     this.customerService.findAll().subscribe(data => {
       this.customers = data;
       // this.totalRec = this.customers.length;
@@ -97,6 +105,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       // endRentDay: new Date().toJSON(),
       rentStatus: false
     });
+    this.loadData(0);
   }
 
   ngOnDestroy(): void {
@@ -141,8 +150,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       });
     }
     this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-    this.redirectTo('customers');
+    this.redirectTo('customers/paging');
     console.log(this.formAddNewCustomer);
+    // this.ngOnInit();
   }
 
   redirectTo(uri: string) {
@@ -157,7 +167,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       this.flag = id;
       this.customerOfId = id;
       this.customerService.findOne(this.customerOfId).subscribe(data => {
-        this.formAddNewCustomer.patchValue(data);
+        this.formEditCustomer.patchValue(data);
       });
     }
   }
@@ -171,9 +181,10 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   editCustomer() {
-    this.customerService.showNotification('', 'Chỉnh sửa thành công  !!!');
-    this.customerService.update(this.formAddNewCustomer.value, this.customerOfId).subscribe(data => {
-      this.redirectTo('customers');
+    console.log(this.formEditCustomer.value);
+    this.customerService.update(this.formEditCustomer.value, this.customerOfId).subscribe(data => {
+      this.redirectTo('customers/paging');
+      this.customerService.showNotification('', 'Chỉnh sửa thành công  !!!');
     });
   }
 
@@ -217,5 +228,36 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   removeAddress(i: number) {
     this.customer.removeAt(i);
+  }
+
+
+  onNext() {
+    if (this.pageClicked == this.totalPages - 1) {
+    } else {
+      this.pageClicked++;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onPrevious() {
+    if (this.pageClicked == 0) {
+    } else {
+      this.pageClicked--;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onFirst() {
+    this.pageClicked = 0;
+    this.loadData(this.pageClicked);
+  }
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
+    this.loadData(this.pageClicked);
+  }
+
+  refreshForm() {
+    this.searchText = "";
   }
 }

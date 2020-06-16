@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {EquipmentService} from '../../../service/equipment.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-equipment-delete',
@@ -32,7 +32,7 @@ export class EquipmentDeleteComponent implements OnInit {
     this.equipmentService.delete(this.equipmentOfId).subscribe(data => {
       this.dialogRef.close();
       this.redirectTo('equipments');
-      this.equipmentService.showNotification('', 'Xoá thành công, chúc mừng bạn');
+      this.equipmentService.showNotification('', 'Xóa thành công, chúc mừng bạn');
     });
   }
 
