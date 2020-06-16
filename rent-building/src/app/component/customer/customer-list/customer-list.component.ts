@@ -87,7 +87,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
     this.formEditCustomer = this.createCustomer();
     this.customerService.findAll().subscribe(data => {
       this.customers = data;
@@ -184,7 +183,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   editCustomer() {
     console.log(this.formEditCustomer.value);
     this.customerService.update(this.formEditCustomer.value, this.customerOfId).subscribe(data => {
-      this.redirectTo('customers');
+      this.redirectTo('customers/paging');
       this.customerService.showNotification('', 'Chỉnh sửa thành công  !!!');
     });
   }
