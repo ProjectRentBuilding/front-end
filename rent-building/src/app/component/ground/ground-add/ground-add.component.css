@@ -34,4 +34,7 @@ legend{
 form fieldset label div select option{
   text-align: center;
 }
+.ng-valid{
+  background: deepskyblue;
+}
 

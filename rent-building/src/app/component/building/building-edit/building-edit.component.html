@@ -1,4 +1,5 @@
-<div style="margin-left: 99%;margin-top: -2%;" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x" aria-hidden="true"></i>
+<div style="margin-left: 99%;margin-top: -2%;" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x"
+                                                                   aria-hidden="true" title="Thoát"></i>
 </div>
 <h2 class="text-center">Chỉnh sửa thông tin tòa nhà</h2>
 <form [formGroup]="editBuildingForm" class="col-md-12 offset-md-4">
@@ -8,7 +9,7 @@
       <div class="col-md-12">
         <p class="col-md-3">Tên viết tắt(<span style="color: red">*</span>):</p>
         <div>
-          <input type="text" class="form-control col-md-9" formControlName="abbreviationName">
+          <input type="text" class="form-control col-md-9 ng-valid" formControlName="abbreviationName">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('abbreviationName').hasError('required')
          && editBuildingForm.get('abbreviationName').touched">Tên viết tắt không được để trống.
@@ -22,7 +23,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Điện thoại(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="phone">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="phone">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('phone').hasError('required')
          && editBuildingForm.get('phone').touched">Số điện thoại không được để trống.
         </div>
@@ -32,7 +33,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3"> Địa chỉ(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="address">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="address">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('address').hasError('required')
          && editBuildingForm.get('address').touched">Địa chỉ không được để trống.
         </div>
@@ -47,7 +48,7 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-3">Tên tòa nhà(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="fullName">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="fullName">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('fullName').hasError('required')
          && editBuildingForm.get('fullName').touched">Tên tòa nhà không được để trống.
         </div>
@@ -60,7 +61,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Fax(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="fax">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="fax">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('fax').hasError('required')
          && editBuildingForm.get('fax').touched">Fax không được để trống.
         </div>
@@ -75,7 +76,7 @@
     <label class="row">
       <div class="col-md-12">
         <p class="col-md-3">Mã số thuế(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="taxCode">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="taxCode">
         <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('required')
          && editBuildingForm.get('taxCode').touched">Mã số thuế không được để trống.
         </div>
@@ -85,7 +86,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Email(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="email">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="email">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('email').hasError('required')
          && editBuildingForm.get('email').touched">Email không được để trống.
         </div>
@@ -106,7 +107,7 @@
       <div class="col-md-12">
         <p class="col-md-3">Ban quản lý(<span style="color: red">*</span>):</p>
         <div>
-          <input type="text" class="form-control col-md-9" formControlName="management">
+          <input type="text" class="form-control col-md-9 ng-valid" formControlName="management">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('management').hasError('required')
          && editBuildingForm.get('management').touched">Ban quản lý không được để trống.
@@ -120,7 +121,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Số tài khoản(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="accountNumber">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="accountNumber">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('accountNumber').hasError('required')
          && editBuildingForm.get('accountNumber').touched">Số tài khoản không được để trống.
         </div>
@@ -133,7 +134,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Ngân hàng(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="bank">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="bank">
         <div class="alert alert-danger col-md-10" role="alert" *ngIf="editBuildingForm.get('bank').hasError('required')
          && editBuildingForm.get('bank').touched">Tên ngân hàng không được để trống.
         </div>
@@ -149,7 +150,7 @@
       <div class="col-md-12">
         <p class="col-md-3">Người quản lý(<span style="color: red">*</span>):</p>
         <div>
-          <input type="text" class="form-control col-md-9" formControlName="manager">
+          <input type="text" class="form-control col-md-9 ng-valid" formControlName="manager">
         </div>
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('manager').hasError('required')
          && editBuildingForm.get('manager').touched">Tên người quản lý không được để trống.
@@ -163,7 +164,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Tên người nhận(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9" formControlName="recipientName">
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="recipientName">
         <div class="alert alert-danger col-md-9" role="alert" *ngIf="editBuildingForm.get('recipientName').hasError('required')
          && editBuildingForm.get('recipientName').touched">Tên người nhận không được để trống.
         </div>
@@ -176,7 +177,7 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Logo:</p>
-        <select class="form-control col-md-9" formControlName="logo" (change)="onSelectChange($event.target.value)">
+        <select class="form-control col-md-9 " formControlName="logo" (change)="onSelectChange($event.target.value)">
           <option value="">Chọn</option>
           <option *ngFor="let image of images" [value]="image.linkImage">
             {{image.nameImage}}
@@ -191,15 +192,15 @@
 </form>
 
 
-    <label class="row " style="margin-left: 60%">
-      <div class="form-group d-flex justify-content-center mr-5">
-        <button class="btn btn-info mt-3" (click)="clearFilters()">Làm lại</button>
-      </div>
-      <div class="form-group d-flex justify-content-center mr-5 ">
-        <button [disabled]="editBuildingForm.invalid" class="btn btn-success mt-3" (click)="onEditBuilding()">Lưu
-        </button>
-      </div>
-    </label>
+<label class="row " style="margin-left: 85%;margin-top: 5%">
+  <button style="margin-right: 15%" [disabled]="editBuildingForm.invalid" class="btn btn-primary mt-3" (click)="onEditBuilding()">
+    <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+  </button>
+  <button class="btn btn-danger mt-3" (click)="clearFilters()">
+    <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i>
+  </button>
+
+</label>
 
 
 

@@ -88,7 +88,7 @@ export class ContractAddComponent implements OnInit {
     console.log(this.formAddNewContract.value);
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
       console.log(data);
-      this.router.navigateByUrl('contracts').then(r => this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn'));
+      this.router.navigateByUrl('contracts/paging').then(r => this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn'));
 
 
 

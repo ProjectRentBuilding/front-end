@@ -148,24 +148,18 @@
 
 </form>
 
-<fieldset>
-  <div class="row " style="margin-left: 43%">
-
-    <div class="form-group d-flex justify-content-center mr-5">
-      <button class="btn btn-primary mt-3" (click)="clearFilters()">Làm lại</button>
-    </div>
-    <div class="form-group d-flex justify-content-center mr-5 ">
-      <button [disabled]="formEditContract.invalid" class="btn btn-success mt-3" (click)="editContract()">Lưu
-      </button>
-
-    </div>
-    <div class="form-group d-flex justify-content-center " style="align-content: center">
-      <button class="btn btn-danger mt-3" routerLink="/contracts">Quay về
-      </button>
-    </div>
+  <div class="row " style="margin-left: 70%;margin-top: 5%">
+    <button style="margin-right: 5%" [disabled]="formEditContract.invalid" class="btn btn-primary mt-3" (click)="editContract()">
+      <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+    </button>
+    <button style="margin-right: 5%" class="btn btn-danger mt-3" (click)="clearFilters()">
+      <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i>
+    </button>
+    <button class="btn btn-success mt-3" routerLink="/contracts/paging">
+      <i class="material-icons" data-toggle="tooltip" title="Quay về">next_plan</i>
+    </button>
   </div>
 
-</fieldset>
 
 
 

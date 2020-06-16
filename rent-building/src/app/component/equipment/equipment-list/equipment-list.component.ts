@@ -56,15 +56,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
       this.equipmentModel = data;
     });
-    this.formEditEquipment = this.formBuilder.group({
-      id: ['id'],
-      typeEquipmentId: ['', [Validators.required]],
-      nameEquipment: ['', [Validators.required]],
-      amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
-      amountOfBroken: ['', [Validators.required]],
-      note: ['', [Validators.required]],
-      groundId: ['', [Validators.required]],
-    });
+    this.formEditEquipment = this.createEquipment();
   }
 
   createEquipment(): FormGroup {
@@ -85,10 +77,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     }
   }
 
-  logValue() {
-    console.log(this.formAddNewEquipment.value);
-
-  }
 
   get equipmentControls() {
     return this.formAddNewEquipment.get('equipment')['controls'];
@@ -172,6 +160,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   deleteAll() {
+
     for (let item = 0; item < this.equipmentModel.length; item++) {
       this.equipmentService.delete(this.equipmentModel[item].id).subscribe(data => {
       });
