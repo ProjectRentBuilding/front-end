@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ContractService} from '../../../service/contract.service';
 import {GroundModel} from "../../../model/ground.model";
 import {GroundService} from "../../../service/ground.service";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {Customer} from "../../../model/customer.model";
 import {CustomerService} from "../../../service/customer.service";
 import {EmployeeService} from "../../../service/employee.service";
 import {EmployeeModel} from "../../../model/employee";
+import {map, startWith} from "rxjs/operators";
 
 @Component({
   selector: 'app-contract-add',
@@ -31,10 +32,19 @@ export class ContractAddComponent implements OnInit {
   public customers: Customer[] = [];
   public customerId: number;
   public groundId: number;
-  public employees : EmployeeModel[] = [];
+  public employees: EmployeeModel[] = [];
   public contractId: number;
   public search: string;
+  private mapCustomer=new Map();
+  private customerIdPicker: any;
+  title = 'angular-material-autocomplete';
 
+  myControl = new FormControl();
+  // options: string[] = ['Cash', 'Credit Card', 'Paypal'];
+  options: string[] = [];
+
+
+  filteredOptions: Observable<string[]>;
 
 
   constructor(
@@ -55,6 +65,10 @@ export class ContractAddComponent implements OnInit {
 
     this.subscription = this.customerService.findAll().subscribe((data: Customer[]) => {
       this.customers = data;
+      this.customers.forEach(element=> {
+       this.mapCustomer.set(element.id,element.name);
+      })
+
     });
 
     this.subscription = this.employeeService.findAll().subscribe((data: EmployeeModel[]) => {
@@ -83,16 +97,24 @@ export class ContractAddComponent implements OnInit {
       unified: false
     });
 
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+
+
+
+
 
   }
 
   addNewContract() {
+    alert(this.formAddNewContract.value.customerId);
     console.log(this.formAddNewContract.value);
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
       console.log(data);
       this.router.navigateByUrl('contracts/paging').then(r => this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn'));
-
-
 
 
     });
@@ -122,6 +144,13 @@ export class ContractAddComponent implements OnInit {
   startDate = new Date(2020, 0, 1);
 
 
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+
   clearFilters() {
     this.ngOnInit();
   }
@@ -129,4 +158,9 @@ export class ContractAddComponent implements OnInit {
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
+
+  pickId(key: string) {
+    this.customerIdPicker = key;
+    alert(this.customerIdPicker);
+  }
 }

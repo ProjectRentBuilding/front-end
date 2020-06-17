@@ -43,6 +43,7 @@ import { GroundEditComponent } from './component/ground/ground-edit/ground-edit.
 import { GroundDetailComponent } from './component/ground/ground-detail/ground-detail.component';
 import { ImageGalleryComponent } from './component/building/building-add/image-gallery/image-gallery.component';
 import { EquipmentBuildingComponent } from './component/equipment/equipment-building/equipment-building.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 
@@ -81,23 +82,24 @@ import { EquipmentBuildingComponent } from './component/equipment/equipment-buil
 
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxPaginationModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatSortModule,
-    Ng2SearchPipeModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatDialogModule,
-    MatInputModule,
-    MatCheckboxModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatSortModule,
+        Ng2SearchPipeModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDialogModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatAutocompleteModule
+    ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
   bootstrap: [AppComponent],
   entryComponents: [
