@@ -35,9 +35,10 @@ export class ContractAddComponent implements OnInit {
   public employees: EmployeeModel[] = [];
   public contractId: number;
   public search: string;
-  private mapCustomer=new Map();
+  private mapCustomer = new Map();
   private customerIdPicker: any;
   title = 'angular-material-autocomplete';
+  public filterCustomer: Observable<Customer[]>;
 
   myControl = new FormControl();
   // options: string[] = ['Cash', 'Credit Card', 'Paypal'];
@@ -65,8 +66,8 @@ export class ContractAddComponent implements OnInit {
 
     this.subscription = this.customerService.findAll().subscribe((data: Customer[]) => {
       this.customers = data;
-      this.customers.forEach(element=> {
-       this.mapCustomer.set(element.id,element.name);
+      this.customers.forEach(element => {
+        this.mapCustomer.set(element.id, element.name);
       })
 
     });
@@ -97,20 +98,17 @@ export class ContractAddComponent implements OnInit {
       unified: false
     });
 
-    this.filteredOptions = this.myControl.valueChanges
+    this.filterCustomer = this.myControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
 
 
-
-
-
   }
 
   addNewContract() {
-    alert(this.formAddNewContract.value.customerId);
+    // alert(this.formAddNewContract.value.customerId);
     console.log(this.formAddNewContract.value);
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
       console.log(data);
@@ -144,10 +142,10 @@ export class ContractAddComponent implements OnInit {
   startDate = new Date(2020, 0, 1);
 
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): Customer[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.customers.filter(option => option.name.toLowerCase().includes(filterValue));
   }
 
 
@@ -159,7 +157,7 @@ export class ContractAddComponent implements OnInit {
     'dd/MM/yyyy',
   ];
 
-  pickId(key: string) {
+  pickId(key: number) {
     this.customerIdPicker = key;
     alert(this.customerIdPicker);
   }
