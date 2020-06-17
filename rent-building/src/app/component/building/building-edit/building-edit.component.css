@@ -24,3 +24,8 @@ legend{
 .ng-valid{
   background: deepskyblue;
 }
+.fa{
+  position: fixed;
+  margin-top: -4%;
+  margin-left: 1%;
+}

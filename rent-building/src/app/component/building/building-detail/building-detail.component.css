@@ -24,4 +24,9 @@ legend{
 .cdk-overlay-pane{
   margin-left: 22%;
 }
+.fa{
+  position: fixed;
+  margin-top: -4%;
+  margin-left: 1%;
+}
 
