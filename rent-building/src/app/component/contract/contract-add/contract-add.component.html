@@ -28,8 +28,8 @@
         *ngIf="formAddNewContract.controls.customerId.errors?.required && formAddNewContract.controls.customerId.touched"
         class="text-danger">Vui lòng chọn khách hàng</p>
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of mapCustomer | keyvalue" [value]="option.value" (click)="pickId(option.key)">
-          {{option.value}}
+        <mat-option *ngFor="let option of filterCustomer | async" [value]="option.name" (click)="pickId(option.id)">
+          {{option.name}}
         </mat-option>
       </mat-autocomplete>
 
@@ -146,10 +146,10 @@
   </div>
 </form>
 <div class="row " style="margin-left: 70%;margin-top: 5%">
-  <button style="margin-right: 5%"  class="btn btn-primary mt-3"
-          (click)="addNewContract()">
-<!--    <button style="margin-right: 5%" [disabled]="formAddNewContract.invalid" class="btn btn-primary mt-3"-->
-<!--            (click)="addNewContract()">-->
+<!--  <button style="margin-right: 5%"  class="btn btn-primary mt-3"-->
+<!--          (click)="addNewContract()">-->
+        <button style="margin-right: 5%" [disabled]="formAddNewContract.invalid" class="btn btn-primary mt-3"
+                (click)="addNewContract()">
     <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
   </button>
   <button style="margin-right: 5%" class="btn btn-danger mt-3" (click)="clearFilters()">
@@ -159,6 +159,3 @@
     <i class="material-icons" data-toggle="tooltip" title="Quay về">next_plan</i>
   </button>
 </div>
-
-
-
