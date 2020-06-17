@@ -61,10 +61,10 @@ const routes: Routes = [
         path: '',
         component: CustomerListComponent,
       },
-      {
-        path: 'paging',
-        component: CustomerListComponent
-      },
+      // {
+      //   path: 'paging',
+      //   component: CustomerListComponent
+      // },
     ]
   }
 
