@@ -15,9 +15,14 @@
 
     <div class="form-group col-md-4">
       <p style="font-weight: bold">Họ Và Tên Khách Hàng(<span style="color: red">*</span>)</p>
-      <select class="form-control" formControlName="customerId" style="height: 35px; width: 215px;">
-        <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
-      </select>
+<!--      <select class="form-control" formControlName="customerId" style="height: 35px; width: 215px;">-->
+<!--        <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>-->
+<!--      </select>-->
+
+      
+
+
+
       <p
         *ngIf="formAddNewContract.controls.customerId.errors?.required && formAddNewContract.controls.customerId.touched"
         class="text-danger">Vui lòng chọn khách hàng</p>
@@ -143,8 +148,6 @@
     <i class="material-icons" data-toggle="tooltip" title="Quay về">next_plan</i>
   </button>
 </div>
-
-
 
 
 

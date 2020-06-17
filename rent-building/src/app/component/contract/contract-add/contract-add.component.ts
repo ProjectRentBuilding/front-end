@@ -33,6 +33,7 @@ export class ContractAddComponent implements OnInit {
   public groundId: number;
   public employees : EmployeeModel[] = [];
   public contractId: number;
+  public search: string;
 
 
 
@@ -59,6 +60,7 @@ export class ContractAddComponent implements OnInit {
     this.subscription = this.employeeService.findAll().subscribe((data: EmployeeModel[]) => {
       this.employees = data;
     });
+
 
     this.formAddNewContract = this.formBuilder.group({
       id: [""],
