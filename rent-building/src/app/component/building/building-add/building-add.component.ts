@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef, MatDialog} from '@angular/material';
 import {BuildingService} from '../../../service/building.service';
+
 import {Router} from '@angular/router';
 import {ImageModel} from '../../../model/image.model';
 import {ImageService} from '../../../service/image.service';
@@ -85,7 +86,6 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     this.urlImage=src;
     this.idImage=idImage;
     this.check=true;
-    console.log(this.idImage);
 
   }
 
