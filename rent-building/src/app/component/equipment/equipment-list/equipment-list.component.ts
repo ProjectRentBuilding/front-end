@@ -82,14 +82,18 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   onNext() {
     // tslint:disable-next-line:triple-equals
     if (this.pageClicked == this.totalPages - 1) {
-    } else { this.pageClicked++; }
+    } else {
+      this.pageClicked++;
+    }
     this.loadData(this.pageClicked);
   }
 
   onPrevious() {
     // tslint:disable-next-line:triple-equals
     if (this.pageClicked == 0) {
-    } else { this.pageClicked--; }
+    } else {
+      this.pageClicked--;
+    }
     this.loadData(this.pageClicked);
   }
 

@@ -1,11 +1,11 @@
 <form class="col-md-12 offset-md-4">
   <fieldset>
-    <legend style="color: red;text-align: center">Xem chi tiết hợp đồng</legend>
-    <label class="row">
+    <legend style="color: red;text-align: center;font-size: 260%;font-weight: bold">Xem chi tiết hợp đồng</legend>
+    <label class="row" style="border: 2px solid #111111;padding: 3% 3% 0% 3%;border-bottom: none;margin-bottom: 0%">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Tên khách hàng: </span>
         <div>
-          <input type="text" class="form-control col-md-7" value="{{customer.name}}"  disabled>
+          <input type="text" class="form-control col-md-7" value="{{customer.name}}" disabled>
         </div>
       </div>
       <div class="col-md-4">
@@ -17,7 +17,7 @@
         <input type="text" class="form-control col-md-7" value="{{customer.address}}" disabled>
       </div>
     </label>
-    <label class="row">
+    <label class="row" style="border: 2px solid #111111;padding: 3%;margin-top: 0px ;border-top: none">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Ngày sinh: </span>
         <div>
@@ -27,17 +27,18 @@
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Email KH:</span>
-          <input type="text" class="form-control col-md-7" [value]="customer.email" disabled>
+        <input type="text" class="form-control col-md-7" [value]="customer.email" disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Số điện thoại KH:</span>
         <input type="text" class="form-control col-md-7" [value]="customer.phone" disabled>
       </div>
     </label>
-    <label class="row">
+    <label class="row"
+           style="border: 2px solid #111111;padding: 2%;margin-top: -1% ;border-top: none;border-bottom: none">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Mã số thuế:</span>
-        <input type="text" class="form-control col-md-7" [value]="contract.taxCode"  disabled>
+        <input type="text" class="form-control col-md-7" [value]="contract.taxCode" disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Trạng thái hợp đồng:</span>
@@ -45,14 +46,16 @@
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Mã Mặt Bằng:</span>
-        <input type="text" class="form-control col-md-7" [value]="ground.codeGround" disabled>
+        <input type="button" class="form-control col-md-7" style="color: blue;text-align: left"
+               (click)="openDialogView(ground.id)" [value]="ground.codeGround">
       </div>
     </label>
-    <label class="row">
+    <label class="row"
+           style="border: 2px solid #111111;padding: 2%;margin-top: -1% ;border-top: none;border-bottom: none">
       <div class="col-md-4">
-        <span class="col-md-5" style="font-weight: bold">Kì Hạn:</span>
+        <span class="col-md-5" style="font-weight: bold">Kì Hạn :</span>
         <div>
-          <input type="text" class="form-control col-md-7" value="{{contract.term}}" disabled>
+          <input type="text" class="form-control col-md-7" value="{{contract.term}} tháng" disabled>
         </div>
       </div>
       <div class="col-md-4">
@@ -64,24 +67,30 @@
         <input type="text" class="form-control col-md-7" value="{{contract.endRentDay | date: formatsDate}}" disabled>
       </div>
     </label>
-    <label class="row">
+    <label class="row"
+           style="border: 2px solid #111111;padding: 2%;margin-top: -1% ;border-top: none;border-bottom: none">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Giá tiền:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.price|number}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{contract.price|number}} VNĐ" disabled>
       </div>
       <div class="col-md-4">
-        <span class="col-md-5" style="font-weight: bold">Tổng tiền:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.total|number}}" disabled>
+        <!--        <span class="col-md-5" style="font-weight: bold">Tổng tiền:</span>-->
+        <!--        <input type="text" class="form-control col-md-7" value="{{contract.total|number}}" disabled>-->
+        <button type="button" class="btn btn-primary mr-5">
+          <span class="badge badge-light ml-3" style="font-size: 20pt;">Tổng Tiền: {{contract.price|number}} VNĐ</span>
+          <!--           <span class="badge badge-light ml-3 display-1"  >Tổng Tiền: {{contract.price|number}} VNĐ</span>-->
+        </button>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Tiền đặt cọc:</span>
-        <input type="text" class="form-control col-md-7" value="{{contract.deposits}}" disabled>
+        <input type="text" class="form-control col-md-7" value="{{contract.deposits}} VNĐ" disabled>
       </div>
     </label>
-    <label class="row">
+
+    <label class="row" style="border: 2px solid #111111;padding: 2%;margin-top: -1%">
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">Nhân viên:</span>
-        <input type="text" class="form-control col-md-7" [value]="employee.name"  disabled>
+        <input type="text" class="form-control col-md-7" [value]="employee.name" disabled>
       </div>
       <div class="col-md-4">
         <span class="col-md-5" style="font-weight: bold">SĐT Nhân Viên:</span>
@@ -92,7 +101,7 @@
         <input type="text" class="form-control col-md-7" value="{{employee.email}}" disabled>
       </div>
     </label>
-    <label class="row">
+    <label class="row" class="row" style="border: 2px solid #111111;padding: 2%;margin-top: -1%;border-top: none">
       <div class="col-md-12">
         <span class="col-md-5" style="font-weight: bold">Nội dung hợp đồng:</span>
       </div>
@@ -102,18 +111,18 @@
 
 
     </label>
+
+
+    <label class="row">
+      <div class="col-md-4">
+        <input type="checkbox" disabled checked="{{contract.unified}}"> Hai bên đã thống nhất với hợp đồng
+      </div>
+    </label>
   </fieldset>
-
-  <label class="row">
-    <div class="col-md-4">
-      <input type="checkbox" disabled checked="{{contract.unified}}"> Hai bên đã thống nhất với hợp đồng
-    </div>
-  </label>
-
   <label class="row">
     <div class="col-md-12">
       <span class="col-md-5" style="font-weight: bold">Hình ảnh hợp đồng:</span>
-      <a href="{{contract.ulrImage}}" target="_blank">Bấm vào để xem</a>
+      <a (click)="goToLink()" style="color: blue">Bấm vào để xem</a>
     </div>
   </label>
 
@@ -122,4 +131,8 @@
       <i class="material-icons" data-toggle="tooltip" title="Quay về">next_plan</i>
     </button>
   </div>
+  <button class="btn btn-dark"><a href="http://localhost:8080/contracts/export/{{contractID}}" target='_blank'>In thành
+    PDF</a>
+  </button>
 </form>
+
