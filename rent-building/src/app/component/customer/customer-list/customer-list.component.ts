@@ -28,7 +28,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   startDate = new Date(1990, 0, 1);
   public size = 5;
   public customerPage: any;
-  public totalPages: number = 1;
+  public totalPages = 1;
   public pages = [];
   pageClicked: number = 0;
   public searchText = '';
@@ -61,13 +61,14 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.customerService.getCustomerPage(page, this.size, this.searchText)
       .subscribe(
         data => {
+          // console.log(this.size);
           this.pageClicked = page;
           this.customerPage = data;
           this.customers = this.customerPage.content;
           this.totalPages = this.customerPage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
         }
-      );
+      )
   }
 
   createCustomer(): FormGroup {
@@ -88,10 +89,11 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.formEditCustomer = this.createCustomer();
-    this.customerService.findAll().subscribe(data => {
-      this.customers = data;
-      // this.totalRec = this.customers.length;
-    });
+    // this.customerService.findAll().subscribe(data => {
+    //   this.customers = data;
+    //   // this.totalRec = this.customers.length;
+    // });
+    this.loadData(0);
     this.groundService.findAll().subscribe(data => {
       this.grounds = data;
       // this.totalRec = this.customers.length;
@@ -105,7 +107,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       // endRentDay: new Date().toJSON(),
       rentStatus: false
     });
-    this.loadData(0);
+
+
   }
 
   ngOnDestroy(): void {
@@ -150,7 +153,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       });
     }
     this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-    this.redirectTo('customers/paging');
+    this.redirectTo('customers');
     console.log(this.formAddNewCustomer);
     // this.ngOnInit();
   }
@@ -172,13 +175,13 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkAddCustomer() {
-    if (!this.checkAdd) {
-      this.checkAdd = !this.checkAdd;
-      this.ngOnInit();
-      this.checkEdit = false;
-    }
-  }
+  // checkAddCustomer() {
+  //   if (!this.checkAdd) {
+  //     this.checkAdd = !this.checkAdd;
+  //     this.ngOnInit();
+  //     this.checkEdit = false;
+  //   }
+  // }
 
   editCustomer() {
     console.log(this.formEditCustomer.value);
@@ -232,7 +235,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
 
   onNext() {
-    if (this.pageClicked == this.totalPages - 1) {
+    if (this.pageClicked === this.totalPages - 1) {
     } else {
       this.pageClicked++;
     }
@@ -240,7 +243,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   onPrevious() {
-    if (this.pageClicked == 0) {
+    if (this.pageClicked === 0) {
     } else {
       this.pageClicked--;
     }
@@ -258,6 +261,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   refreshForm() {
-    this.searchText = "";
+    this.searchText = '';
   }
 }
