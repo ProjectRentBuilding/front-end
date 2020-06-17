@@ -18,6 +18,11 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   addBuildingForm: FormGroup;
   public images: ImageModel[];
+  urlImage: string;
+  idImage:number;
+  public check=true;
+  public check1=false;
+  public check2=false;
 
 
   constructor(
@@ -60,7 +65,6 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
     this.buildingService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
   }
-
   clearFilters() {
     this.ngOnInit();
   }
@@ -72,16 +76,26 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+  showPickImage() {
+    this.check=false;
+    this.check1=true;
+    this.check2=true;
+  }
+  pickImage(src: any,idImage) {
+    this.urlImage=src;
+    this.idImage=idImage;
+    this.check=true;
+    console.log(this.idImage);
 
-  onSelectChange() {
-    const dialogRef = this.dialog.open(ImageGalleryComponent, {
-      width: '65%',
-      height: '540px',
-      disableClose: true,
-    });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.ngOnInit();
-    // });
+  }
+
+
+  cancelSelectImage() {
+    this.check1=false;
+    this.check2=false;
+    this.check=true;
+    this.urlImage=null;
+
   }
 }
 

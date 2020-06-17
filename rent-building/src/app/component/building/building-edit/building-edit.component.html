@@ -175,16 +175,14 @@
          && editBuildingForm.get('recipientName').touched">Tên người nhận tối đa 50 ký tự.
         </div>
       </div>
-      <div class="col-md-12">
+      <div class="col-md-12 row">
         <p class="col-md-3">Logo:</p>
-        <select class="form-control col-md-9 " formControlName="logo" (change)="onSelectChange($event.target.value)">
-          <option value="">Chọn</option>
-          <option *ngFor="let image of images" [value]="image.linkImage">
-            {{image.nameImage}}
-          </option>
-        </select>
-        <div class="bottom-border pb-3">
-          <img src="{{logo}}" width="50" height="50" class="rounded-circle mr-3" alt="">
+        <div class="col-md-3">
+          <button id="clickSelect" (click)="showPickImage()">Chọn ảnh </button>
+          <input type="text" class="form-control  ng-valid" style="margin-top: 5%" *ngIf=check1 [value]=urlImage formControlName="logo">
+          <div *ngIf=check2>
+            <img [src]="urlImage" style="border-radius: 50%;width: 100% " alt="Logo"/>
+          </div>
         </div>
       </div>
     </label>
@@ -201,6 +199,14 @@
   </button>
 
 </label>
+
+<div class="gallery-container" *ngIf=!check id="formSelectImage" style="text-align: center;border: black 5px double">
+  <h2 style="color: red;text-align: center;margin-top:5%;margin-bottom: 10%">Nhấp vào ảnh muốn chọn</h2>
+  <div class="gallery-item row" *ngFor="let image of images">
+    <div><img src="{{image.url}}"  (click)="pickImage($event.target.src)" style="width: 200%"></div>
+  </div>
+  <button class="btn btn-danger" (click)="cancelSelectImage()">Hủy chọn Logo</button>
+</div>
 
 
 

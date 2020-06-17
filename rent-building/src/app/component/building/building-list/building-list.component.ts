@@ -80,7 +80,8 @@ export class BuildingListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(BuildingAddComponent, {
       width: '65%',
       height: '540px',
-      disableClose: true,
+      disableClose: false,
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -94,7 +95,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
         width: '65%',
         height: '540px',
         data: {data1: dataOfBuildingModel},
-        disableClose: true,
+        disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
@@ -108,7 +109,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
         width: '65%',
         height: '540px',
         data: {data1: dataOfBuildingModel},
-        disableClose: true,
+        disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
