@@ -4,16 +4,18 @@ import {HttpClient} from '@angular/common/http';
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
 import {GroundModel} from '../model/ground.model';
+import {Observable} from "rxjs";
 
 let $: any = jQuery;
 
 @Injectable({
   providedIn: 'root'
 })
-export class GroundService extends CrudService<GroundModel, number>{
+export class GroundService extends CrudService<GroundModel, number> {
   constructor(protected  http: HttpClient) {
     super(http, 'http://localhost:8080/grounds');
   }
+
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
     const color = Math.floor((Math.random() * 4) + 1);
@@ -39,6 +41,14 @@ export class GroundService extends CrudService<GroundModel, number>{
         '</div>' +
         '<a href="{3}" target="{4}" data-notify="url"></a>' +
         '</div>'
+    });
+  }
+
+  getGroundPage(currentPage, size, search): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/grounds/paging`, {
+      params: {
+        page: currentPage, size: size, search: search
+      }
     });
   }
 }

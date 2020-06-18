@@ -8,7 +8,7 @@ import {BuildingDeleteComponent} from '../building-delete/building-delete.compon
 import {BuildingEditComponent} from '../building-edit/building-edit.component';
 import {BuildingDetailComponent} from '../building-detail/building-detail.component';
 import {Router} from "@angular/router";
-import {ContractModel} from "../../../model/contract";
+
 
 @Component({
   selector: 'app-building-list',
@@ -18,7 +18,6 @@ import {ContractModel} from "../../../model/contract";
 export class BuildingListComponent implements OnInit, OnDestroy {
   public size=5;
   public buildingPage: any;
-  public contracts: ContractModel[] = [];
   public totalPages: number = 1;
   public pages = [];
   pageClicked:number=0;
@@ -49,22 +48,34 @@ export class BuildingListComponent implements OnInit, OnDestroy {
         }
       )
   }
-  onNext(){
-    this.pageClicked++;
+  onNext() {
+    // tslint:disable-next-line:triple-equals
+    if (this.pageClicked == this.totalPages - 1) {
+    } else {
+      this.pageClicked++;
+    }
     this.loadData(this.pageClicked);
   }
-  onPrevious(){
-    this.pageClicked--;
+
+  onPrevious() {
+    // tslint:disable-next-line:triple-equals
+    if (this.pageClicked == 0) {
+    } else {
+      this.pageClicked--;
+    }
     this.loadData(this.pageClicked);
   }
-  onFirst(){
-    this.pageClicked=0;
+
+  onFirst() {
+    this.pageClicked = 0;
     this.loadData(this.pageClicked);
   }
-  onLast(){
-    this.pageClicked=this.totalPages-1;
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
     this.loadData(this.pageClicked);
   }
+
 
   ngOnDestroy() {
     if (this.subscription) {
