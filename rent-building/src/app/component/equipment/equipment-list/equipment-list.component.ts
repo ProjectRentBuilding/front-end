@@ -213,7 +213,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       const dialogRef = this.dialog.open(EquipmentDeleteComponent, {
         width: '500px',
         data: {data1: dataOfEquipment},
-        disableClose: true,
+        disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
@@ -259,10 +259,4 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 
-  search() {
-    // @ts-ignore
-    this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
-    // @ts-ignore
-    this.searchText = document.getElementById('searchEquipment').value;
-  }
 }
