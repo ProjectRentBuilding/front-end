@@ -21,12 +21,19 @@ import {Router} from "@angular/router";
 })
 export class GroundListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
-  public grounds: GroundModel[];
+
   public contracts: ContractModel[];
   public totalRec: number;
   public page = 1;
-  public searchText;
   public floors: FloorModel[];
+
+  public grounds: GroundModel[] = [];
+  public size=5;
+  public groundPage: any;
+  public totalPages: number = 1;
+  public pages = [];
+  pageClicked:number=0;
+  public searchText="";
 
   constructor(
     public groundService: GroundService,
@@ -38,17 +45,52 @@ export class GroundListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
-      this.grounds = data;
-      this.totalRec = this.grounds.length;
-    });
     this.subscription = this.floorService.findAll().subscribe((data: FloorModel[]) => {
       this.floors = data;
     });
     this.subscription = this.contractService.findAll().subscribe((data: ContractModel[]) => {
       this.contracts = data;
     });
+    this.loadData(0);
 
+  }
+
+  loadData(page) {
+    this.groundService.getGroundPage(page,this.size,this.searchText)
+      .subscribe(
+        data=>{
+        this.pageClicked=page;
+        this.groundPage=data;
+        this.grounds=this.groundPage.content;
+        this.totalPages=this.groundPage.totalPages;
+        this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+    });
+  }
+  onNext() {
+    // tslint:disable-next-line:triple-equals
+    if (this.pageClicked == this.totalPages - 1) {
+    } else {
+      this.pageClicked++;
+    }
+    this.loadData(this.pageClicked);
+  }
+  onPrevious() {
+    // tslint:disable-next-line:triple-equals
+    if (this.pageClicked == 0) {
+    } else {
+      this.pageClicked--;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onFirst() {
+    this.pageClicked = 0;
+    this.loadData(this.pageClicked);
+  }
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
+    this.loadData(this.pageClicked);
   }
 
   ngOnDestroy() {

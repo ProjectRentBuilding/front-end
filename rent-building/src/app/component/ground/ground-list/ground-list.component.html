@@ -1,7 +1,8 @@
 <div class="col-md-5 mt-5">
   <div class="input-group">
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
-    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
+    <button type="button" class="btn btn-secondary search-button" (click)="loadData(0)">
+      <i class="fa fa-search text-danger"></i></button>
   </div>
 </div>
 
@@ -46,10 +47,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let i=index;let item of grounds|filter:searchText | paginate:{id:'listing_pagination',
-                                                                            itemsPerPage:5,
-                                                                            currentPage:page
-                                                                            }">
+    <tr *ngFor="let i=index;let item of grounds">
+<!--      |filter:searchText | paginate:{id:'listing_pagination',-->
+<!--                                                                            itemsPerPage:5,-->
+<!--                                                                            currentPage:page-->
+<!--      }-->
       <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
       <td>{{item.codeGround}}</td>
       <td>{{item.typeGround.nameTypeGround}}</td>
@@ -82,11 +84,27 @@
   </table>
 </form>
 
+<nav aria-label="Page navigation example" *ngIf="grounds.length!=0 && totalPages>1">
+  <ul class="pagination">
+    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+      <a class="page-link"><<</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pages" (click)="loadData(page)"
+        [ngClass]="pageClicked == page ? 'active' : ''">
+      <a class="page-link">{{page + 1}}</a>
+    </li>
+    <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+      <a class="page-link">>></a>
+    </li>
+    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+  </ul>
+</nav>
 
-<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"
-                     previousLabel="Trang trước"
-                     nextLabel="Trang sau">
-</pagination-controls>
+<!--<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"-->
+<!--                     previousLabel="Trang trước"-->
+<!--                     nextLabel="Trang sau">-->
+<!--</pagination-controls>-->
 
 
 
