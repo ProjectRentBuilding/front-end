@@ -1,8 +1,24 @@
 <h4>Xóa thông tin hợp đồng</h4>
 <hr>
-<p class="my-3">Bạn có chắc chắc muốn xóa hợp đồng có id là <span
-  class="text-primary font-weight-bold">{{customer.id}}</span> và tên khách hàng là <span
-  class="text-primary font-weight-bold">{{customer.name}}</span> không? <br> Lưu ý: Thao tác không thể hoàn tác!!!</p>
+<p class="my-3">
+  Bạn có chắc chắc muốn xóa hợp đồng có id là
+  <span class="text-primary font-weight-bold">{{customer.id}}</span>
+  và tên khách hàng là
+  <span class="text-primary font-weight-bold">{{customer.name}}</span>
+  không?
+  <br>
+  Hợp đồng này đã cọc
+  <span class="text-primary font-weight-bold">{{contract.deposits|number}}</span>
+  trên tổng số tiền
+  <span class="text-primary font-weight-bold">{{contract.total|number}}</span>
+  <br>
+  Có ngày bắt đầu
+  <span class="text-primary font-weight-bold">{{contract.startRentDay|date : formatsDate}}</span>
+  và ngày kết thúc
+  <span class="text-primary font-weight-bold">{{contract.endRentDay|date : formatsDate}}</span>
+
+
+  <br> Lưu ý:  <span class="text-primary font-weight-bold">{{statusContract}}</span></p>
 <div class="row d-flex justify-content-end">
   <button class="btn btn-danger mr-3" style="width: 120px;" (click)="deleteContract() ">Xác nhận</button>
   <button mat-dialog-close class="btn btn-warning mr-3" style="width: 120px;">Hủy</button>

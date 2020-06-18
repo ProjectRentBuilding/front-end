@@ -2,6 +2,8 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {ImageModel} from "../../../model/image.model";
+import {ImageService} from "../../../service/image.service";
 
 
 @Component({
@@ -12,15 +14,18 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class BuildingDetailComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
+  private images: ImageModel[];
   viewBuildingForm: FormGroup;
   public id: number;
   constructor(
     public dialogRef: MatDialogRef<BuildingDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    public imageService: ImageService,
     private fb: FormBuilder,
   ) {
   }
   ngOnInit() {
+    this.imageService.findAll().subscribe(data => this.images = data);
     this.viewBuildingForm = this.fb.group({
       abbreviationName: [''],
       fullName: [''],
@@ -41,6 +46,7 @@ export class BuildingDetailComponent implements OnInit, OnDestroy {
   loadData() {
     this.id = this.data.data1.id;
     this.viewBuildingForm.patchValue(this.data.data1);
+
   }
   ngOnDestroy() {
     if (this.subscription) {

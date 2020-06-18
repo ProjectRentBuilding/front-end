@@ -75,7 +75,15 @@
       </div>
       <div class="col-md-12">
         <p class="col-md-3">Logo:</p>
-        <input class="form-control col-md-9" formControlName="logo" disabled>
+        <div>
+          <input class="form-control col-md-9" formControlName="logo" disabled>
+          <div *ngFor="let image of images" class="col-md-3" style="margin-left: 30%;margin-top: 5%">
+            <div *ngIf="image.id==viewBuildingForm.value.logo">
+              <img src="{{image.url}}" style="border-radius: 50%;width: 100% " alt="Logo"/>
+            </div>
+          </div>
+        </div>
+
       </div>
     </label>
   </fieldset>

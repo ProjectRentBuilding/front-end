@@ -3,6 +3,7 @@ import {Subscription} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialogRef, MatDialog} from '@angular/material';
 import {BuildingService} from '../../../service/building.service';
+
 import {Router} from '@angular/router';
 import {ImageModel} from '../../../model/image.model';
 import {ImageService} from '../../../service/image.service';
@@ -18,6 +19,12 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   addBuildingForm: FormGroup;
   public images: ImageModel[];
+  urlImage: string;
+  idImage: string ;
+  public check=true;
+  public check1=false;
+  public check2=false;
+  public idImagePick;
 
 
   constructor(
@@ -49,7 +56,11 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     });
   }
   onAddBuilding() {
+    this.addBuildingForm.value.logo = this.idImagePick;
+
+    console.log(this.addBuildingForm.value);
     this.buildingService.save(this.addBuildingForm.value).subscribe(data => {
+
       // if (data && data.id) {
       this.routerService.navigate(['buildings']).then(r => this.afterOnAddBuilding());
       // }
@@ -60,7 +71,6 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     this.dialogRef.close();
     this.buildingService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
   }
-
   clearFilters() {
     this.ngOnInit();
   }
@@ -72,17 +82,27 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
-
-  onSelectChange() {
-    const dialogRef = this.dialog.open(ImageGalleryComponent, {
-      width: '65%',
-      height: '540px',
-      disableClose: true,
-    });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.ngOnInit();
-    // });
+  showPickImage() {
+    this.check=false;
+    this.check1=true;
+    this.check2=true;
   }
+  pickImage(src: any,idImage) {
+    this.urlImage=src;
+    this.idImage=idImage;
+    this.check=true;
+    this.idImagePick = idImage;
+
+  }
+
+  cancelSelectImage() {
+    this.check1=false;
+    this.check2=false;
+    this.check=true;
+    this.idImagePick=null;
+
+  }
+
 }
 
 

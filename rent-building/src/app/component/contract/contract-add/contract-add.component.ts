@@ -10,6 +10,10 @@ import {CustomerService} from "../../../service/customer.service";
 import {EmployeeService} from "../../../service/employee.service";
 import {EmployeeModel} from "../../../model/employee";
 import {map, startWith} from "rxjs/operators";
+import {DatePipe} from "@angular/common";
+import {CustomerAddComponent} from "../../customer/customer-add/customer-add.component";
+import {MatDialog} from "@angular/material/dialog";
+import { ContractListComponent } from '../contract-list/contract-list.component';
 
 @Component({
   selector: 'app-contract-add',
@@ -39,6 +43,7 @@ export class ContractAddComponent implements OnInit {
   private customerIdPicker: any;
   title = 'angular-material-autocomplete';
   public filterCustomer: Observable<Customer[]>;
+  public contractListComponent: ContractListComponent;
 
   myControl = new FormControl();
   // options: string[] = ['Cash', 'Credit Card', 'Paypal'];
@@ -54,8 +59,10 @@ export class ContractAddComponent implements OnInit {
     public contractService: ContractService,
     public groundService: GroundService,
     public customerService: CustomerService,
-    public employeeService: EmployeeService
+    public employeeService: EmployeeService,
+    public dialog: MatDialog,
   ) {
+
 
   }
 
@@ -112,10 +119,18 @@ export class ContractAddComponent implements OnInit {
     console.log(this.formAddNewContract.value);
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
       console.log(data);
-      this.router.navigateByUrl('contracts/paging').then(r => this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn'));
+      this.router.navigate(['contracts/paging']).then(r => this.afterAdd());
 
 
     });
+
+  }
+
+  afterAdd() {
+    window.sessionStorage.setItem("1", "1");
+    this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+    // this.contractListComponent.flagAfterAdd = 2;
+
 
   }
 
@@ -139,8 +154,6 @@ export class ContractAddComponent implements OnInit {
 
   }
 
-  startDate = new Date(2020, 0, 1);
-
 
   private _filter(value: string): Customer[] {
     const filterValue = value.toLowerCase();
@@ -156,9 +169,23 @@ export class ContractAddComponent implements OnInit {
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
+  startDate = new Date(2020, 0, 1);
 
   pickId(key: number) {
     this.customerIdPicker = key;
-    alert(this.customerIdPicker);
+    // alert(this.customerIdPicker);
+  }
+
+  openDialogAddNewCustomer() {
+    const dialogRef = this.dialog.open(CustomerAddComponent, {
+      width: '65%',
+      height: '540px',
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.ngOnInit();
+      this.router.navigateByUrl('/contracts/add').then();
+    });
   }
 }
