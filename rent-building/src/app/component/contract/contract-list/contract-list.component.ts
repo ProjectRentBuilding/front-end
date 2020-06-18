@@ -173,8 +173,8 @@ export class ContractListComponent implements OnInit, OnDestroy {
 
     this.contractService.findOne(contractId).subscribe(dataOfContract => {
       const dialogRef = this.dialog.open(ContractDeleteComponent, {
-        width: '500px',
-        height: '250px',
+        width: '600px',
+        height: '300px',
         data: {data1: dataOfContract},
         disableClose: true,
       });

@@ -41,7 +41,7 @@
   <table class="table table-bordered bg-light text-center table-striped">
     <thead class="thead-dark">
     <tr class="text-muted">
-      <!--      <th style="font-weight: bold">#</th>-->
+      <th style="font-weight: bold">ID</th>
       <th style="font-weight: bold">Tên Khách Hàng</th>
       <th style="font-weight: bold">Tên Mặt Bằng</th>
       <th style="width: 120px;font-weight: bold">Đang Thuê</th>
@@ -51,7 +51,8 @@
     <tbody>
     <tr
       *ngFor="let contract of contracts   ;let i  = index">
-      <!--      <td >{{(i+1)+(page-1)*5}}</td>-->
+<!--            <td >{{(i+1)+(page-1)*5}}</td>-->
+      <td>{{contract.id}}</td>
       <td style="text-align: center">{{contract.customer.name}}</td>
       <td>{{contract.ground.codeGround}}</td>
 
