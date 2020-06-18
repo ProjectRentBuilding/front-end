@@ -58,9 +58,9 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
-      this.typeEquipment = data;
-    });
+    // this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
+    //   this.typeEquipment = data;
+    // });
     this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
@@ -217,7 +217,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        this.ngOnInit();
+        this.loadData(this.checkPage);
       });
     });
   }
@@ -229,7 +229,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.ngOnInit();
+      this.loadData(this.checkPage);
     });
   }
 
