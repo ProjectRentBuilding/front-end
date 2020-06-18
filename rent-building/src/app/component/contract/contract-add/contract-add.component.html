@@ -16,7 +16,7 @@
 
 
     <div class="form-group col-md-4">
-      <p style="font-weight: bold">Họ Và Tên Khách Hàng(<span style="color: red">*</span>)</p>
+      <p style="font-weight: bold">Họ Và Tên Khách Hàng(<span style="color: red">*</span>)(<a style="color: blue" (click)="openDialogAddNewCustomer()">Đăng kí</a>)</p>
       <!--      <select class="form-control" formControlName="customerId" style="height: 35px; width: 215px;">-->
       <!--        <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>-->
       <!--      </select>-->
@@ -57,7 +57,7 @@
     <div class="form-group col-md-4">
       <p style="font-weight: bold">Ngày bắt đầu thuê(<span style="color: red">*</span>)</p>
       <input class="form-control" formControlName="startRentDay" [(ngModel)]="startDayCheck"
-             placeholder="Choose a date"
+             placeholder="Chọn ở dưới"
              matInput
              [matDatepicker]="picker1" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -75,7 +75,7 @@
     <div class="form-group col-md-4">
       <p style="font-weight: bold">Ngày kết thúc thuê(<span style="color: red">*</span>)</p>
       <input class="form-control" formControlName="endRentDay"
-             [(ngModel)]="endDayCheck" placeholder="Choose a date"
+             [(ngModel)]="endDayCheck" placeholder="Chọn ở dưới"
              matInput
              [matDatepicker]="picker2" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
 

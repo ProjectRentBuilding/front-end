@@ -10,6 +10,9 @@ import {CustomerService} from "../../../service/customer.service";
 import {EmployeeService} from "../../../service/employee.service";
 import {EmployeeModel} from "../../../model/employee";
 import {map, startWith} from "rxjs/operators";
+import {DatePipe} from "@angular/common";
+import {CustomerAddComponent} from "../../customer/customer-add/customer-add.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-contract-add',
@@ -54,8 +57,10 @@ export class ContractAddComponent implements OnInit {
     public contractService: ContractService,
     public groundService: GroundService,
     public customerService: CustomerService,
-    public employeeService: EmployeeService
+    public employeeService: EmployeeService,
+    public dialog: MatDialog,
   ) {
+
 
   }
 
@@ -139,7 +144,7 @@ export class ContractAddComponent implements OnInit {
 
   }
 
-  startDate = new Date(2020, 0, 1);
+
 
 
   private _filter(value: string): Customer[] {
@@ -156,9 +161,23 @@ export class ContractAddComponent implements OnInit {
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
+  startDate = new Date(2020, 0, 1);
 
   pickId(key: number) {
     this.customerIdPicker = key;
-    alert(this.customerIdPicker);
+    // alert(this.customerIdPicker);
+  }
+
+  openDialogAddNewCustomer() {
+    const dialogRef = this.dialog.open(CustomerAddComponent, {
+      width: '65%',
+      height: '540px',
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.ngOnInit();
+      this.router.navigateByUrl('/contracts/add').then();
+    });
   }
 }

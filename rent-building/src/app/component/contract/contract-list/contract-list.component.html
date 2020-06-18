@@ -1,39 +1,67 @@
-
+<form class="w-75 mx-auto mt-3 col-md-12 offset-md-4" [formGroup]="formSearch">
 <div class="col-md-5 mt-5">
   <div class="input-group">
-<!--    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="search">-->
-    <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên khách hàng..." [(ngModel)]="searchText">
-    <button type="button" class="btn btn-secondary search-button"><i
-      class="fa fa-search text-danger" (click)="loadData(0)"></i></button>
+    <!--    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="search">-->
+    <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên khách hàng..."
+           formControlName="nameCustomerSearch">
+  </div>
+  <div class="input-group">
+    <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo mã mặt bằng..."
+           formControlName="codeGroundSearch">
   </div>
 
+  <div class="input-group">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" formControlName="startRentDaySearch">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="input-group">
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" formControlName="endRentDaySearch">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <button type="button" class="btn btn-secondary search-button"><i
+    class="fa fa-search text-danger" (click)="onSearch(0)"></i></button>
 </div>
+</form>
+
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH HỢP ĐỒNG</h3>
-<button   routerLink="/contracts/add" class="btn btn-success px-4 py-2">
-  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
+<button routerLink="/contracts/add" class="btn btn-success px-4 py-2">
+  <i class="material-icons" data-toggle="tooltip" title="Thêm">playlist_add</i>
 </button>
-<form  >
+<form>
   <table class="table table-bordered bg-light text-center table-striped">
     <thead class="thead-dark">
     <tr class="text-muted">
-<!--      <th style="font-weight: bold">#</th>-->
+      <th style="font-weight: bold">ID</th>
       <th style="font-weight: bold">Tên Khách Hàng</th>
       <th style="font-weight: bold">Tên Mặt Bằng</th>
-      <th style="width: 120px;font-weight: bold" >Đang Thuê</th>
+      <th style="width: 120px;font-weight: bold">Đang Thuê</th>
       <th colspan="3" style="font-weight: bold"></th>
     </tr>
     </thead>
     <tbody>
     <tr
       *ngFor="let contract of contracts   ;let i  = index">
-<!--      <td >{{(i+1)+(page-1)*5}}</td>-->
+<!--            <td >{{(i+1)+(page-1)*5}}</td>-->
+      <td>{{contract.id}}</td>
       <td style="text-align: center">{{contract.customer.name}}</td>
       <td>{{contract.ground.codeGround}}</td>
 
-      <td><input type="checkbox"  [checked]="contract.statusContract" [disabled]="true"></td>
+      <td><input type="checkbox" [checked]="contract.statusContract" [disabled]="true"></td>
       <td>
-        <button class="btn btn-info" [routerLink]="['/contracts',contract.id,'detail']"><i class="material-icons" data-toggle="tooltip" title="Xem">&#xe8a0;</i></button>
+        <button class="btn btn-info" [routerLink]="['/contracts',contract.id,'detail']"><i class="material-icons"
+                                                                                           data-toggle="tooltip"
+                                                                                           title="Xem">&#xe8a0;</i>
+        </button>
       </td>
       <td>
         <button class="btn btn-warning" [routerLink]="['/contracts',contract.id,'edit'] " style="margin-right: 10px">
@@ -41,7 +69,8 @@
         </button>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="openDialog(contract.id)"><i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i></button>
+        <button class="btn btn-danger" (click)="openDialog(contract.id)"><i class="material-icons" data-toggle="tooltip"
+                                                                            title="Xóa">&#xE872;</i></button>
       </td>
     </tr>
     </tbody>

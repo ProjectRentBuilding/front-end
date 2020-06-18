@@ -43,7 +43,9 @@ import { GroundEditComponent } from './component/ground/ground-edit/ground-edit.
 import { GroundDetailComponent } from './component/ground/ground-detail/ground-detail.component';
 import { ImageGalleryComponent } from './component/building/building-add/image-gallery/image-gallery.component';
 import { EquipmentBuildingComponent } from './component/equipment/equipment-building/equipment-building.component';
+import { CustomerAddComponent } from './component/customer/customer-add/customer-add.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+
 
 
 
@@ -77,7 +79,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     GroundEditComponent,
     GroundDetailComponent,
     ImageGalleryComponent,
-    EquipmentBuildingComponent
+    EquipmentBuildingComponent,
+    CustomerAddComponent
 
 
 
@@ -117,6 +120,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     GroundEditComponent,
     GroundDetailComponent,
     CustomerDeleteComponent,
+    CustomerAddComponent,
     EquipmentDeleteComponent,
     ImageGalleryComponent
 
