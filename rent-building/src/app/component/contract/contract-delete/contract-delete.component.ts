@@ -15,9 +15,10 @@ export class ContractDeleteComponent implements OnInit {
   public contractId;
   public endDayCheck: Date;
   public currentDay = Date.now();
-  public customer : any;
+  public customer: any;
   public contract: any;
   public subscription: Subscription;
+  public statusContract: any;
 
   constructor(
     public dialogRef: MatDialogRef<ContractDeleteComponent>,
@@ -39,6 +40,16 @@ export class ContractDeleteComponent implements OnInit {
 
     });
     this.endDayCheck = this.data.data1.endRentDay;
+
+
+    let subTime;
+    subTime = new Date(this.endDayCheck);
+
+    if (subTime.getTime() < this.currentDay) {
+      this.statusContract = "Hợp đồng này đã hết hiệu lực"
+    } else {
+      this.statusContract = "Hợp đồng đang còn hiệu lực"
+    }
   }
 
   deleteContract() {
@@ -61,6 +72,7 @@ export class ContractDeleteComponent implements OnInit {
     }
 
   }
+
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];

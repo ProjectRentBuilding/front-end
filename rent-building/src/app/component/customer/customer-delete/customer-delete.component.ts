@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CustomerService} from '../../../service/customer.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-delete',
@@ -27,12 +27,22 @@ export class CustomerDeleteComponent implements OnInit {
   }
 
   deleteCustomer() {
-    this.customerService.delete(this.customerOfId).subscribe(data => {
-      this.dialogRef.close();
-      this.redirectTo('customers/paging');
-      this.customerService.showNotification('', 'Xóa thành công  !!!');
-    });
+    for (let i = 0; i < this.data.data1.contracts.length; i++) {
+      if (this.data.data1.contracts[i].statusContract === false) {
+        this.customerService.delete(this.customerOfId).subscribe(data => {
+          this.dialogRef.close();
+          this.redirectTo('customers');
+          this.customerService.showNotification('', 'xóa khách hàng thành công');
+        });
+      }
+      else {
+        this.dialogRef.close();
+        this.redirectTo('customers');
+        this.customerService.showNotification('', 'Không được xóa khách hàng đang còn hợp đồng');
+      }
+    }
   }
+
   redirectTo(uri: string) {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
       this.router.navigate([uri]));

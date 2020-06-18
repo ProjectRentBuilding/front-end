@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import * as jQuery from 'jquery';
 import 'bootstrap-notify';
 import {FloorModel} from '../model/floor.model';
+import {Observable} from "rxjs";
 
 
 let $: any = jQuery;
@@ -41,6 +42,14 @@ export class FloorService extends CrudService<FloorModel, number> {
         '<a href="{3}" target="{4}" data-notify="url"></a>' +
         '</div>'
     });
+  }
+  getFloorPage(currentPage, size, search): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/floors/paging`, {
+      params: {
+        page: currentPage, size: size, search: search
+      }
+    });
+
   }
 
 }

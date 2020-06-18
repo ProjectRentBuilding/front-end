@@ -14,11 +14,17 @@ import {ImageService} from '../../../service/image.service';
 })
 export class BuildingEditComponent implements OnInit, OnDestroy {
 
-  public subscription: Subscription;
+  private subscription: Subscription;
   editBuildingForm: FormGroup;
-  public images: ImageModel[];
-  logo;
-  public id: number;
+  private images: ImageModel[];
+  private id: number;
+  urlImage: string;
+  private check=true;
+  private check1=false;
+  private check2=false;
+  idImage: string ;
+  public idImagePick;
+
 
   constructor(
     public dialogRef: MatDialogRef<BuildingEditComponent>,
@@ -27,6 +33,8 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     public imageService: ImageService,
     public routerService: Router,
     private fb: FormBuilder,
+
+
   ) {
   }
 
@@ -58,6 +66,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   }
 
   onEditBuilding() {
+    this.editBuildingForm.value.logo = this.idImagePick;
     this.subscription = this.buildingService.update(this.editBuildingForm.value, this.id).subscribe(data => {
       this.routerService.navigate(['buildings']).then(r => this.afterOnEditBuilding());
     });
@@ -77,10 +86,25 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+  showPickImage() {
+    this.check=false;
+    this.check1=true;
+    this.check2=true;
+  }
+  pickImage(src: any,idImage) {
+    this.urlImage=src;
+    this.idImage=idImage;
+    this.check=true;
+    this.idImagePick = idImage;
 
-  onSelectChange(value) {
+  }
 
-    this.logo = value;
+
+  cancelSelectImage() {
+    this.check1=false;
+    this.check2=false;
+    this.check=true;
+    this.idImagePick=null;
 
   }
 }

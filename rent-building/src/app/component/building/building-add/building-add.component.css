@@ -24,3 +24,19 @@ legend{
 .ng-valid{
   background: deepskyblue;
 }
+.fa{
+  position: fixed;
+  margin-top: -4%;
+  margin-left: 1%;
+}
+
+
+.gallery-item {
+  max-width: 25%;
+  margin-left: 25%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border: black 2px double;
+  padding: 5px;
+}
+
