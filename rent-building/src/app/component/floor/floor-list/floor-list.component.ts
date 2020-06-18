@@ -110,6 +110,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
       // @ts-ignore
       this.floorService.save(this.floor.at(tem).value).subscribe(data => {
         this.floorService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+
       });
     }
     this.redirectTo('floors');
@@ -132,17 +133,17 @@ export class FloorListComponent implements OnInit, OnDestroy {
   checkEditFloor(id) {
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
-      this.checkAdd = false;
       this.flag = id;
       this.floorOfId = id;
       this.floorService.findOne(this.floorOfId).subscribe(data => {
-        this.addFloorForm.patchValue(data);
+        this.editFloorForm.patchValue(data);
       });
     }
   }
 
   editFloor() {
-    this.floorService.update(this.addFloorForm.value, this.floorOfId).subscribe(data => {
+    console.log(this.editFloorForm.value);
+    this.floorService.update(this.editFloorForm.value, this.floorOfId).subscribe(data => {
       this.redirectTo('floors');
       this.floorService.showNotification('', 'Sửa thành công, chúc mừng bạn');
     });
