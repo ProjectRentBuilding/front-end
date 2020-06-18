@@ -36,4 +36,7 @@ table thead  th,td{
 vertical-align: middle;
 }
 
-
+.infoPlaceholder::-webkit-input-placeholder {
+  font-weight: lighter;
+  color:#AFB2B3;
+}

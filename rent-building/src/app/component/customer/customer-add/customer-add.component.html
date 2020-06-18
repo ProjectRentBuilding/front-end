@@ -1,0 +1,97 @@
+<div style="margin-left: 99%;margin-top: -2%;" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x"
+                                                                   aria-hidden="true" title="Thoát"></i>
+</div>
+<h2 class="text-center">Thêm mới khách hàng</h2>
+<form [formGroup]="addCustomerForm" class="col-md-12 offset-md-4">
+  <fieldset>
+    <label class="row">
+      <div class="col-md-12">
+        <p class="col-md-3">Tên khách hàng(<span style="color: red">*</span>):</p>
+        <div>
+          <input type="text" class="form-control col-md-9 ng-valid" formControlName="name">
+        </div>
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addCustomerForm.get('name').hasError('required')
+         && addCustomerForm.get('name').touched">Tên  không được để trống.
+        </div>
+      </div>
+      <div class="col-md-12">
+        <p class="col-md-3 ">CMND(<span style="color: red">*</span>):</p>
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="idCard">
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addCustomerForm.get('idCard').hasError('required')
+         && addCustomerForm.get('idCard').touched">CMND không được để trống.
+        </div>
+      </div>
+      <div class="col-md-12">
+        <p class="col-md-3"> Email(<span style="color: red">*</span>):</p>
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="email">
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addCustomerForm.get('email').hasError('required')
+         && addCustomerForm.get('email').touched">Email không được để trống.
+        </div>
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-12">
+        <p class="col-md-3">Số Điện thoại(<span style="color: red">*</span>):</p>
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="phone">
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addCustomerForm.get('phone').hasError('required')
+         && addCustomerForm.get('phone').touched">Số điện thoại không được để trống.
+        </div>
+      </div>
+      <div class="col-md-12">
+        <p class="col-md-3">Ngày sinh(<span style="color: red">*</span>):</p>
+        <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
+               [matDatepicker]="picker1">
+
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addCustomerForm.get('birthday').hasError('required')
+         && addCustomerForm.get('birthday').touched">Ngày sinh không được để trống.
+        </div>
+
+      </div>
+    </label>
+    <label class="row">
+      <div class="col-md-12">
+        <p class="col-md-3">Địa chỉ(<span style="color: red">*</span>):</p>
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="address">
+        <div class="alert alert-danger col-md-10" role="alert" *ngIf="addCustomerForm.get('address').hasError('required')
+         && addCustomerForm.get('address').touched">Địa chỉ không được để trống.
+        </div>
+
+      </div>
+      <div class="col-md-12">
+        <p class="col-md-3">Website(<span style="color: red">*</span>):</p>
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="website">
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addCustomerForm.get('website').hasError('required')
+         && addCustomerForm.get('website').touched">website không được để trống.
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <p class="col-md-3">Công Ty(<span style="color: red">*</span>):</p>
+        <input type="text" class="form-control col-md-9 ng-valid" formControlName="nameCompany">
+        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addCustomerForm.get('nameCompany').hasError('required')
+         && addCustomerForm.get('nameCompany').touched">Tên công ty không được để trống.
+        </div>
+      </div>
+    </label>
+  </fieldset>
+</form>
+<label class="row " style="margin-left: 85%;margin-top: 5%">
+  <button style="margin-right: 15%"  class="btn btn-primary mt-3"
+          (click)="onAddBuilding()">
+    <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+  </button>
+  <button class="btn btn-danger mt-3" (click)="clearFilters()">
+    <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i>
+  </button>
+</label>
+
+
+
+
+
+
+
+
