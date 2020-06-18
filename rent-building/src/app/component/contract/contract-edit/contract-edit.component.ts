@@ -32,7 +32,7 @@ export class ContractEditComponent implements OnInit {
   public customers: Customer[] = [];
   public customerId: number;
   public groundId: number;
-  public employees : EmployeeModel[] = [];
+  public employees: EmployeeModel[] = [];
   public contractId: number;
 
   constructor(
@@ -59,6 +59,7 @@ export class ContractEditComponent implements OnInit {
     this.subscription = this.employeeService.findAll().subscribe((data: EmployeeModel[]) => {
       this.employees = data;
     });
+
 
     this.formEditContract = this.formBuilder.group({
       id: [""],
@@ -121,4 +122,13 @@ export class ContractEditComponent implements OnInit {
     this.ngOnInit();
   }
 
+
+  checkDisable(startDayCheck: Date) {
+    let a;
+    a = new Date(startDayCheck);
+    if (a.getTime() < this.currentDay) {
+      return true;
+    } else return false;
+
+  }
 }

@@ -18,7 +18,7 @@
 
       <div class="form-group col-md-4">
         <p style="font-weight: bold">Họ Và Tên Khách Hàng(<span style="color: red">*</span>)</p>
-        <select  class="form-control"   formControlName="customerId" style="height: 35px; width: 215px;">
+        <select disabled  class="form-control"   formControlName="customerId" style="height: 35px; width: 215px;">
           <option  *ngFor="let customer of customers"  [value]="customer.id">{{customer.name}}</option>
         </select>
         <p
@@ -49,9 +49,8 @@
 
       <div class="form-group col-md-4">
         <p style="font-weight: bold">Ngày bắt đầu thuê(<span style="color: red">*</span>)</p>
-        <input class="form-control" formControlName="startRentDay" [(ngModel)]="startDayCheck"
+        <input class="form-control" formControlName="startRentDay" [disabled]="checkDisable(startDayCheck)" [(ngModel)]="startDayCheck"
                placeholder="Choose a date"
-               matInput
                [matDatepicker]="picker1" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
@@ -92,6 +91,7 @@
         <p style="font-weight: bold">Giá Tiền Mỗi Tháng(VNĐ)(<span style="color: red">*</span>)</p>
         <input type="number" class="form-control" formControlName="price" [(ngModel)]="priceCalculate"
                (keyup)="checkValidateTimeInput(startDayCheck,endDayCheck)">
+<!--        <span>{{priceCalculate | number}}</span>-->
         <p
           *ngIf="formEditContract.controls.price.errors?.required&&formEditContract.controls.price.touched"
           class="text-danger">Vui lòng nhập giá tiền để tính được tổng tiền</p>

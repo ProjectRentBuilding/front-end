@@ -10,6 +10,7 @@ export class ContractModel {
   public price: number;
   public total: number;
   public content: string;
+  public urlImage: string;
   public unified: boolean;
   public deposits: number;
   public id: number;

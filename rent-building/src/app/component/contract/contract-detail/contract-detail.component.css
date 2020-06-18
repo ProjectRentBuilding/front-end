@@ -14,3 +14,10 @@ form fieldset label {
 form fieldset label div span{
   float: left;
 }
+
+/*legend {*/
+/*  float: left;*/
+/*  width: 100%;*/
+/*  padding: 0;*/
+/*  font-weight: bold;*/
+/*}*/
