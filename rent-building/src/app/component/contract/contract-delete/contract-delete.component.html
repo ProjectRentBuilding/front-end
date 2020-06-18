@@ -18,7 +18,7 @@
   <span class="text-primary font-weight-bold">{{contract.endRentDay|date : formatsDate}}</span>
 
 
-  <br> Lưu ý: Thao tác không thể hoàn tác!!!</p>
+  <br> Lưu ý:  <span class="text-primary font-weight-bold">{{statusContract}}</span></p>
 <div class="row d-flex justify-content-end">
   <button class="btn btn-danger mr-3" style="width: 120px;" (click)="deleteContract() ">Xác nhận</button>
   <button mat-dialog-close class="btn btn-warning mr-3" style="width: 120px;">Hủy</button>
