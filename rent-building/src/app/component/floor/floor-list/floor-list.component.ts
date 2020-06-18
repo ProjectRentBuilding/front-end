@@ -112,7 +112,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
         this.floorService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
       });
     }
-    this.redirectTo('equipments');
+    this.redirectTo('floors');
     console.log(this.addFloorForm);
   }
 

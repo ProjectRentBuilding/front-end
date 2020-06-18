@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {CustomerService} from '../../../service/customer.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-customer-delete',
@@ -15,6 +16,7 @@ export class CustomerDeleteComponent implements OnInit {
     public dialogRef: MatDialogRef<CustomerDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public customerService: CustomerService,
+    public router: Router
   ) {
   }
 
@@ -27,7 +29,12 @@ export class CustomerDeleteComponent implements OnInit {
   deleteCustomer() {
     this.customerService.delete(this.customerOfId).subscribe(data => {
       this.dialogRef.close();
+      this.redirectTo('customers/paging');
+      this.customerService.showNotification('', 'Xóa thành công  !!!');
     });
   }
-
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
+  }
 }

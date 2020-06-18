@@ -1,6 +1,8 @@
 <h3 class="text-center" style="color: red">Thêm mới hợp đồng</h3>
 <form class="w-75 mx-auto mt-3 col-md-12 offset-md-4" [formGroup]="formAddNewContract">
   <input type="text" hidden class="form-control" formControlName="id" [value]=contractId>
+  <input type="text" hidden class="form-control" formControlName="customerId" [(ngModel)]="customerIdPicker">
+
   <div class="row">
     <div class="form-group col-md-4">
       <p style="font-weight: bold">Mặt bằng(<span style="color: red">*</span>)</p>
@@ -15,12 +17,23 @@
 
     <div class="form-group col-md-4">
       <p style="font-weight: bold">Họ Và Tên Khách Hàng(<span style="color: red">*</span>)</p>
-      <select class="form-control" formControlName="customerId" style="height: 35px; width: 215px;">
-        <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>
-      </select>
+      <!--      <select class="form-control" formControlName="customerId" style="height: 35px; width: 215px;">-->
+      <!--        <option *ngFor="let customer of customers" [value]="customer.id">{{customer.name}}</option>-->
+      <!--      </select>-->
+
+      <input type="text" style="height: 35px; width: 215px;" class="form-control"
+             placeholder="Nhập để tìm"
+             matInput [formControl]="myControl" [matAutocomplete]="auto">
       <p
         *ngIf="formAddNewContract.controls.customerId.errors?.required && formAddNewContract.controls.customerId.touched"
         class="text-danger">Vui lòng chọn khách hàng</p>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filterCustomer | async" [value]="option.name" (click)="pickId(option.id)">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+
+
     </div>
 
     <div class="form-group col-md-4">
@@ -133,7 +146,10 @@
   </div>
 </form>
 <div class="row " style="margin-left: 70%;margin-top: 5%">
-  <button style="margin-right: 5%" [disabled]="formAddNewContract.invalid" class="btn btn-primary mt-3" (click)="addNewContract()">
+<!--  <button style="margin-right: 5%"  class="btn btn-primary mt-3"-->
+<!--          (click)="addNewContract()">-->
+        <button style="margin-right: 5%" [disabled]="formAddNewContract.invalid" class="btn btn-primary mt-3"
+                (click)="addNewContract()">
     <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
   </button>
   <button style="margin-right: 5%" class="btn btn-danger mt-3" (click)="clearFilters()">
@@ -143,8 +159,3 @@
     <i class="material-icons" data-toggle="tooltip" title="Quay về">next_plan</i>
   </button>
 </div>
-
-
-
-
-

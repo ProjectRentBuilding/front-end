@@ -22,20 +22,20 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public equipmentOfId;
   public flag;
-  public equipmentModel: EquipmentModel[];
+  public equipmentModel: EquipmentModel[] = [];
   public grounds: GroundModel[] = [];
-  public typeEquipment: TypeEquipmentModel[];
+  public typeEquipment: TypeEquipmentModel[] = [];
 
   public page = 1;
-  // public equipmentPage: any;
-  // public totalPages = 1;
-  // public pages = [];
-  // public size = 5;
-  // pageClicked = 0;
-  // public searchText = '';
+  public equipmentPage: any;
+  public totalPages = 1;
+  public pages = [];
+  public size = 5;
+  pageClicked = 0;
+  public searchText = '';
   public checkEdit = false;
   public checkAdd = false;
-  public searchText;
+  // public searchText;
   public equipment: FormArray;
   public getarray = 1;
 
@@ -63,49 +63,53 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.equipmentModel = data;
     });
     this.formEditEquipment = this.createEquipment();
-    // this.loadData(0);
+    this.loadData(0);
   }
 
-  // loadData(page) {
-  //   this.equipmentService.getEquipmentPage(page, this.size, this.searchText)
-  //     .subscribe(
-  //       data => {
-  //         this.pageClicked = page;
-  //         this.equipmentPage = data;
-  //         this.equipmentModel = this.equipmentPage.content;
-  //         this.totalPages = this.equipmentPage.totalPages;
-  //         this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
-  //       }
-  //     );
-  // }
+  loadData(page) {
+    this.equipmentService.getEquipmentPage(page, this.size, this.searchText)
+      .subscribe(
+        data => {
+          this.pageClicked = page;
+          this.equipmentPage = data;
+          this.equipmentModel = this.equipmentPage.content;
+          this.totalPages = this.equipmentPage.totalPages;
+          this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }
+      );
+  }
 
-  // onNext() {
-  //   // tslint:disable-next-line:triple-equals
-  //   if (this.pageClicked == this.totalPages - 1) {
-  //   } else { this.pageClicked++; }
-  //   this.loadData(this.pageClicked);
-  // }
-  //
-  // onPrevious() {
-  //   // tslint:disable-next-line:triple-equals
-  //   if (this.pageClicked == 0) {
-  //   } else { this.pageClicked--; }
-  //   this.loadData(this.pageClicked);
-  // }
-  //
-  // onFirst() {
-  //   this.pageClicked = 0;
-  //   this.loadData(this.pageClicked);
-  // }
-  //
-  // onLast() {
-  //   this.pageClicked = this.totalPages - 1;
-  //   this.loadData(this.pageClicked);
-  // }
-  //
-  // refreshForm() {
-  //   this.searchText = '';
-  // }
+  onNext() {
+    // tslint:disable-next-line:triple-equals
+    if (this.pageClicked == this.totalPages - 1) {
+    } else {
+      this.pageClicked++;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onPrevious() {
+    // tslint:disable-next-line:triple-equals
+    if (this.pageClicked == 0) {
+    } else {
+      this.pageClicked--;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onFirst() {
+    this.pageClicked = 0;
+    this.loadData(this.pageClicked);
+  }
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
+    this.loadData(this.pageClicked);
+  }
+
+  refreshForm() {
+    this.searchText = '';
+  }
 
   createEquipment(): FormGroup {
     return this.formBuilder.group({
