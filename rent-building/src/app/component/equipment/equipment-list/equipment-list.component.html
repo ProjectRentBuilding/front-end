@@ -1,14 +1,18 @@
 <div class="col-md-5 mt-5">
   <div class="input-group">
-    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
-    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
+    <form action="" method="get">
+
+    </form>
+    <input type="text" id="searchEquipment" class="form-control search-input" placeholder="Tìm kiếm thông tin " (click)="search()">
+    <button type="button" class="btn btn-secondary search-button" (click)="loadData(0)"><i class="fa fa-search text-danger"></i></button>
   </div>
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ</h3>
-<button class="btn btn-success px-4 py-2" >
-  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
-</button>
+<ng-container>
+  <button class="btn btn-success" (click)="openDialogAddNew()">Thêm Mới</button>
+</ng-container>
+
 <div class="row">
   <div class="dropdown open col-md-2">
     <button class="btn btn-dark dropdown-toggle" type="button"
@@ -50,10 +54,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let i = index;let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
+      <tr *ngFor="let i = index;let equipment of equipmentModel| filter:searchText | paginate:{id:'listing_pagination',
                                                                             itemsPerPage:5,
                                                                             currentPage:page
-                                                                           }; ">
+                                                                            }">
 <!--        <td>{{(i + 1) + (page - 1) * 5}}</td>-->
         <td *ngIf="!checkEdit ||  equipment.id!==flag">
           {{equipment.typeEquipment.nameType}}

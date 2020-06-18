@@ -10,6 +10,7 @@ import {GroundModel} from '../../../model/ground.model';
 import {GroundService} from '../../../service/ground.service';
 import {TypeEquipmentService} from '../../../service/type-equipment.service';
 import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
+import {EquipmentAddComponent} from '../equipment-add/equipment-add.component';
 
 @Component({
   selector: 'app-equipment-list',
@@ -36,6 +37,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public size = 5;
   pageClicked = 0;
   public searchText = '';
+  public searchInterge: number;
   public checkEdit = false;
   public checkAdd = false;
   // public searchText;
@@ -220,10 +222,22 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     });
   }
 
+  openDialogAddNew(): void {
+    const dialogRef = this.dialog.open(EquipmentAddComponent, {
+      width: '900px',
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
+
   searchType(event) {
     console.log(event);
     this.searchText = event;
   }
+
 
   checkAmount(amount: number, amountOfBroken: number) {
     if ( amount == null) {
@@ -243,5 +257,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     }
     this.loadData(this.checkPage);
     this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+  }
+
+  search() {
+    // @ts-ignore
+    this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
+    // @ts-ignore
+    this.searchText = document.getElementById('searchEquipment').value;
   }
 }
