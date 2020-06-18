@@ -26,6 +26,19 @@ export class ContractService extends CrudService<ContractModel, number> {
     });
   }
 
+  getContractPageSearch(currentPage, size, nameCustomerSearch, codeGroundSearch, startRentDaySearch, endRentDaySearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/contracts/paging`, {
+      params: {
+        page: currentPage,
+        size: size,
+        fullName: nameCustomerSearch,
+        codeGround: codeGroundSearch,
+        startRentDay: startRentDaySearch,
+        endRentDay: endRentDaySearch
+      }
+    });
+  }
+
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
     const color = Math.floor((Math.random() * 4) + 1);
