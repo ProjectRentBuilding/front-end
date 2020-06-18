@@ -1,21 +1,24 @@
 <div class="col-md-5 mt-5">
   <div class="input-group">
-    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
-    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
-  </div>
+    <form action="" method="get">
 
+    </form>
+    <input type="text" id="searchEquipment" class="form-control search-input" placeholder="Tìm kiếm thông tin">
+    <button type="button" class="btn btn-secondary search-button" (click)="loadData(0)"><i class="fa fa-search text-danger"></i></button>
+  </div>
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ</h3>
-<button class="btn btn-success px-4 py-2" (click)="addNewArray()">
-  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
-</button>
+<ng-container>
+  <button class="btn btn-success" (click)="openDialogAddNew()">Thêm Mới</button>
+</ng-container>
+
 <div class="row">
   <div class="dropdown open col-md-2">
     <button class="btn btn-dark dropdown-toggle" type="button"
             id="triggerId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-      <i class="fa fa-university icon-size text-light fa-lg mr-3" title="Mã mặt bằng"></i>
+     Mã mặt bằng
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">
       <a class="dropdown-item" *ngFor="let ground of grounds"
@@ -24,7 +27,7 @@
   </div>
   <div class="col-md-2">
     <button class="btn btn-dark" [routerLink]="['/equipments-building/']">
-      <i class="fa fa-building icon-size text-light fa-lg mr-3" title="Toà nhà"></i>
+      Toà nhà
     </button>
   </div>
   <div class="col-md-6"></div>
@@ -51,10 +54,10 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let i = index;let equipment of equipmentModel | filter:searchText | paginate:{id:'listing_pagination',
+      <tr *ngFor="let i = index;let equipment of equipmentModel| filter:searchText | paginate:{id:'listing_pagination',
                                                                             itemsPerPage:5,
                                                                             currentPage:page
-                                                                           }; ">
+                                                                            }">
 <!--        <td>{{(i + 1) + (page - 1) * 5}}</td>-->
         <td *ngIf="!checkEdit ||  equipment.id!==flag">
           {{equipment.typeEquipment.nameType}}
@@ -79,20 +82,25 @@
           </p>
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag ">
-          {{equipment.amount}}
+          {{equipment.amount}} (cái)
         </td>
         <td *ngIf="checkEdit && equipment.id===flag">
-          <input type="text" class="form-control" formControlName="amount" value="{{equipment.amount}}">
+          <input  [(ngModel)]="amountCheck" type="text" class="form-control" formControlName="amount" value="{{equipment.amount}}" (change)="checkAmount(amountCheck,amountOfBrokenCheck)">
           <p class="text-danger"
-             *ngIf="formEditEquipment.get('amount').invalid && formEditEquipment.get('amount').touched">
+             *ngIf="formEditEquipment.get('amount').hasError('required') &&formEditEquipment.get('amount').invalid && formEditEquipment.get('amount').touched">
             Số lượng không được để trống!
+          </p>
+          <p class="text-danger"
+             *ngIf="formEditEquipment.get('amount').hasError('pattern') &&formEditEquipment.get('amount').invalid && formEditEquipment.get('amount').touched">
+            Số lượng phải là số!
           </p>
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag">
-          {{equipment.amountOfBroken}}
+          {{equipment.amountOfBroken}} (cái)
         </td>
         <td *ngIf="checkEdit && equipment.id===flag">
-          <input type="text" class="form-control" formControlName="amountOfBroken" value="{{equipment.amountOfBroken}}">
+          <input [(ngModel)]="amountOfBrokenCheck" type="number" class="form-control" formControlName="amountOfBroken" value="{{equipment.amountOfBroken}}" (change)="checkAmount(amountCheck,amountOfBrokenCheck)">
+          <p *ngIf="messageValidate" class="text-danger">{{messageValidate}}</p>
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag">
           {{equipment.note}}
@@ -138,7 +146,7 @@
   </form>
 </ng-container>
 
-<ng-container>
+<ng-container *ngIf="checkAdd">
   <form action="" [formGroup]="formAddNewEquipment" *ngIf="formAddNewEquipment">
     <table>
       <tbody class="border" formArrayName="equipment"
@@ -162,18 +170,14 @@
           </p>
         </td>
         <td>
-          <input type="number" class="form-control" formControlName="amount" required>
+          <input type="text" class="form-control" formControlName="amount" required>
           <p class="text-danger"
              *ngIf="equipment.get('amount').invalid && equipment.get('amount').touched">
-            Số lượng không được để trống!
+            Số lượng phải là số và không được để trống!
           </p>
         </td>
-        <td>
-          <input type="number" class="form-control" formControlName="amountOfBroken">
-          <p class="text-danger"
-             *ngIf="equipment.get('amountOfBroken').invalid && equipment.get('amountOfBroken').touched">
-            Số lượng hỏng không được để trống!
-          </p>
+        <td hidden>
+          <input type="number" class="form-control" formControlName="amountOfBroken" value="0" >
         </td>
         <td>
           <input type="text" class="form-control" formControlName="note">
@@ -194,7 +198,7 @@
         </td>
         <td>
           <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">
-            <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+            <i class="fa fa-times" aria-hidden="true"></i>
           </button>
         </td>
       </tr>
@@ -204,10 +208,12 @@
 
 </ng-container>
 
-<button style="position: absolute;left: 88%;" class="btn btn-info px-4 py-2" (click)="addNewEquipment()" [disabled]="formAddNewEquipment.invalid">
-  <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+<button style="position: absolute;left: 88%;" class="btn btn-info" (click)="addNewEquipment()" [disabled]="formAddNewEquipment.invalid">
+  <i class="fa fa-check-square-o" aria-hidden="true"></i>
 </button>
-
+<button style="position: absolute;left: 93%;" class="btn btn-success" (click)="addNewArray()">
+  <i class="fa fa-plus-square" aria-hidden="true"></i>
+</button>
 
 <!--    pagination-->
 
@@ -223,7 +229,7 @@
     </li>
     <li class="page-item" *ngFor="let page of pages" (click)="loadData(page)"
         [ngClass]="pageClicked == page ? 'active' : ''">
-      <a class="page-link">{{page + 1}}</a>
+      <a class="page-link" (click)="checkPages(page)">{{page + 1}}</a>
     </li>
     <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
       <a class="page-link">Trang sau</a>
