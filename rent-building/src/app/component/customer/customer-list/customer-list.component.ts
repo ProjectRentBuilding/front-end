@@ -13,6 +13,8 @@ import {ContractModel} from '../../../model/contract';
 import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
 import {BuildingAddComponent} from '../../building/building-add/building-add.component';
 import {CustomerAddComponent} from '../customer-add/customer-add.component';
+import {CustomerDetailGroundComponent} from '../customer-detail-ground/customer-detail-ground.component';
+import {log} from 'util';
 
 
 @Component({
@@ -92,10 +94,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.formEditCustomer = this.createCustomer();
-    // this.customerService.findAll().subscribe(data => {
-    //   this.customers = data;
-    //   // this.totalRec = this.customers.length;
-    // });
     this.loadData(0);
     this.groundService.findAll().subscribe(data => {
       this.grounds = data;
@@ -140,13 +138,28 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(CustomerAddComponent, {
-      width: '65%',
-      height: '540px',
+      width: '500px',
+      height: '250px',
       disableClose: false,
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
+    });
+  }
+
+  openDialogDetailGround(customerId): void {
+    this.customerService.findOne(customerId).subscribe(dataOfCustomer => {
+      const dialogRef = this.dialog.open(CustomerDetailGroundComponent, {
+        width: '500px',
+        height: '250px',
+        data: {data1: dataOfCustomer},
+        disableClose: false,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        // this.ngOnInit();
+        this.loadData(this.checkPage);
+      });
     });
   }
 
@@ -211,7 +224,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       // this.customerService.findAll().subscribe(data => {
       //   this.customers = data;
       //   // this.totalRec = this.customers.l      ength;
-      // });  
+      // });
       this.loadData(this.checkPage);
       this.customerService.showNotification('', 'Chỉnh sửa thành công  !!!');
     });
@@ -231,18 +244,28 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   cancelAdd() {
     this.redirectTo('customers');
   }
-
+//   deleteAll() {
+//     for(let item=0;item <this.grounds.length;item++)
+//       this.groundService.delete(this.grounds[item].id).subscribe(data => {
+//       });
+//     this.redirectTo('grounds');
+//     this.groundService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+//   }
+// }
   deleteAll() {
-    console.log(this.customers.length);
     // tslint:disable-next-line:prefer-for-of
-    for (let item = 0; item < this.customers.length; item++) {
-      this.customerService.delete(this.customers[item].id).subscribe(data => {
-      });
-      this.redirectTo('customers');
-    }
-    this.customerService.showNotification('', 'Xoá thành công, chúc mừng bạn !!!');
+    this.customerService.findAll().subscribe(data1 => {
+      this.customers = data1;
+      console.log(this.customers);
+      for (let item = 0; item < this.customers.length; item++) {
+        this.customerService.delete(this.customers[item].id).subscribe(data => {
+        });
+        this.redirectTo('customers');
+      }
+      this.customerService.showNotification('', 'Xoá thành công, chúc mừng bạn !!!');
+      // this.totalRec = this.customers.length;
+    });
   }
-
   logValue() {
     console.log(this.formAddNewCustomer.value);
 
