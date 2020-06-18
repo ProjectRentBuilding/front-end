@@ -11,6 +11,8 @@ import {GroundModel} from '../../../model/ground.model';
 import {ContractService} from '../../../service/contract.service';
 import {ContractModel} from '../../../model/contract';
 import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
+import {BuildingAddComponent} from '../../building/building-add/building-add.component';
+import {CustomerAddComponent} from '../customer-add/customer-add.component';
 
 
 @Component({
@@ -43,6 +45,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public customerOfId;
   public customer: FormArray;
   public getarray = 1;
+  public checkPage = 0;
 
   constructor(public customerService: CustomerService,
               public dialog: MatDialog,
@@ -68,7 +71,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
           this.totalPages = this.customerPage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
         }
-      )
+      );
   }
 
   createCustomer(): FormGroup {
@@ -136,6 +139,18 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   }
 
+  openDialogAdd(): void {
+    const dialogRef = this.dialog.open(CustomerAddComponent, {
+      width: '65%',
+      height: '540px',
+      disableClose: false,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
+
   // addNewCustomer() {
   //   this.customerService.save(this.formAddNewCustomer.value).subscribe(data => {
   //     this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
@@ -147,14 +162,19 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   addNewCustomer() {
 
     this.customer = this.formAddNewCustomer.get('customer') as FormArray;
-    console.log((this.customer.at(0).value));
     for (let tem = 0; tem < this.getarray; tem++) {
+      this.customers.push(this.customer.at(tem).value);
       // @ts-ignore
       this.customerService.save(this.customer.at(tem).value).subscribe(data => {
+        this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+        if (tem === (this.getarray - 1)) {
+          this.customer.reset();
+          this.onLast();
+        }
       });
     }
-    this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-    this.redirectTo('customers');
+
+    // this.redirectTo('customers');
     console.log(this.formAddNewCustomer);
     // this.ngOnInit();
   }
@@ -187,9 +207,19 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   editCustomer() {
     console.log(this.formEditCustomer.value);
     this.customerService.update(this.formEditCustomer.value, this.customerOfId).subscribe(data => {
-      this.redirectTo('customers');
+      this.checkEdit = false;
+      this.flag = null;
+      // this.customerService.findAll().subscribe(data => {
+      //   this.customers = data;
+      //   // this.totalRec = this.customers.l      ength;
+      // });
+      this.loadData(this.checkPage);
       this.customerService.showNotification('', 'Chỉnh sửa thành công  !!!');
     });
+  }
+
+  checkPages(page) {
+    this.checkPage = page;
   }
 
   resetCustomer() {
@@ -264,4 +294,5 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   refreshForm() {
     this.searchText = '';
   }
+
 }
