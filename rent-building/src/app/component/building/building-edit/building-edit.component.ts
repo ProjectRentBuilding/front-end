@@ -22,6 +22,8 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   private check=true;
   private check1=false;
   private check2=false;
+  idImage: string ;
+  public idImagePick;
 
 
   constructor(
@@ -31,6 +33,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     public imageService: ImageService,
     public routerService: Router,
     private fb: FormBuilder,
+
 
   ) {
   }
@@ -63,6 +66,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   }
 
   onEditBuilding() {
+    this.editBuildingForm.value.logo = this.idImagePick;
     this.subscription = this.buildingService.update(this.editBuildingForm.value, this.id).subscribe(data => {
       this.routerService.navigate(['buildings']).then(r => this.afterOnEditBuilding());
     });
@@ -87,10 +91,11 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     this.check1=true;
     this.check2=true;
   }
-  pickImage(src: any) {
+  pickImage(src: any,idImage) {
     this.urlImage=src;
-    console.log(this.urlImage);
+    this.idImage=idImage;
     this.check=true;
+    this.idImagePick = idImage;
 
   }
 
@@ -99,7 +104,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     this.check1=false;
     this.check2=false;
     this.check=true;
-    this.urlImage=null;
+    this.idImagePick=null;
 
   }
 }

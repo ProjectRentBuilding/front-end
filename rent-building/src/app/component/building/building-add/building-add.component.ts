@@ -20,10 +20,11 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
   addBuildingForm: FormGroup;
   public images: ImageModel[];
   urlImage: string;
-  idImage:number;
+  idImage: string ;
   public check=true;
   public check1=false;
   public check2=false;
+  public idImagePick;
 
 
   constructor(
@@ -55,7 +56,11 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     });
   }
   onAddBuilding() {
+    this.addBuildingForm.value.logo = this.idImagePick;
+
+    console.log(this.addBuildingForm.value);
     this.buildingService.save(this.addBuildingForm.value).subscribe(data => {
+
       // if (data && data.id) {
       this.routerService.navigate(['buildings']).then(r => this.afterOnAddBuilding());
       // }
@@ -86,17 +91,18 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
     this.urlImage=src;
     this.idImage=idImage;
     this.check=true;
+    this.idImagePick = idImage;
 
   }
-
 
   cancelSelectImage() {
     this.check1=false;
     this.check2=false;
     this.check=true;
-    this.urlImage=null;
+    this.idImagePick=null;
 
   }
+
 }
 
 

@@ -34,7 +34,7 @@
 </div>
 
 
-
+<ng-container>
 <form action="" [formGroup]="editFloorForm" *ngIf="editFloorForm">
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
@@ -150,7 +150,7 @@
         </button>
       </td>
       <td *ngIf="checkEdit && item.id===flag">
-        <button class="btn btn-primary" type="button" [disabled]="addFloorForm.invalid" (click)="editFloor()"
+        <button class="btn btn-primary" type="button" [disabled]="editFloorForm.invalid" (click)="editFloor()"
                 style="margin-right: 10px"><i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
         </button>
       </td>
@@ -163,7 +163,7 @@
   </table>
 
 </form>
-
+</ng-container>
 <ng-container>
   <form action="" [formGroup]="addFloorForm" *ngIf="addFloorForm">
     <table>

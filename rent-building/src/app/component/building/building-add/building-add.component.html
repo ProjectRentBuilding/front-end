@@ -1,8 +1,10 @@
 
+
 <div *ngIf=check id="formAddBuilding">
   <div style="margin-left: 99%;margin-top: -2%" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x"
-                                                                     aria-hidden="true" title="Thoát"></i>
+                                                                    aria-hidden="true" title="Thoát"></i>
   </div>
+
   <h2 class="text-center">Thêm mới thông tin tòa nhà</h2>
   <form [formGroup]="addBuildingForm" class="col-md-12 offset-md-4">
     <fieldset>
@@ -177,7 +179,7 @@
          && addBuildingForm.get('recipientName').touched">Tên người nhận tối đa 50 ký tự.
           </div>
         </div>
-        <input type="hidden"   formControlName="logo" value="hello">
+<!--        <input type="hidden"   formControlName="logo" >-->
         <div class="col-md-12 row">
           <p class="col-md-3">Logo:</p>
           <div class="col-md-3">
@@ -193,8 +195,8 @@
     </fieldset>
   </form>
   <label class="row " style="margin-left: 85%;margin-top: 5%">
-    <button style="margin-right: 15%" [disabled]="addBuildingForm.invalid" class="btn btn-primary mt-3"
-            (click)="onAddBuilding()">
+    <button style="margin-right: 15%"  class="btn btn-primary mt-3"
+            [disabled]="addBuildingForm.invalid" (click)="onAddBuilding()">
       <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
     </button>
     <button class="btn btn-danger mt-3" (click)="clearFilters()">

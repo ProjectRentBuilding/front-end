@@ -24,9 +24,6 @@ export class BuildingModel {
   // Ngân hàng
   public bank: string;
   // Logo
-  public logo: string;
+  public logo: number;
   public id: number;
-
-
-
 }

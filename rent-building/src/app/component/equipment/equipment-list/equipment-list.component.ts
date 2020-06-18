@@ -170,7 +170,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   checkEditEquipment(id) {
-
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
       this.checkAdd = false;
