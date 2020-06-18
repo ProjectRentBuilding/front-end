@@ -89,17 +89,17 @@
             <li routerLinkActive="active" class="nav-item sidebar-link "><a href=""
                                                                             class="nav-link text-white py-2 mb-2 current sidebar-title"><i
               class="fa fa-home icon-size text-light fa-lg mr-3"></i>Rent Building</a></li>
-            <li class="nav-item  sidebar-link active1"><a [routerLink]="['/customers']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+            <li  (click)="onClick(1)"   [ngClass]="{'active1': tab==='tab1'}" class="nav-item  sidebar-link "><a [routerLink]="['/customers']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
               class="fa fa-users text-light fa-lg mr-3"></i>Danh sách khách hàng</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/equipments-building']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+            <li (click)="onClick(2)"   [ngClass]="{'active1': tab==='tab2'}" class="nav-item sidebar-link"><a [routerLink]="['/equipments-building']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
               class="fa icon-size fa-wrench text-light fa-lg mr-3"></i>Danh sách thiết bị</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/contracts/paging']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+            <li (click)="onClick(3)"   [ngClass]="{'active1': tab==='tab3'}" class="nav-item sidebar-link"><a [routerLink]="['/contracts/paging']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
               class="fa icon-size fa-pencil-square-o text-light fa-lg mr-3"></i>Danh sách hợp đồng</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/buildings']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+            <li  (click)="onClick(4)"   [ngClass]="{'active1': tab==='tab4'}" class="nav-item sidebar-link"><a [routerLink]="['/buildings']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
               class="fa fa-building icon-size text-light fa-lg mr-3"></i>Danh sách tòa nhà</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/floors']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+            <li (click)="onClick(5)"   [ngClass]="{'active1': tab==='tab5'}" class="nav-item sidebar-link"><a [routerLink]="['/floors']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
               class="fa fa-cubes icon-size text-light fa-lg mr-3"></i>Danh sách tầng</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/grounds']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+            <li (click)="onClick(6)"   [ngClass]="{'active1': tab==='tab6'}" class="nav-item sidebar-link"><a [routerLink]="['/grounds']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
               class="fa fa-university icon-size text-light fa-lg mr-3"></i>Danh sách mặt bằng</a></li>
             <li class="nav-item sidebar-link"><a href="" class="nav-link text-white py-2 mb-2 sidebar-title"><i
               class="fa fa-cog icon-size text-light fa-lg mr-3"></i>Cài đặt</a></li>

@@ -1,0 +1,8 @@
+<h1 style="color: coral">Thông tin thuê mặt bằng</h1>
+<p>Khách hàng có id = <span style="color: blue">{{customerOfId}}</span>  và Tên là :<span style="color: blue">{{customerOfName}}</span>  đã thuê Mặt bằng <span style="color: red" *ngFor="let customerGround of customerGrounds">{{customerGround}}</span> </p>
+
+<p  *ngFor="let customerStatus of customerStatusContract">Trạng thái: <span style="color: green">{{customerStatus ? 'Đang thuê' : 'Hết hợp đồng'}}</span> </p>
+<!--<p>{{}}</p>-->
+
+
+

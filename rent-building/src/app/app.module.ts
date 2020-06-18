@@ -45,6 +45,7 @@ import { ImageGalleryComponent } from './component/building/building-add/image-g
 import { EquipmentBuildingComponent } from './component/equipment/equipment-building/equipment-building.component';
 import { CustomerAddComponent } from './component/customer/customer-add/customer-add.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { CustomerDetailGroundComponent } from './component/customer/customer-detail-ground/customer-detail-ground.component';
 
 
 
@@ -80,7 +81,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     GroundDetailComponent,
     ImageGalleryComponent,
     EquipmentBuildingComponent,
-    CustomerAddComponent
+    CustomerAddComponent,
+    CustomerDetailGroundComponent
 
 
 
@@ -121,6 +123,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     GroundDetailComponent,
     CustomerDeleteComponent,
     CustomerAddComponent,
+    CustomerDetailGroundComponent,
     EquipmentDeleteComponent,
     ImageGalleryComponent
 

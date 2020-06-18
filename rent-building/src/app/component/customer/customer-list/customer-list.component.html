@@ -30,8 +30,7 @@
         <th>Địa Chỉ (<span style="color: red">*</span>)</th>
         <th>Website</th>
         <th>Công Ty (<span style="color: red">*</span>)</th>
-        <th>Tên Mặt Bằng</th>
-        <th>Đang thuê</th>
+        <th>Mặt Bằng</th>
         <th colspan="2"></th>
       </tr>
       </thead>
@@ -137,19 +136,20 @@
 
 
         <td>
-          <ng-container *ngFor="let contract of contracts">
-            <p *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</p>
+<!--          <ng-container *ngFor="let contract of contracts">-->
+<!--            <p *ngIf="contract.customer.id == customer.id">{{contract.ground.codeGround}}</p>-->
 
-          </ng-container>
+<!--          </ng-container>-->
+          <button class="btn btn-primary" (click)="openDialogDetailGround(customer.id)">Chi tiết</button>
         </td>
 
-        <td>
-          <ng-container *ngFor="let contract of contracts">
-            <p><input *ngIf="contract.customer.id == customer.id" type="checkbox" [checked]="contract.statusContract"
-                      disabled></p>
+<!--        <td>-->
+<!--          <ng-container *ngFor="let contract of contracts">-->
+<!--            <p><input *ngIf="contract.customer.id == customer.id" type="checkbox" [checked]="contract.statusContract"-->
+<!--                      disabled></p>-->
 
-          </ng-container>
-        </td>
+<!--          </ng-container>-->
+<!--        </td>-->
 
 
         <td>

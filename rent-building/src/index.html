@@ -25,25 +25,8 @@
 </app-root>
 
 
-<!--<script>-->
-<!--  // Add active class to the current button (highlight it)-->
-<!--  var header = document.getElementById("myDIV");-->
-<!--  var btns = header.getElementsByClassName("sidebar-link");-->
-<!--  for (var i = 0; i < btns.length; i++) {-->
-<!--    btns[i].addEventListener("click", function() {-->
-<!--      alert("hello");-->
-<!--      var current = document.getElementsByClassName("active1");-->
-<!--      current[0].className = current[0].className.replace(" active1", "");-->
-<!--      this.className += " active1";-->
-<!--    });-->
-<!--  }-->
-<!--</script>-->
-<script type="text/javascript">
-   $(document).on('click','ul li',function () {
-     alert("hello");
-         $(this).addClass('active1').siblings().removeClass('active1')
-   })
-</script>
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
 </script>
