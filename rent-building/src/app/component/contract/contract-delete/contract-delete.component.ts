@@ -61,5 +61,8 @@ export class ContractDeleteComponent implements OnInit {
     }
 
   }
+  formatsDate: string[] = [
+    'dd/MM/yyyy',
+  ];
 
 }
