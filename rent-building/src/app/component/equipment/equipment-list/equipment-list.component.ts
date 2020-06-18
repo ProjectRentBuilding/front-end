@@ -20,12 +20,15 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public formAddNewEquipment: FormGroup;
   public formEditEquipment: FormGroup;
   public subscription: Subscription;
+  public messageValidate: string;
   public equipmentOfId;
-  public flag;
+  public flag = -1;
   public equipmentModel: EquipmentModel[] = [];
   public grounds: GroundModel[] = [];
   public typeEquipment: TypeEquipmentModel[] = [];
-
+  public checkPage = 0;
+  public amountCheck: number;
+  public amountOfBrokenCheck: number;
   public page = 1;
   public equipmentPage: any;
   public totalPages = 1;
@@ -40,12 +43,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public getarray = 1;
 
   constructor(
-    public formBuilder: FormBuilder,
-    public equipmentService: EquipmentService,
-    public groundService: GroundService,
-    public typeElementService: TypeEquipmentService,
-    public dialog: MatDialog,
-    public router: Router
+    private formBuilder: FormBuilder,
+    private equipmentService: EquipmentService,
+    private groundService: GroundService,
+    private typeElementService: TypeEquipmentService,
+    private dialog: MatDialog,
+    private router: Router
   ) {
     this.formAddNewEquipment = this.formBuilder.group({
       equipment: this.formBuilder.array([this.createEquipment()])
@@ -112,7 +115,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       id: [''],
       typeEquipmentId: ['', [Validators.required]],
       nameEquipment: ['', [Validators.required]],
-      amount: ['', [Validators.required, Validators.pattern('^[0-9]{1,4}$')]],
+      amount: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       amountOfBroken: ['', [Validators.required]],
       note: ['', [Validators.required]],
       groundId: ['', [Validators.required]],
@@ -125,19 +128,23 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     }
   }
 
-
   get equipmentControls() {
+    // const a = 'controls';
     return this.formAddNewEquipment.get('equipment')['controls'];
+
   }
 
   addNewArray(): void {
-    this.checkAdd = true;
-    this.getarray++;
-    this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
-      this.typeEquipment = data;
-    });
-    this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
-    this.equipment.push(this.createEquipment());
+    if (!this.checkAdd){
+      this.checkAdd = !this.checkAdd;
+    } else {
+      this.getarray++;
+      this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
+        this.typeEquipment = data;
+      });
+      this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
+      this.equipment.push(this.createEquipment());
+    }
   }
 
   removeAddress(i: number) {
@@ -146,17 +153,18 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
 
   addNewEquipment() {
-
     this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
-    console.log((this.equipment.at(0).value));
     for (let tem = 0; tem < this.getarray; tem++) {
-      // @ts-ignore
+      this.equipmentModel.push(this.equipment.at(tem).value);
       this.equipmentService.save(this.equipment.at(tem).value).subscribe(data => {
         this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+        if (tem === (this.getarray - 1)) {
+          this.equipment.reset();
+          // this.onLast();
+          this.loadData(this.checkPage + 1);
+        }
       });
     }
-    this.redirectTo('equipments');
-    this.ngOnInit();
     console.log(this.formAddNewEquipment);
   }
 
@@ -166,10 +174,8 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   checkEditEquipment(id) {
-
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
-      this.checkAdd = false;
       this.flag = id;
       this.equipmentOfId = id;
       this.equipmentService.findOne(this.equipmentOfId).subscribe(data => {
@@ -178,10 +184,17 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     }
   }
 
+  checkPages(page) {
+    console.log(page);
+    this.checkPage = page;
+  }
   editEquipment() {
+    console.log(this.checkPage);
     this.equipmentService.update(this.formEditEquipment.value, this.equipmentOfId).subscribe(data => {
-      this.redirectTo('equipments');
       this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
+      this.flag = -1;
+      this.checkEdit = false;
+      this.loadData(this.checkPage);
     });
   }
 
@@ -208,13 +221,23 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.searchText = event;
   }
 
-  deleteAll() {
+  checkAmount(amount: number, amountOfBroken: number) {
+    if ( amount == null) {
+      return 0;
+    }
+    if (amount < amountOfBroken) {
+      this.messageValidate = 'Số lượng hỏng không thể lớn hơn số lượng';
+    } else {
+      this.messageValidate = null;
+    }
+  }
 
+  deleteAll() {
     for (let item = 0; item < this.equipmentModel.length; item++) {
       this.equipmentService.delete(this.equipmentModel[item].id).subscribe(data => {
       });
     }
-    this.redirectTo('equipments');
+    this.loadData(this.checkPage);
     this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 }

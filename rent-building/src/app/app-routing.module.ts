@@ -57,10 +57,10 @@ const routes: Routes = [
     path: 'customers',
     component: CustomersComponent,
     children: [
-      {
-        path: '',
-        component: CustomerListComponent,
-      },
+      // {
+      //   path: '',
+      //   component: CustomerListComponent,
+      // },
       {
         path: 'paging',
         component: CustomerListComponent
