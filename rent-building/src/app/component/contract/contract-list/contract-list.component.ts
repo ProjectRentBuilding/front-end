@@ -125,6 +125,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
 
   loadData(page) {
 
+
     this.contractService.getContractPageSearch(page, this.size, this.nameCustomerSearch, this.codeGroundSearch, this.startRentDaySearch, this.endRentDaySearch)
       .subscribe(
         data => {
@@ -139,6 +140,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
 
 
   onNext() {
+
     if (this.pageClicked == this.totalPages - 1) {
     } else this.pageClicked++;
     this.loadData(this.pageClicked);

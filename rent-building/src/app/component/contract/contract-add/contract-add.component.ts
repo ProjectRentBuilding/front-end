@@ -13,7 +13,8 @@ import {map, startWith} from "rxjs/operators";
 import {DatePipe} from "@angular/common";
 import {CustomerAddComponent} from "../../customer/customer-add/customer-add.component";
 import {MatDialog} from "@angular/material/dialog";
-import { ContractListComponent } from '../contract-list/contract-list.component';
+import {ContractListComponent} from '../contract-list/contract-list.component';
+import {ImgurApiService} from "../../../service/imgur-api.service";
 
 @Component({
   selector: 'app-contract-add',
@@ -61,6 +62,7 @@ export class ContractAddComponent implements OnInit {
     public customerService: CustomerService,
     public employeeService: EmployeeService,
     public dialog: MatDialog,
+    public imgurApiService: ImgurApiService
   ) {
 
 
@@ -114,12 +116,29 @@ export class ContractAddComponent implements OnInit {
 
   }
 
+  onChange(file) {
+    this.imgurApiService.upload(file)
+      // .subscribe((data:any) => console.log(data.data.link));
+      // .subscribe((data: any) => this.formAddNewContract.value.urlImage = (data.data.link));
+      .subscribe((data: any) => this.afterPickImage(data));
+
+  }
+
+  afterPickImage(data : any) {
+    console.log(data.data.link);
+    // this.formAddNewContract.value.urlImage = (data.data.link);
+    this.formAddNewContract.patchValue({
+      urlImage: data.data.link
+    });
+  }
+
   addNewContract() {
     // alert(this.formAddNewContract.value.customerId);
     console.log(this.formAddNewContract.value);
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
       console.log(data);
       this.router.navigate(['contracts/paging']).then(r => this.afterAdd());
+      console.log(this.formAddNewContract.value.urlImage + "  image")
 
 
     });
@@ -188,4 +207,5 @@ export class ContractAddComponent implements OnInit {
       this.router.navigateByUrl('/contracts/add').then();
     });
   }
+
 }

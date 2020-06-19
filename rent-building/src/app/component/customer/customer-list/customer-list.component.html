@@ -7,13 +7,14 @@
   </div>
 
 </div>
-
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH KHÁCH HÀNG</h3>
+<div>
+  <div style="width: 100%;background: #435D7D">
+<h3 class="text-light text-center py-3 mt-5" style="font-family: Varela Round ">DANH SÁCH KHÁCH HÀNG</h3>
+  <button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button>
+  </div>
 <ng-container>
   <form action="" [formGroup]="formEditCustomer" (ngSubmit)="logValue()" *ngIf="formEditCustomer">
 
-
-    <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button></span>
     <table class="table bg-light text-center table-bordered table-striped">
 
       <thead class="thead-dark">
@@ -304,9 +305,12 @@
     </table>
   </form>
 </ng-container>
-<button class="btn btn-success px-4 py-2 mr-2" (click)="addNewArray()">Add More</button>
-<button class="btn btn-info px-4 py-2 " (click)="addNewCustomer()" [disabled]="formAddNewCustomer.invalid">Lưu</button>
-<span><button style="position: absolute;left: 87%;" class="btn btn-success px-4 py-2" (click)="openDialogAdd()">Add Dialog</button></span>
+</div>
+<button class="btn btn-success px-4 py-2 mr-2" (click)="addNewArray()" >  <i class="fa fa-plus-square" aria-hidden="true"></i></button>
+
+<button class="btn btn-info px-4 py-2 mr-2 " (click)="addNewCustomer()" *ngIf="checkAdd" [disabled]="formAddNewCustomer.invalid">Lưu</button>
+<span><button  class="btn btn-success px-4 py-2" (click)="openDialogAdd()">Thêm mới</button></span>
+
 
 <!--    pagination-->
 <!--<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"-->
@@ -330,6 +334,7 @@
     <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
+
 
 
 

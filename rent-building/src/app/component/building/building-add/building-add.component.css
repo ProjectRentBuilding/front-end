@@ -30,15 +30,23 @@
 /*  margin-left: 1%;*/
 /*}*/
 
-
-/*.gallery-item {*/
-/*  max-width: 25%;*/
-/*  margin-left: 25%;*/
-/*  margin-top: 1%;*/
-/*  margin-bottom: 1%;*/
-/*  border: black 2px double;*/
-/*  padding: 5px;*/
+/*table thead  th,td{*/
+/*  vertical-align: middle;*/
 /*}*/
+/*table {*/
+/*  display: block;*/
+/*  overflow-x: auto;*/
+/*  white-space: nowrap;*/
+/*}*/
+
+.gallery-item {
+  max-width: 25%;
+  margin-left: 25%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  border: black 2px double;
+  padding: 5px;
+}
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 * {

@@ -138,7 +138,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(CustomerAddComponent, {
-      width: '70%',
+      width: '40%',
       height: '80%',
       disableClose: false,
     });
@@ -302,6 +302,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   // }
 
   removeAddress(i: number) {
+    if (i === 0) {
+      this.checkAdd = false;
+    }
     this.customer.removeAt(i);
   }
 
