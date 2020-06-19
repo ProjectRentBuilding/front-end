@@ -27,6 +27,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   public idImagePick;
 
 
+
   constructor(
     public dialogRef: MatDialogRef<BuildingEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -65,7 +66,6 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     this.id = this.data.data1.id;
     this.editBuildingForm.patchValue(this.data.data1);
 
-
   }
 
   onEditBuilding() {
@@ -81,8 +81,8 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   }
 
   clearFilters() {
-    this.ngOnInit();
 
+    this.ngOnInit();
   }
 
   ngOnDestroy() {
