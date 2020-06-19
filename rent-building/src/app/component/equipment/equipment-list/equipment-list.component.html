@@ -45,9 +45,9 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ CỦA MẶT BẰNG</h3>
-<ng-container>
-  <button class="btn btn-success" (click)="openDialogAddNew()">Thêm Mới</button>
-</ng-container>
+<!--<ng-container>-->
+<!--  <button class="btn btn-success" (click)="openDialogAddNew()">Thêm Mới</button>-->
+<!--</ng-container>-->
 
 <div class="row">
   <div class="dropdown open col-md-2">
@@ -232,12 +232,16 @@
 
 </ng-container>
 
-<button style="position: absolute;left: 88%;" class="btn btn-info" (click)="addNewEquipment()" *ngIf="checkAdd" [disabled]="formAddNewEquipment.invalid">
-  Lưu
-</button>
-<button style="position: absolute;left: 93%;" class="btn btn-success" (click)="addNewArray()">
-  <i class="fa fa-plus-square" aria-hidden="true"></i>
-</button>
+<!--<button style="position: absolute;left: 88%;" class="btn btn-info" (click)="addNewEquipment()" *ngIf="checkAdd" [disabled]="formAddNewEquipment.invalid">-->
+<!--  Lưu-->
+<!--</button>-->
+<!--<button style="position: absolute;left: 93%;" class="btn btn-success" (click)="addNewArray()">-->
+<!--  <i class="fa fa-plus-square" aria-hidden="true"></i>-->
+<!--</button>-->
+<button class="btn btn-success px-4 py-2 mr-2" (click)="addNewArray()" >  <i class="fa fa-plus-square" aria-hidden="true"></i></button>
+
+<button class="btn btn-info px-4 py-2 mr-2 " (click)="addNewEquipment()" *ngIf="checkAdd" [disabled]="formAddNewEquipment.invalid">Lưu</button>
+<span><button  class="btn btn-success px-4 py-2" (click)="openDialogAddNew()">Thêm mới</button></span>
 
 <!--    pagination-->
 <!--<pagination-controls class="pagination justify-content-center" id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"-->
