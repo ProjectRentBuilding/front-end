@@ -33,7 +33,7 @@ export class EquipmentDeleteComponent implements OnInit {
         this.checkDelete = this.grounds[item].id;
         if (this.checkDelete === this.data.data1.groundId) {
           const temp = (this.grounds[item].statusGround);
-          if (temp === 'Trống') {
+          if (temp === 'Đang sửa chữa') {
             return 0;
           } else {
             this.dialogRef.close();

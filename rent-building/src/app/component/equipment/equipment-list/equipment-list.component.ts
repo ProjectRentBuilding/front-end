@@ -20,6 +20,7 @@ import {EquipmentAddComponent} from '../equipment-add/equipment-add.component';
 export class EquipmentListComponent implements OnInit, OnDestroy {
   public formAddNewEquipment: FormGroup;
   public formEditEquipment: FormGroup;
+  public searchForm: FormGroup;
   public subscription: Subscription;
   public messageValidate: string;
   public equipmentOfId;
@@ -35,9 +36,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public totalPages = 1;
   public pages = [];
   public size = 5;
-  pageClicked = 0;
+  public pageClicked = 0;
   public searchText = '';
-  public searchInterge: number;
+  public nameEquipmentSearch = '';
+  public codeGroundSearch = '';
+  public typeEquipmentSearch = '';
+  public amountSearch: number;
   public checkEdit = false;
   public checkAdd = false;
   // public searchText;
@@ -67,7 +71,16 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
       this.equipmentModel = data;
     });
+    this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
+      this.typeEquipment = data;
+    });
     this.formEditEquipment = this.createEquipment();
+    this.searchForm = this.formBuilder.group({
+      nameEquipmentSearch: [''],
+      amountSearch: [''],
+      codeGroundSearch: [''],
+      typeEquipmentSearch: ['']
+    });
     this.loadData(0);
   }
 
@@ -85,8 +98,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   onNext() {
-    // tslint:disable-next-line:triple-equals
-    if (this.pageClicked == this.totalPages - 1) {
+    if (this.pageClicked === this.totalPages - 1) {
     } else {
       this.pageClicked++;
     }
@@ -94,8 +106,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   onPrevious() {
-    // tslint:disable-next-line:triple-equals
-    if (this.pageClicked == 0) {
+    if (this.pageClicked === 0) {
     } else {
       this.pageClicked--;
     }
@@ -122,7 +133,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       typeEquipmentId: ['', [Validators.required]],
       nameEquipment: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('[0-9]*')]],
-      amountOfBroken: ['', [Validators.required]],
+      amountOfBroken: [''],
       note: ['', [Validators.required]],
       groundId: ['', [Validators.required]],
     });
@@ -166,8 +177,8 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
         this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
         if (tem === (this.getarray - 1)) {
           this.equipment.reset();
-          // this.onLast();
-          this.loadData(this.checkPage + 1);
+          this.onLast();
+          // this.loadData(this.checkPage + 1);
         }
       });
     }
@@ -259,4 +270,11 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 
+  onSearch(page) {
+    this.nameEquipmentSearch = this.searchForm.value.nameEquipmentSearch;
+    this.amountSearch = this.searchForm.value.amountSearch;
+    this.codeGroundSearch = this.searchForm.value.codeGroundSearch;
+    this.typeEquipmentSearch = this.searchForm.value.typeEquipmentSearch;
+    this.loadData(page);
+  }
 }
