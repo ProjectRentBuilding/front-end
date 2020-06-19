@@ -1,70 +1,84 @@
-<div style="margin-left: 99%;margin-top: -2%;" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x"
-                                                                   aria-hidden="true" title="Thoát"></i>
+<div class="container">
+  <form [formGroup]="addEquipmentForm" id="contact" action="" method="post">
+    <h3>Thêm mới thiết bị</h3>
+
+    <fieldset>
+      <label style="width:120px; float: left">
+        Loại thiết bị (*):
+      </label>
+      <select class="form-control" formControlName="typeEquipmentId" style="width:60%;">
+        <option>Vui lòng chọn:</option>
+        <option *ngFor="let type of typeEquipment,let i=index" [value]="type.id">{{i+1}}.{{type.nameType}}</option>
+      </select>
+      <p class=" text-danger" role="alert" *ngIf="addEquipmentForm.get('typeEquipmentId').hasError('required')
+       && addEquipmentForm.get('typeEquipmentId').touched">Loại thiết bị không được để trống !!!
+      </p>
+    </fieldset>
+
+
+    <fieldset>
+      <label style="width:120px; float: left">
+        Tên thiết bị (*) :
+      </label>
+      <input type="text" tabindex="2" required formControlName="nameEquipment" style="width:60%;font-size: 16px">
+      <p class=" text-danger" role="alert" *ngIf="addEquipmentForm.get('nameEquipment').hasError('required')
+       && addEquipmentForm.get('nameEquipment').touched">Tên thiết bị không được để trống !!!
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <label style="width:120px; float: left">
+        Số lượng (*):
+      </label>
+      <input type="text" tabindex="3" required formControlName="amount" style="width:60%; font-size: 16px">
+      <p class=" text-danger" role="alert" *ngIf="addEquipmentForm.get('amount').hasError('required')
+       && addEquipmentForm.get('amount').touched">Số lượng không được để trống !!!
+      </p>
+    </fieldset>
+
+    <fieldset >
+      <label style="width:120px; float: left">
+        Số lượng hỏng:
+      </label>
+      <input type="text" tabindex="4" required formControlName="amountOfBroken" style="width: 60%; font-size: 16px" value="0">
+    </fieldset>
+
+    <fieldset>
+      <label style="width:120px; float: left">
+        Ghi chú:
+      </label>
+      <input placeholder="Ghi chú" type="text" tabindex="5" required formControlName="note" style="width:60%; font-size: 16px">
+<!--      <p class=" text-danger" role="alert" *ngIf="addEquipmentForm.get('note').hasError('required')-->
+<!--       && addEquipmentForm.get('note').touched">Ghi chú không được để trống !!!-->
+<!--      </p>-->
+    </fieldset>
+
+    <fieldset>
+      <label style="width:120px; float: left">
+        Mã mặt bằng (*):
+      </label>
+      <select class="form-control" formControlName="groundId" style="width:60%;">
+        <option>Vui lòng chọn:</option>
+        <option *ngFor="let ground of grounds,let i=index" [value]="ground.id">{{i+1}}.{{ground.codeGround}}</option>
+      </select>
+      <p class=" text-danger" role="alert" *ngIf="addEquipmentForm.get('groundId').hasError('required')
+       && addEquipmentForm.get('groundId').touched">Mã mặt bằng không được để trống !!!
+      </p>
+    </fieldset>
+
+    <fieldset>
+<!--      <button [disabled]="addEquipmentForm.invalid"  name="submit" type="submit" id="contact-submit" data-submit="...Sending" (click)="onAddBuilding()">Lưu-->
+<!--      </button>-->
+      <button style="margin-right: 15%;margin-left: 12% ;width: 100px"  class="btn btn-primary mt-3"
+              (click)="onAddEquipment()" [disabled]="addEquipmentForm.invalid" id="contact-submit">
+        Lưu
+      </button>
+      <button class="btn btn-danger mt-3" (click)="clearFilters()" style="width: 100px">
+        Huỷ
+      </button>
+    </fieldset>
+  </form>
 </div>
-<h2 class="text-center">Thêm mới trang thiết bị</h2>
-<form [formGroup]="addEquipmentForm" class="col-md-12 offset-md-4">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="col-md-3">
-          <p>Loại Thiết Bị(<span style="color: red">*</span>):</p>
-        </div>
-        <div class="col-md-9">
-          <select class="form-control" formControlName="typeEquipmentId" style="width:150px">
-            <option>Vui lòng chọn:</option>
-            <option *ngFor="let type of typeEquipment,let i=index" [value]="type.id">{{i+1}}.{{type.nameType}}</option>
-          </select>
-        </div>
-<!--        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addEquipmentForm.get('typeEquipmentId').hasError('required')-->
-<!--         && addEquipmentForm.get('typeEquipmentId').touched">Loại thiết bị không được để trống.-->
-<!--        </div>-->
-      </div>
-      <div class="col-md-12">
-        <p class="col-md-3 ">Tên Thiết Bị(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control ng-valid" formControlName="nameEquipment">
-<!--        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addEquipmentForm.get('nameEquipment').hasError('required')-->
-<!--         && addEquipmentForm.get('nameEquipment').touched">Tên thiết bị không được để trống.-->
-<!--        </div>-->
-      </div>
-      <div class="col-md-12">
-        <div class="col-md-3">
-          <p> Số Lượng<span style="color: red">*</span>):</p>
-        </div>
-        <div class="col-md-9">
-          <input type="text" class="form-control ng-valid" formControlName="amount">
-        </div>
-
-<!--        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addEquipmentForm.get('amount').hasError('required')-->
-<!--         && addEquipmentForm.get('email').touched">Số lượng không được để trống.-->
-<!--        </div>-->
-      </div>
-      <div class="col-md-12">
-        <p class="col-md-3">Ghi Chú(<span style="color: red">*</span>):</p>
-        <input type="text" class="form-control col-md-9 ng-valid" formControlName="note">
-      </div>
-      <div class="col-md-12">
-        <p class="col-md-3">Mã Mặt Bằng(<span style="color: red">*</span>):</p>
-        <select class="form-control" formControlName="groundId" style="width:120px;">
-          <option>Vui lòng chọn:</option>
-          <option *ngFor="let ground of grounds,let i=index" [value]="ground.id">{{i+1}}.{{ground.codeGround}}</option>
-        </select>
-<!--        <div class="alert alert-danger col-md-9" role="alert" *ngIf="addEquipmentForm.get('groundId').hasError('required')-->
-<!--         && addEquipmentForm.get('groundId').touched">Mã mặt bằng không được để trống.-->
-<!--        </div>-->
-      </div>
-    </div>
-</form>
-<div class="row " style="margin-left: 85%;margin-top: 5%">
-  <button style="margin-right: 15%"  class="btn btn-primary mt-3"
-          (click)="onAddEquipment()">
-    <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
-  </button>
-  <button class="btn btn-danger mt-3" (click)="clearFilters()">
-    <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i>
-  </button>
-</div>
-
-
-
 
 
 

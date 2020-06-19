@@ -19,7 +19,7 @@
       <a class="dropdown-item" *ngFor="let building of buildings"  (click)="searchType(building.fullName)">{{building.fullName}}</a>
     </div>
   </div>
-  <div class="col-md-2"><button class="btn btn-dark" [routerLink]="['/equipments/']">Trang thiết bị</button></div>
+  <div class="col-md-2"><button class="btn btn-dark" [routerLink]="['/equipments/']">Xem chi tiết</button></div>
 </div>
 <ng-container>
   <form>
@@ -29,8 +29,6 @@
         <th style="width: 140px">Loại (<span style="color: red">*</span>)</th>
         <th>Tên thiết bị (<span style="color: red">*</span>)</th>
         <th>Số lượng (<span style="color: red">*</span>)</th>
-        <th>Số lượng hỏng (<span style="color: red">*</span>)</th>
-        <th>Ghi chú</th>
         <th>Mã mặt bằng (<span style="color: red">*</span>)</th>
         <th>Mã Tầng</th>
         <th>Tên toà nhà</th>
@@ -50,12 +48,6 @@
         </td>
         <td >
           {{equipment.amount}}
-        </td>
-        <td >
-          {{equipment.amountOfBroken}}
-        </td>
-        <td>
-          {{equipment.note}}
         </td>
         <td>
           {{equipment.ground.codeGround}}

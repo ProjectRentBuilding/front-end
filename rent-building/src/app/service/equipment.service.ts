@@ -25,14 +25,14 @@ export class EquipmentService extends CrudService<EquipmentModel, number> {
     });
   }
 
-  // getEquipmentPageSearch(currentPage, size, nameEquipmentSearch, codeGroundSearch, typeEquipmentSearch): Observable<any> {
+  // getEquipmentPageSearch(currentPage, size, nameEquipmentSearch, groundIdSearch, typeEquipmentIdSearch): Observable<any> {
   //   return this._http.get<any>(`http://localhost:8080/equipments/paging`, {
   //     params: {
   //       page: currentPage,
   //       size: size,
   //       nameEquipment: nameEquipmentSearch,
-  //       codeGround: codeGroundSearch,
-  //       nameTypeEquipment: typeEquipmentSearch
+  //       groundId: groundIdSearch,
+  //       typeEquipmentId: typeEquipmentIdSearch
   //     }
   //   });
   // }
