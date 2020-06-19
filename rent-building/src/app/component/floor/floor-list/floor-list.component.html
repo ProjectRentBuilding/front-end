@@ -171,6 +171,10 @@
         <!--      Tên Tầng-->
         <td>
           <input type="text" class="form-control" formControlName="nameFloor">
+          <p class="text-danger"
+             *ngIf="addFloorForm.get('nameFloor').invalid && addFloorForm.get('nameFloor').touched">
+            Ghi chú không được để trống!
+          </p>
 <!--          <p class="text-danger"-->
 <!--             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">-->
 <!--            Tên tầng lầu không được để trống.-->
@@ -254,7 +258,7 @@
 </ng-container>
 
 <nav aria-label="Page navigation example" *ngIf="floors.length!=0 && totalPages >1">
-  <ul class="pagination">
+  <ul class="pagination justify-content-md-center mt-3">
     <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
     <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
       <a class="page-link"><<</a>

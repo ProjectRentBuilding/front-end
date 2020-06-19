@@ -236,7 +236,7 @@
 <!--    pagination-->
 
 <nav aria-label="Page navigation example" *ngIf="equipmentModel.length!=0 && totalPages>1">
-  <ul class="pagination">
+  <ul class="pagination justify-content-md-center mt-3">
     <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
     <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
       <a class="page-link"><<</a>
