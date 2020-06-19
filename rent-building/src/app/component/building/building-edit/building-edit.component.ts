@@ -83,6 +83,11 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   clearFilters() {
 
     this.ngOnInit();
+    this.check1 = false;
+    this.check2 = false;
+
+
+    this.ngOnInit();
   }
 
   ngOnDestroy() {
