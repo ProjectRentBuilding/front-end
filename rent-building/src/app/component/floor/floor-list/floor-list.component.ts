@@ -12,6 +12,7 @@ import {TypeFloorModel} from "../../../model/typeFloor.model";
 import {TypeFloorService} from "../../../service/type-floor.service";
 import {BuildingModel} from "../../../model/building.model";
 import {BuildingService} from "../../../service/building.service";
+import {TypeEquipmentModel} from "../../../model/typeEquipment.model";
 
 
 @Component({
@@ -134,11 +135,16 @@ export class FloorListComponent implements OnInit, OnDestroy {
 
 
   addNewArray(): void {
-    this.checkAdd = true;
-    this.getarray ++;
-
-    this.floor = this.addFloorForm.get('floor') as FormArray;
-    this.floor.push(this.createFloor());
+    if (!this.checkAdd) {
+      this.checkAdd = !this.checkAdd;
+    } else {
+      this.getarray++;
+      this.subscription = this.typeFloorService.findAll().subscribe((data: TypeFloorModel[]) => {
+        this.typeFloors = data;
+      });
+      this.floor = this.addFloorForm.get('equipment') as FormArray;
+      this.floor.push(this.createFloor());
+    }
   }
 
   // addNewFloor() {
@@ -215,6 +221,9 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.searchText = fullName;
   }
   removeFloor(i: number) {
+    if (i === 0) {
+      this.checkAdd=false;
+    }
     this.floor.removeAt(i);
   }
   deleteAll() {

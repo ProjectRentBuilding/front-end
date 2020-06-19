@@ -8,79 +8,72 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
 
-
-
 <div class="row">
+  <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button></span>
   <div class="dropdown open col-md-2">
     <button class="btn btn-dark dropdown-toggle" type="button"
             id="triggerId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-      <i class="fa fa-codepen" aria-hidden="true" title="Mã tầng"></i>
+      Mã tầng
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
       <a class="dropdown-item" *ngFor="let floor of floors"  (click)="searchType(floor.codeFloor)">{{floor.codeFloor}}</a>
     </div>
   </div>
-  <div class="col-md-8"></div>
-  <div class="col-md-2">
-    <button class="btn btn-dark" (click)="deleteAll()">
-      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>
-    </button>
-  </div>
 </div>
-<form action="">
-  <table class="table bg-light text-center table-striped">
 
-    <thead class="thead-dark">
-    <tr class="text-muted">
-      <!--      <th>STT</th>-->
-      <th><p>Mã mặt bằng(<span style="color: red">*</span>):</p></th>
-      <th><p>Loại mặt bằng(<span style="color: red">*</span>):</p></th>
-      <th><p>Diện tích(<span style="color: red">*</span>):</p></th>
-      <th><p>Trạng thái(<span style="color: red">*</span>):</p></th>
-      <th><p>Giá bán(<span style="color: red">*</span>):</p></th>
-      <th><p>Phí quản lý(<span style="color: red">*</span>):</p></th>
-      <th><p>Khách hàng(<span style="color: red">*</span>):</p></th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let i=index;let item of grounds">
-<!--      |filter:searchText | paginate:{id:'listing_pagination',-->
-<!--                                                                            itemsPerPage:5,-->
-<!--                                                                            currentPage:page-->
-<!--      }-->
-      <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
-      <td>{{item.codeGround}}</td>
-      <td>{{item.typeGround.nameTypeGround}}</td>
-      <td>{{item.area}}</td>
-      <td>{{item.statusGround}}</td>
-      <td>{{item.price}}</td>
-      <td>{{item.priceManager}}</td>
+<table class="table bg-light text-center table-striped">
 
-      <ng-container class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 20px" >
-        <div *ngFor="let contract of contracts">
-          <td class="dropdown-item"  *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>
-        </div>
-      </ng-container>
+  <thead class="thead-dark">
+  <tr class="text-muted">
+    <!--      <th>STT</th>-->
+    <th><p>Mã mặt bằng(<span style="color: red">*</span>):</p></th>
+    <th><p>Loại mặt bằng(<span style="color: red">*</span>):</p></th>
+    <th><p>Diện tích(<span style="color: red">*</span>):</p></th>
+    <th><p>Trạng thái(<span style="color: red">*</span>):</p></th>
+    <th><p>Giá bán(<span style="color: red">*</span>):</p></th>
+    <th><p>Phí quản lý(<span style="color: red">*</span>):</p></th>
+    <th><p>Khách hàng(<span style="color: red">*</span>):</p></th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let i=index;let item of grounds">
+    <!--      |filter:searchText | paginate:{id:'listing_pagination',-->
+    <!--                                                                            itemsPerPage:5,-->
+    <!--                                                                            currentPage:page-->
+    <!--      }-->
+    <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
+    <td>{{item.codeGround}}</td>
+    <td>{{item.typeGround.nameTypeGround}}</td>
+    <td>{{item.area}}</td>
+    <td>{{item.statusGround}}</td>
+    <td>{{item.price}}</td>
+    <td>{{item.priceManager}}</td>
 
-      <td>
-        <button class="btn btn-info"  (click)="openDialogView(item.id)">Chi tiết</button>
-      </td>
-      <td>
-        <button class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button>
-      </td>
-      <td>
-        <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
-          Xóa
+    <ng-container class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 20px">
+      <div *ngFor="let contract of contracts">
+        <td class="dropdown-item" *ngIf="contract.ground.id==item.id">{{contract.customer.name}}</td>
+      </div>
+    </ng-container>
 
-        </button>
-      </td>
-    </tr>
-    </tbody>
+    <td>
+      <button class="btn btn-info" (click)="openDialogView(item.id)">Chi tiết</button>
+    </td>
+    <td>
+      <button class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
+        Xóa
 
-  </table>
-</form>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+
+</table>
+
 <button (click)="openDialogAddNew()" class="btn btn-success px-2 py-2">
   Thêm mới
 </button>

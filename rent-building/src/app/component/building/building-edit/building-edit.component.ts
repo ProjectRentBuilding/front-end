@@ -19,6 +19,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   private images: ImageModel[];
   private id: number;
   urlImage: string;
+  image;
   private check=true;
   private check1=false;
   private check2=false;
@@ -63,6 +64,8 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   loadData() {
     this.id = this.data.data1.id;
     this.editBuildingForm.patchValue(this.data.data1);
+
+
   }
 
   onEditBuilding() {
@@ -79,6 +82,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
 
   clearFilters() {
     this.ngOnInit();
+
   }
 
   ngOnDestroy() {

@@ -9,28 +9,38 @@
 </div>
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
-<button class="btn btn-success px-4 py-2 " (click)="addNewArray()">
-  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
-</button>
+<!--<div class="row">-->
+<!--  <div class="dropdown open col-md-2">-->
+<!--    <button class="btn btn-dark dropdown-toggle" type="button"-->
+<!--            id="triggerId" data-toggle="dropdown" aria-haspopup="true"-->
+<!--            aria-expanded="false">-->
+<!--      <i class="fa fa-building" aria-hidden="true" title="Tòa nhà"></i>-->
+<!--    </button>-->
+<!--    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">-->
+<!--      <a class="dropdown-item" *ngFor="let building of buildings"-->
+<!--         (click)="searchType(building.fullName)">{{building.fullName}}</a>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="col-md-8"></div>-->
+<!--  <div class="col-md-2">-->
+<!--    <button class="btn btn-dark" (click)="deleteAll()">-->
+<!--      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div class="row">
+  <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button></span>
   <div class="dropdown open col-md-2">
     <button class="btn btn-dark dropdown-toggle" type="button"
             id="triggerId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-      <i class="fa fa-building" aria-hidden="true" title="Tòa nhà"></i>
+      Tên tòa nhà
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
-      <a class="dropdown-item" *ngFor="let building of buildings"
-         (click)="searchType(building.fullName)">{{building.fullName}}</a>
+      <a class="dropdown-item" *ngFor="let building of buildings"  (click)="searchType(building.fullName)">{{building.fullName}}</a>
     </div>
-  </div>
-
-  <div class="col-md-8"></div>
-  <div class="col-md-2">
-    <button class="btn btn-dark" (click)="deleteAll()">
-      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>
-    </button>
   </div>
 </div>
 
@@ -160,9 +170,10 @@
     </tbody>
   </table>
 
+
 </form>
 </ng-container>
-<ng-container>
+<ng-container *ngIf="checkAdd">
   <form action="" [formGroup]="addFloorForm" *ngIf="addFloorForm">
     <table>
       <tbody class="border" formArrayName="floor"
@@ -172,8 +183,8 @@
         <td>
           <input type="text" class="form-control" formControlName="nameFloor">
           <p class="text-danger"
-             *ngIf="addFloorForm.get('nameFloor').invalid && addFloorForm.get('nameFloor').touched">
-            Ghi chú không được để trống!
+             *ngIf="item.get('nameFloor').invalid && item.get('nameFloor').touched">
+            Nhập sai định dạng.
           </p>
 <!--          <p class="text-danger"-->
 <!--             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">-->
@@ -191,6 +202,10 @@
         <!--      Mã tầng lầu-->
         <td>
           <input type="text" class="form-control" formControlName="codeFloor">
+          <p class="text-danger"
+             *ngIf="item.get('codeFloor').invalid && item.get('codeFloor').touched">
+            Nhập sai định dạng.
+          </p>
 <!--          <p class="text-danger"-->
 <!--             *ngIf="addFloorForm.get('codeFloor').hasError('required') && addFloorForm.get('codeFloor').touched">-->
 <!--            Mã tầng lầu không được để trống.-->
@@ -216,6 +231,10 @@
             <option value="Đang vào ở">Đang vào ở</option>
             <option value="Đang sửa chữa">Đang sửa chữa</option>
           </select>
+          <p class="text-danger"
+             *ngIf="item.get('statusFloor').invalid && item.get('statusFloor').touched">
+            Yêu cầu chọn.
+          </p>
 <!--          <p class="text-danger"-->
 <!--             *ngIf="addFloorForm.get('statusFloor').hasError('required') && addFloorForm.get('statusFloor').touched">-->
 <!--            Trạng thái không được để trống.-->
@@ -227,6 +246,10 @@
             <option value="">Chọn</option>
             <option *ngFor="let typeFloor of typeFloors" [value]="typeFloor.id">{{typeFloor.nameTypeFloor}}</option>
           </select>
+          <p class="text-danger"
+             *ngIf="item.get('typeFloorId').invalid && item.get('typeFloorId').touched">
+            Yêu cầu chọn.
+          </p>
 <!--          <p class="text-danger"-->
 <!--             *ngIf="addFloorForm.get('typeFloorId').hasError('required') && addFloorForm.get('typeFloorId').touched">-->
 <!--            Loại tầng không được để trống.-->
@@ -238,6 +261,10 @@
             <option value="">Chọn</option>
             <option *ngFor="let building of buildings" [value]="building.id">{{building.fullName}}</option>
           </select>
+          <p class="text-danger"
+             *ngIf="item.get('buildingId').invalid && item.get('buildingId').touched">
+            Yêu cầu chọn.
+          </p>
 <!--          <p class="text-danger"-->
 <!--             *ngIf="addFloorForm.get('buildingId').hasError('required') && addFloorForm.get('buildingId').touched">-->
 <!--            Tên tòa nhà không được để trống.-->
@@ -245,17 +272,21 @@
         </td>
         <td>
           <button type="button" class="btn btn-danger btn-sm" (click)="removeFloor(i)">
-            <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+            <i class="fa fa-times" aria-hidden="true"></i>
           </button>
         </td>
       </tr>
       </tbody>
     </table>
   </form>
-  <button class="btn btn-primary" type="button" (click)="addNewFloor()" [disabled]="addFloorForm.invalid">
-    <i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
-  </button>
 </ng-container>
+<button  class="btn btn-success" (click)="addNewArray()">
+  <i class="fa fa-plus-square" aria-hidden="true"></i>
+</button>
+<button  class="btn btn-info" *ngIf="checkAdd" [disabled]="addFloorForm.invalid" (click)="addNewFloor()" >
+  Lưu
+</button>
+
 
 <nav aria-label="Page navigation example" *ngIf="floors.length!=0 && totalPages >1">
   <ul class="pagination justify-content-md-center mt-3">
