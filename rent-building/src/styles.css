@@ -11,7 +11,12 @@ body {
 /*  margin-left: 17%;*/
 /*}*/
 
-
+.mat-dialog-container {
+  background-color: #E8D8F3;
+  margin-left: 10%;
+ /*padding:0 !important;*/
+  margin-top: 30px !important;
+}
 
 /**{*/
 /*  margin:0;*/

@@ -108,6 +108,8 @@
   box-shadow: 2px 3px 15px #999;
   transform: translateY(-1px);
 }
-
+mat-dialog-container{
+  background-color: #E8D8F3;
+}
 /*end card*/
 

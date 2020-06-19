@@ -8,9 +8,7 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
 
-<button (click)="openDialogAddNew()" class="btn btn-success px-4 py-2">
-  <i class="material-icons"data-toggle="tooltip" title="Thêm">playlist_add</i>
-</button>
+
 
 <div class="row">
   <div class="dropdown open col-md-2">
@@ -67,14 +65,14 @@
       </ng-container>
 
       <td>
-        <button class="btn btn-info"  (click)="openDialogView(item.id)"><i class="material-icons" data-toggle="tooltip" title="Xem">&#xe8a0;</i></button>
+        <button class="btn btn-info"  (click)="openDialogView(item.id)">Chi tiết</button>
       </td>
       <td>
-        <button class="btn btn-warning" (click)="openDialogEdit(item.id)"><i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i></button>
+        <button class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
-          <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+          Xóa
 
         </button>
       </td>
@@ -83,9 +81,12 @@
 
   </table>
 </form>
+<button (click)="openDialogAddNew()" class="btn btn-success px-2 py-2">
+  Thêm mới
+</button>
 
 <nav aria-label="Page navigation example" *ngIf="grounds.length!=0 && totalPages>1">
-  <ul class="pagination">
+  <ul class="pagination justify-content-md-center">
     <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
     <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
       <a class="page-link"><<</a>
