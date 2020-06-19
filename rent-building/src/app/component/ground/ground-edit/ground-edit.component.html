@@ -4,7 +4,8 @@
     <h3 class="text-center">Sửa thông tin mặt bằng</h3>
 
     <fieldset>
-      <input placeholder="Mã mặt bằng (*) " type="text" tabindex="1" required autofocus formControlName="codeGround">
+      <button style="width: 30%; height: 40px" >Mã mặt bằng(<span style="color: red">*</span>)</button>
+      <input  style="width: 70%; height: 40px" type="text" tabindex="1" required autofocus formControlName="codeGround">
       <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('required')
        && editGroundForm.get('codeGround').touched">Mã mặt bằng không được để trống !!!
       </p>
@@ -22,7 +23,8 @@
       </select>
     </fieldset>
     <fieldset>
-      <input placeholder="Diện tích (*) " type="text" tabindex="3" required autofocus formControlName="area">
+      <button style="width: 30%; height: 40px" >Diện tích(<span style="color: red">*</span>)</button>
+      <input  style="width: 70%; height: 40px" type="text" tabindex="3" required autofocus formControlName="area">
       <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('area').hasError('required')
        && editGroundForm.get('area').touched">Diện tích không được để trống và phải đúng định dạng !!!
       </p>
@@ -58,10 +60,12 @@
       <textarea rows="5" type="text"  tabindex="6" formControlName="note"></textarea>
     </fieldset>
     <fieldset>
-      <input placeholder="Giá tiền (*) " type="text" tabindex="7" required autofocus formControlName="price">
+      <button style="width: 30%; height: 40px" >Giá tiền(<span style="color: red">*</span>)</button>
+      <input style="width: 70%; height: 40px" type="text" tabindex="7" required autofocus formControlName="price">
     </fieldset>
     <fieldset>
-      <input placeholder="Phí quản lí (*) " type="text" tabindex="8" required autofocus formControlName="priceManager">
+      <button style="width: 30%; height: 40px" >Phí quản lí(<span style="color: red">*</span>)</button>
+      <input style="width: 70%; height: 40px" type="text" tabindex="8" required autofocus formControlName="priceManager">
     </fieldset>
 
   </form>
