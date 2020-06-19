@@ -302,6 +302,9 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   // }
 
   removeAddress(i: number) {
+    if (i === 0) {
+      this.checkAdd = false;
+    }
     this.customer.removeAt(i);
   }
 

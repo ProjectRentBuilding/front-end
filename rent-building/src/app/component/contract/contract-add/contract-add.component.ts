@@ -14,6 +14,7 @@ import {DatePipe} from "@angular/common";
 import {CustomerAddComponent} from "../../customer/customer-add/customer-add.component";
 import {MatDialog} from "@angular/material/dialog";
 import { ContractListComponent } from '../contract-list/contract-list.component';
+import {ImgurApiService} from "../../../service/imgur-api.service";
 
 @Component({
   selector: 'app-contract-add',
@@ -61,7 +62,9 @@ export class ContractAddComponent implements OnInit {
     public customerService: CustomerService,
     public employeeService: EmployeeService,
     public dialog: MatDialog,
+    public imgurApiService: ImgurApiService
   ) {
+
 
 
   }
@@ -111,6 +114,13 @@ export class ContractAddComponent implements OnInit {
         map(value => this._filter(value))
       );
 
+
+  }
+
+  onChange(file) {
+    this.imgurApiService.upload(file)
+      // .subscribe((data:any) => console.log(data.data.link));
+      .subscribe((data:any) => this.formAddNewContract.value.urlImage = (data.data.link));
 
   }
 
@@ -188,4 +198,5 @@ export class ContractAddComponent implements OnInit {
       this.router.navigateByUrl('/contracts/add').then();
     });
   }
+
 }

@@ -16,6 +16,7 @@ export class EquipmentService extends CrudService<EquipmentModel, number> {
   constructor(protected http: HttpClient) {
     super(http, 'http://localhost:8080/equipments');
   }
+
   getEquipmentPage(currentPage, size, search): Observable<any> {
     return this._http.get<any>(`http://localhost:8080/equipments/paging`, {
       params: {
@@ -23,6 +24,32 @@ export class EquipmentService extends CrudService<EquipmentModel, number> {
       }
     });
   }
+
+  // getEquipmentPageSearch(currentPage, size, nameEquipmentSearch, codeGroundSearch, typeEquipmentSearch): Observable<any> {
+  //   return this._http.get<any>(`http://localhost:8080/equipments/paging`, {
+  //     params: {
+  //       page: currentPage,
+  //       size: size,
+  //       nameEquipment: nameEquipmentSearch,
+  //       codeGround: codeGroundSearch,
+  //       nameTypeEquipment: typeEquipmentSearch
+  //     }
+  //   });
+  // }
+
+
+  // getEquipmentPageSearch(currentPage, size, nameEquipmentSearch, amountSearch, codeGroundSearch, typeEquipmentSearch): Observable<any> {
+  //   return this._http.get<any>(`http://localhost:8080/equipments/paging`, {
+  //     params: {
+  //       page: currentPage,
+  //       size: size,
+  //       nameEquipment: nameEquipmentSearch,
+  //       amount: amountSearch,
+  //       codeGround: codeGroundSearch,
+  //       nameTypeEquipment: typeEquipmentSearch
+  //     }
+  //   });
+  // }
 
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];

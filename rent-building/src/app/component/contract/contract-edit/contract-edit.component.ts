@@ -34,6 +34,7 @@ export class ContractEditComponent implements OnInit {
   public groundId: number;
   public employees: EmployeeModel[] = [];
   public contractId: number;
+  public urlImage: string;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -83,6 +84,10 @@ export class ContractEditComponent implements OnInit {
       this.contractId = data.id;
       this.contractService.findOne(this.contractId).subscribe(data1 => {
         this.formEditContract.patchValue(data1);
+      }, () => {
+
+      }, () => {
+        this.urlImage = this.formEditContract.value.urlImage;
       });
     });
   }
