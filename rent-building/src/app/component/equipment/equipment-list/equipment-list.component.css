@@ -28,3 +28,10 @@ table thead  th,td{
 .dropdown-menu show {
   margin-top: 20px;
 }
+.text-danger{
+  font-size: 70%;
+}
+.infoPlaceholder::-webkit-input-placeholder {
+  font-weight: lighter;
+  color:#AFB2B3;
+}

@@ -39,12 +39,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public pageClicked = 0;
   public searchText = '';
   public nameEquipmentSearch = '';
-  public codeGroundSearch = '';
-  public typeEquipmentSearch = '';
+  public groundIdSearch : number;
+  public typeEquipmentIdSearch : number;
   public amountSearch: number;
   public checkEdit = false;
   public checkAdd = false;
-  // public searchText;
+  public searchAll;
   public equipment: FormArray;
   public getarray = 1;
 
@@ -85,6 +85,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   loadData(page) {
+    // @ts-ignore
     this.equipmentService.getEquipmentPage(page, this.size, this.searchText)
       .subscribe(
         data => {
@@ -134,7 +135,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       nameEquipment: ['', [Validators.required]],
       amount: ['', [Validators.required, Validators.pattern('[0-9]*')]],
       amountOfBroken: [''],
-      note: ['', [Validators.required]],
+      note: [''],
       groundId: ['', [Validators.required]],
     });
   }
@@ -152,10 +153,12 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   addNewArray(): void {
+
     if (!this.checkAdd) {
       this.checkAdd = !this.checkAdd;
     } else {
       this.getarray++;
+      console.log(this.getarray);
       this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
         this.typeEquipment = data;
       });
@@ -165,6 +168,9 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   removeAddress(i: number) {
+    if (i === 0) {
+      this.checkAdd = false;
+    }
     this.equipment.removeAt(i);
   }
 
@@ -236,7 +242,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
   openDialogAddNew(): void {
     const dialogRef = this.dialog.open(EquipmentAddComponent, {
-      width: '900px',
+      width: '500px',
       disableClose: false,
     });
 
@@ -247,9 +253,8 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
   searchType(event) {
     console.log(event);
-    this.searchText = event;
+    this.searchAll = event;
   }
-
 
   checkAmount(amount: number, amountOfBroken: number) {
     if (amount == null) {
@@ -262,20 +267,27 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteAll() {
-    for (let item = 0; item < this.equipmentModel.length; item++) {
-      this.equipmentService.delete(this.equipmentModel[item].id).subscribe(data => {
-      });
-    }
-    this.loadData(this.checkPage);
-    this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
-  }
+  // deleteAll() {
+  //   for (let item = 0; item < this.equipmentModel.length; item++) {
+  //     this.equipmentService.delete(this.equipmentModel[item].id).subscribe(data => {
+  //     });
+  //   }
+  //   this.loadData(this.checkPage);
+  //   this.equipmentService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+  // }
 
   onSearch(page) {
     this.nameEquipmentSearch = this.searchForm.value.nameEquipmentSearch;
     this.amountSearch = this.searchForm.value.amountSearch;
-    this.codeGroundSearch = this.searchForm.value.codeGroundSearch;
-    this.typeEquipmentSearch = this.searchForm.value.typeEquipmentSearch;
+    this.groundIdSearch = this.searchForm.value.codeGroundSearch;
+    this.typeEquipmentIdSearch = this.searchForm.value.typeEquipmentSearch;
     this.loadData(page);
+  }
+
+  search() {
+    // @ts-ignore
+    this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
+    // @ts-ignore
+    this.searchText = document.getElementById('searchEquipment').value;
   }
 }
