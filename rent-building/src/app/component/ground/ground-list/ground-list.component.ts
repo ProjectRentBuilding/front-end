@@ -105,7 +105,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(GroundAddComponent, {
       width: '65%',
       height: '540px',
-      disableClose: true,
+      disableClose: false,
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -118,7 +118,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
         width: '65%',
         height: '540px',
         data: {data1: dataOfGroundModel},
-        disableClose: true,
+        disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
@@ -132,7 +132,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
         width: '65%',
         height: '540px',
         data: {data1: dataOfGroundModel},
-        disableClose: true,
+        disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
