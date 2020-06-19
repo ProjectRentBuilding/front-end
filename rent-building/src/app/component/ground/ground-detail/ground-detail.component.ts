@@ -50,6 +50,7 @@ export class GroundDetailComponent implements OnInit {
       statusGround:[''],
       price:[''],
       beginDay:[''],
+      priceManager:[''],
       endDay:['']
     });
     this.loadData();
