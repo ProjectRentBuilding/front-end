@@ -123,8 +123,9 @@
           class="text-danger">Vui lòng nhập mã số thuế</p>
       </div>
       <div class="form-group col-md-6">
-        <p style="font-weight: bold">Url hình ảnh hợp đồng</p>
-        <input type="text" class="form-control" formControlName="urlImage" >
+        <p style="font-weight: bold">Hình ảnh hợp đồng</p>
+        <input type="text" hidden class="form-control" formControlName="urlImage" >
+        <img src="{{urlImage}}" width="300px" height="240px" alt="">
       </div>
     </div>
   </fieldset>
@@ -153,7 +154,7 @@
     Lưu
     </button>
     <button style="margin-right: 5%" class="btn btn-danger mt-3" (click)="clearFilters()">
-     Hủy
+     Làm lại
     </button>
     <button class="btn btn-secondary mt-3" routerLink="/contracts/paging">
      Quay về

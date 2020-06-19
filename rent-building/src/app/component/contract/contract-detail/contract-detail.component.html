@@ -82,7 +82,7 @@
           <!--        <span class="col-md-5" style="font-weight: bold">Tổng tiền:</span>-->
           <!--        <input type="text" class="form-control col-md-7" value="{{contract.total|number}}" disabled>-->
           <button type="button" class="btn btn-primary mt-4" >
-            <span class="badge badge-light" style="font-size: 10pt;">Tổng Tiền: {{contract.price|number}} VNĐ</span>
+            <span class="badge badge-light" style="font-size: 12pt;">Tổng Tiền: {{contract.price|number}} VNĐ</span>
             <!--           <span class="badge badge-light ml-3 display-1"  >Tổng Tiền: {{contract.price|number}} VNĐ</span>-->
           </button>
         </div>
@@ -122,9 +122,9 @@
     <legend class="scheduler-border">Nội dung hợp đồng</legend>
     <div class="control-group">
       <label class="row" class="row" >
-        <div class="col-md-12">
-          <span class="col-md-5" style="font-weight: bold">Nội dung hợp đồng:</span>
-        </div>
+<!--        <div class="col-md-12">-->
+<!--          <span class="col-md-5" style="font-weight: bold">Nội dung hợp đồng:</span>-->
+<!--        </div>-->
         <div class="col-md-12" style="margin-top: 15px">
           <textarea rows="5" type="text" class="form-control col-md-11" value="{{contract.content}} " disabled></textarea>
         </div>
@@ -159,7 +159,7 @@
 
   <div class="form-group d-flex justify-content-center">
     <button class="btn btn-danger mt-3" routerLink="/contracts/paging" style="font-weight: bold">
-      quay về
+      Quay về
     </button>
   </div>
   <button class="btn btn-dark"><a href="http://localhost:8080/contracts/export/{{contractID}}" target='_blank'>In thành
