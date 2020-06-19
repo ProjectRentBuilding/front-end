@@ -141,7 +141,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   addNewArray(): void {
-    if (!this.checkAdd){
+    if (!this.checkAdd) {
       this.checkAdd = !this.checkAdd;
     } else {
       this.getarray++;
@@ -194,6 +194,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     console.log(page);
     this.checkPage = page;
   }
+
   editEquipment() {
     console.log(this.checkPage);
     this.equipmentService.update(this.formEditEquipment.value, this.equipmentOfId).subscribe(data => {
@@ -240,7 +241,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
 
   checkAmount(amount: number, amountOfBroken: number) {
-    if ( amount == null) {
+    if (amount == null) {
       return 0;
     }
     if (amount < amountOfBroken) {

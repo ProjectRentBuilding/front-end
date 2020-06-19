@@ -50,7 +50,7 @@ export class CustomerAddComponent implements OnInit, OnDestroy {
       address: ['', Validators.required],
       website: ['', Validators.required],
       nameCompany: ['', Validators.required],
-      nameGround: ['', Validators.required],
+      nameGround: [''],
       rentStatus: ['']
     });
   }
