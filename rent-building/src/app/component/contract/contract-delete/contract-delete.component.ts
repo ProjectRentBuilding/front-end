@@ -46,9 +46,9 @@ export class ContractDeleteComponent implements OnInit {
     subTime = new Date(this.endDayCheck);
 
     if (subTime.getTime() < this.currentDay) {
-      this.statusContract = "Hợp đồng này đã hết hiệu lực"
+      this.statusContract = "Hợp đồng này đã hết hiệu lực, có thể xóa. Thao tác xóa không thể hoàn tác"
     } else {
-      this.statusContract = "Hợp đồng đang còn hiệu lực"
+      this.statusContract = "Hợp đồng đang còn hiệu lực, không thể xóa"
     }
   }
 

@@ -125,7 +125,7 @@
     <div class="form-group col-md-6">
       <p style="font-weight: bold">Hình ảnh hợp đồng</p>
       <input type="file" (change)="onChange($event.target.files[0])">
-<!--      <input type="text" class="form-control" formControlName="urlImage">-->
+      <input type="text" class="form-control" hidden formControlName="urlImage">
     </div>
   </div>
   <div class="form-group">
@@ -147,14 +147,14 @@
   </div>
 </form>
 <div class="row " style="margin-left: 70%;margin-top: 5%">
-<!--  <button style="margin-right: 5%"  class="btn btn-primary mt-3"-->
-<!--          (click)="addNewContract()">-->
-        <button style="margin-right: 5%" [disabled]="formAddNewContract.invalid" class="btn btn-success mt-3"
-                (click)="addNewContract()">
+  <!--  <button style="margin-right: 5%"  class="btn btn-primary mt-3"-->
+  <!--          (click)="addNewContract()">-->
+  <button style="margin-right: 5%" [disabled]="formAddNewContract.invalid" class="btn btn-success mt-3"
+          (click)="addNewContract()">
     Lưu
   </button>
   <button style="margin-right: 5%" class="btn btn-danger mt-3" (click)="clearFilters()">
-   Làm mới
+    Làm mới
   </button>
   <button class="btn btn-secondary mt-3" routerLink="/contracts/paging">
     Quay về
