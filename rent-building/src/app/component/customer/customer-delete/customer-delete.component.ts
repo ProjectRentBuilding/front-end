@@ -27,19 +27,27 @@ export class CustomerDeleteComponent implements OnInit {
   }
 
   deleteCustomer() {
-    for (let i = 0; i < this.data.data1.contracts.length; i++) {
-      if (this.data.data1.contracts[i].statusContract === false) {
-        this.customerService.delete(this.customerOfId).subscribe(data => {
+    console.log('a');
+    if (this.data.data1.contracts.length !== 0) {
+      for (let i = 0; i < this.data.data1.contracts.length; i++) {
+        if (this.data.data1.contracts[i].statusContract === false || this.data.data1.contracts[i].statusContract === null) {
+          this.customerService.delete(this.customerOfId).subscribe(data => {
+            this.dialogRef.close();
+            this.redirectTo('customers');
+            this.customerService.showNotification('', 'xóa khách hàng thành công');
+          });
+        } else {
           this.dialogRef.close();
           this.redirectTo('customers');
-          this.customerService.showNotification('', 'xóa khách hàng thành công');
-        });
+          this.customerService.showNotification('', 'Không được xóa khách hàng đang còn hợp đồng');
+        }
       }
-      else {
+    }else {
+      this.customerService.delete(this.customerOfId).subscribe(data => {
         this.dialogRef.close();
         this.redirectTo('customers');
-        this.customerService.showNotification('', 'Không được xóa khách hàng đang còn hợp đồng');
-      }
+        this.customerService.showNotification('', 'xóa khách hàng thành công');
+      });
     }
   }
 
