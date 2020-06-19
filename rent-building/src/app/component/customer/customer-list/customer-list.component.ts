@@ -87,7 +87,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       address: ['', Validators.required],
       website: ['', Validators.required],
       nameCompany: ['', Validators.required],
-      nameGround: ['', Validators.required],
+      nameGround: [''],
       rentStatus: ['']
     });
   }
@@ -138,8 +138,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   openDialogAdd(): void {
     const dialogRef = this.dialog.open(CustomerAddComponent, {
-      width: '500px',
-      height: '250px',
+      width: '70%',
+      height: '80%',
       disableClose: false,
     });
 
@@ -178,7 +178,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       this.customers.push(this.customer.at(tem).value);
       // @ts-ignore
       this.customerService.save(this.customer.at(tem).value).subscribe(data => {
-        this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
         if (tem === (this.getarray - 1)) {
           this.customer.reset();
           this.onLast();
@@ -189,6 +188,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     // this.redirectTo('customers');
     console.log(this.formAddNewCustomer);
     // this.ngOnInit();
+    this.customerService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+    this.checkAdd = false;
   }
 
   redirectTo(uri: string) {
@@ -244,6 +245,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   cancelAdd() {
     this.redirectTo('customers');
   }
+
 //   deleteAll() {
 //     for(let item=0;item <this.grounds.length;item++)
 //       this.groundService.delete(this.grounds[item].id).subscribe(data => {
@@ -266,6 +268,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       // this.totalRec = this.customers.length;
     });
   }
+
   logValue() {
     console.log(this.formAddNewCustomer.value);
 
@@ -276,11 +279,27 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   addNewArray(): void {
-    this.checkAdd = true;
-    this.getarray++;
-    this.customer = this.formAddNewCustomer.get('customer') as FormArray;
-    this.customer.push(this.createCustomer());
+    if (!this.checkAdd) {
+      this.checkAdd = !this.checkAdd;
+    } else {
+      this.getarray++;
+      this.customer = this.formAddNewCustomer.get('customer') as FormArray;
+      this.customer.push(this.createCustomer());
+    }
   }
+
+  // addNewArray(): void {
+  //   if (!this.checkAdd) {
+  //     this.checkAdd = !this.checkAdd;
+  //   } else {
+  //     this.getarray++;
+  //     this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
+  //       this.typeEquipment = data;
+  //     });
+  //     this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
+  //     this.equipment.push(this.createEquipment());
+  //   }
+  // }
 
   removeAddress(i: number) {
     this.customer.removeAt(i);

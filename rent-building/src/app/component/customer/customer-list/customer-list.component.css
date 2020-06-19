@@ -40,3 +40,9 @@ vertical-align: middle;
   font-weight: lighter;
   color:#AFB2B3;
 }
+.add-row{
+  padding: 0 !important;
+}
+.text-danger{
+  font-size:70%;
+}
