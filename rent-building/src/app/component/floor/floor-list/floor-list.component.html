@@ -171,6 +171,10 @@
         <!--      Tên Tầng-->
         <td>
           <input type="text" class="form-control" formControlName="nameFloor">
+          <p class="text-danger"
+             *ngIf="addFloorForm.get('nameFloor').invalid && addFloorForm.get('nameFloor').touched">
+            Ghi chú không được để trống!
+          </p>
 <!--          <p class="text-danger"-->
 <!--             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">-->
 <!--            Tên tầng lầu không được để trống.-->

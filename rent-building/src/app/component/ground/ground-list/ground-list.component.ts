@@ -23,7 +23,6 @@ export class GroundListComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
 
   public contracts: ContractModel[];
-  public totalRec: number;
   public page = 1;
   public floors: FloorModel[];
 
@@ -75,7 +74,6 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.loadData(this.pageClicked);
   }
   onPrevious() {
-    // tslint:disable-next-line:triple-equals
     if (this.pageClicked == 0) {
     } else {
       this.pageClicked--;
