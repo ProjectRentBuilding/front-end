@@ -5,6 +5,7 @@ import {ContractService} from "../../../service/contract.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ContractDeleteComponent} from "../contract-delete/contract-delete.component";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-contract-list',
@@ -22,23 +23,57 @@ export class ContractListComponent implements OnInit, OnDestroy {
   public codeGroundSearch = "";
   public startRentDaySearch = "";
   public endRentDaySearch = "";
-
   public formSearch: FormGroup;
-
   public subscription: Subscription;
-
   public contract: ContractModel;
   message = '';
   totalRec: number;
 
+  // public flagAfterAdd = 1;
+
+  public sessionId: any;
+
   constructor(
     public contractService: ContractService,
     public dialog: MatDialog,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    public route: ActivatedRoute
   ) {
+
   }
 
   ngOnInit() {
+
+    this.contractService.getContractPageSearch(0, this.size, this.nameCustomerSearch, this.codeGroundSearch, this.startRentDaySearch, this.endRentDaySearch)
+      .subscribe(
+        data => {
+          this.pageClicked = 0;
+          this.contractPage = data;
+          this.contracts = this.contractPage.content;
+          this.totalPages = this.contractPage.totalPages;
+          this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }, () => {
+
+        }, () => {
+          if (window.sessionStorage.getItem("1") === null) {
+            this.loadData(0);
+          }
+
+          window.sessionStorage.setItem("2", String(this.totalPages));
+
+
+          if (window.sessionStorage.getItem("1") === "1") {
+            this.onLast();
+            window.sessionStorage.clear();
+          }
+        }
+      );
+
+
+
+
+
+
 
     this.formSearch = this.formBuilder.group({
       nameCustomerSearch: [''],
@@ -46,7 +81,6 @@ export class ContractListComponent implements OnInit, OnDestroy {
       startRentDaySearch: [''],
       endRentDaySearch: ['']
     });
-    this.loadData(0);
 
   }
 
@@ -91,21 +125,6 @@ export class ContractListComponent implements OnInit, OnDestroy {
 
   loadData(page) {
 
-
-    // let resultStart;
-    // let resultEnd;
-    // if (isNaN(start.getFullYear())) {
-    //   resultStart = "1970-01-01";
-    // } else {
-    //   resultStart = "" + start.getFullYear() + "-" + start.getMonth() + "-" + start.getDay();
-    // }
-    //
-    // if (isNaN(end.getFullYear())) {
-    //   resultEnd = "2030-1-1";
-    // } else {
-    //   resultEnd = "" + end.getFullYear() + "-" + end.getMonth() + "-" + end.getDay();
-    // }
-
     this.contractService.getContractPageSearch(page, this.size, this.nameCustomerSearch, this.codeGroundSearch, this.startRentDaySearch, this.endRentDaySearch)
       .subscribe(
         data => {
@@ -118,19 +137,6 @@ export class ContractListComponent implements OnInit, OnDestroy {
       )
   }
 
-  // loadData(page) {
-  //   console.log(this.nameCustomerSearch);
-  //   this.contractService.getContractPage(page, this.size, this.nameCustomerSearch)
-  //     .subscribe(
-  //       data => {
-  //         this.pageClicked = page;
-  //         this.contractPage = data;
-  //         this.contracts = this.contractPage.content;
-  //         this.totalPages = this.contractPage.totalPages;
-  //         this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
-  //       }
-  //     )
-  // }
 
   onNext() {
     if (this.pageClicked == this.totalPages - 1) {
@@ -181,7 +187,7 @@ export class ContractListComponent implements OnInit, OnDestroy {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        this.ngOnInit();
+        this.loadData(this.pageClicked)
 
       });
     });

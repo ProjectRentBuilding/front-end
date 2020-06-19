@@ -13,6 +13,7 @@ import {map, startWith} from "rxjs/operators";
 import {DatePipe} from "@angular/common";
 import {CustomerAddComponent} from "../../customer/customer-add/customer-add.component";
 import {MatDialog} from "@angular/material/dialog";
+import { ContractListComponent } from '../contract-list/contract-list.component';
 
 @Component({
   selector: 'app-contract-add',
@@ -42,6 +43,7 @@ export class ContractAddComponent implements OnInit {
   private customerIdPicker: any;
   title = 'angular-material-autocomplete';
   public filterCustomer: Observable<Customer[]>;
+  public contractListComponent: ContractListComponent;
 
   myControl = new FormControl();
   // options: string[] = ['Cash', 'Credit Card', 'Paypal'];
@@ -117,10 +119,18 @@ export class ContractAddComponent implements OnInit {
     console.log(this.formAddNewContract.value);
     this.contractService.save(this.formAddNewContract.value).subscribe(data => {
       console.log(data);
-      this.router.navigateByUrl('contracts/paging').then(r => this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn'));
+      this.router.navigate(['contracts/paging']).then(r => this.afterAdd());
 
 
     });
+
+  }
+
+  afterAdd() {
+    window.sessionStorage.setItem("1", "1");
+    this.contractService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
+    // this.contractListComponent.flagAfterAdd = 2;
+
 
   }
 
@@ -143,8 +153,6 @@ export class ContractAddComponent implements OnInit {
 
 
   }
-
-
 
 
   private _filter(value: string): Customer[] {
