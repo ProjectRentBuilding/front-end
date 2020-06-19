@@ -1,19 +1,23 @@
-h2{
-  margin-bottom: 50px;
-}
+/*h2{*/
+/*  margin-bottom: 50px;*/
+/*}*/
 form {
-  margin-left: 0px;
+  margin-top: 36px;
   width: 100%;
 }
-form fieldset{
-  margin-top: 50px;
-}
-form fieldset label {
-  margin-top: 60px;
-}
-form fieldset label div span{
-  float: left;
-}
+/*form fieldset{*/
+/*  margin-top: 50px;*/
+/*}*/
+/*form fieldset label {*/
+/*  margin-top: 60px;*/
+/*}*/
+/*form fieldset label div span{*/
+/*  float: left;*/
+/*}*/
+/*legend + * {*/
+/*  -webkit-margin-top-collapse: separate;*/
+/*  margin-top: 10px;*/
+/*}*/
 /*fieldset {*/
 /*  display: block;*/
 /*  margin-inline-start: 2px;*/
@@ -35,3 +39,15 @@ form fieldset label div span{
 /*  padding: 0;*/
 /*  font-weight: bold;*/
 /*}*/
+legend.scheduler-border {
+  width:inherit; /* Or auto */
+  padding:0 10px; /* To give a bit of padding on the left and right */
+  border-bottom:none;
+}
+fieldset.scheduler-border {
+  border: 1px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  -webkit-box-shadow:  0px 0px 0px 0px #000;
+  box-shadow:  0px 0px 0px 0px #000;
+}
