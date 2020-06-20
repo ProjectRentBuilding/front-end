@@ -1,149 +1,158 @@
-<!--&lt;!&ndash;<div style="margin-left: 99%;margin-top: -2%;" mat-dialog-close><i class="fa fa-window-close text-danger fa-2x" aria-hidden="true" title="Thoát"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;<form [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4">&ndash;&gt;-->
-<!--&lt;!&ndash;  <h2 class="text-center">Chi tiết thông tin tòa nhà</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;  <fieldset>&ndash;&gt;-->
-<!--&lt;!&ndash;    <legend>Thông tin chung</legend>&ndash;&gt;-->
-<!--&lt;!&ndash;    <label class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Tên viết tắt:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <input class="form-control col-md-9" formControlName="abbreviationName" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Điện thoại:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="phone" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3"> Địa chỉ:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="address" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;    <label class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Tên tòa nhà:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="fullName" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Fax:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="fax" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;    <label class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Mã số thuế:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="taxCode" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Email:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="email" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;  </fieldset>&ndash;&gt;-->
-<!--&lt;!&ndash;</form>&ndash;&gt;-->
-<!--&lt;!&ndash;<form [formGroup]="viewBuildingForm" class="col-md-12 offset-md-4">&ndash;&gt;-->
-<!--&lt;!&ndash;  <fieldset>&ndash;&gt;-->
-<!--&lt;!&ndash;    <legend>Thông tin trên báo cáo</legend>&ndash;&gt;-->
-<!--&lt;!&ndash;    <label class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Ban quản lý:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <input class="form-control col-md-9" formControlName="management" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Số tài khoản:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="accountNumber" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Ngân hàng:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="bank" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;    <label class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Người quản lý:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <input class="form-control col-md-9" formControlName="manager" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Tên người nhận:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <input class="form-control col-md-9" formControlName="recipientName" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;      <div class="col-md-12">&ndash;&gt;-->
-<!--&lt;!&ndash;        <p class="col-md-3">Logo:</p>&ndash;&gt;-->
-<!--&lt;!&ndash;        <div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <input class="form-control col-md-9" formControlName="logo" disabled>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div *ngFor="let image of images" class="col-md-3" style="margin-left: 30%;margin-top: 5%">&ndash;&gt;-->
-<!--&lt;!&ndash;            <div *ngIf="image.id==viewBuildingForm.value.logo">&ndash;&gt;-->
-<!--&lt;!&ndash;              <img src="{{image.url}}" style="border-radius: 50%;width: 100% " alt="Logo"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;          </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;      </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </label>&ndash;&gt;-->
-<!--&lt;!&ndash;  </fieldset>&ndash;&gt;-->
-<!--&lt;!&ndash;</form>&ndash;&gt;-->
 
 
-<div class="container">
-  <form [formGroup]="viewBuildingForm" id="contact" action="" method="post">
-    <h3 >Chi tiết thông tin tòa nhà</h3>
-    <fieldset>
-      <input placeholder="Tên viết tắt (*) " type="text" tabindex="1" required autofocus
-             formControlName="abbreviationName" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Điện thoại (*)" type="text" tabindex="2" required formControlName="phone" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Địa chỉ (*)" type="tel" tabindex="3" required formControlName="address" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Tên tòa nhà(*)" type="text" tabindex="4" required formControlName="fullName" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Fax (*)" type="text" tabindex="5" required formControlName="fax" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Mã số thuế (*)" type="text" tabindex="6" required formControlName="taxCode" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder="Email (*)" type="text" tabindex="7" required formControlName="email" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder=" Ban quản lý(*)" type="text" tabindex="8" required formControlName="management" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder=" Số tài khoản(*)" type="text" tabindex="9" required formControlName="accountNumber" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder=" Ngân hàng(*)" type="text" tabindex="10" required formControlName="bank" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder=" Người quản lý(*)" type="text" tabindex="11" required formControlName="manager" disabled>
-    </fieldset>
-    <fieldset>
-      <input placeholder=" Tên người nhận(*)" type="text" tabindex="12" required formControlName="recipientName" disabled>
-    </fieldset>
-    <button>Logo</button>
+<!--<div class="container">-->
+<!--  <form [formGroup]="viewBuildingForm" id="contact" action="" method="post">-->
+<!--    <h3 >Chi tiết thông tin tòa nhà</h3>-->
+<!--    <fieldset>-->
+<!--      <input placeholder="Tên viết tắt (*) " type="text" tabindex="1" required autofocus-->
+<!--             formControlName="abbreviationName" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder="Điện thoại (*)" type="text" tabindex="2" required formControlName="phone" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder="Địa chỉ (*)" type="tel" tabindex="3" required formControlName="address" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder="Tên tòa nhà(*)" type="text" tabindex="4" required formControlName="fullName" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder="Fax (*)" type="text" tabindex="5" required formControlName="fax" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder="Mã số thuế (*)" type="text" tabindex="6" required formControlName="taxCode" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder="Email (*)" type="text" tabindex="7" required formControlName="email" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder=" Ban quản lý(*)" type="text" tabindex="8" required formControlName="management" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder=" Số tài khoản(*)" type="text" tabindex="9" required formControlName="accountNumber" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder=" Ngân hàng(*)" type="text" tabindex="10" required formControlName="bank" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder=" Người quản lý(*)" type="text" tabindex="11" required formControlName="manager" disabled>-->
+<!--    </fieldset>-->
+<!--    <fieldset>-->
+<!--      <input placeholder=" Tên người nhận(*)" type="text" tabindex="12" required formControlName="recipientName" disabled>-->
+<!--    </fieldset>-->
+<!--    <button>Logo</button>-->
 
 
+<!--      <div>-->
+<!--        <input class="form-control col-md-9" formControlName="logo" disabled>-->
+<!--        <div *ngFor="let image of images" class="col-md-3" style="margin-left: 30%;margin-top: 5%">-->
+<!--          <div *ngIf="image.id==viewBuildingForm.value.logo">-->
+<!--            <img src="{{image.url}}" style="border-radius: 50%;width: 100% " alt="Logo"/>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--  </form>-->
+<!--</div>-->
+
+
+<div class="container" >
+  <form [formGroup]="viewBuildingForm" id="contact" action="" method="post" >
+    <h1>Chi tiết thông tin tòa nhà</h1>
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Thông tin chung</legend>
+      <!--      Tên viết tắt-->
+      <div class="row">
+        <p class="col-md-3">Tên viết tắt</p>
+        <input class="col-md-5 form-control"  type="text"  formControlName="abbreviationName" disabled>
+      </div>
+      <!--      Tên đầy đủ-->
+      <div class="row">
+        <p class="col-md-3">Tên đầy đủ</p>
+        <input  class="col-md-5 form-control" type="text" formControlName="fullName" disabled>
+      </div>
+      <!--      Mã số thuế-->
+      <div class="row">
+        <p class="col-md-3">Mã số thuế</p>
+        <input class="col-md-5 form-control" type="text" formControlName="taxCode" disabled>
+      </div>
+      <!--      Điện thoại-->
+      <div class="row">
+        <p class="col-md-3">Số điện thoại</p>
+        <input class="col-md-5 form-control" type="text" formControlName="phone" disabled>
+      </div>
+      <!--      Fax-->
+      <div class="row">
+        <p class="col-md-3">Fax</p>
+        <input class="col-md-5 form-control" type="text" formControlName="fax" disabled>
+      </div>
+      <!--      Email-->
+      <div class="row">
+        <p class="col-md-3">Email</p>
+        <input class="col-md-5 form-control" type="text" formControlName="email" disabled>
+      </div>
+      <!--      Địa chỉ-->
+      <div class="row">
+        <p class="col-md-3">Địa chỉ</p>
+        <input class="col-md-5 form-control" type="text" formControlName="address" disabled>
+      </div>
+    </fieldset>
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Thông tin trên báo cáo</legend>
+      <!--      Ban quản lý-->
+      <div class="row">
+        <p class="col-md-3">Ban quản lý</p>
+        <input class="col-md-5 form-control" type="text" formControlName="management" disabled>
+      </div>
+      <!--      Người quản lý-->
+      <div class="row">
+        <p class="col-md-3">Người quản lý</p>
+        <input  class="col-md-5 form-control" type="text" formControlName="manager" disabled>
+      </div>
+      <!--      Số tài khoản-->
+      <div class="row">
+        <p class="col-md-3">Số tài khoản</p>
+        <input  class="col-md-5 form-control" type="text" formControlName="accountNumber" disabled>
+      </div>
+      <!--      Tên người nhận-->
+      <div class="row">
+        <p class="col-md-3">Tên người nhận</p>
+        <input class="col-md-5 form-control" type="text" formControlName="recipientName" disabled>
+      </div>
+      <!--      Ngân hàng-->
+      <div class="row">
+        <p class="col-md-3">Ngân hàng</p>
+        <input class="col-md-5 form-control" type="text" tabindex="10" required formControlName="bank" disabled>
+      </div>
       <div>
-        <input class="form-control col-md-9" formControlName="logo" disabled>
+        <input class="col-md-3 form-control" style="margin-top: 5%;margin-left:3%;
+        text-align: center;width: 400%" *ngIf="check1" value="Chưa chọn Logo" disabled>
+        <input  class="col-md-3 form-control" style="margin-top: 5%;margin-left:3%;
+        text-align: center;width: 100%" *ngIf="check2" value="Logo số {{idImage}}" disabled>
         <div *ngFor="let image of images" class="col-md-3" style="margin-left: 30%;margin-top: 5%">
           <div *ngIf="image.id==viewBuildingForm.value.logo">
             <img src="{{image.url}}" style="border-radius: 50%;width: 100% " alt="Logo"/>
           </div>
         </div>
       </div>
-
+    </fieldset>
+    <p style="text-align: center;margin-top: 5%" class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Team C0120G1</a>
+    </p>
   </form>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

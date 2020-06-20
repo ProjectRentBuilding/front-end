@@ -23,6 +23,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   private check=true;
   private check1=false;
   private check2=false;
+  private check3=true;
   idImage: string ;
   public idImagePick;
 
@@ -44,7 +45,7 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
 
     this.imageService.findAll().subscribe(data => this.images = data);
     this.editBuildingForm = this.fb.group({
-      abbreviationName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      abbreviationName: [''],
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       taxCode: ['',[Validators.required, Validators.pattern(/^MST-\d{3}$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{9}(\d{3})?$/)]],
@@ -65,6 +66,10 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
   loadData() {
     this.id = this.data.data1.id;
     this.editBuildingForm.patchValue(this.data.data1);
+    this.idImage=this.editBuildingForm.value.logo;
+    if (this.idImage == null) {
+      this.check3=false;
+    }
 
   }
 
@@ -105,14 +110,16 @@ export class BuildingEditComponent implements OnInit, OnDestroy {
     this.idImage=idImage;
     this.check=true;
     this.idImagePick = idImage;
+    this.check3=true;
 
   }
 
 
   cancelSelectImage() {
-    this.check1=false;
+    this.check1=true;
     this.check2=false;
     this.check=true;
+    this.check3=false;
     this.idImagePick=null;
 
   }
