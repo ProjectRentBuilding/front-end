@@ -341,11 +341,9 @@
 <button class="btn btn-success" (click)="addNewArray()">
   <i class="fa fa-plus-square" aria-hidden="true"></i>
 </button>
-  <button class="btn btn-info" *ngIf="checkAdd" [disabled]="addFloorForm.invalid" (click)="addNewFloor()">
-    Lưu
-  </button>
-
-
+<button class="btn btn-info" *ngIf="checkAdd" [disabled]="addFloorForm.invalid" (click)="addNewFloor()">
+  Lưu
+</button>
 
 
 <nav aria-label="Page navigation example" *ngIf="floors.length!=0 && totalPages >1">

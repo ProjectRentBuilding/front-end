@@ -2,7 +2,7 @@
 
 <div class="container" >
   <form [formGroup]="addBuildingForm" id="contact" action="" method="post" *ngIf=check >
-    <h1>Thêm mới thông tin tòa nhà</h1>
+    <h1>Thêm mới thông tin Tòa Nhà</h1>
     <fieldset class="scheduler-border">
       <legend class="scheduler-border">Thông tin chung</legend>
 <!--      Tên viết tắt-->
@@ -29,10 +29,10 @@
         <p class="col-md-3">Mã số thuế(<span>*</span>)</p>
         <input class="col-md-5 form-control" type="text" formControlName="taxCode">
         <p class=" text-danger" role="alert" *ngIf="addBuildingForm.get('taxCode').hasError('required')
-       && addBuildingForm.get('taxCode').valueChanges">Không được để trống !!!
+       && addBuildingForm.get('taxCode').valueChanges">Nhập đúng định dạng:MST-xxx !!!
         </p>
         <p class=" text-danger" role="alert" *ngIf="addBuildingForm.get('taxCode').hasError('pattern')
-       && addBuildingForm.get('taxCode').valueChanges">Phải đúng định dạng:MST-xxx !!!
+       && addBuildingForm.get('taxCode').valueChanges">Nhập đúng định dạng:MST-xxx !!!
         </p>
       </div>
 <!--      Điện thoại-->
@@ -40,7 +40,7 @@
         <p class="col-md-3">Số điện thoại(<span>*</span>)</p>
         <input class="col-md-5 form-control" type="text" formControlName="phone">
         <p class=" text-danger" role="alert" *ngIf="addBuildingForm.get('phone').hasError('required')
-       && addBuildingForm.get('phone').valueChanges">Không được để trống !!!
+       && addBuildingForm.get('phone').valueChanges">Gồm 9 hoặc 12 số !!!
         </p>
         <p class=" text-danger" role="alert" *ngIf="addBuildingForm.get('phone').hasError('pattern')
        && addBuildingForm.get('phone').valueChanges">Gồm 9 hoặc 12 số !!!
@@ -68,7 +68,7 @@
        && addBuildingForm.get('email').valueChanges">Không được để trống !!!
         </p>
         <p class=" text-danger" role="alert" *ngIf="addBuildingForm.get('email').hasError('email')
-       && addBuildingForm.get('email').valueChanges">Phải đúng định dạng !!!
+       && addBuildingForm.get('email').valueChanges">Nhập đúng định dạng !!!
         </p>
       </div>
       <!--      Địa chỉ-->
@@ -96,7 +96,7 @@
        && addBuildingForm.get('management').valueChanges">Không được để trống !!!
         </p>
         <p class=" text-danger" role="alert" *ngIf="addBuildingForm.get('management').hasError('minlength')
-       && addBuildingForm.get('management').valueChanges">Ttối thiểu 2 ký tự !!!
+       && addBuildingForm.get('management').valueChanges">Tối thiểu 2 ký tự !!!
         </p>
         <p class=" text-danger" role="alert" *ngIf="addBuildingForm.get('management').hasError('maxlength')
        && addBuildingForm.get('management').valueChanges">Tối đa 50 ký tự !!!
