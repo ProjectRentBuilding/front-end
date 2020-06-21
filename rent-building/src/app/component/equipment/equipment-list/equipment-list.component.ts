@@ -43,7 +43,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public typeEquipmentSearch = '';
   // public codeGroundSearch : number;
   // public typeEquipmentIdSearch : number;
-  public amountSearch: number;
+  public amountSearch: number = 0;
   public checkEdit = false;
   public checkAdd = false;
   public searchAll;

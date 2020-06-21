@@ -1,43 +1,4 @@
-<ng-container>
-<div class="row col-md-12 mt-5">
-  <div class="col-md-10">
-    <form [formGroup]="searchForm" action="/paging">
-      <div class="row">
-        <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên thiết bị" formControlName="searchNameEquipment">
-        </div>
-        <div class="col-md-3">
-          <input type="number" class="form-control search-input" placeholder="Tìm kiếm theo số lượng" formControlName="searchAmount">
-        </div>
-        <div class="col-md-3">
-          <label>
-            <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo mã mặt bằng"
-                   formControlName="searchCodeGround" list="grounds" name="grounds">
-          </label>
-          <datalist id="grounds">
-            <option *ngFor="let ground of grounds" [value]="ground.codeGround"></option>
-          </datalist>
-        </div>
-        <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo loại thiết bị"
-                 formControlName="searchTypeEquipment" list="types">
-          <datalist id="types">
-            <option *ngFor="let type of typeEquipment" [value]="type.nameType"></option>
-          </datalist>
-        </div>
-      </div>
-<!--      <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin theo mã mặt bằng" formControlName="codeGroundSearch">-->
-<!--      <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin theo loại thiết bị" formControlName="typeEquipmentSearch">-->
-    </form>
-  </div>
-  <div class="col-md-2">
-    <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
-      <i class="fa fa-search text-danger"></i>
-    </button>
-    <button (click)="resetForm()">Reset</button>
-  </div>
-</div>
-</ng-container>
+
 
 <!--<div class="col-md-5 mt-5">-->
 <!--  <div class="input-group">-->
@@ -47,28 +8,68 @@
 <!--</div>-->
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ CỦA MẶT BẰNG</h3>
+
+<ng-container>
+  <div class="row col-md-12 mt-5">
+    <div class="col-md-10">
+      <form [formGroup]="searchForm" action="/paging">
+        <div class="row">
+          <div class="col-md-3">
+            <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên thiết bị" formControlName="searchNameEquipment">
+          </div>
+          <div class="col-md-3">
+            <input type="number" class="form-control search-input" placeholder="Số lượng >= x" formControlName="searchAmount">
+          </div>
+          <div class="col-md-3">
+            <label>
+              <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo mã mặt bằng"
+                     formControlName="searchCodeGround" list="grounds" name="grounds">
+            </label>
+            <datalist id="grounds">
+              <option *ngFor="let ground of grounds" [value]="ground.codeGround"></option>
+            </datalist>
+          </div>
+          <div class="col-md-3">
+            <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo loại thiết bị"
+                   formControlName="searchTypeEquipment" list="types">
+            <datalist id="types" >
+              <option *ngFor="let type of typeEquipment" [value]="type.nameType"></option>
+            </datalist>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
+        <i class="fa fa-search"></i>
+      </button>
+      <button (click)="resetForm()" class="btn btn-secondary search-button" style="margin-left: 10px"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</ng-container>
+
 <ng-container>
   <button class="btn btn-success" (click)="openDialogAddNew()">Thêm Mới</button>
 </ng-container>
 
-<div class="row">
-  <div class="dropdown open col-md-2">
-    <button class="btn btn-dark dropdown-toggle" type="button"
-            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-     Mã mặt bằng
-    </button>
-    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">
-      <a class="dropdown-item" *ngFor="let ground of grounds"
-         (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <button class="btn btn-dark" [routerLink]="['/equipments-building/']">
-      Thiết bị của toà nhà
-    </button>
-  </div>
-</div>
+<!--<div class="row">-->
+<!--  <div class="dropdown open col-md-2">-->
+<!--    <button class="btn btn-dark dropdown-toggle" type="button"-->
+<!--            id="triggerId" data-toggle="dropdown" aria-haspopup="true"-->
+<!--            aria-expanded="false">-->
+<!--     Mã mặt bằng-->
+<!--    </button>-->
+<!--    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">-->
+<!--      <a class="dropdown-item" *ngFor="let ground of grounds"-->
+<!--         (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-md-3">-->
+<!--    <button class="btn btn-dark" [routerLink]="['/equipments-building/']">-->
+<!--      Thiết bị của toà nhà-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
 
 <ng-container>
   <form action="" [formGroup]="formEditEquipment"  *ngIf="formEditEquipment">
