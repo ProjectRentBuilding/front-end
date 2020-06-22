@@ -45,9 +45,10 @@ export class FloorListComponent implements OnInit, OnDestroy {
   public pages = [];
   pageClicked:number=0;
 
-
-  public searchText="";
-  private searchBuildingId="";
+  private searchNameBuilding="";
+  private searchNameFloor = "";
+  private searchArea;
+  private searchNameTypeFloor = "";
 
 
 
@@ -77,7 +78,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.loadData(0);
   }
   loadData(page){
-    this.floorService.getFloorPageByNameFloor(page,this.size,this.searchText)
+    this.floorService.getFloorPageSearch(page,this.size,this.searchNameBuilding,this.searchNameFloor,this.searchArea,this.searchNameTypeFloor)
       .subscribe(
         data=>{
           this.pageClicked=page;
@@ -86,19 +87,12 @@ export class FloorListComponent implements OnInit, OnDestroy {
           this.totalPages=this.floorPage.totalPages;
           this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
         }
-      )
+      );
   }
-  loadDataFindByBuildingId(page){
-    this.floorService.getFloorPageByBuildingId(page,this.size,this.searchBuildingId)
-      .subscribe(
-        data=>{
-          this.pageClicked=page;
-          this.floorPage=data;
-          this.floors=this.floorPage.content;
-          this.totalPages=this.floorPage.totalPages;
-          this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
-        }
-      )
+
+  searchBuildingIdType(name:string) {
+    this.searchNameBuilding=name;
+    this.loadData(0);
   }
   onNext() {
     if (this.pageClicked == this.totalPages - 1) {
@@ -232,8 +226,8 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.floorService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 
-  searchBuildingIdType(id: number) {
-    this.searchBuildingId=id.toString();
+  setArea(value:number) {
+    this.searchArea=value;
   }
 }
 
