@@ -118,8 +118,16 @@ export class ContractListComponent implements OnInit, OnDestroy {
           this.contracts = this.contractPage.content;
           this.totalPages = this.contractPage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }, () => {
+
+        }, () => {
+          if (this.contracts.length == 0) {
+            this.message = "Không tìm thấy kết quả nào phù hợp.";
+          } else {
+            this.message = "";
+          }
         }
-      )
+      );
 
   }
 
@@ -134,8 +142,12 @@ export class ContractListComponent implements OnInit, OnDestroy {
           this.contracts = this.contractPage.content;
           this.totalPages = this.contractPage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }, () => {
+
+        }, () => {
+          this.message = "";
         }
-      )
+      );
   }
 
 
@@ -164,6 +176,11 @@ export class ContractListComponent implements OnInit, OnDestroy {
 
   refreshForm() {
     this.nameCustomerSearch = "";
+    this.codeGroundSearch = "";
+    this.startRentDaySearch = "";
+    this.endRentDaySearch = "";
+    this.loadData(0);
+
   }
 
   ngOnDestroy(): void {
