@@ -37,7 +37,6 @@
 <!--      &lt;!&ndash;    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="search">&ndash;&gt;-->
 
 
-
 <!--&lt;!&ndash;    </div>&ndash;&gt;-->
 <!--    &lt;!&ndash;    <div class="input-group">&ndash;&gt;-->
 <!--    &lt;!&ndash;      <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo mã mặt bằng..."&ndash;&gt;-->
@@ -47,13 +46,15 @@
 <!--&lt;!&ndash;    <div class="input-group mt-2">&ndash;&gt;-->
 
 
-
-
-
 <!--&lt;!&ndash;    </div>&ndash;&gt;-->
 <!--  </table>-->
 <!--</form>-->
+
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH HỢP ĐỒNG</h3>
+
+
 <div class="row col-md-12 mt-5">
+
   <div class="col-md-10">
     <form [formGroup]="formSearch">
       <div class="row">
@@ -74,7 +75,7 @@
           </mat-form-field>
         </div>
         <div class="col-md-3">
-          <mat-form-field >
+          <mat-form-field>
             <input matInput [matDatepicker]="picker1" placeholder="Tìm theo ngày kết thúc hợp đồng..."
                    formControlName="endRentDaySearch">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -89,10 +90,19 @@
       <i class="fa fa-search text-danger"></i>
     </button>
   </div>
+
+
+
+
+  <button routerLink="/contracts/add" class="btn btn-success px-2 py-2">Thêm mới</button>
+
+  <button mat-icon-button color="primary" class="ml-4" (click)="refreshForm()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+
 </div>
 
-
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH HỢP ĐỒNG</h3>
+<h4 style="color: red">{{message}}</h4>
 
 <form>
   <table class="table table-bordered bg-light text-center table-striped">
@@ -132,10 +142,11 @@
 
 
 </form>
-<button routerLink="/contracts/add" class="btn btn-success px-2 py-2">Thêm mới</button>
+<!--<button routerLink="/contracts/add" class="btn btn-success px-2 py-2">Thêm mới</button>-->
 <nav aria-label="Page navigation example" *ngIf="contracts.length!=0 && totalPages>1">
   <ul class="pagination justify-content-md-center">
-    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" (click)="onFirst()" [ngClass]="pageClicked==0?'disabled':''"><a class="page-link">Trang
+      đầu</a></li>
     <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
       <a class="page-link"><<</a>
     </li>
@@ -146,7 +157,8 @@
     <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
       <a class="page-link">>></a>
     </li>
-    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+    <li class="page-item" (click)="onLast()" [ngClass]="pageClicked==totalPages-1?'disabled':''"><a class="page-link">Trang
+      cuối</a></li>
   </ul>
 </nav>
 <!--    pagination-->

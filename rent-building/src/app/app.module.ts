@@ -47,6 +47,7 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -82,24 +83,25 @@ import {EquipmentAddComponent} from './component/equipment/equipment-add/equipme
     CustomerDetailGroundComponent,
     EquipmentAddComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxPaginationModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatSortModule,
-    Ng2SearchPipeModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatDialogModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatAutocompleteModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatSortModule,
+        Ng2SearchPipeModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDialogModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatAutocompleteModule,
+        MatIconModule
+    ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
   bootstrap: [AppComponent],
   entryComponents: [
