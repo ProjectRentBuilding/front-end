@@ -82,7 +82,7 @@
 
 <nav aria-label="Page navigation example" *ngIf="grounds.length!=0 && totalPages>1">
   <ul class="pagination justify-content-md-center">
-    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" *ngIf="pageClicked!=0" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
     <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
       <a class="page-link"><<</a>
     </li>
@@ -93,7 +93,7 @@
     <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
       <a class="page-link">>></a>
     </li>
-    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+    <li class="page-item" *ngIf="pageClicked!=totalPages-1" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
 
