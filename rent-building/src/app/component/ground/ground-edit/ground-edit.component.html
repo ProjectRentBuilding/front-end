@@ -1,80 +1,119 @@
-<div class="container">
-
-  <form [formGroup]="editGroundForm" id="contact" action="" method="post">
-    <h3 class="text-center">Sửa thông tin mặt bằng</h3>
-
-    <fieldset>
-      <button style="width: 30%; height: 40px" >Mã mặt bằng(<span style="color: red">*</span>)</button>
-      <input  style="width: 70%; height: 40px" type="text" tabindex="1" required autofocus formControlName="codeGround">
-      <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('required')
-       && editGroundForm.get('codeGround').touched">Mã mặt bằng không được để trống !!!
-      </p>
-      <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('pattern')
-       && editGroundForm.get('codeGround').touched">Mã mặt bằng phải đúng định dạng:MBxxx !!
-      </p>
+<div class="container" >
+  <form [formGroup]="editGroundForm" id="contact" action="" method="post"  >
+    <h1>Chỉnh sửa thông tin Mặt Bằng</h1>
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Thông tin chung</legend>
+      <!--      Tên tòa nhà-->
+      <div class="row">
+        <p class="col-md-3">Tên tòa nhà(<span>*</span>)</p>
+        <select class="col-md-5 form-control"    formControlName="buildingId">
+          <option value="">Chọn</option>
+          <option *ngFor="let building of buildings" [value]="building.id">{{building.fullName}}</option>
+        </select>
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('buildingId').hasError('required')
+       && editGroundForm.get('buildingId').valueChanges">Không được để trống !!!
+        </p>
+      </div>
+      <!--      Tên tầng-->
+      <div class="row">
+        <p class="col-md-3">Tên tầng(<span>*</span>)</p>
+        <select class="col-md-5 form-control"  formControlName="floorId">
+          <option value="">Chọn</option>
+          <ng-container *ngFor="let floor of floors">
+            <option *ngIf="editGroundForm.value.buildingId==floor.building.id" [value]="floor.id">
+              {{floor.nameFloor}}
+            </option>
+          </ng-container>
+        </select>
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('floorId').hasError('required')
+       && editGroundForm.get('floorId').valueChanges">Không được để trống !!!
+        </p>
+      </div>
+      <!--      Loại mặt bằng-->
+      <div class="row">
+        <p class="col-md-3">Loại mặt bằng(<span>*</span>)</p>
+        <select class="col-md-5 form-control" formControlName="typeGroundId">
+          <option value="">Chọn</option>
+          <option *ngFor="let typeGround of typeGrounds" [value]="typeGround.id">{{typeGround.nameTypeGround}}</option>
+        </select>
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('typeGroundId').hasError('required')
+       && editGroundForm.get('typeGroundId').valueChanges">Không được để trống !!!
+        </p>
+      </div>
+      <!--      Mã mặt bằng-->
+      <div class="row">
+        <p class="col-md-3">Mã mặt bằng(<span>*</span>)</p>
+        <input  class="col-md-5 form-control"  type="text" formControlName="codeGround">
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('required')
+       && editGroundForm.get('codeGround').valueChanges">Nhập đúng định dạng:MBxxx !!!
+        </p>
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('codeGround').hasError('pattern')
+       && editGroundForm.get('codeGround').valueChanges">Nhập đúng định dạng:MBxxx !!!
+        </p>
+      </div>
+      <!--      Trạng thái-->
+      <div class="row">
+        <p class="col-md-3">Trạng thái</p>
+        <select class="col-md-5 form-control" formControlName="statusGround">
+          <option  value="">Chọn</option>
+          <option  value="Chưa bàn giao">Chưa bàn giao</option>
+          <option value="Đang vào ở">Đang vào ở</option>
+          <option value="Đang sửa chữa">Đang sửa chữa</option>
+        </select>
+      </div>
+      <!--      Diện tích-->
+      <div class="row">
+        <p class="col-md-3">Diện tích(<span>*</span>)</p>
+        <input  class="col-md-5 form-control"  type="text" formControlName="area">
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('area').hasError('required')
+       && editGroundForm.get('area').valueChanges">Không được để trống !!!
+        </p>
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('area').hasError('maxlength')
+       && editGroundForm.get('area').valueChanges">Tối đa 25 ký tự !!!
+        </p>
+        <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('area').hasError('pattern')
+       && editGroundForm.get('area').valueChanges">Nhập đúng định dạng !!!
+        </p>
+      </div>
+      <!--      Chú thích-->
+      <div class="row">
+        <p class="col-md-3">Chú thích</p>
+        <textarea rows="5" class="col-md-5 form-control"  type="text" formControlName="note"></textarea>
+      </div>
+      <!--      Giá tiền-->
+      <div class="row">
+        <p class="col-md-3">Giá tiền</p>
+        <input class="col-md-5 form-control"  type="text" formControlName="price">
+      </div>
+      <!--      Phí quản lí-->
+      <div class="row">
+        <p class="col-md-3">Phí quản lí</p>
+        <input class="col-md-5 form-control"  type="text" formControlName="price">
+      </div>
     </fieldset>
-    <fieldset>
-      <button style="width: 30%; height: 40px" >Trạng thái</button>
-      <select style="width: 70%; height: 40px" type="text" tabindex="2" required autofocus formControlName="statusGround">
-        <option  value="">Chọn</option>
-        <option  value="Chưa bàn giao">Chưa bàn giao</option>
-        <option value="Đang vào ở">Đang vào ở</option>
-        <option value="Đang sửa chữa">Đang sửa chữa</option>
-      </select>
-    </fieldset>
-    <fieldset>
-      <button style="width: 30%; height: 40px" >Diện tích(<span style="color: red">*</span>)</button>
-      <input  style="width: 70%; height: 40px" type="text" tabindex="3" required autofocus formControlName="area">
-      <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('area').hasError('required')
-       && editGroundForm.get('area').touched">Diện tích không được để trống và phải đúng định dạng !!!
-      </p>
-      <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('area').hasError('maxlength')
-       && editGroundForm.get('area').touched">Diện tích tối đa 25 ký tự !!
-      </p>
-      <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('area').hasError('pattern')
-       && editGroundForm.get('area').touched">Diện tích phải đúng định dạng !!
-      </p>
-    </fieldset>
-    <fieldset>
-      <button style="width: 30%; height: 40px">Tên tầng</button>
-      <select  style="width: 70%; height: 40px" type="text" tabindex="4" required autofocus formControlName="floorId">
-        <option value="">Chọn</option>
-        <option *ngFor="let floor of floors" [value]="floor.id">{{floor.nameFloor}}</option>
-      </select>
-      <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('floorId').hasError('required')
-       && editGroundForm.get('floorId').touched">Tên tầng không được để trống !!!
-      </p>
-    </fieldset>
-    <fieldset>
-      <button style="width: 30%; height: 40px">Loại mặt bằng</button>
-      <select style="width: 70%; height: 40px" type="text" tabindex="5" required autofocus formControlName="typeGroundId">
-        <option value="">Chọn</option>
-        <option *ngFor="let typeGround of typeGrounds" [value]="typeGround.id">{{typeGround.nameTypeGround}}</option>
-      </select>
-      <p class=" text-danger" role="alert" *ngIf="editGroundForm.get('typeGroundId').hasError('required')
-       && editGroundForm.get('typeGroundId').touched">Loại mặt bằng không được để trống !!!
-      </p>
-    </fieldset>
-    <fieldset>
-      <button style="width: 30%; height: 40px">Chú thích</button>
-      <textarea rows="5" type="text"  tabindex="6" formControlName="note"></textarea>
-    </fieldset>
-    <fieldset>
-      <button style="width: 30%; height: 40px" >Giá tiền(<span style="color: red">*</span>)</button>
-      <input style="width: 70%; height: 40px" type="text" tabindex="7" required autofocus formControlName="price">
-    </fieldset>
-    <fieldset>
-      <button style="width: 30%; height: 40px" >Phí quản lí(<span style="color: red">*</span>)</button>
-      <input style="width: 70%; height: 40px" type="text" tabindex="8" required autofocus formControlName="priceManager">
-    </fieldset>
-
+    <label class="row " style="margin-left: 70%;margin-top: 5%">
+      <button  style="margin-right: 15%" class="btn btn-success mt-3"
+               [disabled]="editGroundForm.invalid" (click)="onEditGround()">
+        Lưu
+      </button>
+      <button class="btn btn-danger mt-3" (click)="clearFilters()">Làm lại</button>
+    </label>
+    <p style="text-align: center;margin-top: 5%" class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Team C0120G1</a>
+    </p>
   </form>
-  <label class="row " style="margin-left: 80%;margin-top: 5%">
-    <button  style="margin-right: 15%" class="btn btn-success mt-3" [disabled]="editGroundForm.invalid" (click)="onEditGround()">
-      Lưu
-    </button>
-    <button class="btn btn-danger mt-3" (click)="clearFilters()">Hủy</button>
-  </label>
-
-
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

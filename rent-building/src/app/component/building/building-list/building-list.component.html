@@ -1,5 +1,6 @@
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TÒA NHÀ</h3>
 
-<div class="col-md-5 mt-5">
+<div class="col-md-5 mt-5" style="margin-bottom: 5%">
   <div class="input-group">
     <!--    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="search">-->
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên tòa nhà " [(ngModel)]="searchText">
@@ -9,7 +10,7 @@
 
 </div>
 
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TÒA NHÀ</h3>
+
 
     <button  class="btn btn-danger" (click)="deleteAll()">
       Xóa tất cả
@@ -18,11 +19,11 @@
   <table class="table bg-light text-center table-striped table-bordered">
     <thead class="thead-dark">
     <tr  class="text-muted">
-      <th><p>Tên tòa nhà(<span style="color: red">*</span>):</p></th>
+      <th><p>Tên(<span style="color: red">*</span>):</p></th>
       <th><p>Mã số thuế(<span style="color: red">*</span>):</p></th>
       <th><p>Điện thoại(<span style="color: red">*</span>):</p></th>
       <th><p>Email(<span style="color: red">*</span>):</p></th>
-      <th><p>Fax(<span style="color: red">*</span>):</p></th>
+<!--      <th><p>Fax(<span style="color: red">*</span>):</p></th>-->
       <th><p>Địa chỉ(<span style="color: red">*</span>):</p></th>
       <th colspan="3"></th>
     </tr>
@@ -34,9 +35,9 @@
       <td>{{item.taxCode}}</td>
       <td>{{item.phone}}</td>
       <td>{{item.email}}</td>
-      <td>{{item.fax}}</td>
+<!--      <td>{{item.fax}}</td>-->
       <td>{{item.address}}</td>
-      <td><button  class="btn btn-info" (click)="openDialogView(item.id)">Chi tiết</button></td>
+      <td><button  class="btn btn-info" (click)="openDialogView(item.id)">Xem</button></td>
       <td><button  class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button></td>
       <td><button  class="btn btn-danger" (click)="openDialogDelete(item.id)">
         Xóa
@@ -52,7 +53,7 @@
 </form>
 <nav aria-label="Page navigation example" *ngIf="buildings.length!=0 && totalPages >1">
   <ul  class="pagination justify-content-md-center">
-    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" *ngIf="pageClicked!=0" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
     <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
       <a class="page-link"><<</a>
     </li>
@@ -66,7 +67,7 @@
     <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
       <a class="page-link">>></a>
     </li>
-    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+    <li class="page-item" *ngIf="pageClicked!=totalPages-1" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
 

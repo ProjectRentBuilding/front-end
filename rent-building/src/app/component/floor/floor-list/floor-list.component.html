@@ -1,34 +1,16 @@
-<div class="col-md-5 mt-5">
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
+
+<div class="col-md-12 mt-5" style="margin-bottom: 5%">
   <div class="input-group">
-    <input type="text" class="form-control search-input" placeholder="Tìm theo tên tầng" [(ngModel)]="searchText">
+    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên tòa nhà" [(ngModel)]="searchNameBuilding">
+    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên tầng" [(ngModel)]="searchNameFloor">
+    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên diện tích" (change)="setArea($event.target.value)">
+    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên loại tầng" [(ngModel)]="searchNameTypeFloor">
     <button type="button" class="btn btn-secondary search-button" (click)="loadData(0)">
       <i class="fa fa-search text-danger"></i></button>
-
   </div>
-
 </div>
 
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
-<!--<div class="row">-->
-<!--  <div class="dropdown open col-md-2">-->
-<!--    <button class="btn btn-dark dropdown-toggle" type="button"-->
-<!--            id="triggerId" data-toggle="dropdown" aria-haspopup="true"-->
-<!--            aria-expanded="false">-->
-<!--      <i class="fa fa-building" aria-hidden="true" title="Tòa nhà"></i>-->
-<!--    </button>-->
-<!--    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">-->
-<!--      <a class="dropdown-item" *ngFor="let building of buildings"-->
-<!--         (click)="searchType(building.fullName)">{{building.fullName}}</a>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="col-md-8"></div>-->
-<!--  <div class="col-md-2">-->
-<!--    <button class="btn btn-dark" (click)="deleteAll()">-->
-<!--      <i class="fa fa-trash" aria-hidden="true" title="Xóa tất cả"></i>-->
-<!--    </button>-->
-<!--  </div>-->
-<!--</div>-->
 
 <div class="row">
   <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button></span>
@@ -39,236 +21,232 @@
       Tên tòa nhà
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
-      <a class="dropdown-item" *ngFor="let building of buildings"  (click)="searchType(building.fullName)">{{building.fullName}}</a>
+      <a class="dropdown-item" *ngFor="let building of buildings"
+         (click)="searchBuildingIdType(building.fullName)">{{building.fullName}}</a>
     </div>
   </div>
 </div>
 
 
 <ng-container>
-<form action="" [formGroup]="editFloorForm" *ngIf="editFloorForm">
-  <table class="table bg-light text-center table-striped">
-    <thead class="thead-dark">
-    <tr class="text-muted">
-      <!--      <th>Số thứ tự</th>-->
-      <th><p>Tên tầng lầu(<span style="color: red">*</span>):</p></th>
-      <th><p>Mã tầng lầu(<span style="color: red">*</span>):</p></th>
-      <th><p>Diện tích:</p></th>
-      <th><p>Sức chứa:</p></th>
-      <th><p>Trạng thái(<span style="color: red">*</span>):</p></th>
-      <th><p>Loại tầng(<span style="color: red">*</span>):</p></th>
-      <th><p>Tên tòa nhà(<span style="color: red">*</span>):</p></th>
-      <th colspan="2"></th>
+  <form action="" [formGroup]="editFloorForm" *ngIf="editFloorForm">
+    <table class="table bg-light text-center table-striped">
+      <thead class="thead-dark">
+      <tr class="text-muted">
+        <!--      <th>Số thứ tự</th>-->
+        <th><p>Tên tòa nhà(<span style="color: red">*</span>):</p></th>
+        <th><p>Tên tầng lầu(<span style="color: red">*</span>):</p></th>
+        <th><p>Mã tầng lầu(<span style="color: red">*</span>):</p></th>
+        <th><p>Diện tích:</p></th>
+        <th><p>Sức chứa:</p></th>
+        <th><p>Trạng thái(<span style="color: red">*</span>):</p></th>
+        <th><p>Loại tầng(<span style="color: red">*</span>):</p></th>
+        <th colspan="2"></th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let i=index;let item of floors">
-      <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
-      <!--      Sửa-->
-      <!--      Tên Tầng-->
-      <td *ngIf="checkEdit && item.id===flag" hidden>
-        <input formControlName="id" hidden>{{item.id}}
-      </td>
-      <td *ngIf="!checkEdit || item.id!==flag">{{item.nameFloor}}</td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <input type="text" class="form-control" formControlName="nameFloor" value="{{item.nameFloor}}">
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('nameFloor').hasError('required') && editFloorForm.get('nameFloor').touched">
-          Tên tầng lầu không được để trống.
-        </p>
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('nameFloor').hasError('minlength') && editFloorForm.get('nameFloor').touched">
-          Tên tầng lầu tối thiểu 2 ký tự.
-        </p>
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('nameFloor').hasError('maxlength') && editFloorForm.get('nameFloor').touched">
-          Tên tầng lầu tối đa 25 ký tự.
-        </p>
-      </td>
-      <!--      Mã tầng lầu-->
-      <td *ngIf="!checkEdit || item.id!==flag">{{item.codeFloor}}</td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <input type="text" class="form-control" formControlName="codeFloor" value="{{item.codeFloor}}">
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('codeFloor').hasError('required') && editFloorForm.get('codeFloor').touched">
-          Mã tầng lầu không được để trống.
-        </p>
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('codeFloor').hasError('pattern') && editFloorForm.get('codeFloor').touched">
-          Mã tầng lầu phải đúng định dạng:MTLxxx.
-        </p>
-      </td>
-      <!--      Diện tích-->
-      <td *ngIf="!checkEdit || item.id!==flag">{{item.area}}</td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <input type="text" class="form-control" formControlName="area" value="{{item.area}}">
-      </td>
-      <!--      Sức chứa-->
-      <td *ngIf="!checkEdit || item.id!==flag">{{item.capacity}}</td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <input type="text" class="form-control" formControlName="capacity" value="{{item.capacity}}">
-      </td>
-      <!--      Trạng thái-->
-      <td *ngIf="!checkEdit || item.id!==flag">{{item.statusFloor}}</td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <select class="form-control" style="width: 150px" formControlName="statusFloor">
-          <option value="">Chọn</option>
-          <option value="Chưa bàn giao">Chưa bàn giao</option>
-          <option value="Đang vào ở">Đang vào ở</option>
-          <option value="Đang sửa chữa">Đang sửa chữa</option>
-        </select>
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('statusFloor').hasError('required') && editFloorForm.get('statusFloor').touched">
-          Trạng thái không được để trống.
-        </p>
-      </td>
-      <!--      Loại tầng-->
-      <td *ngIf="!checkEdit || item.id!==flag">{{item.typeFloor.nameTypeFloor}}</td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <select class="form-control" formControlName="typeFloorId" style="width:120px">
-          <option value="">Chọn</option>
-          <option *ngFor="let typeFloor of typeFloors" [value]="typeFloor.id">{{typeFloor.nameTypeFloor}}</option>
-        </select>
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('typeFloorId').hasError('required') && editFloorForm.get('typeFloorId').touched">
-          Loại tầng không được để trống.
-        </p>
-      </td>
-      <!--      Tòa nhà-->
-      <td *ngIf="!checkEdit || item.id!==flag">{{item.building.fullName}}</td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <select class="form-control" formControlName="buildingId" style="width:120px">
-          <option value="">Chọn</option>
-          <option *ngFor="let building of buildings" [value]="building.id">{{building.fullName}}</option>
-        </select>
-        <p class="text-danger"
-           *ngIf="editFloorForm.get('buildingId').hasError('required') && editFloorForm.get('buildingId').touched">
-          Tên tòa nhà không được để trống.
-        </p>
-      </td>
-      <td *ngIf="!checkEdit || item.id!==flag">
-        <button class="btn btn-warning" (click)="checkEditFloor(item.id)">
-          <i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i>
-        </button>
-      </td>
-      <td *ngIf="!checkEdit || item.id!==flag">
-        <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
-          <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
-        </button>
-      </td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <button class="btn btn-primary" type="button" [disabled]="editFloorForm.invalid" (click)="editFloor()"
-                style="margin-right: 10px"><i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
-        </button>
-      </td>
-      <td *ngIf="checkEdit && item.id===flag">
-        <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">
-          <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i></button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-
-</form>
-</ng-container>
-<ng-container *ngIf="checkAdd">
-  <form action="" [formGroup]="addFloorForm" *ngIf="addFloorForm">
-    <table>
-      <tbody class="border" formArrayName="floor"
-             *ngFor="let item of floorControls; let i = index;">
-      <tr [formGroupName]="i">
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let i=index;let item of floors">
+        <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
+        <!--      Sửa-->
+        <!--      Tòa nhà-->
+        <td *ngIf="!checkEdit || item.id!==flag">{{item.building.fullName}}</td>
+        <td *ngIf="checkEdit && item.id===flag">
+          <select class="form-control" formControlName="buildingId" style="width:120px">
+            <option value="">Chọn</option>
+            <option *ngFor="let building of buildings" [value]="building.id">{{building.fullName}}</option>
+          </select>
+        </td>
         <!--      Tên Tầng-->
-        <td>
-          <input type="text" class="form-control" formControlName="nameFloor">
-          <p class="text-danger"
-             *ngIf="item.get('nameFloor').invalid && item.get('nameFloor').touched">
-            Nhập sai định dạng.
-          </p>
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">-->
-<!--            Tên tầng lầu không được để trống.-->
-<!--          </p>-->
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('nameFloor').hasError('minlength') && addFloorForm.get('nameFloor').touched">-->
-<!--            Tên tầng lầu tối thiểu 2 ký tự.-->
-<!--          </p>-->
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('nameFloor').hasError('maxlength') && addFloorForm.get('nameFloor').touched">-->
-<!--            Tên tầng lầu tối đa 25 ký tự.-->
-<!--          </p>-->
+        <td *ngIf="checkEdit && item.id===flag" hidden>
+          <input formControlName="id" hidden>{{item.id}}
+        </td>
+        <td *ngIf="!checkEdit || item.id!==flag">{{item.nameFloor}}</td>
+        <td *ngIf="checkEdit && item.id===flag">
+          <input type="text" class="form-control" formControlName="nameFloor" value="{{item.nameFloor}}">
         </td>
         <!--      Mã tầng lầu-->
-        <td>
-          <input type="text" class="form-control" formControlName="codeFloor">
-          <p class="text-danger"
-             *ngIf="item.get('codeFloor').invalid && item.get('codeFloor').touched">
-            Nhập sai định dạng.
-          </p>
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('codeFloor').hasError('required') && addFloorForm.get('codeFloor').touched">-->
-<!--            Mã tầng lầu không được để trống.-->
-<!--          </p>-->
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('codeFloor').hasError('pattern') && addFloorForm.get('codeFloor').touched">-->
-<!--            Mã tầng lầu phải đúng định dạng:MTLxxx.-->
-<!--          </p>-->
+        <td *ngIf="!checkEdit || item.id!==flag">{{item.codeFloor}}</td>
+        <td *ngIf="checkEdit && item.id===flag">
+          <input type="text" class="form-control" formControlName="codeFloor" value="{{item.codeFloor}}">
         </td>
         <!--      Diện tích-->
-        <td>
-          <input type="text" class="form-control" formControlName="area">
+        <td *ngIf="!checkEdit || item.id!==flag">{{item.area}}</td>
+        <td *ngIf="checkEdit && item.id===flag">
+          <input type="text" class="form-control" formControlName="area" value="{{item.area}}">
         </td>
         <!--      Sức chứa-->
-        <td>
-          <input type="text" class="form-control" formControlName="capacity">
+        <td *ngIf="!checkEdit || item.id!==flag">{{item.capacity}}</td>
+        <td *ngIf="checkEdit && item.id===flag">
+          <input type="text" class="form-control" formControlName="capacity" value="{{item.capacity}}">
         </td>
         <!--      Trạng thái-->
-        <td>
+        <td *ngIf="!checkEdit || item.id!==flag">{{item.statusFloor}}</td>
+        <td *ngIf="checkEdit && item.id===flag">
           <select class="form-control" style="width: 150px" formControlName="statusFloor">
             <option value="">Chọn</option>
             <option value="Chưa bàn giao">Chưa bàn giao</option>
             <option value="Đang vào ở">Đang vào ở</option>
             <option value="Đang sửa chữa">Đang sửa chữa</option>
           </select>
-          <p class="text-danger"
-             *ngIf="item.get('statusFloor').invalid && item.get('statusFloor').touched">
-            Yêu cầu chọn.
-          </p>
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('statusFloor').hasError('required') && addFloorForm.get('statusFloor').touched">-->
-<!--            Trạng thái không được để trống.-->
-<!--          </p>-->
         </td>
         <!--      Loại tầng-->
-        <td>
+        <td *ngIf="!checkEdit || item.id!==flag">{{item.typeFloor.nameTypeFloor}}</td>
+        <td *ngIf="checkEdit && item.id===flag">
           <select class="form-control" formControlName="typeFloorId" style="width:120px">
             <option value="">Chọn</option>
             <option *ngFor="let typeFloor of typeFloors" [value]="typeFloor.id">{{typeFloor.nameTypeFloor}}</option>
           </select>
+        </td>
+        <td *ngIf="!checkEdit || item.id!==flag">
+          <button class="btn btn-warning" (click)="checkEditFloor(item.id)">
+            <i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i>
+          </button>
+        </td>
+        <td *ngIf="!checkEdit || item.id!==flag">
+          <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
+            <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+          </button>
+        </td>
+        <td *ngIf="checkEdit && item.id===flag">
+          <button class="btn btn-primary" type="button" [disabled]="editFloorForm.invalid" (click)="editFloor()"
+                  style="margin-right: 10px"><i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+          </button>
+        </td>
+        <td *ngIf="checkEdit && item.id===flag">
+          <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">
+            <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i></button>
+        </td>
+      </tr>
+      <!--    Hiện thông báo lỗi chỉnh sửa-->
+      <tr>
+        <td>
           <p class="text-danger"
-             *ngIf="item.get('typeFloorId').invalid && item.get('typeFloorId').touched">
+             *ngIf="editFloorForm.get('buildingId').hasError('required') && editFloorForm.get('buildingId').touched">
             Yêu cầu chọn.
           </p>
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('typeFloorId').hasError('required') && addFloorForm.get('typeFloorId').touched">-->
-<!--            Loại tầng không được để trống.-->
-<!--          </p>-->
         </td>
-        <!--      Tên tòa nhà-->
         <td>
-          <select class="form-control" formControlName="buildingId" style="width:120px">
+          <p class="text-danger"
+             *ngIf="editFloorForm.get('nameFloor').hasError('required') && editFloorForm.get('nameFloor').touched">
+            Yêu cầu nhập.
+          </p>
+          <p class="text-danger"
+             *ngIf="editFloorForm.get('nameFloor').hasError('minlength') && editFloorForm.get('nameFloor').touched">
+            Tối thiểu 2 ký tự.
+          </p>
+          <p class="text-danger"
+             *ngIf="editFloorForm.get('nameFloor').hasError('maxlength') && editFloorForm.get('nameFloor').touched">
+            Tối đa 25 ký tự.
+          </p>
+        </td>
+        <td>
+          <p class="text-danger"
+             *ngIf="editFloorForm.get('codeFloor').hasError('required') && editFloorForm.get('codeFloor').touched">
+            Yêu cầu nhập.
+          </p>
+          <p class="text-danger"
+             *ngIf="editFloorForm.get('codeFloor').hasError('pattern') && editFloorForm.get('codeFloor').touched">
+            Nhập đúng định dạng:MTLxxx.
+          </p>
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <p class="text-danger"
+             *ngIf="editFloorForm.get('statusFloor').hasError('required') && editFloorForm.get('statusFloor').touched">
+            Yêu cầu chọn.
+          </p>
+        </td>
+        <td>
+          <p class="text-danger"
+             *ngIf="editFloorForm.get('typeFloorId').hasError('required') && editFloorForm.get('typeFloorId').touched">
+            Yêu cầu chọn.
+          </p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+
+  </form>
+</ng-container>
+<ng-container *ngIf="checkAdd">
+  <form action="" [formGroup]="addFloorForm" *ngIf="addFloorForm">
+    <table>
+      <tbody class="border" formArrayName="floor"
+             *ngFor="let item of floorControls let i = index;">
+      <tr [formGroupName]="i">
+        <!--      Tên tòa nhà-->
+        <td class="add-row" style="width: 14%">
+          <select class="form-control" formControlName="buildingId" style="width: 120%">
             <option value="">Chọn</option>
             <option *ngFor="let building of buildings" [value]="building.id">{{building.fullName}}</option>
           </select>
-          <p class="text-danger"
-             *ngIf="item.get('buildingId').invalid && item.get('buildingId').touched">
-            Yêu cầu chọn.
-          </p>
-<!--          <p class="text-danger"-->
-<!--             *ngIf="addFloorForm.get('buildingId').hasError('required') && addFloorForm.get('buildingId').touched">-->
-<!--            Tên tòa nhà không được để trống.-->
-<!--          </p>-->
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('buildingId').hasError('required') && addFloorForm.get('buildingId').touched">-->
+          <!--            Tên tòa nhà không được để trống.-->
+          <!--          </p>-->
+        </td>
+        <!--      Tên Tầng-->
+        <td class="add-row" style="width: 14%">
+          <input type="text" class="form-control" formControlName="nameFloor">
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">-->
+          <!--            Tên tầng lầu không được để trống.-->
+          <!--          </p>-->
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('nameFloor').hasError('minlength') && addFloorForm.get('nameFloor').touched">-->
+          <!--            Tên tầng lầu tối thiểu 2 ký tự.-->
+          <!--          </p>-->
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('nameFloor').hasError('maxlength') && addFloorForm.get('nameFloor').touched">-->
+          <!--            Tên tầng lầu tối đa 25 ký tự.-->
+          <!--          </p>-->
+        </td>
+        <!--      Mã tầng lầu-->
+        <td class="add-row">
+          <input type="text" class="form-control" formControlName="codeFloor">
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('codeFloor').hasError('required') && addFloorForm.get('codeFloor').touched">-->
+          <!--            Mã tầng lầu không được để trống.-->
+          <!--          </p>-->
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('codeFloor').hasError('pattern') && addFloorForm.get('codeFloor').touched">-->
+          <!--            Mã tầng lầu phải đúng định dạng:MTLxxx.-->
+          <!--          </p>-->
+        </td>
+        <!--      Diện tích-->
+        <td class="add-row">
+          <input type="text" class="form-control" formControlName="area">
+        </td>
+        <!--      Sức chứa-->
+        <td class="add-row">
+          <input type="text" class="form-control" formControlName="capacity">
+        </td>
+        <!--      Trạng thái-->
+        <td class="add-row" style="width: 14%">
+          <select class="form-control" style="width: 120%" formControlName="statusFloor">
+            <option value="">Chọn</option>
+            <option value="Chưa bàn giao">Chưa bàn giao</option>
+            <option value="Đang vào ở">Đang vào ở</option>
+            <option value="Đang sửa chữa">Đang sửa chữa</option>
+          </select>
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('statusFloor').hasError('required') && addFloorForm.get('statusFloor').touched">-->
+          <!--            Trạng thái không được để trống.-->
+          <!--          </p>-->
+        </td>
+        <!--      Loại tầng-->
+        <td class="add-row" style="width: 14%">
+          <select class="form-control" formControlName="typeFloorId" style="width: 120%">
+            <option value="">Chọn</option>
+            <option *ngFor="let typeFloor of typeFloors" [value]="typeFloor.id">{{typeFloor.nameTypeFloor}}</option>
+          </select>
+          <!--          <p class="text-danger"-->
+          <!--             *ngIf="addFloorForm.get('typeFloorId').hasError('required') && addFloorForm.get('typeFloorId').touched">-->
+          <!--            Loại tầng không được để trống.-->
+          <!--          </p>-->
         </td>
         <td>
           <button type="button" class="btn btn-danger btn-sm" (click)="removeFloor(i)">
@@ -276,21 +254,102 @@
           </button>
         </td>
       </tr>
+      <!--      Hiện thông báo lỗi thêm mới-->
+      <tr>
+        <td style="width: 14%">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('buildingId').invalid && item.get('buildingId').touched">
+            Yêu cầu chọn.
+          </p>
+          <div *ngFor="let floor of floors">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="item.get('buildingId').value==floor.buildingId && item.get('buildingId').touched">
+              Nhập trùng.
+            </p>
+          </div>
+        </td>
+        <td style="width: 14%">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('nameFloor').invalid && item.get('nameFloor').touched">
+            Nhập lỗi.
+          </p>
+          <div *ngFor="let floor of floors">
+            <p class="alert alert-danger" role="alert"
+               *ngIf=" item.get('nameFloor').value==floor.nameFloor
+                && item.get('nameFloor').touched">
+              Nhập trùng.
+            </p>
+          </div>
+        </td>
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('codeFloor').invalid && item.get('codeFloor').touched">
+            Nhập lỗi.
+          </p>
+          <div *ngFor="let floor of floors">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="item.get('codeFloor').value==floor.codeFloor && item.get('codeFloor').touched">
+              Nhập trùng.
+            </p>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td style="width: 14%">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('statusFloor').invalid && item.get('statusFloor').touched">
+            Yêu cầu chọn.
+          </p>
+        </td>
+        <td style="width: 14%">
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('typeFloorId').invalid && item.get('typeFloorId').touched">
+            Yêu cầu chọn.
+          </p>
+        </td>
+      </tr>
+      <!--      Hiện chi tiết lỗi-->
+      <tr>
+        <td></td>
+        <td style="width: 14%">
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('nameFloor').invalid && item.get('nameFloor').touched">
+            Tối thiểu 2 ký tự.<br>
+            Tối đa 25 ký tự.
+          </p>
+        </td>
+        <td>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('codeFloor').invalid && item.get('codeFloor').touched">
+            Nhập đúng định dạng:MTLxxx
+          </p>
+          <div *ngFor="let floor of floors">
+            <p class="alert alert-primary" role="alert"
+               *ngIf="item.get('codeFloor').value==floor.codeFloor && item.get('codeFloor').touched">
+              Mã tầng lầu này đã tồn tại.
+            </p>
+          </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
       </tbody>
     </table>
   </form>
 </ng-container>
-<button  class="btn btn-success" (click)="addNewArray()">
+<button class="btn btn-success" (click)="addNewArray()">
   <i class="fa fa-plus-square" aria-hidden="true"></i>
 </button>
-<button  class="btn btn-info" *ngIf="checkAdd" [disabled]="addFloorForm.invalid" (click)="addNewFloor()" >
+<button class="btn btn-info" *ngIf="checkAdd" [disabled]="addFloorForm.invalid" (click)="addNewFloor()">
   Lưu
 </button>
 
 
 <nav aria-label="Page navigation example" *ngIf="floors.length!=0 && totalPages >1">
   <ul class="pagination justify-content-md-center mt-3">
-    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" *ngIf="pageClicked!=0" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
     <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
       <a class="page-link"><<</a>
     </li>
@@ -301,7 +360,7 @@
     <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
       <a class="page-link">>></a>
     </li>
-    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+    <li class="page-item" *ngIf="pageClicked!=totalPages-1" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
 

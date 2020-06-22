@@ -22,5 +22,7 @@ export class GroundModel {
   public beginDay: string;
   // Ngày kết thúc
   public endDay: string;
+  //Id tòa nhà
+  public  buildingId: number;
 
 }

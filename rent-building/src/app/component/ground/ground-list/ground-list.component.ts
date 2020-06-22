@@ -110,6 +110,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
+      this.loadData(this.pageClicked);
     });
   }
   openDialogView(id): void {
@@ -122,6 +123,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
+        this.loadData(this.pageClicked);
       });
     });
   }
@@ -136,6 +138,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
+        this.loadData(this.pageClicked);
       });
     });
   }
@@ -151,6 +154,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
+        this.loadData(this.pageClicked);
       });
     });
   }

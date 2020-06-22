@@ -8,6 +8,8 @@ import {FloorModel} from '../../../model/floor.model';
 import {FloorService} from '../../../service/floor.service';
 import {TypeGroundModel} from "../../../model/typeGround.model";
 import {TypeGroundService} from "../../../service/type-ground.service";
+import {BuildingService} from "../../../service/building.service";
+import {BuildingModel} from "../../../model/building.model";
 
 @Component({
   selector: 'app-ground-edit',
@@ -20,6 +22,7 @@ export class GroundEditComponent implements OnInit, OnDestroy {
   editGroundForm: FormGroup;
   public floors: FloorModel[];
   public typeGrounds: TypeGroundModel[];
+  public buildings:BuildingModel[];
 
   public id: number;
   constructor(
@@ -28,6 +31,7 @@ export class GroundEditComponent implements OnInit, OnDestroy {
     public groundService: GroundService,
     public floorService: FloorService,
     public typeGroundService: TypeGroundService,
+    public buildingService : BuildingService,
     public routerService: Router,
     private fb: FormBuilder,
   ) {
@@ -35,9 +39,11 @@ export class GroundEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.floorService.findAll().subscribe(data => this.floors = data);
     this.typeGroundService.findAll().subscribe(data => this.typeGrounds = data);
+    this.buildingService.findAll().subscribe(data => this.buildings = data);
     this.editGroundForm = this.fb.group({
       codeGround: ['', [Validators.required, Validators.pattern(/^MB\d{3}$/)]],
       typeGroundId: ['',[Validators.required]],
+      buildingId: ['', [Validators.required]],
       note:[''],
       area: ['',[Validators.required, Validators.maxLength(15), Validators.pattern(/^([1-9]([0-9])?)|([0-9]([1-9])?)$/)]],
       floorId:['',[Validators.required]],

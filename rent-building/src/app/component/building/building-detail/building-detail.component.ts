@@ -17,6 +17,9 @@ export class BuildingDetailComponent implements OnInit, OnDestroy {
   private images: ImageModel[];
   viewBuildingForm: FormGroup;
   public id: number;
+  idImage: string ;
+  check1;
+  check2;
   constructor(
     public dialogRef: MatDialogRef<BuildingDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -46,6 +49,14 @@ export class BuildingDetailComponent implements OnInit, OnDestroy {
   loadData() {
     this.id = this.data.data1.id;
     this.viewBuildingForm.patchValue(this.data.data1);
+    this.idImage=this.viewBuildingForm.value.logo;
+    if (this.idImage == null) {
+      this.check1=true;
+      this.check2=false;
+    }else{
+      this.check2=true;
+      this.check1=false;
+    }
 
   }
   ngOnDestroy() {

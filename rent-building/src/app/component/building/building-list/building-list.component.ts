@@ -97,6 +97,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
+      this.loadData(this.pageClicked);
     });
   }
   openDialogView(id): void {
@@ -110,6 +111,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
+        this.loadData(this.pageClicked);
       });
     });
   }
@@ -124,6 +126,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
+        this.loadData(this.pageClicked);
       });
     });
   }
@@ -139,6 +142,7 @@ export class BuildingListComponent implements OnInit, OnDestroy {
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
+        this.loadData(this.pageClicked);
       });
     });
   }
