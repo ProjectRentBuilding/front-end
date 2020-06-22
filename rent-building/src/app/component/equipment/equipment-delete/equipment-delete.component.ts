@@ -54,7 +54,7 @@ export class EquipmentDeleteComponent implements OnInit {
     this.equipmentService.delete(this.equipmentOfId).subscribe(data => {
       this.dialogRef.close();
       // this.redirectTo('equipments');
-      this.equipmentService.showNotification('', 'Xóa thành công, chúc mừng bạn');
+      this.equipmentService.showNotification('', 'Xóa thành công thiết bị có id là: '+ this.equipmentOfId + ' và có tên là : ' + this.equipmentOfName);
     });
   }
 

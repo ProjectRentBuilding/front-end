@@ -39,9 +39,11 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public pageClicked = 0;
   public searchText = '';
   public nameEquipmentSearch = '';
-  public groundIdSearch : number;
-  public typeEquipmentIdSearch : number;
-  public amountSearch: number;
+  public codeGroundSearch = '';
+  public typeEquipmentSearch = '';
+  // public codeGroundSearch : number;
+  // public typeEquipmentIdSearch : number;
+  public amountSearch: number = 0;
   public checkEdit = false;
   public checkAdd = false;
   public searchAll;
@@ -76,17 +78,17 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     });
     this.formEditEquipment = this.createEquipment();
     this.searchForm = this.formBuilder.group({
-      nameEquipmentSearch: [''],
-      amountSearch: [''],
-      codeGroundSearch: [''],
-      typeEquipmentSearch: ['']
+      searchNameEquipment: [''],
+      searchAmount: [''],
+      searchCodeGround: [''],
+      searchTypeEquipment: ['']
     });
     this.loadData(0);
   }
 
   loadData(page) {
     // @ts-ignore
-    this.equipmentService.getEquipmentPage(page, this.size, this.searchText)
+    this.equipmentService.getEquipmentPageSearch(page, this.size, this.nameEquipmentSearch, this.amountSearch, this.codeGroundSearch, this.typeEquipmentSearch)
       .subscribe(
         data => {
           this.pageClicked = page;
@@ -277,13 +279,17 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   // }
 
   onSearch(page) {
-    this.nameEquipmentSearch = this.searchForm.value.nameEquipmentSearch;
-    this.amountSearch = this.searchForm.value.amountSearch;
-    this.groundIdSearch = this.searchForm.value.codeGroundSearch;
-    this.typeEquipmentIdSearch = this.searchForm.value.typeEquipmentSearch;
+    this.nameEquipmentSearch = this.searchForm.value.searchNameEquipment;
+    this.amountSearch = this.searchForm.value.searchAmount;
+    this.codeGroundSearch = this.searchForm.value.searchCodeGround;
+    this.typeEquipmentSearch = this.searchForm.value.searchTypeEquipment;
     this.loadData(page);
   }
 
+  resetForm() {
+    this.searchForm.reset();
+    this.loadData(0);
+  }
   search() {
     // @ts-ignore
     this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
