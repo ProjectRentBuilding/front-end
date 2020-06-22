@@ -5,14 +5,15 @@ import {FloorService} from '../../../service/floor.service';
 import {MatDialog} from '@angular/material';
 
 import {FloorDeleteComponent} from '../floor-delete/floor-delete.component';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 
 import {Router} from '@angular/router';
 import {TypeFloorModel} from "../../../model/typeFloor.model";
 import {TypeFloorService} from "../../../service/type-floor.service";
 import {BuildingModel} from "../../../model/building.model";
 import {BuildingService} from "../../../service/building.service";
-import {TypeEquipmentModel} from "../../../model/typeEquipment.model";
+
+
 
 
 @Component({
@@ -43,7 +44,11 @@ export class FloorListComponent implements OnInit, OnDestroy {
   public totalPages: number = 1;
   public pages = [];
   pageClicked:number=0;
+
+
   public searchText="";
+  private searchBuildingId="";
+
 
 
   constructor(
@@ -72,7 +77,19 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.loadData(0);
   }
   loadData(page){
-    this.floorService.getFloorPage(page,this.size,this.searchText)
+    this.floorService.getFloorPageByNameFloor(page,this.size,this.searchText)
+      .subscribe(
+        data=>{
+          this.pageClicked=page;
+          this.floorPage=data;
+          this.floors=this.floorPage.content;
+          this.totalPages=this.floorPage.totalPages;
+          this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }
+      )
+  }
+  loadDataFindByBuildingId(page){
+    this.floorService.getFloorPageByBuildingId(page,this.size,this.searchBuildingId)
       .subscribe(
         data=>{
           this.pageClicked=page;
@@ -84,7 +101,6 @@ export class FloorListComponent implements OnInit, OnDestroy {
       )
   }
   onNext() {
-    // tslint:disable-next-line:triple-equals
     if (this.pageClicked == this.totalPages - 1) {
     } else {
       this.pageClicked++;
@@ -93,7 +109,6 @@ export class FloorListComponent implements OnInit, OnDestroy {
   }
 
   onPrevious() {
-    // tslint:disable-next-line:triple-equals
     if (this.pageClicked == 0) {
     } else {
       this.pageClicked--;
@@ -142,18 +157,11 @@ export class FloorListComponent implements OnInit, OnDestroy {
       this.subscription = this.typeFloorService.findAll().subscribe((data: TypeFloorModel[]) => {
         this.typeFloors = data;
       });
-      this.floor = this.addFloorForm.get('equipment') as FormArray;
+      this.floor = this.addFloorForm.get('floor') as FormArray;
       this.floor.push(this.createFloor());
     }
   }
 
-  // addNewFloor() {
-  //   alert(this.addFloorForm.value);
-  //   this.floorService.save(this.addFloorForm.value).subscribe(data => {
-  //     this.redirectTo('floors');
-  //     this.floorService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-  //   });
-  // }
   addNewFloor() {
     this.floor = this.addFloorForm.get('floor') as FormArray;
     for(let tem =0; tem < this.getarray; tem++){
@@ -172,13 +180,6 @@ export class FloorListComponent implements OnInit, OnDestroy {
       this.routerService.navigate([uri]));
   }
 
-  // checkAddNewFloor() {
-  //   if (!this.checkAdd) {
-  //     this.ngOnInit();
-  //     this.checkAdd = true;
-  //     this.checkEdit = false;
-  //   }
-  // }
 
   checkEditFloor(id) {
     if (!this.checkEdit) {
@@ -217,9 +218,6 @@ export class FloorListComponent implements OnInit, OnDestroy {
     });
   }
 
-  searchType(fullName: string) {
-    this.searchText = fullName;
-  }
   removeFloor(i: number) {
     if (i === 0) {
       this.checkAdd=false;
@@ -232,6 +230,10 @@ export class FloorListComponent implements OnInit, OnDestroy {
       });
     this.redirectTo('floors');
     this.floorService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+  }
+
+  searchBuildingIdType(id: number) {
+    this.searchBuildingId=id.toString();
   }
 }
 

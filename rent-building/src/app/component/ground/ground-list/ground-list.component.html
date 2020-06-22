@@ -1,4 +1,6 @@
-<div class="col-md-5 mt-5">
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
+
+<div class="col-md-5 mt-5" style="margin-bottom: 5%">
   <div class="input-group">
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
     <button type="button" class="btn btn-secondary search-button" (click)="loadData(0)">
@@ -6,7 +8,7 @@
   </div>
 </div>
 
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
+
 
 <div class="row">
   <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button></span>
@@ -58,7 +60,7 @@
     </ng-container>
 
     <td>
-      <button class="btn btn-info" (click)="openDialogView(item.id)">Chi tiết</button>
+      <button class="btn btn-info" (click)="openDialogView(item.id)">Xem</button>
     </td>
     <td>
       <button class="btn btn-warning" (click)="openDialogEdit(item.id)">Sửa</button>

@@ -40,7 +40,7 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.imageService.findAll().subscribe(data => this.images = data);
     this.addBuildingForm = this.fb.group({
-      abbreviationName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      abbreviationName: [''],
       fullName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       taxCode: ['',[Validators.required, Validators.pattern(/^MST-\d{3}$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{9}(\d{3})?$/)]],
