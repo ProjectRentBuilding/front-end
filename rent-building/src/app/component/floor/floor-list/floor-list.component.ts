@@ -234,4 +234,3 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.floorService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
   }
 }
-
