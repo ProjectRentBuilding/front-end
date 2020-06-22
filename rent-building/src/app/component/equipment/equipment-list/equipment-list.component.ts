@@ -25,6 +25,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public messageValidate: string;
   public equipmentOfId;
   public flag = -1;
+  public flagAmount = 0;
   public equipmentModel: EquipmentModel[] = [];
   public grounds: GroundModel[] = [];
   public typeEquipment: TypeEquipmentModel[] = [];
@@ -215,7 +216,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   editEquipment() {
-    console.log(this.checkPage);
+    this.checkAmount(this.formEditEquipment.value.amount, this.formEditEquipment.value.amountOfBroken);
     this.equipmentService.update(this.formEditEquipment.value, this.equipmentOfId).subscribe(data => {
       this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
       this.flag = -1;
@@ -290,10 +291,10 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.searchForm.reset();
     this.loadData(0);
   }
-  search() {
-    // @ts-ignore
-    this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
-    // @ts-ignore
-    this.searchText = document.getElementById('searchEquipment').value;
-  }
+  // search() {
+  //   // @ts-ignore
+  //   this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
+  //   // @ts-ignore
+  //   this.searchText = document.getElementById('searchEquipment').value;
+  // }
 }
