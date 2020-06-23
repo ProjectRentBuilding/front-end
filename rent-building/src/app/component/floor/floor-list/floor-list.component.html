@@ -1,15 +1,54 @@
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH CÁC TẦNG</h3>
 
-<div class="col-md-12 mt-5" style="margin-bottom: 5%">
-  <div class="input-group">
-    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên tòa nhà" [(ngModel)]="searchNameBuilding">
-    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên tầng" [(ngModel)]="searchNameFloor">
-    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên diện tích" (change)="setArea($event.target.value)">
-    <input type="text" class="col-md-2 form-control search-input" placeholder="Tìm theo tên loại tầng" [(ngModel)]="searchNameTypeFloor">
-    <button type="button" class="btn btn-secondary search-button" (click)="loadData(0)">
+<div class="col-md-12 mt-5 row" style="margin-bottom: 5%">
+  <div class="input-group col-md-10">
+    <form [formGroup]="searchForm">
+      <div class="row">
+        <div class="col-md-3">
+          <label>
+            <input type="text" class="form-control search-input" placeholder="Tìm theo tên tòa nhà" list="nameBuilding"
+                   name="nameBuilding" formControlName="searchNameBuilding">
+          </label>
+          <datalist id="nameBuilding">
+            <option *ngFor="let building of buildings" [value]="building.fullName"></option>
+          </datalist>
+        </div>
+        <div class=col-md-3>
+          <label>
+            <input type="text" class="form-control search-input" placeholder="Tìm theo tên tầng" list="nameFloor"
+                   name="nameFloor" formControlName="searchNameFloor">
+          </label>
+          <datalist id="nameFloor">
+            <option *ngFor="let floor of floors1" [value]="floor.nameFloor">{{floor.building.fullName}}</option>
+          </datalist>
+        </div>
+        <div class="col-md-3">
+          <label>
+            <input type="number" class="form-control search-input" placeholder="Tìm theo tên diện tích"
+                   formControlName="searchArea">
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label>
+            <input type="text" class="form-control search-input" placeholder="Tìm theo tên loại tầng" list="nameTypeFloor"
+                   name="nameTypeFloor" formControlName="searchNameTypeFloor">
+            <datalist id="nameTypeFloor">
+              <option *ngFor="let typeFloor of typeFloors" [value]="typeFloor.nameTypeFloor"></option>
+            </datalist>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-2">
+    <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
       <i class="fa fa-search text-danger"></i></button>
+    <button (click)="resetForm()" class="btn btn-secondary search-button" style="margin-left: 10px">
+      <i class="fa fa-refresh" aria-hidden="true"></i></button>
   </div>
 </div>
+
 
 
 <div class="row">
@@ -45,6 +84,7 @@
 
       </tr>
       </thead>
+      <h4 style="color: red;margin-top: 4%">{{message}}</h4>
       <tbody>
       <tr *ngFor="let i=index;let item of floors">
         <!--      <td>{{(i+1)+(page-1)*5}}</td>-->
