@@ -47,7 +47,7 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
-import { ServicesListComponent } from './component/services/services-list/services-list.component';
+import {ServicesListComponent} from './component/services/services-list/services-list.component';
 import {MatIconModule} from "@angular/material/icon";
 
 
@@ -125,8 +125,9 @@ import {MatIconModule} from "@angular/material/icon";
     CustomerDetailGroundComponent,
     EquipmentDeleteComponent,
     EquipmentAddComponent,
-    ImageGalleryComponent
-    
+    ImageGalleryComponent,
+    ServicesListComponent
+
   ]
 })
 export class AppModule {

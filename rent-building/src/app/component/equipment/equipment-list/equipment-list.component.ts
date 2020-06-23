@@ -65,9 +65,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
-    //   this.typeEquipment = data;
-    // });
     this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
@@ -171,9 +168,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   removeAddress(i: number) {
-    if (i === 0) {
-      this.checkAdd = false;
-    }
     this.equipment.removeAt(i);
   }
 
@@ -280,20 +274,37 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   // }
 
   onSearch(page) {
-    this.nameEquipmentSearch = this.searchForm.value.searchNameEquipment;
-    this.amountSearch = this.searchForm.value.searchAmount;
-    this.codeGroundSearch = this.searchForm.value.searchCodeGround;
-    this.typeEquipmentSearch = this.searchForm.value.searchTypeEquipment;
+    if (this.searchForm.value.searchNameEquipment == null) {
+      this.searchForm.value.searchNameEquipment = '';
+      this.nameEquipmentSearch = this.searchForm.value.searchNameEquipment;
+    }else {
+      this.nameEquipmentSearch = this.searchForm.value.searchNameEquipment;
+    }
+    if(this.searchForm.value.searchAmount === '' || this.searchForm.value.searchAmount == null ){
+      this.searchForm.value.searchAmount = 0;
+      this.amountSearch = this.searchForm.value.searchAmount;
+    } else {
+      this.amountSearch = this.searchForm.value.searchAmount;
+    }
+    if (this.searchForm.value.searchCodeGround == null) {
+      this.searchForm.value.searchCodeGround = '';
+      this.codeGroundSearch = this.searchForm.value.searchCodeGround;
+    } else {
+      this.codeGroundSearch = this.searchForm.value.searchCodeGround;
+    }
+    if (this.searchForm.value.searchTypeEquipment == null) {
+      this.searchForm.value.searchTypeEquipment = '';
+      this.typeEquipmentSearch = this.searchForm.value.searchTypeEquipment;
+    }else {
+      this.typeEquipmentSearch = this.searchForm.value.searchTypeEquipment;
+    }
+    console.log(this.searchForm.value);
     this.loadData(page);
   }
 
   resetForm() {
     this.searchForm.reset();
-    this.nameEquipmentSearch = '';
-    this.amountSearch = 0;
-    this.codeGroundSearch = '';
-    this.typeEquipmentSearch = '';
-    this.loadData(0);
+    this.onSearch(0);
   }
   // search() {
   //   // @ts-ignore

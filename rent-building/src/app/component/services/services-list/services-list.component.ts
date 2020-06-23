@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ServicesModel} from "../../../model/services.model";
+import {Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {ServicesService} from "../../../service/services.service";
 
 @Component({
   selector: 'app-services-list',
@@ -6,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./services-list.component.css']
 })
 export class ServicesListComponent implements OnInit {
+  public servicesModel: ServicesModel [] = [];
 
-  constructor() { }
+  constructor(
+    private servicesService: ServicesService,
+    private dialog: MatDialog,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
+      this.servicesModel = data;
+    });
   }
 
 }
