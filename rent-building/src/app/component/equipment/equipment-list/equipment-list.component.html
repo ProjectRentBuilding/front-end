@@ -1,5 +1,4 @@
 
-
 <div class="col-md-5 mt-5">
   <div class="input-group">
     <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
@@ -185,7 +184,7 @@
     </table>
   </form>
 </ng-container>
-
+<div *ngIf="equipmentModel.length == 0" style="color: red; text-align: center; font-size: 22px"> Không tìm thấy kết quả phù hợp !</div>
 <ng-container *ngIf="checkAdd">
   <form action="" [formGroup]="formAddNewEquipment" *ngIf="formAddNewEquipment">
       <tbody class="border" formArrayName="equipment"

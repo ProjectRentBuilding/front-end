@@ -37,7 +37,6 @@ export class EquipmentService extends CrudService<EquipmentModel, number> {
   //   });
   // }
 
-
   getEquipmentPageSearch(currentPage, size, nameEquipmentSearch, amountSearch, codeGroundSearch, typeEquipmentSearch): Observable<any> {
     return this._http.get<any>(`http://localhost:8080/equipments/paging`, {
       params: {

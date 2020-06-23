@@ -44,7 +44,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public typeEquipmentSearch = '';
   // public codeGroundSearch : number;
   // public typeEquipmentIdSearch : number;
-  public amountSearch: number = 0;
+  public amountSearch = 0;
   public checkEdit = false;
   public checkAdd = false;
   public searchAll;
@@ -289,6 +289,10 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
 
   resetForm() {
     this.searchForm.reset();
+    this.nameEquipmentSearch = '';
+    this.amountSearch = 0;
+    this.codeGroundSearch = '';
+    this.typeEquipmentSearch = '';
     this.loadData(0);
   }
   // search() {

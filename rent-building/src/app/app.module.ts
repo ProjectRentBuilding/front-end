@@ -47,6 +47,7 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
+import { ServicesListComponent } from './component/services/services-list/services-list.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import {EquipmentAddComponent} from './component/equipment/equipment-add/equipme
     EquipmentBuildingComponent,
     CustomerAddComponent,
     CustomerDetailGroundComponent,
-    EquipmentAddComponent
+    EquipmentAddComponent,
+    ServicesListComponent
   ],
   imports: [
     BrowserModule,
