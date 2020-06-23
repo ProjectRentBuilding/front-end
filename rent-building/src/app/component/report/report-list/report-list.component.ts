@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ReportService} from "../../../service/report.service";
 import {ReportModel} from "../../../model/report.model";
 import {Chart} from "node_modules/chart.js"
+import * as html2pdf from "html2pdf.js";
 
 @Component({
   selector: 'app-report-list',
@@ -75,5 +76,33 @@ export class ReportListComponent implements OnInit {
 
       }
     );
+  }
+
+  printToPDF() {
+    const options = {
+      // name : 'baocao.pdf',
+      // image : {type : 'jpeg', quality: 0.98},
+      // html2canvas: {},
+      // jsPDF : {unit: 'in', format: 'A4', orientation: 'landscape'}
+
+      // margin:       0.25,
+      // filename:     'filename',
+      // image:        { type: 'jpeg', quality: 0.98 },
+      // html2canvas:  { dpi: 96, letterRendering: true },
+      // jsPDF:        { unit: 'in', format: 'a3', orientation: 'portrait' }
+
+      name: 'baocao.pdf',
+      image: {type: 'jpeg'},
+      html2canvas: {scales: 1, width: 7000, height: 5000},
+      jsPDF: {orientation: 'portrait', unit: 'mm', format: [1000, 1000]}
+    };
+
+    const element: Element = document.getElementById('html2pdfid');
+
+    html2pdf()
+      .from(element)
+      .set(options)
+      .save();
+
   }
 }
