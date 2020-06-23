@@ -8,6 +8,8 @@ import {BuildingDeleteComponent} from '../building-delete/building-delete.compon
 import {BuildingEditComponent} from '../building-edit/building-edit.component';
 import {BuildingDetailComponent} from '../building-detail/building-detail.component';
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {FloorModel} from "../../../model/floor.model";
 
 
 @Component({
@@ -24,20 +26,39 @@ export class BuildingListComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
   public buildings: BuildingModel[] = [];
+  public buildings1: BuildingModel[] = [];
+
   public searchText="";
+
+  private searchForm: FormGroup;
+  private searchNameBuilding = "";
+  private searchTaxCode = "";
+  private searchPhone = "";
+  private searchAddress = "";
+  private message = "";
 
   constructor(
     public buildingService: BuildingService,
     public routerService: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private fb: FormBuilder
   ) {
   }
 
   ngOnInit() {
+    this.subscription = this.buildingService.findAll().subscribe((data: BuildingModel[]) => {
+      this.buildings1 = data;
+    });
+    this.searchForm = this.fb.group({
+      searchNameBuilding: [''],
+      searchTaxCode: [''],
+      searchPhone: [''],
+      searchAddress:['']
+    });
     this.loadData(0);
   }
   loadData(page){
-    this.buildingService.getBuildingPage(page,this.size,this.searchText)
+    this.buildingService.getBuildingPageSearch(page,this.size,this.searchNameBuilding,this.searchTaxCode,this.searchPhone,this.searchAddress)
       .subscribe(
         data=>{
           this.pageClicked=page;
@@ -45,6 +66,11 @@ export class BuildingListComponent implements OnInit, OnDestroy {
           this.buildings=this.buildingPage.content;
           this.totalPages=this.buildingPage.totalPages;
           this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+          if (this.buildings.length == 0) {
+            this.message = "Không tìm thấy kết quả nào phù hợp";
+          }else{
+            this.message = "";
+          }
         }
       )
   }
@@ -153,5 +179,36 @@ export class BuildingListComponent implements OnInit, OnDestroy {
       });
     this.redirectTo('buildings');
     this.buildingService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+  }
+  resetForm() {
+    this.searchForm.reset();
+    this.onSearch(0);
+  }
+  onSearch(page) {
+    if (this.searchForm.value.searchNameBuilding == null) {
+      this.searchForm.value.searchNameBuilding = "";
+      this.searchNameBuilding = this.searchForm.value.searchNameBuilding;
+    } else {
+      this.searchNameBuilding=this.searchForm.value.searchNameBuilding;
+    }
+    if (this.searchForm.value.searchTaxCode == null) {
+      this.searchForm.value.searchTaxCode = "";
+      this.searchTaxCode = this.searchForm.value.searchTaxCode;
+    } else {
+      this.searchTaxCode=this.searchForm.value.searchTaxCode;
+    }
+    if (this.searchForm.value.searchPhone == null) {
+      this.searchForm.value.searchPhone = "";
+      this.searchPhone = this.searchForm.value.searchPhone;
+    } else {
+      this.searchPhone=this.searchForm.value.searchPhone;
+    }
+    if (this.searchForm.value.searchAddress == null) {
+      this.searchForm.value.searchAddress = "";
+      this.searchAddress = this.searchForm.value.searchAddress;
+    } else {
+      this.searchAddress=this.searchForm.value.searchAddress;
+    }
+    this.loadData(page);
   }
 }

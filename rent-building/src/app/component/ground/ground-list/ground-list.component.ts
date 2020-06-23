@@ -180,8 +180,10 @@ export class GroundListComponent implements OnInit, OnDestroy {
     });
   }
 
-  searchType(codeFloor: any) {
-    this.searchText = codeFloor;
+  searchType(nameFloor: any) {
+    this.searchNameFloor = nameFloor;
+
+    this.loadData(0);
   }
 
   deleteAll() {

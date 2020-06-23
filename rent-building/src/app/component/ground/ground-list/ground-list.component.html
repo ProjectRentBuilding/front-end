@@ -1,4 +1,4 @@
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH THÔNG TIN MẶT BẰNG</h3>
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH MẶT BẰNG</h3>
 
 <div class="col-md-12 mt-5 row" style="margin-bottom: 5%">
   <div class=" input-group col-md-10">
@@ -53,11 +53,11 @@
     <button class="btn btn-dark dropdown-toggle" type="button"
             id="triggerId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-      Mã tầng
+      Tên tầng
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
       <a class="dropdown-item" *ngFor="let floor of floors"
-         (click)="searchType(floor.codeFloor)">{{floor.codeFloor}}</a>
+         (click)="searchType(floor.nameFloor)"><span style="color: red">{{floor.nameFloor}}</span><br>{{floor.building.fullName}}</a>
     </div>
   </div>
 </div>

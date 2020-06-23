@@ -50,6 +50,17 @@ export class BuildingService extends CrudService<BuildingModel, number> {
         page: currentPage, size: size, search: search
       }
     });
-
+  }
+  getBuildingPageSearch(currentPage, size,nameBuildingSearch,taxCodeSearch,phoneSearch,addressSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/buildings/paging`, {
+      params: {
+        page: currentPage,
+        size: size,
+        nameBuilding: nameBuildingSearch,
+        taxCode: taxCodeSearch,
+        phone: phoneSearch,
+        address: addressSearch
+      }
+    });
   }
 }

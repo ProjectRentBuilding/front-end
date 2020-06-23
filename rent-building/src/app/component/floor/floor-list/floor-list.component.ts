@@ -229,9 +229,9 @@ export class FloorListComponent implements OnInit, OnDestroy {
   }
 
   removeFloor(i: number) {
-    if (i === 0) {
-      this.checkAdd = false;
-    }
+    // if (i === 0) {
+    //   this.checkAdd = false;
+    // }
     this.floor.removeAt(i);
   }
 
