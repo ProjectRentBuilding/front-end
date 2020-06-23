@@ -13,6 +13,8 @@ import {CustomersComponent} from './component/customer/customers/customers.compo
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
 import {GroundListComponent} from './component/ground/ground-list/ground-list.component';
 import {EquipmentBuildingComponent} from './component/equipment/equipment-building/equipment-building.component';
+import {ReportsComponent} from "./component/report/reports/reports.component";
+import {ReportListComponent} from "./component/report/report-list/report-list.component";
 
 
 const routes: Routes = [
@@ -65,6 +67,16 @@ const routes: Routes = [
       //   path: 'paging',
       //   component: CustomerListComponent
       // },
+    ]
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent,
+    children: [
+      {
+        path: 'all',
+        component: ReportListComponent
+      }
     ]
   }
 
