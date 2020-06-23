@@ -49,6 +49,8 @@ import {CustomerDetailGroundComponent} from './component/customer/customer-detai
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
 import {ServicesListComponent} from './component/services/services-list/services-list.component';
 import {MatIconModule} from "@angular/material/icon";
+import { ReportsComponent } from './component/report/reports/reports.component';
+import { ReportListComponent } from './component/report/report-list/report-list.component';
 
 
 @NgModule({
@@ -83,6 +85,8 @@ import {MatIconModule} from "@angular/material/icon";
     CustomerAddComponent,
     CustomerDetailGroundComponent,
     EquipmentAddComponent,
+    ReportsComponent,
+    ReportListComponent,
     ServicesListComponent
   ],
     imports: [

@@ -72,6 +72,9 @@ table thead  th,td{
 /*  overflow-x: auto;*/
 /*  white-space: nowrap;*/
 /*}*/
+div div input{
+  margin-left: 5%;
+}
 
 
 

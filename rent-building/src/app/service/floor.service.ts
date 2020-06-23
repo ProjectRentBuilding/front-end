@@ -43,21 +43,7 @@ export class FloorService extends CrudService<FloorModel, number> {
         '</div>'
     });
   }
-  getFloorPageByNameFloor(currentPage, size, search): Observable<any> {
-    return this._http.get<any>(`http://localhost:8080/floors/nameFloor`, {
-      params: {
-        page: currentPage, size: size, search: search
-      }
-    });
-  }
-  getFloorPageByBuildingId(currentPage, size, search): Observable<any> {
-    return this._http.get<any>(`http://localhost:8080/floors/buildingId`, {
-      params: {
-        page: currentPage, size: size, search: search
-      }
-    });
-  }
-  getFloorPageSearch(currentPage, size, nameBuildingSearch, nameFloorSearch, areaSearch, typeFloorSearch): Observable<any> {
+  getFloorPageSearch(currentPage, size, nameBuildingSearch, nameFloorSearch, areaSearch, nameTypeFloorSearch): Observable<any> {
     return this._http.get<any>(`http://localhost:8080/floors/paging`, {
       params: {
         page: currentPage,
@@ -65,7 +51,7 @@ export class FloorService extends CrudService<FloorModel, number> {
         nameBuilding: nameBuildingSearch,
         nameFloor: nameFloorSearch,
         area: areaSearch,
-        nameTypeFloor: typeFloorSearch
+        nameTypeFloor: nameTypeFloorSearch
       }
     });
   }
