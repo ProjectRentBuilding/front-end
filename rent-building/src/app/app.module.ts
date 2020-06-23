@@ -47,6 +47,7 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
+import { ServicesListComponent } from './component/services/services-list/services-list.component';
 import {MatIconModule} from "@angular/material/icon";
 
 
@@ -81,7 +82,8 @@ import {MatIconModule} from "@angular/material/icon";
     EquipmentBuildingComponent,
     CustomerAddComponent,
     CustomerDetailGroundComponent,
-    EquipmentAddComponent
+    EquipmentAddComponent,
+    ServicesListComponent
   ],
     imports: [
         BrowserModule,
@@ -124,8 +126,7 @@ import {MatIconModule} from "@angular/material/icon";
     EquipmentDeleteComponent,
     EquipmentAddComponent,
     ImageGalleryComponent
-
-
+    
   ]
 })
 export class AppModule {
