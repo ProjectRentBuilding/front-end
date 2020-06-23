@@ -12,6 +12,7 @@ import {ContractModel} from "../../../model/contract";
 import {FloorModel} from "../../../model/floor.model";
 import {FloorService} from "../../../service/floor.service";
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -34,12 +35,20 @@ export class GroundListComponent implements OnInit, OnDestroy {
   pageClicked:number=0;
   public searchText="";
 
+  private searchForm: FormGroup;
+  private searchNameFloor = "";
+  private searchCodeGround = "";
+  private searchArea=0;
+  private searchNameTypeGround = "";
+  private message="";
+
   constructor(
     public groundService: GroundService,
     public contractService: ContractService,
     public floorService: FloorService,
     public routerService: Router,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private fb: FormBuilder
   ) {
   }
 
@@ -50,12 +59,18 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.subscription = this.contractService.findAll().subscribe((data: ContractModel[]) => {
       this.contracts = data;
     });
+    this.searchForm = this.fb.group({
+      searchNameFloor: [''],
+      searchCodeGround: [''],
+      searchArea: [''],
+      searchNameTypeGround:['']
+    });
     this.loadData(0);
 
   }
 
   loadData(page) {
-    this.groundService.getGroundPage(page,this.size,this.searchText)
+    this.groundService.getGroundPageSearch(page,this.size,this.searchNameFloor,this.searchCodeGround,this.searchArea,this.searchNameTypeGround)
       .subscribe(
         data=>{
         this.pageClicked=page;
@@ -63,7 +78,13 @@ export class GroundListComponent implements OnInit, OnDestroy {
         this.grounds=this.groundPage.content;
         this.totalPages=this.groundPage.totalPages;
         this.pages=Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+          if (this.grounds.length == 0) {
+            this.message = "Không tìm thấy kết quả nào phù hợp";
+          }else{
+            this.message = "";
+          }
     });
+
   }
   onNext() {
     // tslint:disable-next-line:triple-equals
@@ -169,6 +190,37 @@ export class GroundListComponent implements OnInit, OnDestroy {
       });
     this.redirectTo('grounds');
     this.groundService.showNotification('', 'Xoá tất cả thành công, chúc mừng bạn');
+  }
+  resetForm() {
+    this.searchForm.reset();
+    this.onSearch(0);
+  }
+  onSearch(page) {
+    if (this.searchForm.value.searchNameFloor == null) {
+      this.searchForm.value.searchNameFloor = "";
+      this.searchNameFloor = this.searchForm.value.searchNameFloor;
+    } else {
+      this.searchNameFloor=this.searchForm.value.searchNameFloor;
+    }
+    if (this.searchForm.value.searchCodeGround == null) {
+      this.searchForm.value.searchCodeGround = "";
+      this.searchCodeGround = this.searchForm.value.searchCodeGround;
+    } else {
+      this.searchCodeGround=this.searchForm.value.searchCodeGround;
+    }
+    if (this.searchForm.value.searchArea == "" || this.searchForm.value.searchArea == null) {
+      this.searchForm.value.searchArea = "";
+      this.searchArea = 0;
+    } else {
+      this.searchArea = this.searchForm.value.searchArea;
+    }
+    if (this.searchForm.value.searchNameTypeGround == null) {
+      this.searchForm.value.searchNameTypeGround = "";
+      this.searchNameTypeGround = this.searchForm.value.searchNameTypeGround;
+    } else {
+      this.searchNameTypeGround=this.searchForm.value.searchNameTypeGround;
+    }
+    this.loadData(page);
   }
 }
 
