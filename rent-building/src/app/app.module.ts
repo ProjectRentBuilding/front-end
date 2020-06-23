@@ -47,6 +47,12 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
+import { EmployeeListComponent } from './component/employee/employee-list/employee-list.component';
+import { EmployeeAddComponent } from './component/employee/employee-add/employee-add.component';
+import { EmployeesComponent } from './component/employee/employees/employees.component';
+import { EmployeeDeleteComponent } from './component/employee/employee-delete/employee-delete.component';
+import { EmployeeRegisterComponent } from './component/employee/employee-register/employee-register.component';
+
 
 
 @NgModule({
@@ -80,7 +86,12 @@ import {EquipmentAddComponent} from './component/equipment/equipment-add/equipme
     EquipmentBuildingComponent,
     CustomerAddComponent,
     CustomerDetailGroundComponent,
-    EquipmentAddComponent
+    EquipmentAddComponent,
+    EmployeeListComponent,
+    EmployeeAddComponent,
+    EmployeesComponent,
+    EmployeeDeleteComponent,
+    EmployeeRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -117,13 +128,13 @@ import {EquipmentAddComponent} from './component/equipment/equipment-add/equipme
     GroundEditComponent,
     GroundDetailComponent,
     CustomerDeleteComponent,
+    EmployeeDeleteComponent,
     CustomerAddComponent,
     CustomerDetailGroundComponent,
     EquipmentDeleteComponent,
     EquipmentAddComponent,
-    ImageGalleryComponent
-
-
+    ImageGalleryComponent,
+    EmployeeRegisterComponent
   ]
 })
 export class AppModule {

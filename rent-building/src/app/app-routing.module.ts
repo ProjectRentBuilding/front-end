@@ -13,6 +13,8 @@ import {CustomersComponent} from './component/customer/customers/customers.compo
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
 import {GroundListComponent} from './component/ground/ground-list/ground-list.component';
 import {EquipmentBuildingComponent} from './component/equipment/equipment-building/equipment-building.component';
+import {EmployeesComponent} from './component/employee/employees/employees.component';
+import {EmployeeListComponent} from './component/employee/employee-list/employee-list.component';
 
 
 const routes: Routes = [
@@ -61,6 +63,20 @@ const routes: Routes = [
         path: '',
         component: CustomerListComponent,
       },
+      // {
+      //   path: 'paging',
+      //   component: CustomerListComponent
+      // },
+    ]
+  },
+  {
+    path: 'employees',
+    component: EmployeesComponent,
+    children: [
+      {
+        path: '',
+        component: EmployeeListComponent,
+      }
       // {
       //   path: 'paging',
       //   component: CustomerListComponent
