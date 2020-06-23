@@ -197,8 +197,8 @@ export class ContractAddComponent implements OnInit {
 
   openDialogAddNewCustomer() {
     const dialogRef = this.dialog.open(CustomerAddComponent, {
-      width: '65%',
-      height: '540px',
+      width: '40%',
+      height: '80%',
       disableClose: false,
     });
 
