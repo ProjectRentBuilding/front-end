@@ -1,41 +1,41 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH BÁO CÁO</h3>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 ">
+      <form>
+        <table class="table table-bordered bg-light text-center table-striped">
+          <thead class="thead-dark">
+          <tr class="text-muted">
+            <th style="font-weight: bold">ID</th>
+            <th style="font-weight: bold">Tên Mặt Bằng</th>
+            <th style="font-weight: bold">Tên Tổng Tiền</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let report of reports   ;let i  = index">
+            <td >{{(i+1)}}</td>
+            <!--                  <td >{{(i+1)+(page-1)*5}}</td>-->
+            <!--      <td>{{contract.id}}</td>-->
+            <td style="text-align: center">{{report.codeGroundCal}}</td>
+            <td>{{report.totalCal|number}}</td>
+          </tr>
+          <tr>
+            <th colspan="2">Tổng tiền</th>
+            <th >{{totalMoney|number}}</th>
+          </tr>
+          </tbody>
+        </table>
 
-<div class="row col-md-12 mt-5">
+      </form>
+    </div>
 
-
-<form>
-  <table class="table table-bordered bg-light text-center table-striped">
-    <thead class="thead-dark">
-    <tr class="text-muted">
-      <th style="font-weight: bold">ID</th>
-      <th style="font-weight: bold">Tên Mặt Bằng</th>
-      <th style="font-weight: bold">Tên Tổng Tiền</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr
-      *ngFor="let report of reports   ;let i  = index">
-                  <td >{{(i+1)}}</td>
-<!--                  <td >{{(i+1)+(page-1)*5}}</td>-->
-<!--      <td>{{contract.id}}</td>-->
-      <td style="text-align: center">{{report.codeGroundCal}}</td>
-      <td>{{report.totalCal}}</td>
-    </tr>
-    </tbody>
-  </table>
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="col-md-9">
+      <canvas id="chart" width="600" height="600"></canvas>
+    </div>
+  </div>
+</div>
 
 
