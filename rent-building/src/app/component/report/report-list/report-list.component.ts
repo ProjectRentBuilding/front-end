@@ -5,6 +5,7 @@ import {FormBuilder} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {ReportService} from "../../../service/report.service";
 import {ReportModel} from "../../../model/report.model";
+import {Chart} from "node_modules/chart.js"
 
 @Component({
   selector: 'app-report-list',
@@ -14,6 +15,7 @@ import {ReportModel} from "../../../model/report.model";
 export class ReportListComponent implements OnInit {
   public report: ReportModel;
   public reports: ReportModel[] = [];
+  public totalMoney = 0;
 
   constructor(
     public reportService: ReportService,
@@ -28,35 +30,50 @@ export class ReportListComponent implements OnInit {
         this.reports = data;
       }, () => {
       }, () => {
+        const xlable = [];
+        const ylable = [];
 
-      // let chart = new CanvasJS.Chart("chartContainer", {
-      //   animationEnabled: true,
-      //   exportEnabled: true,
-      //   title: {
-      //     text: "Basic Column Chart in Angular"
-      //   },
-      //   data: [{
-      //     type: "column",
-      //     dataPoints: [
-      //       { y: 71, label: "Apple" },
-      //       { y: 55, label: "Mango" },
-      //       { y: 50, label: "Orange" },
-      //       { y: 65, label: "Banana" },
-      //       { y: 95, label: "Pineapple" },
-      //       { y: 68, label: "Pears" },
-      //       { y: 28, label: "Grapes" },
-      //       { y: 34, label: "Lychee" },
-      //       { y: 14, label: "Jackfruit" }
-      //     ]
-      //   }]
-      // });
-      //
-      // chart.render();
+        for (let i = 0; i < this.reports.length; i++) {
+          this.totalMoney += this.reports[i].totalCal;
+          xlable.push(this.reports[i].codeGroundCal);
+          ylable.push(this.reports[i].totalCal)
+        }
+        console.log(xlable);
+
+        console.log(this.reports);
+
+
+        const canvas = <HTMLCanvasElement>document.getElementById("chart");
+        const ctx = canvas.getContext('2d');
+
+
+        const myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: xlable,
+            datasets: [{
+              label: 'Biểu đồ báo cáo tổng hợp',
+              data: ylable,
+              backgroundColor:
+                'rgba(255, 99, 132, 0.2)',
+              borderColor:
+                'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero: true
+                }
+              }]
+            }
+          }
+        });
+
 
       }
     );
-
-
   }
-
 }
