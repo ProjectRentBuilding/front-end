@@ -24,8 +24,10 @@ export class AppComponent {
       this.tab = 'tab4';
     } else if (check === 5) {
       this.tab = 'tab5';
-    } else {
+    } else if (check === 6){
       this.tab = 'tab6';
+    } else {
+      this.tab = 'tab7';
     }
 
   }
