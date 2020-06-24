@@ -48,16 +48,18 @@
   </div>
 </div>
 <div class="row">
-  <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button></span>
+  <span style="margin-right: 1%;margin-left: 1%"><button (click)="openDialogAddNew()" class="btn btn-success px-2 py-2">Thêm mới</button></span>
+  <span><button class="btn btn-danger  px-2 py-2 " (click)="deleteAll()">Xoá tất cả</button></span>
   <div class="dropdown open col-md-2">
-    <button class="btn btn-dark dropdown-toggle" type="button"
+    <button class="btn btn-dark px-2 py-2 dropdown-toggle" type="button"
             id="triggerId" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
       Tên tầng
     </button>
     <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px">
       <a class="dropdown-item" *ngFor="let floor of floors"
-         (click)="searchType(floor.nameFloor)"><span style="color: red">{{floor.nameFloor}}</span><br>{{floor.building.fullName}}</a>
+         (click)="searchType(floor.nameFloor)"><span
+        style="color: red">{{floor.nameFloor}}</span><br>{{floor.building.fullName}}</a>
     </div>
   </div>
 </div>
@@ -114,10 +116,6 @@
   </tbody>
 
 </table>
-
-<button (click)="openDialogAddNew()" class="btn btn-success px-2 py-2">
-  Thêm mới
-</button>
 
 <nav aria-label="Page navigation example" *ngIf="grounds.length!=0 && totalPages>1">
   <ul class="pagination justify-content-md-center">

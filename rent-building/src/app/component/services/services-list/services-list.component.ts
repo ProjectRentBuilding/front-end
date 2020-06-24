@@ -11,7 +11,6 @@ import {FloorModel} from "../../../model/floor.model";
 import {ServicesDetailComponent} from "../services-detail/services-detail.component";
 import {ServicesEditComponent} from "../services-edit/services-edit.component";
 import {ServicesAddComponent} from "../services-add/services-add.component";
-import {GroundDeleteComponent} from "../../ground/ground-delete/ground-delete.component";
 import {ServicesDeleteComponent} from "../services-delete/services-delete.component";
 
 
@@ -31,7 +30,6 @@ export class ServicesListComponent implements OnInit, OnDestroy {
     private groundService: GroundService,
     private floorService: FloorService,
     private dialog: MatDialog,
-    private router: Router
   ) { }
 
   ngOnInit() {
@@ -57,14 +55,14 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   }
 
   openDialogDetail(id): void {
-    this.servicesService.findOne(id).subscribe(dataOfEquipment => {
+    this.servicesService.findOne(id).subscribe(dataOfServiceModel => {
       const dialogRef = this.dialog.open(ServicesDetailComponent, {
         width: '500px',
-        data: {data1: dataOfEquipment},
+        data: {data1: dataOfServiceModel},
         disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        this.ngOnInit();
       });
     });
   }
@@ -83,24 +81,24 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   }
 
   openDialogEdit(id): void {
-    this.servicesService.findOne(id).subscribe(dataOfEquipment => {
+    this.servicesService.findOne(id).subscribe(dataOfServiceModel => {
       const dialogRef = this.dialog.open(ServicesEditComponent, {
         width: '65%',
         height: '600px',
-        data: {data1: dataOfEquipment},
+        data: {data1: dataOfServiceModel},
         disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        this.ngOnInit();
       });
     });
   }
   openDialogDelete(id): void {
-    this.groundService.findOne(id).subscribe(dataOfGroundModel => {
+    this.servicesService.findOne(id).subscribe(dataOfServiceModel => {
       const dialogRef = this.dialog.open(ServicesDeleteComponent, {
         width: '35%',
         height: '250px',
-        data: {data1: dataOfGroundModel},
+        data: {data1: dataOfServiceModel},
         disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {

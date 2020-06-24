@@ -140,12 +140,12 @@
         </td>
         <td *ngIf="!checkEdit || item.id!==flag">
           <button class="btn btn-warning" (click)="checkEditFloor(item.id)">
-            <i class="material-icons" data-toggle="tooltip" title="Sửa">&#xE254;</i>
+            Sửa
           </button>
         </td>
         <td *ngIf="!checkEdit || item.id!==flag">
           <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
-            <i class="material-icons" data-toggle="tooltip" title="Xóa">&#xE872;</i>
+            Xóa
           </button>
         </td>
         <td *ngIf="checkEdit && item.id===flag">

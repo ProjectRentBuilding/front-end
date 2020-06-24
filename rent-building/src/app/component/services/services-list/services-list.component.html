@@ -7,6 +7,7 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH DỊCH VỤ</h3>
 
+<button class="btn btn-success px-2 py-2"  (click)="openDialogAddNew()">Thêm mới</button>
 <div>
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
@@ -24,7 +25,7 @@
       <td>{{service.price}}</td>
       <td>
         <button class="btn btn-primary" type="button" (click)="openDialogDetail(service.id)" >
-          Chi tiết
+          Xem
         </button>
       </td>
       <td>
@@ -41,4 +42,4 @@
     </thead>
   </table>
 </div>
-<button type="button" (click)="openDialogAddNew()">Thêm mới</button>
+
