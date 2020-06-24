@@ -51,6 +51,10 @@ import {ServicesListComponent} from './component/services/services-list/services
 import {MatIconModule} from "@angular/material/icon";
 import { ReportsComponent } from './component/report/reports/reports.component';
 import { ReportListComponent } from './component/report/report-list/report-list.component';
+import { ServicesDetailComponent } from './component/services/services-detail/services-detail.component';
+import { ServicesAddComponent } from './component/services/services-add/services-add.component';
+import { ServicesEditComponent } from './component/services/services-edit/services-edit.component';
+import { ServicesDeleteComponent } from './component/services/services-delete/services-delete.component';
 
 
 @NgModule({
@@ -87,7 +91,11 @@ import { ReportListComponent } from './component/report/report-list/report-list.
     EquipmentAddComponent,
     ReportsComponent,
     ReportListComponent,
-    ServicesListComponent
+    ServicesListComponent,
+    ServicesDetailComponent,
+    ServicesAddComponent,
+    ServicesEditComponent,
+    ServicesDeleteComponent
   ],
     imports: [
         BrowserModule,
@@ -130,7 +138,11 @@ import { ReportListComponent } from './component/report/report-list/report-list.
     EquipmentDeleteComponent,
     EquipmentAddComponent,
     ImageGalleryComponent,
-    ServicesListComponent
+    ServicesListComponent,
+    ServicesDetailComponent,
+    ServicesAddComponent,
+    ServicesEditComponent,
+    ServicesDeleteComponent
 
   ]
 })

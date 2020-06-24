@@ -8,6 +8,10 @@ import {GroundModel} from "../../../model/ground.model";
 import {Subscription} from "rxjs";
 import {FloorService} from "../../../service/floor.service";
 import {FloorModel} from "../../../model/floor.model";
+import {ServicesDetailComponent} from "../services-detail/services-detail.component";
+import {ServicesEditComponent} from "../services-edit/services-edit.component";
+import {ServicesAddComponent} from "../services-add/services-add.component";
+
 
 @Component({
   selector: 'app-services-list',
@@ -29,7 +33,6 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    // alert("hello");
     this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
       this.servicesModel = data;
       console.log(this.servicesModel);
@@ -51,4 +54,42 @@ export class ServicesListComponent implements OnInit, OnDestroy {
     }
   }
 
+  openDialogDetail(id): void {
+    this.servicesService.findOne(id).subscribe(dataOfEquipment => {
+      const dialogRef = this.dialog.open(ServicesDetailComponent, {
+        width: '500px',
+        data: {data1: dataOfEquipment},
+        disableClose: false,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    });
+  }
+
+  openDialogAddNew(): void {
+    const dialogRef = this.dialog.open(ServicesAddComponent, {
+      width: '65%',
+      height: '540px',
+      disableClose: false,
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
+  }
+
+  openDialogEdit(id): void {
+    this.servicesService.findOne(id).subscribe(dataOfEquipment => {
+      const dialogRef = this.dialog.open(ServicesEditComponent, {
+        width: '500px',
+        data: {data1: dataOfEquipment},
+        disableClose: false,
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    });
+  }
 }

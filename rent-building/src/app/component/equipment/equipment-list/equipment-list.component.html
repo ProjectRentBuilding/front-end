@@ -164,11 +164,11 @@
             Sửa
           </button>
         </td>
-        <td *ngIf="!checkEdit || equipment.id!==flag">
-          <button class="btn btn-danger" type="button" (click)="openDialogDelete(equipment.id)">
-           Xoá
-          </button>
-        </td>
+          <td *ngIf="!checkEdit || equipment.id!==flag">
+            <button class="btn btn-danger" type="button" (click)="openDialogDelete(equipment.id)">
+              Xoá
+            </button>
+          </td>
         <td *ngIf="checkEdit && equipment.id===flag">
           <button class="btn btn-primary" type="button" (click)="editEquipment()" [disabled]="formEditEquipment.invalid">
            Lưu
