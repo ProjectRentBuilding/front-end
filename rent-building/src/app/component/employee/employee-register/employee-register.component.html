@@ -1,0 +1,15 @@
+<h2>Đăng kí tài khoản</h2>
+<form action="" [formGroup]="addUserBuildingForm">
+<label for="">Tên tài khoản</label>
+<input type="text" class="form-control" formControlName="username">
+  <p class=" text-danger" role="alert" *ngIf="addUserBuildingForm.get('username').hasError('required')
+       && addUserBuildingForm.get('username').touched">username không được để trống !!!
+  </p>
+<label for="" class="mt-3" >Mật khẩu</label>
+<input type="text" class="form-control"  formControlName="passwordUser">
+  <p class=" text-danger" role="alert" *ngIf="addUserBuildingForm.get('passwordUser').hasError('required')
+       && addUserBuildingForm.get('passwordUser').touched">passwordUser không được để trống !!!
+  </p>
+<button class="btn btn-primary mt-2" mat-dialog-close (click)="onAddUserBuilding()" >Tạo</button>
+</form>
+

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ContractService} from "../../../service/contract.service";
-import {MatDialog} from "@angular/material/dialog";
-import {FormBuilder} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
-import {ReportService} from "../../../service/report.service";
-import {ReportModel} from "../../../model/report.model";
-import {Chart} from "node_modules/chart.js"
-import * as html2pdf from "html2pdf.js";
+import {ContractService} from '../../../service/contract.service';
+import {MatDialog} from '@angular/material/dialog';
+import {FormBuilder} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {ReportService} from '../../../service/report.service';
+import {ReportModel} from '../../../model/report.model';
+import {Chart} from 'node_modules/chart.js';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-report-list',
@@ -37,14 +37,14 @@ export class ReportListComponent implements OnInit {
         for (let i = 0; i < this.reports.length; i++) {
           this.totalMoney += this.reports[i].totalCal;
           xlable.push(this.reports[i].codeGroundCal);
-          ylable.push(this.reports[i].totalCal)
+          ylable.push(this.reports[i].totalCal);
         }
         console.log(xlable);
 
         console.log(this.reports);
 
 
-        const canvas = <HTMLCanvasElement>document.getElementById("chart");
+        const canvas = <HTMLCanvasElement> document.getElementById('chart');
         const ctx = canvas.getContext('2d');
 
 

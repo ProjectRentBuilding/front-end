@@ -47,8 +47,14 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
+
+import { EmployeeListComponent } from './component/employee/employee-list/employee-list.component';
+import { EmployeeAddComponent } from './component/employee/employee-add/employee-add.component';
+import { EmployeesComponent } from './component/employee/employees/employees.component';
+import { EmployeeDeleteComponent } from './component/employee/employee-delete/employee-delete.component';
+import { EmployeeRegisterComponent } from './component/employee/employee-register/employee-register.component';
 import {ServicesListComponent} from './component/services/services-list/services-list.component';
-import {MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from '@angular/material/icon';
 import { ReportsComponent } from './component/report/reports/reports.component';
 import { ReportListComponent } from './component/report/report-list/report-list.component';
 import { ServicesDetailComponent } from './component/services/services-detail/services-detail.component';
@@ -89,6 +95,11 @@ import { ServicesDeleteComponent } from './component/services/services-delete/se
     CustomerAddComponent,
     CustomerDetailGroundComponent,
     EquipmentAddComponent,
+    EmployeeListComponent,
+    EmployeeAddComponent,
+    EmployeesComponent,
+    EmployeeDeleteComponent,
+    EmployeeRegisterComponent,
     ReportsComponent,
     ReportListComponent,
     ServicesListComponent,
@@ -133,6 +144,7 @@ import { ServicesDeleteComponent } from './component/services/services-delete/se
     GroundEditComponent,
     GroundDetailComponent,
     CustomerDeleteComponent,
+    EmployeeDeleteComponent,
     CustomerAddComponent,
     CustomerDetailGroundComponent,
     EquipmentDeleteComponent,
@@ -142,8 +154,8 @@ import { ServicesDeleteComponent } from './component/services/services-delete/se
     ServicesDetailComponent,
     ServicesAddComponent,
     ServicesEditComponent,
-    ServicesDeleteComponent
-
+    ServicesDeleteComponent,
+    EmployeeRegisterComponent
   ]
 })
 export class AppModule {

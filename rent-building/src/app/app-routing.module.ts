@@ -13,76 +13,93 @@ import {CustomersComponent} from './component/customer/customers/customers.compo
 import {EquipmentListComponent} from './component/equipment/equipment-list/equipment-list.component';
 import {GroundListComponent} from './component/ground/ground-list/ground-list.component';
 import {EquipmentBuildingComponent} from './component/equipment/equipment-building/equipment-building.component';
-import {ServicesListComponent} from "./component/services/services-list/services-list.component";
-import {ReportsComponent} from "./component/report/reports/reports.component";
-import {ReportListComponent} from "./component/report/report-list/report-list.component";
+import {EmployeesComponent} from './component/employee/employees/employees.component';
+import {EmployeeListComponent} from './component/employee/employee-list/employee-list.component';
+import {ServicesListComponent} from './component/services/services-list/services-list.component';
+import {ReportsComponent} from './component/report/reports/reports.component';
+import {ReportListComponent} from './component/report/report-list/report-list.component';
 
 
 const routes: Routes = [
-  {path: 'equipments', component: EquipmentListComponent},
-  {path: 'services', component: ServicesListComponent},
-  {path: 'equipments-building', component: EquipmentBuildingComponent},
-  {
-    path: 'buildings',
-    component: BuildingListComponent,
-  },
-  {
-    path: 'floors',
-    component: FloorListComponent,
-  },
-  {
-    path: 'grounds',
-    component: GroundListComponent,
-  },
-  {path: '', component: HomeComponent},
-  {
-    path: 'contracts',
-    component: ContractsComponent,
-    children: [
-      {
-        path: 'paging',
-        component: ContractListComponent
-      },
-      {
-        path: ':id/edit',
-        component: ContractEditComponent
-      },
-      {
-        path: 'add',
-        component: ContractAddComponent
-      },
-      {
-        path: ':id/detail',
-        component: ContractDetailComponent
-      }
-    ]
-  },
-  {
-    path: 'customers',
-    component: CustomersComponent,
-    children: [
-      {
-        path: '',
-        component: CustomerListComponent,
-      },
-      // {
-      //   path: 'paging',
-      //   component: CustomerListComponent
-      // },
-    ]
-  },
-  {
-    path: 'reports',
-    component: ReportsComponent,
-    children: [
-      {
-        path: 'all',
-        component: ReportListComponent
-      }
-    ]
-  }
+    {path: 'equipments', component: EquipmentListComponent},
+    {path: 'services', component: ServicesListComponent},
+    {path: 'equipments-building', component: EquipmentBuildingComponent},
+    {
+      path: 'buildings',
+      component: BuildingListComponent,
+    },
+    {
+      path: 'floors',
+      component: FloorListComponent,
+    },
+    {
+      path: 'grounds',
+      component: GroundListComponent,
+    },
+    {path: '', component: HomeComponent},
+    {
+      path: 'contracts',
+      component: ContractsComponent,
+      children: [
+        {
+          path: 'paging',
+          component: ContractListComponent
+        },
+        {
+          path: ':id/edit',
+          component: ContractEditComponent
+        },
+        {
+          path: 'add',
+          component: ContractAddComponent
+        },
+        {
+          path: ':id/detail',
+          component: ContractDetailComponent
+        }
+      ]
+    },
+    {
+      path: 'customers',
+      component: CustomersComponent,
+      children: [
+        {
+          path: '',
+          component: CustomerListComponent,
+        },
+        // {
+        //   path: 'paging',
+        //   component: CustomerListComponent
+        // },
+      ]
+    },
+    {
 
-];
+      path: 'employees',
+      component: EmployeesComponent,
+      children: [
+        {
+          path: '',
+          component: EmployeeListComponent,
+        }
+        // {
+        //   path: 'paging',
+        //   component: CustomerListComponent
+        // },
+      ]
+    },
+    {
+      path: 'reports',
+      component: ReportsComponent,
+      children: [
+        {
+          path: 'all',
+          component: ReportListComponent
+        }
+
+      ]
+    }
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
