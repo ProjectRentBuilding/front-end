@@ -47,8 +47,14 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
+
+import { EmployeeListComponent } from './component/employee/employee-list/employee-list.component';
+import { EmployeeAddComponent } from './component/employee/employee-add/employee-add.component';
+import { EmployeesComponent } from './component/employee/employees/employees.component';
+import { EmployeeDeleteComponent } from './component/employee/employee-delete/employee-delete.component';
+import { EmployeeRegisterComponent } from './component/employee/employee-register/employee-register.component';
 import {ServicesListComponent} from './component/services/services-list/services-list.component';
-import {MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from '@angular/material/icon';
 import { ReportsComponent } from './component/report/reports/reports.component';
 import { ReportListComponent } from './component/report/report-list/report-list.component';
 
@@ -85,6 +91,11 @@ import { ReportListComponent } from './component/report/report-list/report-list.
     CustomerAddComponent,
     CustomerDetailGroundComponent,
     EquipmentAddComponent,
+    EmployeeListComponent,
+    EmployeeAddComponent,
+    EmployeesComponent,
+    EmployeeDeleteComponent,
+    EmployeeRegisterComponent,
     ReportsComponent,
     ReportListComponent,
     ServicesListComponent
@@ -125,13 +136,14 @@ import { ReportListComponent } from './component/report/report-list/report-list.
     GroundEditComponent,
     GroundDetailComponent,
     CustomerDeleteComponent,
+    EmployeeDeleteComponent,
     CustomerAddComponent,
     CustomerDetailGroundComponent,
     EquipmentDeleteComponent,
     EquipmentAddComponent,
     ImageGalleryComponent,
+    EmployeeRegisterComponent,
     ServicesListComponent
-
   ]
 })
 export class AppModule {

@@ -5,5 +5,10 @@ export class EmployeeModel {
   public idCard: string;
   public address: string;
   public email: string;
-  public phone: number;
+  public phone: string;
+  public gender: string;
+  public levelSalary: string;
+  public part: string;
+  public startWord: string;
+  public userBuilding: any;
 }
