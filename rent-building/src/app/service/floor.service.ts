@@ -43,14 +43,17 @@ export class FloorService extends CrudService<FloorModel, number> {
         '</div>'
     });
   }
-  getFloorPage(currentPage, size, search): Observable<any> {
+  getFloorPageSearch(currentPage, size, nameBuildingSearch, nameFloorSearch, areaSearch, nameTypeFloorSearch): Observable<any> {
     return this._http.get<any>(`http://localhost:8080/floors/paging`, {
       params: {
-        page: currentPage, size: size, search: search
+        page: currentPage,
+        size: size,
+        nameBuilding: nameBuildingSearch,
+        nameFloor: nameFloorSearch,
+        area: areaSearch,
+        nameTypeFloor: nameTypeFloorSearch
       }
     });
-
   }
-
 }
 

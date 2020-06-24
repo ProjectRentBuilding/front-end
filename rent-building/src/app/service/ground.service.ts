@@ -51,5 +51,17 @@ export class GroundService extends CrudService<GroundModel, number> {
       }
     });
   }
+  getGroundPageSearch(currentPage, size, nameFloorSearch, codeGroundSearch, areaSearch, nameTypeGroundSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/grounds/paging`, {
+      params: {
+        page: currentPage,
+        size: size,
+        nameFloor: nameFloorSearch,
+        codeGround: codeGroundSearch,
+        area: areaSearch,
+        nameTypeGround: nameTypeGroundSearch
+      }
+    });
+  }
 }
 

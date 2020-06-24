@@ -63,7 +63,7 @@ export class EquipmentAddComponent implements OnInit, OnDestroy {
   }
 
   clearFilters() {
-    this.ngOnInit();
+    this.dialogRef.close();
   }
 
   ngOnDestroy() {

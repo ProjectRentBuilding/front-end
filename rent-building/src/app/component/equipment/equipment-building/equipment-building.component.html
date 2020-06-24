@@ -9,17 +9,7 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ CỦA TOÀ NHÀ</h3>
 <div class="row">
-  <div class="dropdown open col-md-2">
-    <button class="btn btn-dark" type="button"
-            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-     Tên Toà Nhà
-    </button>
-    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">
-      <a class="dropdown-item" *ngFor="let building of buildings"  (click)="searchType(building.fullName)">{{building.fullName}}</a>
-    </div>
-  </div>
-  <div class="col-md-2"><button class="btn btn-dark" [routerLink]="['/equipments/']">Trang thiết bị</button></div>
+  <div class="col-md-4 mb-1"><button class="btn btn-dark" [routerLink]="['/equipments/']">Xem trang thiết bị theo mặt bằng</button></div>
 </div>
 <ng-container>
   <form>
@@ -29,8 +19,6 @@
         <th style="width: 140px">Loại (<span style="color: red">*</span>)</th>
         <th>Tên thiết bị (<span style="color: red">*</span>)</th>
         <th>Số lượng (<span style="color: red">*</span>)</th>
-        <th>Số lượng hỏng (<span style="color: red">*</span>)</th>
-        <th>Ghi chú</th>
         <th>Mã mặt bằng (<span style="color: red">*</span>)</th>
         <th>Mã Tầng</th>
         <th>Tên toà nhà</th>
@@ -50,12 +38,6 @@
         </td>
         <td >
           {{equipment.amount}}
-        </td>
-        <td >
-          {{equipment.amountOfBroken}}
-        </td>
-        <td>
-          {{equipment.note}}
         </td>
         <td>
           {{equipment.ground.codeGround}}

@@ -1,65 +1,80 @@
-<ng-container>
-<div class="row col-md-12 mt-5">
-  <div class="col-md-10">
-    <form [formGroup]="searchForm" action="/paging">
-      <div class="row">
-        <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên thiết bị" formControlName="nameEquipmentSearch">
-        </div>
-        <div class="col-md-3">
-          <input type="number" class="form-control search-input" placeholder="Tìm kiếm theo số lượng" formControlName="amountSearch">
-        </div>
-        <div class="col-md-3">
-          <label>
-            <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo mã mặt bằng"
-                   formControlName="codeGroundSearch" list="grounds" name="grounds">
-          </label>
-          <datalist id="grounds">
-            <option *ngFor="let ground of grounds" [value]="ground.codeGround"></option>
-          </datalist>
-        </div>
-        <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo loại thiết bị"
-                 formControlName="typeEquipmentSearch" list="types">
-          <datalist id="types">
-            <option *ngFor="let type of typeEquipment" [value]="type.nameType"></option>
-          </datalist>
-        </div>
-      </div>
-<!--      <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin theo mã mặt bằng" formControlName="codeGroundSearch">-->
-<!--      <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin theo loại thiết bị" formControlName="typeEquipmentSearch">-->
-    </form>
-  </div>
-  <div class="col-md-2">
-    <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
-      <i class="fa fa-search text-danger"></i>
-    </button>
+
+<div class="col-md-5 mt-5">
+  <div class="input-group">
+    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin " [(ngModel)]="searchText">
+    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
   </div>
 </div>
-</ng-container>
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ THEO MẶT BẰNG</h3>
-<ng-container>
-  <button class="btn btn-success" (click)="openDialogAddNew()">Thêm Mới</button>
-</ng-container>
 
-<div class="row">
-  <div class="dropdown open col-md-2">
-    <button class="btn btn-dark dropdown-toggle" type="button"
-            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-     Mã mặt bằng
-    </button>
-    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">
-      <a class="dropdown-item" *ngFor="let ground of grounds"
-         (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ CỦA MẶT BẰNG</h3>
+
+<ng-container>
+  <div class="row col-md-12 mt-5">
+    <div class="col-md-10">
+      <form [formGroup]="searchForm" action="/paging">
+        <div class="row">
+          <div class="col-md-3">
+            <label>
+              <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo loại thiết bị"
+                     formControlName="searchTypeEquipment" list="types">
+            </label>
+            <datalist id="types" >
+              <option *ngFor="let type of typeEquipment" [value]="type.nameType"></option>
+            </datalist>
+          </div>
+          <div class="col-md-3">
+            <label>
+              <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên thiết bị" formControlName="searchNameEquipment">
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label>
+              <input type="number" class="form-control search-input" placeholder="Số lượng >= x" formControlName="searchAmount" min="0">
+            </label>
+          </div>
+          <div class="col-md-3">
+            <label>
+              <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo mã mặt bằng"
+                     formControlName="searchCodeGround" list="grounds" name="grounds">
+            </label>
+            <datalist id="grounds">
+              <option *ngFor="let ground of grounds" [value]="ground.codeGround"></option>
+            </datalist>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-2">
+      <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
+        <i class="fa fa-search"></i>
+      </button>
+      <button (click)="resetForm()" class="btn btn-secondary search-button" style="margin-left: 10px"><i class="fa fa-refresh" aria-hidden="true"></i></button>
     </div>
   </div>
-  <div class="col-md-2">
-    <button class="btn btn-dark" [routerLink]="['/equipments-building/']">
-      Toà nhà
-    </button>
-  </div>
-</div>
+</ng-container>
+
+<ng-container>
+  <button class="btn btn-success mb-1" (click)="openDialogAddNew()">Thêm Mới</button>
+</ng-container>
+
+<!--<div class="row">-->
+<!--  <div class="dropdown open col-md-2">-->
+<!--    <button class="btn btn-dark dropdown-toggle" type="button"-->
+<!--            id="triggerId" data-toggle="dropdown" aria-haspopup="true"-->
+<!--            aria-expanded="false">-->
+<!--     Mã mặt bằng-->
+<!--    </button>-->
+<!--    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">-->
+<!--      <a class="dropdown-item" *ngFor="let ground of grounds"-->
+<!--         (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="col-md-3">-->
+<!--    <button class="btn btn-dark" [routerLink]="['/equipments-building/']">-->
+<!--      Thiết bị của toà nhà-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
 
 <ng-container>
   <form action="" [formGroup]="formEditEquipment"  *ngIf="formEditEquipment">
@@ -77,7 +92,11 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let i = index;let equipment of equipmentModel">
+<!--      <tr *ngFor="let i = index;let equipment of equipmentModel | filter: searchAll | paginate:{id:'listing_pagination',-->
+<!--                                                                            itemsPerPage:5,-->
+<!--                                                                            currentPage:page-->
+<!--                                                                           }; ">-->
+        <tr *ngFor="let i = index;let equipment of equipmentModel | filter: searchText ">
 <!--        <td>{{(i + 1) + (page - 1) * 5}}</td>-->
         <td *ngIf="!checkEdit ||  equipment.id!==flag">
           {{equipment.typeEquipment.nameType}}
@@ -151,7 +170,7 @@
           </button>
         </td>
         <td *ngIf="checkEdit && equipment.id===flag">
-          <button class="btn btn-primary" type="button" (click)="editEquipment()">
+          <button class="btn btn-primary" type="button" (click)="editEquipment()" [disabled]="formEditEquipment.invalid">
            Lưu
           </button>
         </td>
@@ -165,7 +184,7 @@
     </table>
   </form>
 </ng-container>
-
+<div *ngIf="equipmentModel.length == 0" style="color: red; text-align: center; font-size: 22px"> Không tìm thấy kết quả phù hợp !</div>
 <ng-container *ngIf="checkAdd">
   <form action="" [formGroup]="formAddNewEquipment" *ngIf="formAddNewEquipment">
       <tbody class="border" formArrayName="equipment"
@@ -176,44 +195,27 @@
             <option>Vui lòng chọn:</option>
             <option *ngFor="let type of typeEquipment,let i=index" [value]="type.id">{{i+1}}.{{type.nameType}}</option>
           </select>
-          <p class="text-danger"
-             *ngIf="equipment.get('typeEquipmentId').invalid && equipment.get('typeEquipmentId').touched">
-            Loại không được để trống!
-          </p>
         </td>
         <td>
-          <input type="text" class="form-control" formControlName="nameEquipment" required>
-          <p class="text-danger"
-             *ngIf="equipment.get('nameEquipment').invalid && equipment.get('nameEquipment').touched">
-            Tên thiết bị không được để trống!
-          </p>
+          <input type="text" class="form-control" formControlName="nameEquipment" required placeholder="Tên thiết bị">
+
         </td>
         <td>
-          <input type="text" class="form-control" formControlName="amount" required>
-          <p class="text-danger"
-             *ngIf="equipment.get('amount').invalid && equipment.get('amount').touched">
-            Số lượng phải là số và không được để trống!
-          </p>
+          <input type="text" class="form-control" formControlName="amount" required placeholder="Số lượng">
+
         </td>
         <td hidden>
           <input type="number" class="form-control" formControlName="amountOfBroken" value="0" >
         </td>
         <td>
-          <input type="text" class="form-control" formControlName="note">
-          <p class="text-danger"
-             *ngIf="equipment.get('note').invalid && equipment.get('note').touched">
-            Ghi chú không được để trống!
-          </p>
+          <input type="text" class="form-control" formControlName="note" placeholder="Ghi chú">
         </td>
         <td>
-          <select class="form-control" formControlName="groundId" style="width:120px;">
+          <select class="form-control" formControlName="groundId" style="width:150px;">
             <option>Vui lòng chọn:</option>
             <option *ngFor="let ground of grounds,let i=index" [value]="ground.id">{{i+1}}.{{ground.codeGround}}</option>
           </select>
-          <p class="text-danger"
-             *ngIf="equipment.get('groundId').invalid && equipment.get('groundId').touched">
-            Mã mặt bằng không được để trống!
-          </p>
+
         </td>
         <td>
           <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">
@@ -221,19 +223,55 @@
           </button>
         </td>
       </tr>
+      <tr>
+        <td>
+          <p class="text-danger"
+             *ngIf="equipment.get('typeEquipmentId').invalid && equipment.get('typeEquipmentId').touched">
+            Loại không được để trống!
+          </p>
+        </td>
+        <td>
+          <p class="text-danger"
+             *ngIf="equipment.get('nameEquipment').invalid && equipment.get('nameEquipment').touched">
+            Tên thiết bị không được để trống!
+          </p>
+        </td>
+        <td>
+          <p class="text-danger"
+             *ngIf="equipment.get('amount').invalid && equipment.get('amount').touched">
+            Số lượng phải là số và không được để trống!
+          </p>
+        </td>
+        <td>
+
+        </td>
+        <td>
+          <p class="text-danger"
+             *ngIf="equipment.get('groundId').invalid && equipment.get('groundId').touched">
+            Mã mặt bằng không được để trống!
+          </p>
+        </td>
+      </tr>
       </tbody>
   </form>
 
 </ng-container>
 
-<button style="position: absolute;left: 88%;" class="btn btn-info" (click)="addNewEquipment()" *ngIf="checkAdd" [disabled]="formAddNewEquipment.invalid">
-  Lưu
-</button>
-<button style="position: absolute;left: 93%;" class="btn btn-success" (click)="addNewArray()">
-  <i class="fa fa-plus-square" aria-hidden="true"></i>
-</button>
+<!--<button style="position: absolute;left: 88%;" class="btn btn-info" (click)="addNewEquipment()" *ngIf="checkAdd" [disabled]="formAddNewEquipment.invalid">-->
+<!--  Lưu-->
+<!--</button>-->
+<!--<button style="position: absolute;left: 93%;" class="btn btn-success" (click)="addNewArray()">-->
+<!--  <i class="fa fa-plus-square" aria-hidden="true"></i>-->
+<!--</button>-->
+<button class="btn btn-success px-4 py-2 mr-2" (click)="addNewArray()" >  <i class="fa fa-plus-square" aria-hidden="true"></i></button>
+
+<button style="position: absolute;left: 92%;" class="btn btn-info px-4 py-2 mr-2 " (click)="addNewEquipment()" [disabled]="formAddNewEquipment.invalid">Lưu</button>
+<!--<span><button  class="btn btn-success px-4 py-2" (click)="openDialogAddNew()">Thêm mới</button></span>-->
 
 <!--    pagination-->
+<!--<pagination-controls class="pagination justify-content-center" id="listing_pagination"  maxSize="5" directionLinks="true" (pageChange)="page = $event" previousLabel="Trang trước"-->
+<!--                     nextLabel="Trang sau" autoHide="true" responsive="true"></pagination-controls>-->
+
 
 <nav aria-label="Page navigation example" *ngIf="equipmentModel.length!=0 && totalPages>1">
   <ul class="pagination justify-content-md-center mt-3">

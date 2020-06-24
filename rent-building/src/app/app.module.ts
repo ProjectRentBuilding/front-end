@@ -47,12 +47,16 @@ import {CustomerAddComponent} from './component/customer/customer-add/customer-a
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {CustomerDetailGroundComponent} from './component/customer/customer-detail-ground/customer-detail-ground.component';
 import {EquipmentAddComponent} from './component/equipment/equipment-add/equipment-add.component';
+
 import { EmployeeListComponent } from './component/employee/employee-list/employee-list.component';
 import { EmployeeAddComponent } from './component/employee/employee-add/employee-add.component';
 import { EmployeesComponent } from './component/employee/employees/employees.component';
 import { EmployeeDeleteComponent } from './component/employee/employee-delete/employee-delete.component';
 import { EmployeeRegisterComponent } from './component/employee/employee-register/employee-register.component';
-
+import {ServicesListComponent} from './component/services/services-list/services-list.component';
+import {MatIconModule} from '@angular/material/icon';
+import { ReportsComponent } from './component/report/reports/reports.component';
+import { ReportListComponent } from './component/report/report-list/report-list.component';
 
 
 @NgModule({
@@ -92,25 +96,29 @@ import { EmployeeRegisterComponent } from './component/employee/employee-registe
     EmployeesComponent,
     EmployeeDeleteComponent,
     EmployeeRegisterComponent,
+    ReportsComponent,
+    ReportListComponent,
+    ServicesListComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxPaginationModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatSortModule,
-    Ng2SearchPipeModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatDialogModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatAutocompleteModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatSortModule,
+        Ng2SearchPipeModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatDialogModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatAutocompleteModule,
+        MatIconModule
+    ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -134,7 +142,8 @@ import { EmployeeRegisterComponent } from './component/employee/employee-registe
     EquipmentDeleteComponent,
     EquipmentAddComponent,
     ImageGalleryComponent,
-    EmployeeRegisterComponent
+    EmployeeRegisterComponent,
+    ServicesListComponent
   ]
 })
 export class AppModule {
