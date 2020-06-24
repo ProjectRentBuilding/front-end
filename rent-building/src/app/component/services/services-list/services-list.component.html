@@ -1,24 +1,44 @@
-
-<div class="container-fluid">
-  <div class="row">
-    <div style="margin-top: 60px" class="col-md-6">
-        <label>
-          Mặt bằng :
-        </label>
-        <label>
-          <select>
-            <option *ngFor="let floor of floors" id="{{floor.id}}">{{floor.nameFloor}}</option>
-          </select>
-        </label>
-        <label>
-          <select>
-            <option *ngFor="let ground of grounds" id="{{ground.id}}">{{ground.codeGround}}</option>
-          </select>
-        </label>
-      </div>
-    <div style="margin-top: 60px" class="col-md-6">
-      
-    </div>
+<div class="col-md-5 mt-5">
+  <div class="input-group">
+    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin ">
+    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
   </div>
 </div>
-abc
+
+<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH DỊCH VỤ</h3>
+
+<div>
+  <table class="table bg-light text-center table-striped">
+    <thead class="thead-dark">
+    <tr class="text-muted">
+      <th style="width: 140px">Tên dịch vụ</th>
+      <th>Định kỳ</th>
+      <th>Đơn vị tính</th>
+      <th>Đơn giá</th>
+      <th colspan="3"></th>
+    </tr>
+    <tr *ngFor="let service of servicesModel">
+      <td>{{service.nameService}}</td>
+      <td>{{service.periodic}}</td>
+      <td>{{service.unit}}</td>
+      <td>{{service.price}}</td>
+      <td>
+        <button class="btn btn-primary" type="button" (click)="openDialogDetail(service.id)" >
+          Chi tiết
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-warning" type="button" (click)="openDialogEdit(service.id)" >
+          Sửa
+        </button>
+      </td>
+      <td >
+        <button class="btn btn-danger" type="button">
+          Xoá
+        </button>
+      </td>
+    </tr>
+    </thead>
+  </table>
+</div>
+<button type="button" (click)="openDialogAddNew()">Thêm dịch vụ</button>
