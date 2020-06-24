@@ -1,0 +1,91 @@
+
+
+<div class="container" >
+  <form [formGroup]="viewServiceForm">
+    <h1>Chi tiết thông tin dịch vụ</h1>
+    <table>
+      <tr>
+        <th>Tên dịch vụ</th>
+        <th>Tháng năm</th>
+        <th>Chỉ số tháng trước</th>
+        <th>Chỉ số tháng sau</th>
+        <th>Đơn vị</th>
+        <th>Tiêu thụ</th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+        <th>Thanh toán</th>
+      </tr>
+      <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+    </table>
+      <legend class="scheduler-border">Thông tin chung</legend>
+      <!--      Tên viết tắt-->
+      <div class="row">
+        <p class="col-md-3">Tên dịch vụ</p>
+        <input class="col-md-5 form-control"  type="text"  formControlName="nameService" disabled>
+      </div>
+      <!--      Tên đầy đủ-->
+      <div class="row">
+        <p class="col-md-3">Tháng năm</p>
+        <input  class="col-md-5 form-control" type="text" formControlName="monthYear" disabled>
+      </div>
+      <!--      Mã số thuế-->
+      <div class="row">
+        <p class="col-md-3">Chỉ số tháng trước</p>
+        <input class="col-md-5 form-control" type="text" formControlName="indexBeforeMonth" disabled>
+      </div>
+      <!--      Điện thoại-->
+      <div class="row">
+        <p class="col-md-3">Chỉ số tháng sau</p>
+        <input class="col-md-5 form-control" type="text" formControlName="indexAfterMonth" disabled>
+      </div>
+      <!--      Fax-->
+      <div class="row">
+        <p class="col-md-3">Đơn vị</p>
+        <input class="col-md-5 form-control" type="text" formControlName="unit" disabled>
+      </div>
+      <!--      Email-->
+      <div class="row">
+        <p class="col-md-3">Tiêu thụ</p>
+        <input class="col-md-5 form-control" type="text" formControlName="consume" disabled>
+      </div>
+      <!--      Địa chỉ-->
+      <div class="row">
+        <p class="col-md-3">Đơn giá</p>
+        <input class="col-md-5 form-control" type="text" formControlName="price" disabled>
+      </div>
+      <div class="row">
+        <p class="col-md-3">Thành tiền</p>
+        <input class="col-md-5 form-control" type="text" formControlName="price" disabled>
+      </div>
+    <p style="text-align: center;margin-top: 5%" class="copyright">Designed by <a href="https://colorlib.com" target="_blank" title="Colorlib">Team C0120G1</a>
+    </p>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
