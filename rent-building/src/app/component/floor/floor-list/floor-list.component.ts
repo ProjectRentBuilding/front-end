@@ -275,4 +275,3 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.loadData(page);
   }
 }
-

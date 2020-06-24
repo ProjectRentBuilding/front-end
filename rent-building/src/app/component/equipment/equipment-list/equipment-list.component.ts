@@ -25,6 +25,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public messageValidate: string;
   public equipmentOfId;
   public flag = -1;
+  public flagAmount = 0;
   public equipmentModel: EquipmentModel[] = [];
   public grounds: GroundModel[] = [];
   public typeEquipment: TypeEquipmentModel[] = [];
@@ -43,7 +44,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public typeEquipmentSearch = '';
   // public codeGroundSearch : number;
   // public typeEquipmentIdSearch : number;
-  public amountSearch: number = 0;
+  public amountSearch = 0;
   public checkEdit = false;
   public checkAdd = false;
   public searchAll;
@@ -64,9 +65,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
-    //   this.typeEquipment = data;
-    // });
     this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
@@ -170,9 +168,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   removeAddress(i: number) {
-    if (i === 0) {
-      this.checkAdd = false;
-    }
     this.equipment.removeAt(i);
   }
 
@@ -215,7 +210,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   editEquipment() {
-    console.log(this.checkPage);
+    this.checkAmount(this.formEditEquipment.value.amount, this.formEditEquipment.value.amountOfBroken);
     this.equipmentService.update(this.formEditEquipment.value, this.equipmentOfId).subscribe(data => {
       this.equipmentService.showNotification('', 'Sửa thành công, chúc mừng bạn');
       this.flag = -1;
@@ -279,21 +274,42 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   // }
 
   onSearch(page) {
-    this.nameEquipmentSearch = this.searchForm.value.searchNameEquipment;
-    this.amountSearch = this.searchForm.value.searchAmount;
-    this.codeGroundSearch = this.searchForm.value.searchCodeGround;
-    this.typeEquipmentSearch = this.searchForm.value.searchTypeEquipment;
+    if (this.searchForm.value.searchNameEquipment == null) {
+      this.searchForm.value.searchNameEquipment = '';
+      this.nameEquipmentSearch = this.searchForm.value.searchNameEquipment;
+    }else {
+      this.nameEquipmentSearch = this.searchForm.value.searchNameEquipment;
+    }
+    if(this.searchForm.value.searchAmount === '' || this.searchForm.value.searchAmount == null ){
+      this.searchForm.value.searchAmount = 0;
+      this.amountSearch = this.searchForm.value.searchAmount;
+    } else {
+      this.amountSearch = this.searchForm.value.searchAmount;
+    }
+    if (this.searchForm.value.searchCodeGround == null) {
+      this.searchForm.value.searchCodeGround = '';
+      this.codeGroundSearch = this.searchForm.value.searchCodeGround;
+    } else {
+      this.codeGroundSearch = this.searchForm.value.searchCodeGround;
+    }
+    if (this.searchForm.value.searchTypeEquipment == null) {
+      this.searchForm.value.searchTypeEquipment = '';
+      this.typeEquipmentSearch = this.searchForm.value.searchTypeEquipment;
+    }else {
+      this.typeEquipmentSearch = this.searchForm.value.searchTypeEquipment;
+    }
+    console.log(this.searchForm.value);
     this.loadData(page);
   }
 
   resetForm() {
     this.searchForm.reset();
-    this.loadData(0);
+    this.onSearch(0);
   }
-  search() {
-    // @ts-ignore
-    this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
-    // @ts-ignore
-    this.searchText = document.getElementById('searchEquipment').value;
-  }
+  // search() {
+  //   // @ts-ignore
+  //   this.searchInterge = parseInt(document.getElementById('searchEquipment').value);
+  //   // @ts-ignore
+  //   this.searchText = document.getElementById('searchEquipment').value;
+  // }
 }

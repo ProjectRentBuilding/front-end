@@ -9,28 +9,7 @@
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH TRANG THIẾT BỊ CỦA TOÀ NHÀ</h3>
 <div class="row">
-  <div class="dropdown open col-md-2">
-    <button class="btn btn-dark" type="button"
-            id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-     Tên Toà Nhà
-    </button>
-    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">
-      <a class="dropdown-item" *ngFor="let building of buildings"  (click)="searchType(building.fullName)">{{building.fullName}}</a>
-    </div>
-  </div>
-  <div class="dropdown open col-md-2">
-    <button class="btn btn-dark dropdown-toggle" type="button"
-            data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-      Mã mặt bằng
-    </button>
-    <div class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 200px;">
-      <a class="dropdown-item" *ngFor="let ground of grounds"
-         (click)="searchType(ground.codeGround)">{{ground.codeGround}}</a>
-    </div>
-  </div>
-  <div class="col-md-2"><button class="btn btn-dark" [routerLink]="['/equipments/']">Xem chi tiết</button></div>
+  <div class="col-md-4 mb-1"><button class="btn btn-dark" [routerLink]="['/equipments/']">Xem trang thiết bị theo mặt bằng</button></div>
 </div>
 <ng-container>
   <form>
