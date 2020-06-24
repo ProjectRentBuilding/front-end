@@ -1,1 +1,56 @@
-<p>services-edit works!</p>
+<div class="container" >
+  <form [formGroup]="editGroundForm" >
+    <h1>Chỉnh sửa thông tin Dịch vụ</h1>
+    <fieldset class="scheduler-border">
+      <legend class="scheduler-border">Chỉnh sửa dịch vụ</legend>
+      <!--      Tên dịch vụ-->
+      <div class="row">
+        <p class="col-md-3">Tên dịch vụ(<span>*</span>)</p>
+        <input class="col-md-5 form-control"    formControlName="nameService">
+      </div>
+      <!--      Định kỳ-->
+      <div class="row">
+        <p class="col-md-3">Định kỳ(<span>*</span>)</p>
+        <select class="col-md-5 form-control" formControlName="periodic">
+          <option value="">Chọn</option>
+          <option value="1 tháng">1 tháng</option>
+          <option value="3 tháng">3 tháng</option>
+          <option value="6 tháng">6 tháng</option>
+          <option value="9 tháng">9 tháng</option>
+          <option value="12 tháng">12 tháng</option>
+        </select>
+      </div>
+      <!--     Đơn vị tính-->
+      <div class="row">
+        <p class="col-md-3">Đơn vị tính(<span>*</span>)</p>
+        <input class="col-md-5 form-control"   formControlName="unit">
+      </div>
+      <!--      Đơn giá-->
+      <div class="row">
+        <p class="col-md-3">Đơn giá(VND)(<span>*</span>)</p>
+        <input  class="col-md-5 form-control"  type="text" formControlName="price">
+      </div>
+    </fieldset>
+    <label class="row " style="margin-left: 70%;margin-top: 5%">
+      <button  style="margin-right: 15%" class="btn btn-success mt-3">
+        Lưu
+      </button>
+      <button class="btn btn-danger mt-3">Làm lại</button>
+    </label>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

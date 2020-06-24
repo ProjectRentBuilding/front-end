@@ -33,7 +33,7 @@
         </button>
       </td>
       <td >
-        <button class="btn btn-danger" type="button">
+        <button class="btn btn-danger" type="button" (click)="openDialogDelete(service.id)">
           Xoá
         </button>
       </td>
@@ -41,4 +41,4 @@
     </thead>
   </table>
 </div>
-<button type="button" (click)="openDialogAddNew()">Thêm dịch vụ</button>
+<button type="button" (click)="openDialogAddNew()">Thêm mới</button>
