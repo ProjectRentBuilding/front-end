@@ -3,11 +3,11 @@
   <form [formGroup]="formSearch">
     <div class="row">
       <div class="col-md-3">
-        <input type="text" class="form-control search-input" placeholder="Theo tổng thu tối thiểu..."
+        <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối thiểu..."
                formControlName="minTotal" style="margin-top: 8px;">
       </div>
       <div class="col-md-3">
-        <input type="text" class="form-control search-input" placeholder="Theo tổng thu tối đa..."
+        <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối đa..."
                formControlName="maxTotal" style="margin-top: 8px;">
       </div>
       <div class="col-md-3">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <input type="text" class="form-control search-input" placeholder="Theo tổng thu tối thiểu..."
+      <input type="text" class="form-control search-input" placeholder="Theo mã mặt bằng..."
              formControlName="codeGround" style="margin-top: 8px;">
     </div>
 
