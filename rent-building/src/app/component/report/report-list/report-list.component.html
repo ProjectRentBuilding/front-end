@@ -12,7 +12,7 @@
       </div>
       <div class="col-md-3">
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Theo ngày bắt đầu hợp đồng..."
+          <input  matInput [matDatepicker]="picker" placeholder="Theo ngày bắt đầu hợp đồng..."
                  formControlName="startRentDay">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -51,17 +51,18 @@
     <div class="row">
       <div class="col-md-3 ">
         <form>
-          <table class="table table-bordered bg-light text-center table-striped">
+          <table class="table table-bordered bg-light text-center table-striped" matSort (matSortChange)="sortData($event)">
             <thead class="thead-dark">
             <tr class="text-muted">
               <th style="font-weight: bold">#</th>
-              <th style="font-weight: bold">Tên Mặt Bằng</th>
-              <th style="font-weight: bold">Tổng Thu</th>
+              <th style="font-weight: bold" mat-sort-header="codeGroundCal">Tên Mặt Bằng</th>
+              <th style="font-weight: bold" mat-sort-header="totalCal">Tổng Thu</th>
             </tr>
             </thead>
             <tbody>
             <tr
-              *ngFor="let report of reports   ;let i  = index">
+              *ngFor="let report of sortedData   ;let i  = index">
+<!--              *ngFor="let report of reports   ;let i  = index">-->
               <td>{{(i + 1)}}</td>
               <!--                  <td >{{(i+1)+(page-1)*5}}</td>-->
               <!--      <td>{{contract.id}}</td>-->

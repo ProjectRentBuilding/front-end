@@ -18,6 +18,7 @@ import {EmployeeListComponent} from './component/employee/employee-list/employee
 import {ServicesListComponent} from './component/services/services-list/services-list.component';
 import {ReportsComponent} from './component/report/reports/reports.component';
 import {ReportListComponent} from './component/report/report-list/report-list.component';
+import {ReportEmployeeComponent} from "./component/report/report-employee/report-employee.component";
 
 
 const routes: Routes = [
@@ -95,6 +96,10 @@ const routes: Routes = [
         {
           path: 'search',
           component: ReportListComponent
+        },
+        {
+          path: 'employee',
+          component: ReportEmployeeComponent
         }
 
       ]

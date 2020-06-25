@@ -40,7 +40,7 @@ export class ReportListComponent implements OnInit {
     this.refreshForm();
 
     this.formSearch = this.formBuilder.group({
-      startRentDay: [''],
+      startRentDay:[''],
       endRentDay: [''],
       minTotal: [''],
       maxTotal: [''],
@@ -54,8 +54,11 @@ export class ReportListComponent implements OnInit {
         this.reports = data;
       }, () => {
       }, () => {
+        this.sortedData = this.reports.slice();
         const xlable = [];
         const ylable = [];
+
+        this.totalMoney = 0;
 
         for (let i = 0; i < this.reports.length; i++) {
           this.totalMoney += this.reports[i].totalCal;
@@ -153,10 +156,10 @@ export class ReportListComponent implements OnInit {
         this.reports = data;
       }, () => {
       }, () => {
+        this.sortedData = this.reports.slice();
 
-      console.log(this.reports);
+        console.log(this.reports);
 
-        // this.sortData(this.sort, this.reports);
 
         const xlable = [];
         const ylable = [];
@@ -166,6 +169,7 @@ export class ReportListComponent implements OnInit {
           xlable.push(this.reports[i].codeGroundCal);
           ylable.push(this.reports[i].totalCal);
         }
+        // console.log(this.totalMoney);
 
 
         const canvas = <HTMLCanvasElement>document.getElementById('chart');
@@ -217,8 +221,8 @@ export class ReportListComponent implements OnInit {
 
   }
 
-  sortData(sort: Sort, desserts: any) {
-    const data = desserts.slice();
+  sortData(sort: Sort) {
+    const data = this.reports.slice();
     if (!sort.active || sort.direction === '') {
       this.sortedData = data;
       return;
@@ -285,12 +289,13 @@ export class ReportListComponent implements OnInit {
         }, () => {
 
         }, () => {
+          this.sortedData = this.reports.slice();
 
           this.totalMoney = 0;
 
-          for (let i = 0; i < this.reports.length; i++) {
-            this.totalMoney += this.reports[i].totalCal;
-          }
+          // for (let i = 0; i < this.reports.length; i++) {
+          //   this.totalMoney += this.reports[i].totalCal;
+          // }
 
           if (this.reports.length == 0) {
             this.message = "Không tìm thấy kết quả nào phù hợp.";
