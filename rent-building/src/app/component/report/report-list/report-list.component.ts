@@ -7,6 +7,7 @@ import {ReportService} from '../../../service/report.service';
 import {ReportModel} from '../../../model/report.model';
 import {Chart} from 'node_modules/chart.js';
 import * as html2pdf from 'html2pdf.js';
+import {Sort} from "@angular/material/sort";
 
 @Component({
   selector: 'app-report-list',
@@ -24,6 +25,8 @@ export class ReportListComponent implements OnInit {
   public codeGround = "";
   public formSearch: FormGroup;
   public message = "";
+  public sortedData: any;
+  public sort: Sort;
 
   constructor(
     public reportService: ReportService,
@@ -59,9 +62,6 @@ export class ReportListComponent implements OnInit {
           xlable.push(this.reports[i].codeGroundCal);
           ylable.push(this.reports[i].totalCal);
         }
-        console.log(xlable);
-
-        console.log(this.reports);
 
 
         const canvas = <HTMLCanvasElement>document.getElementById('chart');
@@ -141,10 +141,23 @@ export class ReportListComponent implements OnInit {
 
   refreshForm() {
     this.totalMoney = 0;
+    // this.startRentDay = "";
+    // this.endRentDay = "";
+    // this.minTotal = "";
+    // this.maxTotal = "";
+    // this.codeGround = "";
+    //
+    // this.loadData();
+
     this.reportService.getAllReport().subscribe(data => {
         this.reports = data;
       }, () => {
       }, () => {
+
+      console.log(this.reports);
+
+        // this.sortData(this.sort, this.reports);
+
         const xlable = [];
         const ylable = [];
 
@@ -153,9 +166,6 @@ export class ReportListComponent implements OnInit {
           xlable.push(this.reports[i].codeGroundCal);
           ylable.push(this.reports[i].totalCal);
         }
-        console.log(xlable);
-
-        console.log(this.reports);
 
 
         const canvas = <HTMLCanvasElement>document.getElementById('chart');
@@ -203,6 +213,28 @@ export class ReportListComponent implements OnInit {
         });
       }
     );
+
+
+  }
+
+  sortData(sort: Sort, desserts: any) {
+    const data = desserts.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'codeGroundCal':
+          return compare(a.codeGroundCal, b.codeGroundCal, isAsc);
+        case 'totalCal':
+          return compare(a.totalCal, b.totalCal, isAsc);
+        default:
+          return 0;
+      }
+    });
   }
 
   onSearch() {
@@ -211,6 +243,7 @@ export class ReportListComponent implements OnInit {
     this.minTotal = this.formSearch.value.minTotal;
     this.maxTotal = this.formSearch.value.maxTotal;
     this.codeGround = this.formSearch.value.codeGround;
+
 
     let start = new Date(this.startRentDay);
     let end = new Date(this.endRentDay);
@@ -229,6 +262,19 @@ export class ReportListComponent implements OnInit {
       resultEnd = "2030-01-01";
     } else {
       resultEnd = "" + end.getFullYear() + "-" + end.getMonth() + "-" + end.getDay();
+    }
+
+
+    if (this.minTotal == null) {
+      this.minTotal = "";
+    }
+
+    if (this.maxTotal == null) {
+      this.maxTotal = "";
+    }
+
+    if (this.codeGround == null) {
+      this.codeGround = "";
     }
 
 
@@ -251,12 +297,68 @@ export class ReportListComponent implements OnInit {
           } else {
             this.message = "";
           }
+
+
+          const xlable = [];
+          const ylable = [];
+
+          for (let i = 0; i < this.reports.length; i++) {
+            this.totalMoney += this.reports[i].totalCal;
+            xlable.push(this.reports[i].codeGroundCal);
+            ylable.push(this.reports[i].totalCal);
+          }
+
+
+          const canvas = <HTMLCanvasElement>document.getElementById('chart');
+          const ctx = canvas.getContext('2d');
+
+
+          const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: xlable,
+              datasets: [{
+                label: 'Biểu đồ báo cáo tổng hợp',
+                data: ylable,
+                backgroundColor:
+                  'rgba(191, 85, 236, 1)',
+                borderColor:
+                  'rgba(191, 85, 236, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              tooltips: {
+                callbacks: {
+                  label: function (tooltipItem, data) {
+                    return tooltipItem.yLabel.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                  }
+                }
+              },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      callback: function (label, index, labels) {
+                        return label / 1000000 + 'tr';
+                      }
+                    },
+                    scaleLabel: {
+                      display: true,
+                      labelString: '1tr = 1,000,000 VNĐ'
+                    }
+                  }
+                ]
+              }
+            }
+          });
         }
       );
 
   }
 
 }
+
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
