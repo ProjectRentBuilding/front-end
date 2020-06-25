@@ -93,7 +93,7 @@ const routes: Routes = [
       component: ReportsComponent,
       children: [
         {
-          path: 'all',
+          path: 'search',
           component: ReportListComponent
         }
 

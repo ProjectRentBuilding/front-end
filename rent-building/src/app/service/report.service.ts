@@ -20,4 +20,15 @@ export class ReportService {
   getAllReportLow(): Observable<any> {
     return this._http.get<ReportModel[]>(`http://localhost:8080/reports/low`);
   }
+  getAllReportAndSearchAll(startRentDay, endRentDay, minTotal, maxTotal, codeGround): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/reports/search`, {
+      params: {
+        startRentDay: startRentDay,
+        endRentDay: endRentDay,
+        minTotal: minTotal,
+        maxTotal: maxTotal,
+        codeGround: codeGround
+      }
+    });
+  }
 }
