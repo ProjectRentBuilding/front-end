@@ -259,13 +259,13 @@ export class ReportListComponent implements OnInit {
     if (isNaN(start.getFullYear())) {
       resultStart = "1900-01-01";
     } else {
-      resultStart = "" + start.getFullYear() + "-" + start.getMonth() + "-" + start.getDay();
+      resultStart = "" + start.getFullYear() + "-" + (start.getMonth()+1) + "-" + start.getDay();
     }
 
     if (isNaN(end.getFullYear())) {
       resultEnd = "2030-01-01";
     } else {
-      resultEnd = "" + end.getFullYear() + "-" + end.getMonth() + "-" + end.getDay();
+      resultEnd = "" + end.getFullYear() + "-" + (end.getMonth()+1) + "-" + end.getDay();
     }
 
 
