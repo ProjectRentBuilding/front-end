@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Sort} from "@angular/material/sort";
 import {EmployeeModel} from "../../../model/employee";
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-report-employee',
@@ -37,6 +38,19 @@ export class ReportEmployeeComponent implements OnInit {
   }
 
   printToPDF() {
+    const options = {
+      name: 'bangluong.pdf',
+      image: {type: 'jpeg'},
+      html2canvas: {scales: 1, width: 7000, height: 5000},
+      jsPDF: {orientation: 'portrait', unit: 'mm', format: [1000, 1000]}
+    };
+
+    const element: Element = document.getElementById('html2pdfidemployee');
+
+    html2pdf()
+      .from(element)
+      .set(options)
+      .save();
 
   }
 

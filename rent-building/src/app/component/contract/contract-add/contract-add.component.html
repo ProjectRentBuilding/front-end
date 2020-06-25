@@ -56,7 +56,7 @@
 
     <div class="form-group col-md-4">
       <p style="font-weight: bold">Ngày bắt đầu thuê(<span style="color: red">*</span>)</p>
-      <input class="form-control" formControlName="startRentDay" [(ngModel)]="startDayCheck"
+      <input readonly class="form-control" formControlName="startRentDay" [(ngModel)]="startDayCheck"
              placeholder="Chọn ở dưới"
              matInput
              [matDatepicker]="picker1" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
@@ -74,7 +74,7 @@
 
     <div class="form-group col-md-4">
       <p style="font-weight: bold">Ngày kết thúc thuê(<span style="color: red">*</span>)</p>
-      <input class="form-control" formControlName="endRentDay"
+      <input readonly class="form-control" formControlName="endRentDay"
              [(ngModel)]="endDayCheck" placeholder="Chọn ở dưới"
              matInput
              [matDatepicker]="picker2" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
