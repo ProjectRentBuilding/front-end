@@ -1,28 +1,91 @@
-<div class="col-md-5 mt-5">
-  <div class="input-group">
-    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin ">
-    <button type="button" class="btn btn-secondary search-button"><i class="fa fa-search text-danger"></i></button>
-  </div>
-</div>
+
 
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH DỊCH VỤ</h3>
+<ng-container>
+<div class="col-md-12 mt-5 row" style="margin-bottom: 5%">
+  <div class="input-group col-md-10">
+    <form [formGroup]="searchForm">
+      <div class="row">
+        <div class="col-md-3">
+          <label>
+            <input type="text" class="form-control search-input" placeholder="Tìm theo tên dịch vụ" list="nameService"
+                   name="nameService" formControlName="searchNameService">
+          </label>
+          <datalist id="nameService">
+            <option *ngFor="let service of servicesModel" [value]="service.nameService"></option>
+          </datalist>
+        </div>
+        <div class=col-md-3>
+          <label>
+            <input type="text" class="form-control search-input" placeholder="Tìm theo định kỳ" list="periodic"
+                   name="periodic" formControlName="searchPeriodic">
+          </label>
+          <datalist id="periodic">
+            <option value="1 tháng">1 tháng</option>
+            <option value="3 tháng">3 tháng</option>
+            <option value="6 tháng">6 tháng</option>
+            <option value="9 tháng">9 tháng</option>
+            <option value="12 tháng">12 tháng</option>
+          </datalist>
+        </div>
+        <div class=col-md-3>
+          <label>
+            <input type="text" class="form-control search-input" placeholder="Tìm theo tiêu thụ" list="consume"
+                   name="consume" formControlName="searchConsume">
+          </label>
+          <datalist id="consume">
+            <option *ngFor="let service of servicesModel" [value]="service.consume"></option>
+          </datalist>
+        </div>
+        <div class="col-md-3" style="margin-top: -1%">
+          <label>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Tìm theo ngày tháng"
+                     formControlName="searchMonthYear">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-2">
+    <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
+      <i class="fa fa-search text-danger"></i></button>
+    <button (click)="resetForm()" class="btn btn-secondary search-button" style="margin-left: 10px">
+      <i class="fa fa-refresh" aria-hidden="true"></i></button>
+  </div>
+</div>
+</ng-container>
 
 <button class="btn btn-success px-2 py-2"  (click)="openDialogAddNew()">Thêm mới</button>
 <div>
   <table class="table bg-light text-center table-striped">
     <thead class="thead-dark">
     <tr class="text-muted">
-      <th style="width: 140px">Tên dịch vụ</th>
+      <th >Tên dịch vụ</th>
       <th>Định kỳ</th>
       <th>Đơn vị tính</th>
       <th>Đơn giá</th>
+      <th>Tiêu thụ</th>
+      <th>Chỉ số tháng trước</th>
+      <th>Chỉ số tháng sau</th>
+      <th>Ngày tháng</th>
+      <th>Tên khách hàng</th>
       <th colspan="3"></th>
     </tr>
-    <tr *ngFor="let service of servicesModel">
+    <tr *ngFor="let service of services">
       <td>{{service.nameService}}</td>
       <td>{{service.periodic}}</td>
       <td>{{service.unit}}</td>
       <td>{{service.price}}</td>
+      <td>{{service.consume}}</td>
+      <td>{{service.indexBeforeMonth}}</td>
+      <td>{{service.indexAfterMonth}}</td>
+      <td>{{service.monthYear}}</td>
+      <td>{{service.contactId}}</td>
       <td>
         <button class="btn btn-primary" type="button" (click)="openDialogDetail(service.id)" >
           Xem
@@ -42,4 +105,21 @@
     </thead>
   </table>
 </div>
+
+<nav aria-label="Page navigation example" *ngIf="services.length!=0 && totalPages >1">
+  <ul class="pagination justify-content-md-center mt-3">
+    <li class="page-item" *ngIf="pageClicked!=0" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+      <a class="page-link"><<</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pages" (click)="loadData(page)"
+        [ngClass]="pageClicked == page ? 'active' : ''">
+      <a class="page-link">{{page + 1}}</a>
+    </li>
+    <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+      <a class="page-link">>></a>
+    </li>
+    <li class="page-item" *ngIf="pageClicked!=totalPages-1" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+  </ul>
+</nav>
 

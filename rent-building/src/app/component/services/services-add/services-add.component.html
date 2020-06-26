@@ -42,6 +42,56 @@
        && addServiceForm.get('price').valueChanges">Không được để trống !!!
         </p>
       </div>
+<!--      Chỉ số tháng trước-->
+      <div class="row">
+        <p class="col-md-3">Chỉ số tháng trước(<span>*</span>)</p>
+        <input  class="col-md-5 form-control"  type="number" formControlName="indexBeforeMonth"
+                (change)="checkIndexBeforeMonth($event.target.value)">
+        <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('indexBeforeMonth').hasError('required')
+       && addServiceForm.get('indexBeforeMonth').valueChanges">Không được để trống !!!
+        </p>
+      </div>
+<!--      Tiêu thụ-->
+      <div class="row">
+        <p class="col-md-3">Tiêu thụ(<span>*</span>)</p>
+        <input  class="col-md-5 form-control"  type="number" formControlName="consume"
+                (change)="checkConsume($event.target.value)">
+        <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('consume').hasError('required')
+       && addServiceForm.get('consume').valueChanges">Không được để trống !!!
+        </p>
+      </div>
+<!--      Chỉ số tháng sau-->
+      <div class="row">
+        <p class="col-md-3">Chỉ số tháng sau(<span>*</span>)</p>
+        <input  class="col-md-5 form-control"
+                type="number" formControlName="indexAfterMonth" disabled [(ngModel)]="indexAfterMonth">
+        <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('indexAfterMonth').hasError('required')
+       && addServiceForm.get('indexAfterMonth').valueChanges">Không được để trống !!!
+        </p>
+      </div>
+<!--      Ngày tháng-->
+      <div class="row">
+        <p class="col-md-3">Ngày tháng(<span>*</span>)</p>
+        <input  class="col-md-5 form-control"
+                type="text" formControlName="monthYear" [matDatepicker]="picker1">
+        <mat-datepicker-toggle style="color: white" matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+        <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('monthYear').hasError('required')
+       && addServiceForm.get('monthYear').valueChanges">Không được để trống !!!
+        </p>
+      </div>
+<!--      Tên khách hàng-->
+      <div class="row">
+        <p class="col-md-3">Tên khách hàng(<span>*</span>)</p>
+        <select  class="col-md-5 form-control" formControlName="contractId">
+          <option value="">Chọn</option>
+          <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.id}}-{{contract.customer.name}}</option>
+
+        </select>
+        <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('contractId').hasError('required')
+       && addServiceForm.get('contractId').valueChanges">Không được để trống !!!
+        </p>
+      </div>
     </fieldset>
     <label class="row " style="margin-left: 70%;margin-top: 5%">
       <button  style="margin-right: 15%" class="btn btn-success mt-3" (click)="onAddService()">

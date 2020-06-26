@@ -13,6 +13,8 @@ import {FloorModel} from "../../../model/floor.model";
 import {FloorService} from "../../../service/floor.service";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {TypeGroundModel} from "../../../model/typeGround.model";
+import {TypeGroundService} from "../../../service/type-ground.service";
 
 
 @Component({
@@ -26,14 +28,15 @@ export class GroundListComponent implements OnInit, OnDestroy {
   public contracts: ContractModel[];
   public page = 1;
   public floors: FloorModel[];
-
+  public typeGrounds: TypeGroundModel[] = [];
   public grounds: GroundModel[] = [];
+  public grounds1: GroundModel[] = [];
   public size=5;
   public groundPage: any;
   public totalPages: number = 1;
   public pages = [];
   pageClicked:number=0;
-  public searchText="";
+
 
   private searchForm: FormGroup;
   private searchNameFloor = "";
@@ -45,6 +48,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
   constructor(
     public groundService: GroundService,
     public contractService: ContractService,
+    public typeGroundService: TypeGroundService,
     public floorService: FloorService,
     public routerService: Router,
     public dialog: MatDialog,
@@ -56,8 +60,14 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.subscription = this.floorService.findAll().subscribe((data: FloorModel[]) => {
       this.floors = data;
     });
+    this.subscription = this.typeGroundService.findAll().subscribe((data: TypeGroundModel[]) => {
+      this.typeGrounds = data;
+    });
     this.subscription = this.contractService.findAll().subscribe((data: ContractModel[]) => {
       this.contracts = data;
+    });
+    this.subscription = this.groundService.findAll().subscribe((data: GroundModel[]) => {
+      this.grounds1 = data;
     });
     this.searchForm = this.fb.group({
       searchNameFloor: [''],

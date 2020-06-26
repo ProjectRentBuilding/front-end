@@ -150,12 +150,12 @@
         </td>
         <td *ngIf="checkEdit && item.id===flag">
           <button class="btn btn-primary" type="button" [disabled]="editFloorForm.invalid" (click)="editFloor()"
-                  style="margin-right: 10px"><i class="material-icons" data-toggle="tooltip" title="Lưu">done</i>
+                  style="margin-right: 10px">Lưu
           </button>
         </td>
         <td *ngIf="checkEdit && item.id===flag">
           <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">
-            <i class="material-icons" data-toggle="tooltip" title="Hủy">&#xe950;</i></button>
+            Thoát</button>
         </td>
       </tr>
       <!--    Hiện thông báo lỗi chỉnh sửa-->

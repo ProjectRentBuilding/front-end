@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {CrudService} from "./CrudService";
 import {ServicesModel} from "../model/services.model";
 import * as jQuery from "jquery";
+import {Observable} from "rxjs";
 
 let $: any = jQuery;
 @Injectable({
@@ -39,6 +40,18 @@ export class ServicesService extends CrudService<ServicesModel, number>{
         '</div>' +
         '<a href="{3}" target="{4}" data-notify="url"></a>' +
         '</div>'
+    });
+  }
+  getServicePageSearch(currentPage, size, nameServiceSearch,periodicSearch,consumeSearch,monthYearSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/services/paging`, {
+      params: {
+        page: currentPage,
+        size: size,
+        nameService: nameServiceSearch,
+        periodic: periodicSearch,
+        consume: consumeSearch,
+        monthYear: monthYearSearch
+      }
     });
   }
 }
