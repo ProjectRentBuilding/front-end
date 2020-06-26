@@ -1,21 +1,68 @@
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH BÁO CÁO</h3>
+<div class="col-md-10">
+  <form [formGroup]="formSearch">
+    <div class="row">
+      <div class="col-md-3">
+        <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối thiểu..."
+               formControlName="minTotal" style="margin-top: 8px;">
+      </div>
+      <div class="col-md-3">
+        <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối đa..."
+               formControlName="maxTotal" style="margin-top: 8px;">
+      </div>
+      <div class="col-md-3">
+        <mat-form-field>
+          <input readonly matInput [matDatepicker]="picker" placeholder="Theo ngày bắt đầu hợp đồng..."
+                 formControlName="startRentDay">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3">
+        <mat-form-field>
+          <input readonly matInput [matDatepicker]="picker1" placeholder="Theo ngày kết thúc hợp đồng..."
+                 formControlName="endRentDay">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <input type="text" class="form-control search-input" placeholder="Theo mã mặt bằng..."
+             formControlName="codeGround" style="margin-top: 8px;">
+    </div>
+
+    <div class="col-md-2">
+      <button type="button" class="btn btn-secondary search-button" (click)="onSearch()" >
+        <i class="fa fa-search text-danger"></i>
+      </button>
+    </div>
+    <div class="col-md-3">
+      <button mat-icon-button color="primary" class="ml-4" (click)="refreshForm()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>
+<h4 style="color: red">{{message}}</h4>
 <div id="html2pdfid">
 
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3 ">
         <form>
-          <table class="table table-bordered bg-light text-center table-striped">
+          <table class="table table-bordered bg-light text-center table-striped" matSort (matSortChange)="sortData($event)">
             <thead class="thead-dark">
             <tr class="text-muted">
-              <th style="font-weight: bold">ID</th>
-              <th style="font-weight: bold">Tên Mặt Bằng</th>
-              <th style="font-weight: bold">Tổng Thu</th>
+              <th style="font-weight: bold">#</th>
+              <th style="font-weight: bold" mat-sort-header="codeGroundCal">Tên Mặt Bằng</th>
+              <th style="font-weight: bold" mat-sort-header="totalCal">Tổng Thu</th>
             </tr>
             </thead>
             <tbody>
             <tr
-              *ngFor="let report of reports   ;let i  = index">
+              *ngFor="let report of sortedData   ;let i  = index">
+<!--              *ngFor="let report of reports   ;let i  = index">-->
               <td>{{(i + 1)}}</td>
               <!--                  <td >{{(i+1)+(page-1)*5}}</td>-->
               <!--      <td>{{contract.id}}</td>-->

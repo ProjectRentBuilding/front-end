@@ -61,6 +61,7 @@ import { ServicesDetailComponent } from './component/services/services-detail/se
 import { ServicesAddComponent } from './component/services/services-add/services-add.component';
 import { ServicesEditComponent } from './component/services/services-edit/services-edit.component';
 import { ServicesDeleteComponent } from './component/services/services-delete/services-delete.component';
+import { ReportEmployeeComponent } from './component/report/report-employee/report-employee.component';
 
 
 @NgModule({
@@ -106,7 +107,8 @@ import { ServicesDeleteComponent } from './component/services/services-delete/se
     ServicesDetailComponent,
     ServicesAddComponent,
     ServicesEditComponent,
-    ServicesDeleteComponent
+    ServicesDeleteComponent,
+    ReportEmployeeComponent
   ],
     imports: [
         BrowserModule,

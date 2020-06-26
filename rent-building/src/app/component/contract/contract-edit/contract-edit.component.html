@@ -49,7 +49,7 @@
 
       <div class="form-group col-md-4">
         <p style="font-weight: bold">Ngày bắt đầu thuê(<span style="color: red">*</span>)</p>
-        <input class="form-control" formControlName="startRentDay" [disabled]="checkDisable(startDayCheck)" [(ngModel)]="startDayCheck"
+        <input readonly class="form-control" formControlName="startRentDay" [disabled]="checkDisable(startDayCheck)" [(ngModel)]="startDayCheck"
                placeholder="Choose a date"
                [matDatepicker]="picker1" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -66,7 +66,7 @@
 
       <div class="form-group col-md-4">
         <p style="font-weight: bold">Ngày kết thúc thuê(<span style="color: red">*</span>)</p>
-        <input class="form-control" formControlName="endRentDay"
+        <input readonly class="form-control" formControlName="endRentDay"
                [(ngModel)]="endDayCheck" placeholder="Choose a date"
                matInput
                [matDatepicker]="picker2" (dateChange)="checkValidateTimeInput(startDayCheck,endDayCheck)">
