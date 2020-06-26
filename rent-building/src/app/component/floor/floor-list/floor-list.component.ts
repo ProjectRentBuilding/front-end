@@ -217,8 +217,8 @@ export class FloorListComponent implements OnInit, OnDestroy {
   openDialogDelete(id): void {
     this.floorService.findOne(id).subscribe(dataOfFloorModel => {
       const dialogRef = this.dialog.open(FloorDeleteComponent, {
-        width: '500px',
-        height: '240px',
+        width: '35%',
+        height: '35%',
         data: {data1: dataOfFloorModel},
         disableClose: true,
       });
@@ -229,9 +229,9 @@ export class FloorListComponent implements OnInit, OnDestroy {
   }
 
   removeFloor(i: number) {
-    if (i === 0) {
-      this.checkAdd = false;
-    }
+    // if (i === 0) {
+    //   this.checkAdd = false;
+    // }
     this.floor.removeAt(i);
   }
 
