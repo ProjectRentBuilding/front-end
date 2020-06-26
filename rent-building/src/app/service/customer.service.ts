@@ -26,7 +26,13 @@ export class CustomerService extends CrudService<Customer, number> {
       }
     });
   }
-
+  getCustomersPage(currentPage, size, nameSearch, idCardSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/customers/page`, {
+      params: {
+        page: currentPage, size: size, name: nameSearch, idCard: idCardSearch
+      }
+    });
+  }
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
     const color = Math.floor((Math.random() * 4) + 1);
