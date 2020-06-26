@@ -1,0 +1,54 @@
+
+table thead  th,td{
+  vertical-align: middle;
+}
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #eed8de;
+  transition: all .4s;
+}
+
+.search-input:focus {
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 2px solid #dc3545;
+}
+
+.search-button {
+  border-radius: 50%;
+  padding: 10px 16px;
+  transition: all .4s;
+}
+
+.search-button-button:hover {
+  background-color: #eee;
+  transform: translateY(-1px);
+}
+table thead  th,td{
+  vertical-align: middle;
+}
+td select{
+  margin-top: 0px;
+  padding: 0px;
+}
+.add-row{
+  padding: 0 !important;
+}
+.text-danger{
+  text-align: center;
+}
+/*input.ng-valid{*/
+/*  background: #12b517;*/
+/*}*/
+div div input{
+  margin-left: 5%;
+}
+

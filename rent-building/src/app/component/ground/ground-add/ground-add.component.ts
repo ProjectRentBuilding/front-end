@@ -54,12 +54,10 @@ export class GroundAddComponent implements OnInit {
   }
 
   onAddGround() {
-    console.log(this.addGroundForm.value);
     this.groundService.save(this.addGroundForm.value).subscribe(data => {
       // if (data && data.id) {
       this.routerService.navigate(['grounds']).then(r => this.afterOnAddGround());
       // }
-
     });
   }
 
