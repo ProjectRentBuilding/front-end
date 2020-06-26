@@ -18,12 +18,15 @@ import {EmployeeListComponent} from './component/employee/employee-list/employee
 import {ServicesListComponent} from './component/services/services-list/services-list.component';
 import {ReportsComponent} from './component/report/reports/reports.component';
 import {ReportListComponent} from './component/report/report-list/report-list.component';
-import {ReportEmployeeComponent} from "./component/report/report-employee/report-employee.component";
+import {ReportEmployeeComponent} from './component/report/report-employee/report-employee.component';
+import {ServicesCustomerComponent} from './component/services/services-customer/services-customer.component';
 
 
 const routes: Routes = [
     {path: 'equipments', component: EquipmentListComponent},
     {path: 'services', component: ServicesListComponent},
+    {path: 'services-customer', component: ServicesCustomerComponent},
+    {path: 'services-customer/:id', component: ServicesCustomerComponent},
     {path: 'equipments-building', component: EquipmentBuildingComponent},
     {
       path: 'buildings',

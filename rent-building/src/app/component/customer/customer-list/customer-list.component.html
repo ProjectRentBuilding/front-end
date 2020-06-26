@@ -1,12 +1,61 @@
 <div class="col-md-5 mt-5">
   <div class="input-group">
-    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin khách hàng"
-           [(ngModel)]="search">
+    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin khách hàng" [ngModel]="search">
     <button type="button" class="btn btn-secondary search-button"><strong><i
       class="fa fa-search text-danger"></i></strong></button>
   </div>
-
 </div>
+
+<!--Hung them-->
+<div class="row col-md-12 mt-5">
+  <div class="col-md-10">
+    <form [formGroup]="searchForm">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+          <div>
+            <label class="col-md-4" style="padding: 0">Tên khách hàng:</label>
+            <label class="col-md-6" style="padding: 0">
+              <input type="text" class="form-control search-input" placeholder="Tên khách hàng" formControlName="searchName">
+            </label>
+          </div>
+          <div>
+            <label class="col-md-4" style="padding: 0"></label>
+            <label class="col-md-6" style="padding: 0">
+              <p class=" text-danger" role="alert" *ngIf="searchForm.get('searchName').hasError('pattern')
+                  && searchForm.get('searchName').valueChanges">Tên phải là chữ và không có ký tự đặc biệt!!!
+              </p>
+            </label>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div>
+            <label class="col-md-4" style="padding: 0">CMND :</label>
+            <label class="col-md-8" style="padding: 0">
+              <input type="text" class="form-control search-input" placeholder="Số chứng minh nhân dân" formControlName="searchIdCard" min="0">
+            </label>
+          </div>
+          <div>
+            <label class="col-md-4" style="padding: 0"></label>
+            <label class="col-md-8" style="padding: 0">
+              <p class=" text-danger" role="alert" *ngIf="searchForm.get('searchIdCard').hasError('pattern')
+                  && searchForm.get('searchIdCard').valueChanges">CMND phải là số và không có ký tự đặc biệt!!!
+              </p>
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
+      <i class="fa fa-search"></i>
+    </button>
+    <button (click)="resetForm()" class="btn btn-secondary search-button" style="margin-left: 10px"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+  </div>
+</div>
+<!--Het-->
+
 <div>
   <div style="width: 100%;background: #435D7D">
 <h3 class="text-light text-center py-3 mt-5" style="font-family: Varela Round ">DANH SÁCH KHÁCH HÀNG</h3>
@@ -29,7 +78,7 @@
         <th>Website</th>
         <th>Công Ty (<span style="color: red">*</span>)</th>
         <th>Mặt Bằng</th>
-        <th colspan="2"></th>
+        <th colspan="3"></th>
       </tr>
       </thead>
       <tbody>
@@ -149,6 +198,9 @@
         <!--          </ng-container>-->
         <!--        </td>-->
 
+        <td>
+          <button class="btn btn-dark" (click)="openServicesCustomer(customer.id)">Xem dịch vụ</button>
+        </td>
 
         <td>
           <button *ngIf="!checkEdit|| customer.id!==flag" class="btn btn-warning ml-3"
