@@ -27,7 +27,6 @@ export class CustomerDeleteComponent implements OnInit {
   }
 
   deleteCustomer() {
-    console.log('a');
     if (this.data.data1.contracts.length !== 0) {
       for (let i = 0; i < this.data.data1.contracts.length; i++) {
         if (this.data.data1.contracts[i].statusContract === false || this.data.data1.contracts[i].statusContract === null) {

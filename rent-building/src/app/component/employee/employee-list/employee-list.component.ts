@@ -53,6 +53,14 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   public employee: FormArray;
   public getarray = 1;
   public checkPage = 0;
+  public userBuilding: UserBuildingModel;
+  public nameEmployeeSearch = '';
+  public idCardSearch = '';
+  public addressSearch = '';
+  public partSearch = '';
+  public formSearch: FormGroup;
+
+  public arraySentUsernameList: [] = [];
 
   constructor(public employeeService: EmployeeService,
               public dialog: MatDialog,
@@ -69,7 +77,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   loadData(page) {
-    this.employeeService.getEmployeePage(page, this.size, this.searchText)
+    this.employeeService.getEmployeePageSearch(page, this.size, this.nameEmployeeSearch, this.idCardSearch, this.addressSearch, this.partSearch)
       .subscribe(
         data => {
           // console.log(this.size);
@@ -78,6 +86,14 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
           this.employees = this.employeePage.content;
           this.totalPages = this.employeePage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }, () => {
+
+        }, () => {
+          if (this.employees.length === 0) {
+            this.message = 'Không tìm thấy kết quả nào phù hợp!!!';
+          } else {
+            this.message = '';
+          }
         }
       );
   }
@@ -93,23 +109,33 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       address: ['', Validators.required],
       gender: ['', Validators.required],
       levelSalary: ['', Validators.required],
+      salary: ['', Validators.required],
       part: ['', Validators.required],
-      startWord: ['', Validators.required]
+      startWord: ['', Validators.required],
+      userBuilding: ['']
     });
   }
 
 
   ngOnInit() {
+    this.formSearch = this.formBuilder.group({
+      nameEmployeeSearch: [''],
+      idCardSearch: [''],
+      addressSearch: [''],
+      partSearch: ['']
+    });
     this.formEditEmployee = this.createEmployee();
     this.loadData(0);
     this.groundService.findAll().subscribe(data => {
       this.grounds = data;
-      // this.totalRec = this.employees.length;
     });
     this.contractService.findAll().subscribe(data => {
       this.contracts = data;
-      // this.totalRec = this.employees.length;
     });
+    this.loadDataUserBuildings();
+  }
+
+  loadDataUserBuildings() {
     this.userBuildingService.findAll().subscribe(data => {
       this.userBuildings = data;
       // tslint:disable-next-line:prefer-for-of
@@ -119,14 +145,13 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
           continue;
         } else {
           // @ts-ignore
-          this.userName.push(this.userBuildings[i]);
+          if (this.userBuildings.indexOf(this.userBuildings[i] === -1)) {
+            // @ts-ignore
+            this.userName.push(this.userBuildings[i]);
+          }
         }
       }
     });
-    this.formAddNewEmployee.patchValue({
-      rentStatus: false
-    });
-
   }
 
   ngOnDestroy(): void {
@@ -141,13 +166,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         width: '500px',
         height: '250px',
         data: {data1: dataOfEmployee},
-        disableClose: true,
+        disableClose: false,
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-        this.ngOnInit();
-
+        // this.ngOnInit();
       });
     });
 
@@ -159,51 +182,51 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       height: '80%',
       disableClose: false,
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 
   openDialogRegister(): void {
-      const dialogRef = this.dialog.open(EmployeeRegisterComponent, {
-        width: '500px',
-        height: '320px',
-        disableClose: false,
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        // this.ngOnInit();
-        this.loadData(this.checkPage);
-      });
+    const dialogRef = this.dialog.open(EmployeeRegisterComponent, {
+      width: '500px',
+      height: '320px',
+      disableClose: false,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadData(this.checkPage);
+    });
   }
 
-  // addNewEmployee() {
-  //   this.employeeService.save(this.formAddNewEmployee.value).subscribe(data => {
-  //     this.employeeService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-  //     this.redirectTo('employees');
-  //     // this.dialogRef.close();
-  //   });
-  // }
-
   addNewEmployee() {
-
     this.employee = this.formAddNewEmployee.get('employee') as FormArray;
     for (let tem = 0; tem < this.getarray; tem++) {
-      this.employees.push(this.employee.at(tem).value);
-      // @ts-ignore
+      // this.employees.push(this.employee.at(tem).value);
+      // this.userBuildingService.findOne(this.employeeService.sentUsername).subscribe(data => {
+      //   this.userBuilding = data;
+      // });
+      // this.userBuildings.push(this.userBuilding);
+      console.log(this.employee.at(tem).value);
       this.employeeService.save(this.employee.at(tem).value).subscribe(data => {
         if (tem === (this.getarray - 1)) {
           this.employee.reset();
-          this.onLast();
+          // this.onLast();
         }
       });
     }
-
+    this.cancelAdd();
+    console.log(this.userName.length);
+    // this.loadDataUserBuildings();
+    // this.ngOnInit();
     // this.redirectTo('employees');
-    console.log(this.formAddNewEmployee);
+    // console.log(this.formAddNewEmployee.value);
     // this.ngOnInit();
     this.employeeService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
     this.checkAdd = false;
+    // this.cancelAdd();
+
+    this.employeeService.arraySentUsername = [];
+
   }
 
   redirectTo(uri: string) {
@@ -222,14 +245,6 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-  // checkAddEmployee() {
-  //   if (!this.checkAdd) {
-  //     this.checkAdd = !this.checkAdd;
-  //     this.ngOnInit();
-  //     this.checkEdit = false;
-  //   }
-  // }
 
   editEmployee() {
     console.log(this.formEditEmployee.value);
@@ -253,7 +268,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.employeeService.findOne(this.employeeOfId).subscribe(data => {
       this.formAddNewEmployee.patchValue(data);
     });
-    console.log(this.formAddNewEmployee.value);
+    // console.log(this.formAddNewEmployee.value);
   }
 
   cancelAdd() {
@@ -272,7 +287,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     // tslint:disable-next-line:prefer-for-of
     this.employeeService.findAll().subscribe(data1 => {
       this.employees = data1;
-      console.log(this.employees);
+      // console.log(this.employees);
       for (let item = 0; item < this.employees.length; item++) {
         this.employeeService.delete(this.employees[item].id).subscribe(data => {
         });
@@ -284,7 +299,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   logValue() {
-    console.log(this.formAddNewEmployee.value);
+    // console.log(this.formAddNewEmployee.value);
 
   }
 
@@ -345,12 +360,41 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   onLast() {
+
     this.pageClicked = this.totalPages - 1;
     this.loadData(this.pageClicked);
   }
 
   refreshForm() {
     this.searchText = '';
+  }
+
+  onSearch(page) {
+    this.nameEmployeeSearch = this.formSearch.value.nameEmployeeSearch;
+    this.idCardSearch = this.formSearch.value.idCardSearch;
+    this.addressSearch = this.formSearch.value.addressSearch;
+    this.partSearch = this.formSearch.value.partSearch;
+    this.employeeService.getEmployeePageSearch(page, this.size, this.nameEmployeeSearch, this.idCardSearch, this.addressSearch, this.partSearch)
+      .subscribe(
+        data => {
+          this.pageClicked = page;
+          this.employeePage = data;
+          this.contracts = this.employeePage.content;
+          this.totalPages = this.employeePage.totalPages;
+          this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+          console.log(data);
+        }, () => {
+
+        }, () => {
+          if (this.employees.length === 0) {
+            this.message = 'Không tìm thấy kết quả nào phù hợp.';
+          } else {
+            this.message = '';
+          }
+        }
+      );
+    this.loadData(page);
+
   }
 
 }
