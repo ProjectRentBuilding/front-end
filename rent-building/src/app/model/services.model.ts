@@ -9,4 +9,5 @@ export class ServicesModel {
   indexAfterMonth: number;
   monthYear: string;
   contactId: number;
+  statusPay: boolean;
 }
