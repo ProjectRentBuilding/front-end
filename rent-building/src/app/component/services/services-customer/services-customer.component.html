@@ -1,0 +1,104 @@
+<div class="container" style="margin-top: 50px">
+  <div class="row">
+    <div class="col-md-5">
+      <label class="col-md-3"> Mặt bằng:</label>
+      <label>
+        <select>
+          <option *ngFor="let floor of floors" value="{{floor.nameFloor}}" (click)="checkGround(floor.nameFloor)">{{floor.nameFloor}}</option>
+        </select>
+      </label>
+      <label>
+        <select>
+          <option *ngFor="let ground of grounds" value="{{ground.codeGround}}">{{ground.codeGround}}</option>
+        </select>
+      </label>
+    </div>
+    <ng-container>
+    <div class="col-md-5">
+      Tên khách hàng:
+      <input type="text" id="nameCus" class="form-control infoPlaceholder" disabled style="width: 60%; float: right" [(ngModel)]="nameCustomer">
+    </div>
+    </ng-container>
+  </div>
+
+  <div class="row mt-2" >
+    <div class="col-md-5">
+      <label class="col-md-3">Từ:</label>
+
+      <label>
+        <input type="date" [ngModel]="startDateSearch">
+      </label>
+<!--      <select>-->
+<!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
+<!--      </select>-->
+<!--      <select>-->
+<!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
+<!--      </select>-->
+    </div>
+    <div class="col-md-5">
+      <label class="col-md-3">Đến :</label>
+      <label>
+        <input type="date" [ngModel]="endDateSearch">
+      </label>
+<!--      <select>-->
+<!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
+<!--      </select>-->
+<!--      <select>-->
+<!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
+<!--      </select>-->
+    </div>
+  </div>
+  <button (click)="checkTime()">Check</button>
+</div>
+
+<div class="container mt-5" >
+  <!--  <form [formGroup]="viewServiceForm">-->
+  <form>
+    <table class="table bg-light text-center table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th>Tên dịch vụ</th>
+        <th>Tháng năm</th>
+        <th>Chỉ số tháng trước</th>
+        <th>Chỉ số tháng sau</th>
+        <th>Đơn vị</th>
+        <th>Tiêu thụ</th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+        <th>Thanh toán</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let service of servicesModel">
+        <td>{{service.nameService}}</td>
+        <td>{{service.monthYear | date: formatsDate }} </td>
+        <td>{{service.indexBeforeMonth}}</td>
+        <td>{{service.indexAfterMonth}}</td>
+        <td>{{service.unit}}</td>
+        <td>{{service.consume}}</td>
+        <td>{{service.price}}</td>
+        <td>{{service.consume * service.price}}</td>
+        <td><input type="checkbox" [checked]="service.statusPay" [disabled]="true"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

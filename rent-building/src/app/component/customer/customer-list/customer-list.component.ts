@@ -34,7 +34,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public customerPage: any;
   public totalPages = 1;
   public pages = [];
-  pageClicked: number = 0;
+  pageClicked = 0;
   public searchText = '';
   // public page = 1;
   public search;
@@ -48,6 +48,13 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public customer: FormArray;
   public getarray = 1;
   public checkPage = 0;
+  // Hung them
+  public navigational: string;
+  public searchForm: FormGroup;
+  public nameSearch: string;
+  public idCardSearch: string;
+  // @ts-ignore
+  public dataCustomer: Customer = [];
 
   constructor(public customerService: CustomerService,
               public dialog: MatDialog,
@@ -108,8 +115,10 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       // endRentDay: new Date().toJSON(),
       rentStatus: false
     });
-
-
+    this.searchForm = this.formBuilder.group({
+      searchName: ['', [Validators.pattern('^[a-zA-Z ]{1,150}$')]],
+      searchIdCard: ['', [Validators.pattern('[0-9]{1,10}')]],
+    });
   }
 
   ngOnDestroy(): void {
@@ -176,7 +185,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.customer = this.formAddNewCustomer.get('customer') as FormArray;
     for (let tem = 0; tem < this.getarray; tem++) {
       this.customers.push(this.customer.at(tem).value);
-      // @ts-ignore
       this.customerService.save(this.customer.at(tem).value).subscribe(data => {
         if (tem === (this.getarray - 1)) {
           this.customer.reset();
@@ -339,4 +347,55 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.searchText = '';
   }
 
+  // Hung them
+  loadDataSearch(page) {
+    this.customerService.getCustomersPage(page, this.size, this.nameSearch, this.idCardSearch)
+      .subscribe(
+        data => {
+          this.pageClicked = page;
+          this.customerPage = data;
+          this.customers = this.customerPage.content;
+          this.totalPages = this.customerPage.totalPages;
+          this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+        }
+      );
+  }
+  onSearch(number: number) {
+    if (this.searchForm.value.searchName == null) {
+      this.searchForm.value.searchName = '';
+      this.nameSearch = this.searchForm.value.searchName;
+    } else {
+      this.nameSearch = this.searchForm.value.searchName;
+    }
+
+    if (this.searchForm.value.searchIdCard == null) {
+      this.searchForm.value.searchIdCard = '';
+      this.idCardSearch = this.searchForm.value.searchIdCard;
+    } else {
+      this.idCardSearch = this.searchForm.value.searchIdCard;
+    }
+
+    this.loadDataSearch(number);
+  }
+  resetForm() {
+    this.searchForm.reset();
+    this.onSearch(0);
+  }
+
+  openServicesCustomer(id: number) {
+    this.customerService.findOne(id).subscribe(data => {
+      this.dataCustomer = data;
+      if (this.dataCustomer.contracts.length == 0) {
+        this.customerService.showNotification('', 'Khách hàng không có dịch vụ để xem !!!');
+      }else {
+        this.router.navigate(['services-customer', id]);
+      }
+    });
+    // for (let i = 0; i < this.data.data1.contracts.length; i++) {
+    //   this.customerGrounds.push(this.data.data1.contracts[i].ground.codeGround);
+    //   this.customerStatusContract.push(this.data.data1.contracts[i].statusContract);
+    //   // console.log(this.customerGrounds);
+    // }
+
+  }
 }
