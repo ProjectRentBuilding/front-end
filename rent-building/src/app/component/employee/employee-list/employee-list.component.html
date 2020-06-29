@@ -1,12 +1,45 @@
-<div class="col-md-5 mt-5">
-  <div class="input-group">
-    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin khách hàng"
-           [(ngModel)]="search">
-    <button type="button" class="btn btn-secondary search-button"><strong><i
-      class="fa fa-search text-danger"></i></strong></button>
-  </div>
+<!--<div class="col-md-5 mt-5">-->
+<!--  <div class="input-group">-->
+<!--    <input type="text" class="form-control search-input" placeholder="Tìm kiếm thông tin khách hàng"-->
+<!--           [(ngModel)]="search">-->
+<!--    <button type="button" class="btn btn-secondary search-button"><strong><i-->
+<!--      class="fa fa-search text-danger"></i></strong></button>-->
+<!--  </div>-->
 
+<!--</div>-->
+
+
+<div class="row col-md-12 mt-5">
+
+  <div class="col-md-10">
+    <form [formGroup]="formSearch">
+      <div class="row">
+        <div class="col-md-3">
+          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên nhân viên..."
+                 formControlName="nameEmployeeSearch" style="margin-top: 8px;">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo CMND..."
+                 formControlName="idCardSearch" style="margin-top: 8px;">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo địa chỉ..."
+                 formControlName="addressSearch" style="margin-top: 8px;">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo bộ phận..."
+                 formControlName="partSearch" style="margin-top: 8px;">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-2">
+    <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
+      <i class="fa fa-search text-danger"></i>
+    </button>
+  </div>
 </div>
+<h1 class="justify-content-center" style="color: red">{{this.message}}</h1>
 <div>
   <div style="width: 100%;background: #435D7D">
     <h3 class="text-light text-center py-3 mt-5" style="font-family: Varela Round ">DANH SÁCH NHÂN VIÊN VĂN PHÒNG</h3>
@@ -36,7 +69,7 @@
         </thead>
         <tbody>
         <tr
-          *ngFor="let employee of employees |filter : search ">
+          *ngFor="let employee of employees">
           <input type="text" hidden value="{{employee.id}}" formControlName="id">
           <!--        <td> {{(i + 1) + (page - 1) * 5}}</td>-->
 
@@ -102,31 +135,31 @@
               Ngày sinh không được để trống!
             </p>
           </td>
-
+<!--        Giới tính-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.gender}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
-            <input type="text"
-                   class="form-control"
-                   formControlName="gender"
-            >
-            <p class="alert alert-danger" role="alert"
+            <select class="form-control"  formControlName="gender">
+              <option  value="">Giới tính</option>
+              <option value="Nam" selected>Nam</option>
+              <option value="Nữ">Nữ</option>
+            </select>
+            <p class="text-danger"
                *ngIf="formEditEmployee.get('gender').invalid && formEditEmployee.get('gender').touched">
-              Địa chỉ không được để trống!
+              Giới tính không được để trống!
             </p>
           </td>
 
+<!--         Địa chỉ-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.address}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
-            <input type="text"
-                   class="form-control"
-                   formControlName="address"
-            >
-            <p class="alert alert-danger" role="alert"
+            <input type="text" class="form-control" formControlName="address">
+            <p class="text-danger"
                *ngIf="formEditEmployee.get('address').invalid && formEditEmployee.get('address').touched">
               Địa chỉ không được để trống!
             </p>
           </td>
 
+<!--        Cấp bậc lương-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.levelSalary}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
             <input type="text" class="form-control"
@@ -134,40 +167,46 @@
             >
             <p class="alert alert-danger" role="alert"
                *ngIf="formEditEmployee.get('levelSalary').invalid && formEditEmployee.get('levelSalary').touched">
-              Tên website không được để trống!
+              Cấp bậc lương không được để trống!
             </p>
           </td>
-
+<!--        Bộ phận-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.part}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
-            <input type="text" class="form-control"
-                   formControlName="part"
-            >
-            <p class="alert alert-danger" role="alert"
-               *ngIf="formEditEmployee.get('part').invalid && formEditEmployee.get('part').touched">
-              Tên website không được để trống!
-            </p>
+            <select class="form-control" formControlName="part">
+              <option  value="">Bộ phận</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Sale">Sale</option>
+              <option value="Quản lý">Quản lý</option>
+            </select>
+<!--            <p class="alert alert-danger" role="alert"-->
+<!--               *ngIf="formEditEmployee.get('part').invalid && formEditEmployee.get('part').touched">-->
+<!--              Tên bộ phận không được để trống!-->
+<!--            </p>-->
           </td>
 
+<!--          Ngày bắt đầu làm việc-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.startWord | date:'dd/MM/yyyy'}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
-            <input type="text" class="form-control"
-                   formControlName="startWord"
-            >
+
+            <input style="float: right" class="form-control  "  formControlName="startWord"  matInput
+                   [matDatepicker]="picker1">
+
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
             <p class="alert alert-danger" role="alert"
                *ngIf="formEditEmployee.get('startWord').invalid && formEditEmployee.get('startWord').touched">
-              Tên website không được để trống!
+              Ngày bắt đầu làm không để trống!
             </p>
           </td>
 
-<!--          <td *ngIf="!checkEdit || employee.id!==flag">{{employee.userBuilding}}</td>-->
-
+<!--          Tài khoản-->
                   <td>
                     <ng-container *ngFor="let userBuilding of userName">
 <!--                      <p><input *ngIf="contract.employee.id == employee.id" type="checkbox" [checked]="contract.statusContract"-->
 <!--                                disabled></p>-->
 
-                      <p *ngIf="(!checkEdit || employee.id!==flag) &&  (employee.id === userBuilding.employee.id) ">{{userBuilding.username}}</p>
+                      <p *ngIf="(!checkEdit || employee.id!==flag) &&(employee.id === userBuilding.employee.id) ">{{userBuilding.username}}</p>
 
                     </ng-container>
                   </td>
@@ -197,6 +236,7 @@
     </form>
   </ng-container>
 
+
   <!--      add employee-->
 
   <ng-container *ngIf="checkAdd">
@@ -210,6 +250,7 @@
             <input type="text" class="form-control infoPlaceholder"  formControlName="name"
                    placeholder="Tên nhân viên ">
           </td>
+
 
 
           <td class="add-row">
@@ -236,22 +277,35 @@
           </td>
 
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder" formControlName="gender" placeholder="Nhập giới tính ">
+<!--            <input type="text" class="form-control infoPlaceholder" formControlName="gender" placeholder="Nhập giới tính ">-->
+            <select class="form-control" name="" id="" formControlName="gender">
+              <option  value="">Giới tính</option>
+              <option value="Nam" selected>Nam</option>
+              <option value="Nữ">Nữ</option>
+            </select>
           </td>
 
           <td class="add-row" >
             <input type="text" class="form-control infoPlaceholder" formControlName="address" placeholder="Nhập địa chỉ ">
           </td>
 
-
-          <td class="add-row" hidden>
-            <input type="text" class="form-control infoPlaceholder" formControlName="levelSalary" placeholder="Cấp bậc lương" value="Cấp 1">
+          <td class="add-row" >
+            <input type="text" class="form-control infoPlaceholder" formControlName="salary" placeholder="Nhập luong ">
           </td>
 
 
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder" formControlName="part"
-                   placeholder="Tên bộ phận">
+            <input type="text" class="form-control infoPlaceholder" formControlName="levelSalary" placeholder="Cấp bậc lương" >
+          </td>
+
+
+          <td class="add-row" >
+            <select class="form-control" name="" formControlName="part">
+              <option  value="">Bộ phận</option>
+              <option value="Marketing" selected>Marketing</option>
+              <option value="Sale">Sale</option>
+              <option value="Quản lý">Quản lý</option>
+            </select>
           </td>
 
           <td class="add-row">
@@ -262,9 +316,10 @@
 
           </td>
           <td class="add-row" >
+            <input type="text" formControlName="userBuilding" ngModel="{{this.employeeService.arraySentUsername[i]}}">
             <button class="btn btn-primary" (click)="openDialogRegister()">Đăng ký tài khoản</button>
           </td>
-
+          <input hidden type="text"  >
 
 
           <td  class="add-row">
@@ -340,18 +395,16 @@
     </form>
   </ng-container>
 </div>
-<button class="btn btn-success px-4 py-2 mr-2" (click)="addNewArray()" >  <i class="fa fa-plus-square" aria-hidden="true"></i></button>
 
-<button class="btn btn-info px-4 py-2 mr-2 " (click)="addNewEmployee()" *ngIf="checkAdd" [disabled]="formAddNewEmployee.invalid">Lưu</button>
+<!--Button-->
+<button class="btn btn-success px-4 py-2 mr-2" (click)="addNewArray()" >
+  <i class="fa fa-plus-square" aria-hidden="true"></i>
+</button>
+
+<button class="btn btn-info px-4 py-2 mr-2 " (click)="addNewEmployee()" *ngIf="checkAdd">Lưu</button>
 <span><button  class="btn btn-success px-4 py-2" (click)="openDialogAdd()">Thêm mới</button></span>
 
-
-<!--    pagination-->
-<!--<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"-->
-<!--                     previousLabel="Trang trước"-->
-<!--                     nextLabel="Trang sau">-->
-
-<!--</pagination-controls>-->
+<!--phan trang-->
 <nav aria-label="Page navigation example" *ngIf="employees.length!=0 && totalPages>1">
   <ul class="pagination justify-content-md-center mt-3">
     <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
