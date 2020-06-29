@@ -153,7 +153,6 @@ import { ReportEmployeeComponent } from './component/report/report-employee/repo
     EquipmentAddComponent,
     ImageGalleryComponent,
     ServicesListComponent,
-    ServicesDetailComponent,
     ServicesAddComponent,
     ServicesEditComponent,
     ServicesDeleteComponent,

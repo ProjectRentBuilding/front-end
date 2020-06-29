@@ -8,5 +8,5 @@ export class ServicesModel {
   indexBeforeMonth: number;
   indexAfterMonth: number;
   monthYear: string;
-  contactId: number;
+  contractId: number;
 }

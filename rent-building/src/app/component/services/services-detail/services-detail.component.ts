@@ -14,8 +14,6 @@ export class ServicesDetailComponent implements OnInit,OnDestroy {
   viewServiceForm: FormGroup;
   public id: number;
   constructor(
-    public dialogRef: MatDialogRef<ServicesDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
   ) { }
 
@@ -34,8 +32,8 @@ export class ServicesDetailComponent implements OnInit,OnDestroy {
   }
 
   loadData() {
-    this.id = this.data.data1.id;
-    this.viewServiceForm.patchValue(this.data.data1);
+    // this.id = this.data.data1.id;
+    // this.viewServiceForm.patchValue(this.data.data1);
   }
   ngOnDestroy() {
     if (this.subscription) {
