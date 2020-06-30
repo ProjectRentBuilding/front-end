@@ -68,9 +68,9 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
-    this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
-      this.equipmentModel = data;
-    });
+    // this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
+    //   this.equipmentModel = data;
+    // });
     this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
       this.typeEquipment = data;
     });

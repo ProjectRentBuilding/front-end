@@ -3,13 +3,13 @@
     <div class="col-md-5">
       <label class="col-md-3"> Mặt bằng:</label>
       <label>
-        <select>
-          <option *ngFor="let floor of floors" value="{{floor.nameFloor}}" (click)="checkGround(floor.nameFloor)">{{floor.nameFloor}}</option>
+        <select class="form-control">
+          <option *ngFor="let ground of grounds" value="{{ground.floor.nameFloor}}" >{{ground.floor.nameFloor}}</option>
         </select>
       </label>
       <label>
-        <select>
-          <option *ngFor="let ground of grounds" value="{{ground.codeGround}}">{{ground.codeGround}}</option>
+        <select [(ngModel)]="groundId" class="form-control">
+          <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.codeGround}}</option>
         </select>
       </label>
     </div>
@@ -26,29 +26,26 @@
       <label class="col-md-3">Từ:</label>
 
       <label>
-        <input type="date" [ngModel]="startDateSearch">
+        <input type="date" [(ngModel)]="startDateSearch" min="2000-01-01" max="2100-12-31" class="form-control">
       </label>
-<!--      <select>-->
-<!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
-<!--      </select>-->
-<!--      <select>-->
-<!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
-<!--      </select>-->
+<!--      <label class="input-group date" data-provide="datepicker">-->
+<!--        <input style="float: right" matInput [matDatepicker]="picker1">-->
+<!--        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>-->
+<!--      </label>-->
+
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
       <label class="col-md-3">Đến :</label>
       <label>
-        <input type="date" [ngModel]="endDateSearch">
+        <input type="date" [(ngModel)]="endDateSearch" class="form-control" min="2000-01-01" max="2100-12-31">
       </label>
-<!--      <select>-->
-<!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
-<!--      </select>-->
-<!--      <select>-->
-<!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
-<!--      </select>-->
+
+    </div>
+    <div class="col-md-2">
+      <button (click)="checkTime(startDateSearch, endDateSearch)" class="btn btn-dark">Xem Dịch Vụ</button>
     </div>
   </div>
-  <button (click)="checkTime()">Check</button>
 </div>
 
 <div class="container mt-5" >
@@ -77,15 +74,32 @@
         <td>{{service.consume}}</td>
         <td>{{service.price}}</td>
         <td>{{service.consume * service.price}}</td>
-        <td><input type="checkbox" [checked]="service.statusPay" [disabled]="true"></td>
+        <td>
+          <p *ngIf="service.statusPay">Xong</p>
+          <button *ngIf="!service.statusPay" class="btn btn-secondary" (click)="pay(service.id)">Thanh toán</button>
+        </td>
       </tr>
     </table>
   </form>
 </div>
 
 
-
-
+<nav aria-label="Page navigation example" *ngIf="servicesModel.length!=0 && totalPages>1">
+  <ul class="pagination justify-content-md-center mt-3">
+    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+      <a class="page-link"><<</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pages" (click)="loadData(page)"
+        [ngClass]="pageClicked == page ? 'active' : ''">
+      <a class="page-link" (click)="checkPages(page)">{{page + 1}}</a>
+    </li>
+    <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+      <a class="page-link">>></a>
+    </li>
+    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+  </ul>
+</nav>
 
 
 
