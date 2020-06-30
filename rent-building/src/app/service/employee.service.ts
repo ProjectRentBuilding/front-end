@@ -21,6 +21,10 @@ export class EmployeeService extends CrudService<EmployeeModel, number> {
     super(http, 'http://localhost:8080/employees');
   }
 
+  getSalary(): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/employees/salary`)
+  }
+
   getEmployeePage(currentPage, size, search): Observable<any> {
     return this._http.get<any>(`http://localhost:8080/employees/paging`, {
       params: {
