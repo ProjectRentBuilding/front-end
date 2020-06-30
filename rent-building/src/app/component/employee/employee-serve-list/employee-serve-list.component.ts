@@ -1,31 +1,27 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {EmployeeModel} from '../../../model/employee';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {EmployeeModel} from '../../../model/employee';
+import {GroundModel} from '../../../model/ground.model';
+import {ContractModel} from '../../../model/contract';
+import {UserBuildingModel} from '../../../model/userBuilding.model';
 import {EmployeeService} from '../../../service/employee.service';
 import {MatDialog} from '@angular/material';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router, ActivatedRoute} from '@angular/router';
-import {EmployeeDeleteComponent} from '../employee-delete/employee-delete.component';
+import {ActivatedRoute, Router} from '@angular/router';
 import {GroundService} from '../../../service/ground.service';
-import {GroundModel} from '../../../model/ground.model';
 import {ContractService} from '../../../service/contract.service';
-import {ContractModel} from '../../../model/contract';
-import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
-import {BuildingAddComponent} from '../../building/building-add/building-add.component';
-import {EmployeeAddComponent} from '../employee-add/employee-add.component';
-import {log} from 'util';
-import {UserBuildingModel} from '../../../model/userBuilding.model';
 import {UserBuildingService} from '../../../service/user-building.service';
+import {EmployeeDeleteComponent} from '../employee-delete/employee-delete.component';
+import {EmployeeAddComponent} from '../employee-add/employee-add.component';
 import {EmployeeRegisterComponent} from '../employee-register/employee-register.component';
-import {CustomerService} from '../../../service/customer.service';
-
+import {EmployeeServeDeleteComponent} from '../employee-serve-delete/employee-serve-delete.component';
 
 @Component({
-  selector: 'app-employee-list',
-  templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css']
+  selector: 'app-employee-serve-list',
+  templateUrl: './employee-serve-list.component.html',
+  styleUrls: ['./employee-serve-list.component.css']
 })
-export class EmployeeListComponent implements OnInit, OnDestroy {
+export class EmployeeServeListComponent implements OnInit, OnDestroy {
   public checkEdit = false;
   public checkAdd = false;
   public flag;
@@ -77,7 +73,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   loadData(page) {
-    this.employeeService.getEmployeePageSearch(page, this.size, this.nameEmployeeSearch, this.idCardSearch, this.addressSearch, this.partSearch)
+    this.employeeService.getEmployeePageSearch1(page, this.size, this.nameEmployeeSearch, this.idCardSearch, this.addressSearch, this.partSearch)
       .subscribe(
         data => {
           // console.log(this.size);
@@ -165,7 +161,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   openDialogDelete(employeeId): void {
     this.employeeService.findOne(employeeId).subscribe(dataOfEmployee => {
-      const dialogRef = this.dialog.open(EmployeeDeleteComponent, {
+      const dialogRef = this.dialog.open(EmployeeServeDeleteComponent, {
         width: '500px',
         height: '250px',
         data: {data1: dataOfEmployee},
@@ -211,7 +207,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       // this.userBuildings.push(this.userBuilding);
       console.log(this.employee.at(tem).value);
       // this.formAddNewEmployee.value.typeEmployee = 0;
-      this.employee.at(tem).value.typeEmployee = 0;
+      this.employee.at(tem).value.typeEmployee = 1;
       console.log(this.employee.at(tem).value);
       this.employeeService.save(this.employee.at(tem).value).subscribe(data => {
         if (tem === (this.getarray - 1)) {
@@ -278,7 +274,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   }
 
   cancelAdd() {
-    this.redirectTo('employees');
+    this.redirectTo('employees/paging1');
   }
 
 //   deleteAll() {
@@ -297,7 +293,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       for (let item = 0; item < this.employees.length; item++) {
         this.employeeService.delete(this.employees[item].id).subscribe(data => {
         });
-        this.redirectTo('employees');
+        this.redirectTo('employees/paging1');
       }
       this.employeeService.showNotification('', 'Xoá thành công, chúc mừng bạn !!!');
       // this.totalRec = this.employees.length;
@@ -380,7 +376,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.idCardSearch = this.formSearch.value.idCardSearch;
     this.addressSearch = this.formSearch.value.addressSearch;
     this.partSearch = this.formSearch.value.partSearch;
-    this.employeeService.getEmployeePageSearch(page, this.size, this.nameEmployeeSearch, this.idCardSearch, this.addressSearch, this.partSearch)
+    this.employeeService.getEmployeePageSearch1(page, this.size, this.nameEmployeeSearch, this.idCardSearch, this.addressSearch, this.partSearch)
       .subscribe(
         data => {
           this.pageClicked = page;

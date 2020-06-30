@@ -12,4 +12,5 @@ export class EmployeeModel {
   public startWord: string;
   public salary: number;
   public userBuilding: string;
+  public typeEmployee: string;
 }

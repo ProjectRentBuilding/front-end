@@ -38,6 +38,7 @@ export class ServicesDetailComponent implements OnInit {
   size=5;
   public pageClicked: number = 0;
   idContractSearch;
+  nameService = "";
   startDateSearch="2000-01-01";
   endDateSearch="2020-01-01";
 
@@ -50,6 +51,10 @@ export class ServicesDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.servicesService.getServiceDistinct().subscribe((data: string[]) => {
+      this.servicesDistinct = data;
+      this.nameService=this.servicesDistinct[0];
+    });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.customerService.findOne(parseInt(paramMap.get('id'))).subscribe(data => {
         this.dataCustomer = data;
@@ -63,9 +68,7 @@ export class ServicesDetailComponent implements OnInit {
         this.loadData(0);
       });
     });
-    this.servicesService.getServiceDistinct().subscribe((data: string[]) => {
-      this.servicesDistinct = data;
-    });
+
     // this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
     //       this.services = data;
     //       for (let value of this.services) {
@@ -84,7 +87,8 @@ export class ServicesDetailComponent implements OnInit {
   ];
 
   loadData(page) {
-    this.servicesService.getServiceCustomer(page, this.size, this.idContractSearch, this.startDateSearch, this.endDateSearch)
+    console.log(this.nameService+"2");
+    this.servicesService.searchInformationService(page, this.size, this.idContractSearch,this.nameService,this.startDateSearch, this.endDateSearch)
       .subscribe(
         data => {
           this.pageClicked = page;
@@ -96,4 +100,34 @@ export class ServicesDetailComponent implements OnInit {
       );
   }
 
+  searchNameService(value) {
+    this.nameService=value;
+    this.loadData(0);
+
+  }
+  onNext() {
+    if (this.pageClicked == this.totalPages - 1) {
+    } else {
+      this.pageClicked++;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onPrevious() {
+    if (this.pageClicked == 0) {
+    } else {
+      this.pageClicked--;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onFirst() {
+    this.pageClicked = 0;
+    this.loadData(this.pageClicked);
+  }
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
+    this.loadData(this.pageClicked);
+  }
 }

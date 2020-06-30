@@ -162,7 +162,6 @@ export class BuildingListComponent implements OnInit, OnDestroy {
     this.buildingService.findOne(id).subscribe(dataOfBuildingModel => {
       const dialogRef = this.dialog.open(BuildingDeleteComponent, {
         width: '35%',
-        height: '35%',
         data: {data1: dataOfBuildingModel},
         disableClose: true,
       });

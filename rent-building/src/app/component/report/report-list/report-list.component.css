@@ -1,0 +1,9 @@
+table {
+  /*display: block;*/
+  /*overflow-x: auto;*/
+  white-space: nowrap;
+}
+.mat-form-field-appearance-legacy {
+  width: 380px!important;
+}
+
