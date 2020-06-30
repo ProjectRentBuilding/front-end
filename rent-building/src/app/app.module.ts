@@ -63,6 +63,9 @@ import { ServicesEditComponent } from './component/services/services-edit/servic
 import { ServicesDeleteComponent } from './component/services/services-delete/services-delete.component';
 import { ReportEmployeeComponent } from './component/report/report-employee/report-employee.component';
 import { ServicesCustomerComponent } from './component/services/services-customer/services-customer.component';
+import { EmployeeServeComponent } from './component/employee/employee-serve/employee-serve.component';
+import { EmployeeServeListComponent } from './component/employee/employee-serve-list/employee-serve-list.component';
+import { EmployeeServeDeleteComponent } from './component/employee/employee-serve-delete/employee-serve-delete.component';
 
 
 @NgModule({
@@ -110,7 +113,10 @@ import { ServicesCustomerComponent } from './component/services/services-custome
     ServicesEditComponent,
     ServicesDeleteComponent,
     ReportEmployeeComponent,
-    ServicesCustomerComponent
+    ServicesCustomerComponent,
+    EmployeeServeComponent,
+    EmployeeServeListComponent,
+    EmployeeServeDeleteComponent
   ],
     imports: [
         BrowserModule,
@@ -160,7 +166,8 @@ import { ServicesCustomerComponent } from './component/services/services-custome
     ServicesEditComponent,
     ServicesDeleteComponent,
     EmployeeRegisterComponent,
-    ServicesCustomerComponent
+    ServicesCustomerComponent,
+    EmployeeServeDeleteComponent
   ]
 })
 export class AppModule {

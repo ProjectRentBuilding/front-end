@@ -20,6 +20,7 @@ import {ReportsComponent} from './component/report/reports/reports.component';
 import {ReportListComponent} from './component/report/report-list/report-list.component';
 import {ReportEmployeeComponent} from './component/report/report-employee/report-employee.component';
 import {ServicesCustomerComponent} from './component/services/services-customer/services-customer.component';
+import {EmployeeServeListComponent} from './component/employee/employee-serve-list/employee-serve-list.component';
 
 
 const routes: Routes = [
@@ -85,6 +86,10 @@ const routes: Routes = [
         {
           path: '',
           component: EmployeeListComponent,
+        },
+        {
+          path: 'paging1',
+          component: EmployeeServeListComponent,
         }
         // {
         //   path: 'paging',

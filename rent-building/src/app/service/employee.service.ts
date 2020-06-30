@@ -41,6 +41,18 @@ export class EmployeeService extends CrudService<EmployeeModel, number> {
       }
     });
   }
+  getEmployeePageSearch1(currentPage, size, nameEmployeeSearch, idCardSearch, addressSearch, partSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/employees/paging1`, {
+      params: {
+        page: currentPage,
+        size: size,
+        name: nameEmployeeSearch,
+        idCard: idCardSearch,
+        address: addressSearch,
+        part: partSearch
+      }
+    });
+  }
   showNotification(title, message) {
     const type = ['', 'info', 'success', 'warning', 'danger'];
     const color = Math.floor((Math.random() * 4) + 1);
