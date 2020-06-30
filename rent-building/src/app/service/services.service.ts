@@ -66,6 +66,18 @@ export class ServicesService extends CrudService<ServicesModel, number>{
       }
     });
   }
+  searchInformationService(currentPage, size, idContractSearch,nameServiceSearch,startDateSearch,endDateSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/services/infoService`, {
+      params: {
+        page: currentPage,
+        size: size,
+        idContract: idContractSearch,
+        nameService:nameServiceSearch,
+        startDate: startDateSearch,
+        endDate: endDateSearch
+      }
+    });
+  }
   getServiceDistinct(): Observable<any> {
     return this._http.get<any>(`http://localhost:8080/services/distinct`);
   }

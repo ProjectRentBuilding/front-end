@@ -10,7 +10,7 @@
                      name="nameService" formControlName="searchNameService">
             </label>
             <datalist id="nameService">
-              <option *ngFor="let service of servicesModel" [value]="service.nameService"></option>
+              <option *ngFor="let nameService of servicesDistinct" [value]="nameService"></option>
             </datalist>
           </div>
           <div class=col-md-3>
