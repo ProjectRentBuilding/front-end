@@ -42,7 +42,7 @@
 <h1 class="justify-content-center" style="color: red">{{this.message}}</h1>
 <div>
   <div style="width: 100%;background: #435D7D">
-    <h3 class="text-light text-center py-3 mt-5" style="font-family: Varela Round ">DANH SÁCH NHÂN VIÊN VĂN PHÒNG</h3>
+    <h3 class="text-light text-center py-3 mt-5" style="font-family: Varela Round ">DANH SÁCH NHÂN VIÊN PHỤC VỤ</h3>
     <button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button>
   </div>
   <ng-container>
@@ -135,7 +135,7 @@
               Ngày sinh không được để trống!
             </p>
           </td>
-<!--        Giới tính-->
+          <!--        Giới tính-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.gender}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
             <select class="form-control"  formControlName="gender">
@@ -149,7 +149,7 @@
             </p>
           </td>
 
-<!--         Địa chỉ-->
+          <!--         Địa chỉ-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.address}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
             <input type="text" class="form-control" formControlName="address">
@@ -159,7 +159,7 @@
             </p>
           </td>
 
-<!--        Cấp bậc lương-->
+          <!--        Cấp bậc lương-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.levelSalary}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
             <input type="text" class="form-control"
@@ -170,7 +170,7 @@
               Cấp bậc lương không được để trống!
             </p>
           </td>
-<!--        Bộ phận-->
+          <!--        Bộ phận-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.part}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
             <select class="form-control" formControlName="part">
@@ -179,13 +179,13 @@
               <option value="Sale">Sale</option>
               <option value="Quản lý">Quản lý</option>
             </select>
-<!--            <p class="alert alert-danger" role="alert"-->
-<!--               *ngIf="formEditEmployee.get('part').invalid && formEditEmployee.get('part').touched">-->
-<!--              Tên bộ phận không được để trống!-->
-<!--            </p>-->
+            <!--            <p class="alert alert-danger" role="alert"-->
+            <!--               *ngIf="formEditEmployee.get('part').invalid && formEditEmployee.get('part').touched">-->
+            <!--              Tên bộ phận không được để trống!-->
+            <!--            </p>-->
           </td>
 
-<!--          Ngày bắt đầu làm việc-->
+          <!--          Ngày bắt đầu làm việc-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.startWord | date:'dd/MM/yyyy'}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
 
@@ -200,16 +200,16 @@
             </p>
           </td>
 
-<!--          Tài khoản-->
-                  <td>
-                    <ng-container *ngFor="let userBuilding of userName">
-<!--                      <p><input *ngIf="contract.employee.id == employee.id" type="checkbox" [checked]="contract.statusContract"-->
-<!--                                disabled></p>-->
+          <!--          Tài khoản-->
+          <td>
+            <ng-container *ngFor="let userBuilding of userName">
+              <!--                      <p><input *ngIf="contract.employee.id == employee.id" type="checkbox" [checked]="contract.statusContract"-->
+              <!--                                disabled></p>-->
 
-                      <p *ngIf="(!checkEdit || employee.id!==flag) &&(employee.id === userBuilding.employee.id) ">{{userBuilding.username}}</p>
+              <p *ngIf="(!checkEdit || employee.id!==flag) &&(employee.id === userBuilding.employee.id) ">{{userBuilding.username}}</p>
 
-                    </ng-container>
-                  </td>
+            </ng-container>
+          </td>
 
 
           <td>
@@ -251,7 +251,7 @@
                    placeholder="Tên nhân viên ">
           </td>
 
-<!--      loại nhân viên ẩn-->
+          <!--      loại nhân viên ẩn-->
           <input type="text" hidden formControlName="typeEmployee" >
           <td class="add-row">
             <input type="text" class="form-control infoPlaceholder" formControlName="idCard" placeholder="Nhập CMND ">
@@ -277,7 +277,7 @@
           </td>
 
           <td class="add-row" >
-<!--            <input type="text" class="form-control infoPlaceholder" formControlName="gender" placeholder="Nhập giới tính ">-->
+            <!--            <input type="text" class="form-control infoPlaceholder" formControlName="gender" placeholder="Nhập giới tính ">-->
             <select class="form-control" name="" id="" formControlName="gender">
               <option  value="">Giới tính</option>
               <option value="Nam" selected>Nam</option>
@@ -421,6 +421,7 @@
     <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
+
 
 
 

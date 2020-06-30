@@ -20,6 +20,10 @@ import {EmployeeService} from '../../../service/employee.service';
 export class EmployeeRegisterComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   addUserBuildingForm: FormGroup;
+  public arrayUserBuilding = [];
+  public nameUserBuildings = [];
+  public messageUserCheck = '';
+  public checkValidateUserName: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeRegisterComponent>,
@@ -58,9 +62,11 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
 
 
   onAddUserBuilding() {
-    this.userBuildingService.save(this.addUserBuildingForm.value).subscribe(data => {
-      this.afterAddUserBuilding();
-    });
+
+
+      this.userBuildingService.save(this.addUserBuildingForm.value).subscribe(data => {
+        this.afterAddUserBuilding();
+      });
   }
 
   afterAddUserBuilding() {
@@ -74,6 +80,29 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+  }
+
+  checkUserName() {
+    this.messageUserCheck = '';
+    this.checkValidateUserName = false;
+    this.userBuildingService.findAll().subscribe(data => {
+        this.arrayUserBuilding = data;
+      }, () => {
+        console.log('Error in subscribe');
+      }, () => {
+        for (let i = 0; i < this.arrayUserBuilding.length; i++) {
+          this.nameUserBuildings.push(this.arrayUserBuilding[i].username);
+        }
+        console.log(this.nameUserBuildings);
+      }
+    );
+    for (let i = 0; i < this.nameUserBuildings.length; i++) {
+      if (this.addUserBuildingForm.value.username === (this.nameUserBuildings[i])) {
+        this.messageUserCheck = 'Tên đăng nhập đã tồn tại';
+        this.checkValidateUserName = true;
+        this.addUserBuildingForm.setErrors({'invalid': false});
+      }
     }
   }
 }
