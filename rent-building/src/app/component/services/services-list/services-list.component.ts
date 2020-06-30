@@ -259,6 +259,13 @@ export class ServicesListComponent implements OnInit, OnDestroy {
         this.editServiceForm.patchValue(data);
       });
     }
+    if (this.flag>0) {
+      this.flag = id;
+      this.serviceOfId = id;
+      this.servicesService.findOne(this.serviceOfId).subscribe(data => {
+        this.editServiceForm.patchValue(data);
+      });
+    }
   }
   redirectTo(uri: string) {
     this.routerService.navigateByUrl('/', {skipLocationChange: true}).then(() =>

@@ -66,4 +66,7 @@ export class ServicesService extends CrudService<ServicesModel, number>{
       }
     });
   }
+  getServiceDistinct(): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/services/distinct`);
+  }
 }

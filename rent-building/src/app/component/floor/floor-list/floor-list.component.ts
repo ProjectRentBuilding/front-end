@@ -202,6 +202,13 @@ export class FloorListComponent implements OnInit, OnDestroy {
         this.editFloorForm.patchValue(data);
       });
     }
+    if (this.flag>0) {
+      this.flag = id;
+      this.floorOfId = id;
+      this.floorService.findOne(this.floorOfId).subscribe(data => {
+        this.editFloorForm.patchValue(data);
+      });
+    }
   }
 
   editFloor() {

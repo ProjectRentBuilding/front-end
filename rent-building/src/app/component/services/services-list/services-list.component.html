@@ -154,7 +154,7 @@
             </select>
           </td>
           <td *ngIf="!checkEdit || item.id!==flag">
-            <button class="btn btn-primary" (click)="openInformationCustomer(item.id)">
+            <button class="btn btn-primary" (click)="openInformationCustomer(item.contract.customer.id)">
               Xem
             </button>
           </td>
