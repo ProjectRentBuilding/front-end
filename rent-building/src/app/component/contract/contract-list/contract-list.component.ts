@@ -133,8 +133,6 @@ export class ContractListComponent implements OnInit, OnDestroy {
   }
 
   loadData(page) {
-
-
     this.contractService.getContractPageSearch(page, this.size, this.nameCustomerSearch, this.codeGroundSearch, this.startRentDaySearch, this.endRentDaySearch)
       .subscribe(
         data => {

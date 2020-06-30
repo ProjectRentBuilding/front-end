@@ -15,6 +15,7 @@ import {CustomerAddComponent} from "../../customer/customer-add/customer-add.com
 import {MatDialog} from "@angular/material/dialog";
 import {ContractListComponent} from '../contract-list/contract-list.component';
 import {ImgurApiService} from "../../../service/imgur-api.service";
+import {invalid} from "@angular/compiler/src/render3/view/util";
 
 @Component({
   selector: 'app-contract-add',
@@ -164,8 +165,13 @@ export class ContractAddComponent implements OnInit {
       this.termCalculate = parseFloat(((b.getTime() - a.getTime()) / 2629800000).toFixed(2));
       this.totalCalculate = this.termCalculate * this.priceCalculate;
       this.messageTimeValidate = '';
+
+      this.formAddNewContract.setErrors({ 'invalid': true });
+
     } else {
       this.messageTimeValidate = 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc';
+      this.formAddNewContract.setErrors({ 'invalid': false });
+
     }
 
     this.statusCalculate = (a.getTime() <= this.currentDay) && (b.getTime() >= this.currentDay);

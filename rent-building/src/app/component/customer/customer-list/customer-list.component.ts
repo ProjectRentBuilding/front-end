@@ -138,7 +138,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
-        this.ngOnInit();
+        // this.ngOnInit();
 
       });
     });
@@ -357,6 +357,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
           this.customers = this.customerPage.content;
           this.totalPages = this.customerPage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+          console.log(data);
         }
       );
   }

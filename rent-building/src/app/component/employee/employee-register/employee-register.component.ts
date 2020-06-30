@@ -9,7 +9,8 @@ import {Router} from '@angular/router';
 import {GroundService} from '../../../service/ground.service';
 import {ContractService} from '../../../service/contract.service';
 import {UserBuildingService} from '../../../service/user-building.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {EmployeeService} from '../../../service/employee.service';
 
 @Component({
   selector: 'app-employee-register',
@@ -26,24 +27,48 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
     public routerService: Router,
     public dialog: MatDialog,
     private fb: FormBuilder,
-    public userBuildingService: UserBuildingService
+    public userBuildingService: UserBuildingService,
+    public employeeService: EmployeeService
   ) {
+  }
+
+  passwordConfirming(c: AbstractControl): { invalid: boolean } {
+    if (c.get('passwordUser').value !== c.get('passwordAgain').value) {
+      return {invalid: true};
+    }
   }
 
   ngOnInit() {
     return this.addUserBuildingForm = this.fb.group({
       username: ['', Validators.required],
-      passwordUser: ['', Validators.required]
-    });
+      passwordUser: ['', Validators.required],
+      passwordAgain: ['', Validators.required]
+    }, {validator: this.passwordConfirming});
   }
+
+  // onAddUserBuilding() {
+  //   this.userBuildingService.save(this.addUserBuildingForm.value).subscribe(data => {
+  //     this.userBuildingService.showNotification('', 'Thêm tài khoản thành công, chúc mừng bạn');
+  //     // if (data && data.id) {
+  //     // this.routerService.navigate(['customers']).then(r => this.afterOnAddBuilding());
+  //     // }
+  //
+  //   });
+  // }
+
+
   onAddUserBuilding() {
     this.userBuildingService.save(this.addUserBuildingForm.value).subscribe(data => {
-      this.userBuildingService.showNotification('', 'Thêm tài khoản thành công, chúc mừng bạn');
-      // if (data && data.id) {
-      // this.routerService.navigate(['customers']).then(r => this.afterOnAddBuilding());
-      // }
-
+      this.afterAddUserBuilding();
     });
+  }
+
+  afterAddUserBuilding() {
+    this.userBuildingService.showNotification('', 'Thêm tài khoản thành công, chúc mừng bạn');
+    console.log(this.addUserBuildingForm.value.username);
+    this.employeeService.sentUsername = this.addUserBuildingForm.value.username;
+    this.employeeService.arraySentUsername.push(this.addUserBuildingForm.value.username);
+
   }
 
   ngOnDestroy() {

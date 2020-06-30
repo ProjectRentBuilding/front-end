@@ -27,6 +27,7 @@ export class ReportListComponent implements OnInit {
   public message = "";
   public sortedData: any;
   public sort: Sort;
+  myChart: Chart;
 
   constructor(
     public reportService: ReportService,
@@ -40,7 +41,7 @@ export class ReportListComponent implements OnInit {
     this.refreshForm();
 
     this.formSearch = this.formBuilder.group({
-      startRentDay:[''],
+      startRentDay: [''],
       endRentDay: [''],
       minTotal: [''],
       maxTotal: [''],
@@ -54,6 +55,12 @@ export class ReportListComponent implements OnInit {
         this.reports = data;
       }, () => {
       }, () => {
+
+        // var button = document.getElementById("onSearch");
+        // button.addEventListener("click", function () {
+        //   myChart.destroy();
+        // });
+
         this.sortedData = this.reports.slice();
         const xlable = [];
         const ylable = [];
@@ -70,8 +77,16 @@ export class ReportListComponent implements OnInit {
         const canvas = <HTMLCanvasElement>document.getElementById('chart');
         const ctx = canvas.getContext('2d');
 
+        // if(window.bar != undefined)
+        //   window.bar.destroy();
+        // window.bar = new Chart(ctx , {});
 
-        const myChart = new Chart(ctx, {
+        if (typeof (this.myChart) != "undefined") {
+          this.myChart.destroy();
+        }
+
+
+        this.myChart = new Chart(ctx, {
           type: 'bar',
           data: {
             labels: xlable,
@@ -84,7 +99,10 @@ export class ReportListComponent implements OnInit {
                 'rgba(191, 85, 236, 1)',
               borderWidth: 1
             }]
-          },
+          }
+
+
+          ,
           options: {
             tooltips: {
               callbacks: {
@@ -109,7 +127,11 @@ export class ReportListComponent implements OnInit {
               ]
             }
           }
+
+
         });
+
+
       }
     );
   }
@@ -175,8 +197,12 @@ export class ReportListComponent implements OnInit {
         const canvas = <HTMLCanvasElement>document.getElementById('chart');
         const ctx = canvas.getContext('2d');
 
+        if (typeof (this.myChart) != "undefined") {
+          this.myChart.destroy();
+        }
 
-        const myChart = new Chart(ctx, {
+
+        this.myChart = new Chart(ctx, {
           type: 'bar',
           data: {
             labels: xlable,
@@ -242,6 +268,11 @@ export class ReportListComponent implements OnInit {
   }
 
   onSearch() {
+
+    if (typeof (this.myChart) != "undefined") {
+      this.myChart.destroy();
+    }
+
     this.startRentDay = this.formSearch.value.startRentDay;
     this.endRentDay = this.formSearch.value.endRentDay;
     this.minTotal = this.formSearch.value.minTotal;
@@ -259,13 +290,13 @@ export class ReportListComponent implements OnInit {
     if (isNaN(start.getFullYear())) {
       resultStart = "1900-01-01";
     } else {
-      resultStart = "" + start.getFullYear() + "-" + (start.getMonth()+1) + "-" + start.getDay();
+      resultStart = "" + start.getFullYear() + "-" + (start.getMonth() + 1) + "-" + start.getDay();
     }
 
     if (isNaN(end.getFullYear())) {
       resultEnd = "2030-01-01";
     } else {
-      resultEnd = "" + end.getFullYear() + "-" + (end.getMonth()+1) + "-" + end.getDay();
+      resultEnd = "" + end.getFullYear() + "-" + (end.getMonth() + 1) + "-" + end.getDay();
     }
 
 
@@ -318,7 +349,7 @@ export class ReportListComponent implements OnInit {
           const ctx = canvas.getContext('2d');
 
 
-          const myChart = new Chart(ctx, {
+          this.myChart = new Chart(ctx, {
             type: 'bar',
             data: {
               labels: xlable,

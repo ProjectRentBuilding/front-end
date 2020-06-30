@@ -35,9 +35,9 @@ export class ServicesAddComponent implements OnInit {
       this.contracts = data;
     });
     this.addServiceForm = this.fb.group({
-      nameService: ['', [Validators.required]],
+      nameService: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       periodic: ['', [Validators.required]],
-      unit: ['', [Validators.required]],
+      unit: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       price: ['', [Validators.required]],
       indexBeforeMonth: ['', [Validators.required]],
       indexAfterMonth: ['', [Validators.required]],
@@ -47,6 +47,7 @@ export class ServicesAddComponent implements OnInit {
     });
   }
   onAddService() {
+    console.log(this.addServiceForm.value);
 
     this.servicesService.save(this.addServiceForm.value).subscribe(data => {
       // if (data && data.id) {

@@ -155,7 +155,6 @@ import { ServicesCustomerComponent } from './component/services/services-custome
     EquipmentAddComponent,
     ImageGalleryComponent,
     ServicesListComponent,
-    ServicesDetailComponent,
     ServicesAddComponent,
     ServicesEditComponent,
     ServicesDeleteComponent,

@@ -23,23 +23,33 @@
   background-color: #eee;
   transform: translateY(-1px);
 }
-table thead  th,td{
+
+table thead th, td {
   vertical-align: middle;
 }
-td select{
+
+td select {
   margin-top: 0px;
   padding: 0px;
 }
-.add-row{
+
+.add-row {
   padding: 0 !important;
 }
-.text-danger{
+
+.text-danger {
   text-align: center;
 }
+
 /*input.ng-valid{*/
 /*  background: #12b517;*/
 /*}*/
-div div input{
+div div input {
   margin-left: 5%;
 }
+
+table thead th, td {
+  vertical-align: middle;
+}
+
 
