@@ -54,4 +54,42 @@ export class ServicesService extends CrudService<ServicesModel, number>{
       }
     });
   }
+
+  // getServiceCustomer(currentPage, size, idContractSearch,startDateSearch,endDateSearch): Observable<any> {
+  //   return this._http.get<any>(`http://localhost:8080/services/search`, {
+  //     params: {
+  //       page: currentPage,
+  //       size: size,
+  //       idContract: idContractSearch,
+  //       startDate: startDateSearch,
+  //       endDate: endDateSearch
+  //     }
+  //   });
+  // }
+  getServiceCustomer(currentPage, size, startDateSearch,endDateSearch, idContractSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/services/search`, {
+      params: {
+        page: currentPage,
+        size: size,
+        monthYear: startDateSearch,
+        monthYear2: endDateSearch,
+        contractId: idContractSearch
+      }
+    });
+  }
+  searchInformationService(currentPage, size, idContractSearch,nameServiceSearch,startDateSearch,endDateSearch): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/services/infoService`, {
+      params: {
+        page: currentPage,
+        size: size,
+        idContract: idContractSearch,
+        nameService:nameServiceSearch,
+        startDate: startDateSearch,
+        endDate: endDateSearch
+      }
+    });
+  }
+  getServiceDistinct(): Observable<any> {
+    return this._http.get<any>(`http://localhost:8080/services/distinct`);
+  }
 }

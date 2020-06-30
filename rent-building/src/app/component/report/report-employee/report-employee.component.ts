@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Sort} from "@angular/material/sort";
 import {EmployeeModel} from "../../../model/employee";
 import * as html2pdf from 'html2pdf.js';
+import {EmployeeService} from "../../../service/employee.service";
 
 @Component({
   selector: 'app-report-employee',
@@ -12,29 +13,33 @@ export class ReportEmployeeComponent implements OnInit {
 
   public employees: any;
   public sortedData: any;
+  public totalSalary = 0;
 
-  constructor() {
+
+  constructor(
+    public employeeService: EmployeeService
+  ) {
+
   }
 
   ngOnInit() {
-    this.employees = [
-      {
-        nameEmployeeCal: 'tran ngoc tan',
-        partCal: 'bao ve',
-        salaryCal: '2000'
-      },
-      {
-        nameEmployeeCal: 'le dinh quoc',
-        partCal: 'quet rac',
-        salaryCal: '3000'
-      },
-      {
-        nameEmployeeCal: 'vo minh hung',
-        partCal: 'boi com',
-        salaryCal: '2500'
+
+    this.employeeService.findAll().subscribe(data => {
+      this.employees = data;
+    }, () => {
+
+    }, () => {
+      this.sortedData = this.employees.slice();
+
+      for (let i = 0; i <this.employees.length ; i++) {
+        this.totalSalary += this.employees[i].salary;
       }
-    ];
-    this.sortedData = this.employees.slice();
+
+
+
+    });
+
+
   }
 
   printToPDF() {

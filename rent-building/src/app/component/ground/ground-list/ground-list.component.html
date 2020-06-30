@@ -91,8 +91,8 @@
     <td>{{item.typeGround.nameTypeGround}}</td>
     <td>{{item.area}}</td>
     <td>{{item.statusGround}}</td>
-    <td>{{item.price}}</td>
-    <td>{{item.priceManager}}</td>
+    <td>{{item.price|number}}</td>
+    <td>{{item.priceManager|number}}</td>
 
     <ng-container class="dropdown-menu" aria-labelledby="triggerId" style="overflow-y: scroll;height: 20px">
       <div *ngFor="let contract of contracts">

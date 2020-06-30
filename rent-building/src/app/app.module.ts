@@ -161,7 +161,6 @@ import { EmployeeServeDeleteComponent } from './component/employee/employee-serv
     EquipmentAddComponent,
     ImageGalleryComponent,
     ServicesListComponent,
-    ServicesDetailComponent,
     ServicesAddComponent,
     ServicesEditComponent,
     ServicesDeleteComponent,

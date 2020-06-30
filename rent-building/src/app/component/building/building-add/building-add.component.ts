@@ -7,7 +7,6 @@ import {BuildingService} from '../../../service/building.service';
 import {Router} from '@angular/router';
 import {ImageModel} from '../../../model/image.model';
 import {ImageService} from '../../../service/image.service';
-import {ImageGalleryComponent} from "./image-gallery/image-gallery.component";
 
 @Component({
   selector: 'app-building-add',
@@ -58,12 +57,10 @@ export class BuildingAddComponent implements OnInit, OnDestroy {
   onAddBuilding() {
     this.addBuildingForm.value.logo = this.idImagePick;
 
-    console.log(this.addBuildingForm.value);
-    this.buildingService.save(this.addBuildingForm.value).subscribe(data => {
 
-      // if (data && data.id) {
+    this.buildingService.save(this.addBuildingForm.value).subscribe(data => {
       this.routerService.navigate(['buildings']).then(r => this.afterOnAddBuilding());
-      // }
+
 
     });
   }

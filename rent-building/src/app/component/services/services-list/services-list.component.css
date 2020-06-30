@@ -2,11 +2,11 @@
 table thead  th,td{
   vertical-align: middle;
 }
-table {
-  display: block;
-  overflow-x: auto;
-  white-space: nowrap;
-}
+/*table {*/
+/*  display: block;*/
+/*    overflow-x: auto;*/
+/*    white-space: nowrap;*/
+/*}*/
 
 .search-input {
   background: transparent;
@@ -51,4 +51,5 @@ td select{
 div div input{
   margin-left: 5%;
 }
+
 

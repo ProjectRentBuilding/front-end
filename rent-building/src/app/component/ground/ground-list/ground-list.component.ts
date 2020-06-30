@@ -135,7 +135,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
   openDialogAddNew(): void {
     const dialogRef = this.dialog.open(GroundAddComponent, {
       width: '65%',
-      height: '540px',
+      height: '80%',
       disableClose: false,
     });
 
@@ -148,7 +148,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundDetailComponent, {
         width: '65%',
-        height: '540px',
+        height: '80%',
         data: {data1: dataOfGroundModel},
         disableClose: false,
       });
@@ -163,7 +163,7 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundEditComponent, {
         width: '65%',
-        height: '540px',
+        height: '80%',
         data: {data1: dataOfGroundModel},
         disableClose: false,
       });
@@ -179,7 +179,6 @@ export class GroundListComponent implements OnInit, OnDestroy {
     this.groundService.findOne(id).subscribe(dataOfGroundModel => {
       const dialogRef = this.dialog.open(GroundDeleteComponent, {
         width: '35%',
-        height: '250px',
         data: {data1: dataOfGroundModel},
         disableClose: true,
       });

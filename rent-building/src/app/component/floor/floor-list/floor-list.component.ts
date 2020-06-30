@@ -22,10 +22,11 @@ import {BuildingService} from "../../../service/building.service";
 export class FloorListComponent implements OnInit, OnDestroy {
 
   public subscription: Subscription;
-  public flag = false;
+  public flag = -1;
   public checkEdit = false;
   public checkAdd = false;
   public page = 1;
+  public checkCodeFloor=false;
 
   private searchForm: FormGroup;
   public addFloorForm: FormGroup;
@@ -33,7 +34,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
   public floor: FormArray;
   public floorOfId;
   public id: number;
-  public getarray = 1;
+  public getArray = 1;
   public typeFloors: TypeFloorModel[];
   public buildings: BuildingModel[];
 
@@ -163,7 +164,7 @@ export class FloorListComponent implements OnInit, OnDestroy {
     if (!this.checkAdd) {
       this.checkAdd = !this.checkAdd;
     } else {
-      this.getarray++;
+      this.getArray++;
       this.subscription = this.typeFloorService.findAll().subscribe((data: TypeFloorModel[]) => {
         this.typeFloors = data;
       });
@@ -174,15 +175,16 @@ export class FloorListComponent implements OnInit, OnDestroy {
 
   addNewFloor() {
     this.floor = this.addFloorForm.get('floor') as FormArray;
-    for (let tem = 0; tem < this.getarray; tem++) {
-      // @ts-ignore
+    for (let tem = 0; tem < this.getArray; tem++) {
       this.floorService.save(this.floor.at(tem).value).subscribe(data => {
         this.floorService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-
+        if (tem === (this.getArray - 1)) {
+          this.floor.reset();
+          this.pageClicked = this.totalPages - 1;
+          this.loadData(this.pageClicked);
+        }
       });
     }
-    this.redirectTo('floors');
-    console.log(this.addFloorForm);
   }
 
   redirectTo(uri: string) {
@@ -200,13 +202,21 @@ export class FloorListComponent implements OnInit, OnDestroy {
         this.editFloorForm.patchValue(data);
       });
     }
+    if (this.flag>0) {
+      this.flag = id;
+      this.floorOfId = id;
+      this.floorService.findOne(this.floorOfId).subscribe(data => {
+        this.editFloorForm.patchValue(data);
+      });
+    }
   }
 
   editFloor() {
-    console.log(this.editFloorForm.value);
     this.floorService.update(this.editFloorForm.value, this.floorOfId).subscribe(data => {
-      this.redirectTo('floors');
       this.floorService.showNotification('', 'Sửa thành công, chúc mừng bạn');
+      this.flag = -1;
+      this.checkEdit = false;
+      this.loadData(this.pageClicked);
     });
   }
 
@@ -218,21 +228,22 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.floorService.findOne(id).subscribe(dataOfFloorModel => {
       const dialogRef = this.dialog.open(FloorDeleteComponent, {
         width: '35%',
-        height: '35%',
         data: {data1: dataOfFloorModel},
         disableClose: true,
       });
       dialogRef.afterClosed().subscribe(result => {
         this.ngOnInit();
+        this.loadData(this.pageClicked);
       });
     });
   }
 
   removeFloor(i: number) {
-    // if (i === 0) {
-    //   this.checkAdd = false;
-    // }
-    this.floor.removeAt(i);
+    if (this.getArray == 1) {
+      this.checkAdd = false;
+    } else {
+      this.floor.removeAt(i);
+    }
   }
 
   deleteAll() {
@@ -273,5 +284,14 @@ export class FloorListComponent implements OnInit, OnDestroy {
       this.searchNameTypeFloor=this.searchForm.value.searchNameTypeFloor;
     }
     this.loadData(page);
+  }
+
+  checkValue() {
+    if (this.addFloorForm.invalid ) {
+      return true;
+    } else {
+      return false;
+    }
+
   }
 }

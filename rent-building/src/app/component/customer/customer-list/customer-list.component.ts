@@ -53,6 +53,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   public searchForm: FormGroup;
   public nameSearch: string;
   public idCardSearch: string;
+  // @ts-ignore
+  public dataCustomer: Customer = [];
 
   constructor(public customerService: CustomerService,
               public dialog: MatDialog,
@@ -183,7 +185,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.customer = this.formAddNewCustomer.get('customer') as FormArray;
     for (let tem = 0; tem < this.getarray; tem++) {
       this.customers.push(this.customer.at(tem).value);
-      // @ts-ignore
       this.customerService.save(this.customer.at(tem).value).subscribe(data => {
         if (tem === (this.getarray - 1)) {
           this.customer.reset();
@@ -266,7 +267,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.customerService.findAll().subscribe(data1 => {
       this.customers = data1;
       console.log(this.customers);
-      // tslint:disable-next-line:prefer-for-of
       for (let item = 0; item < this.customers.length; item++) {
         this.customerService.delete(this.customers[item].id).subscribe(data => {
         });
@@ -361,7 +361,6 @@ export class CustomerListComponent implements OnInit, OnDestroy {
         }
       );
   }
-  // tslint:disable-next-line:variable-name
   onSearch(number: number) {
     if (this.searchForm.value.searchName == null) {
       this.searchForm.value.searchName = '';
@@ -384,7 +383,20 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     this.onSearch(0);
   }
 
-  openServicesCustomer(id: any) {
+  openServicesCustomer(id: number) {
+    this.customerService.findOne(id).subscribe(data => {
+      this.dataCustomer = data;
+      if (this.dataCustomer.contracts.length == 0) {
+        this.customerService.showNotification('', 'Khách hàng không có dịch vụ để xem !!!');
+      }else {
+        this.router.navigate(['services-customer', id]);
+      }
+    });
+    // for (let i = 0; i < this.data.data1.contracts.length; i++) {
+    //   this.customerGrounds.push(this.data.data1.contracts[i].ground.codeGround);
+    //   this.customerStatusContract.push(this.data.data1.contracts[i].statusContract);
+    //   // console.log(this.customerGrounds);
+    // }
 
   }
 }
