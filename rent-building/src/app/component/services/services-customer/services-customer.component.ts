@@ -158,8 +158,13 @@ export class ServicesCustomerComponent implements OnInit {
       // @ts-ignore
       this.servicePay = data;
       // @ts-ignore
-      // this.servicePay.statusPay = 1;
+      this.servicePay.statusPay = 1;
       console.log(this.servicePay);
+      // @ts-ignore
+      this.servicesService.update(this.servicePay, id).subscribe(data => {
+        this.servicesService.showNotification('', 'Thanh toán thành công, chúc mừng bạn');
+        this.loadData(this.pageClicked);
+      });
     });
   }
 }
