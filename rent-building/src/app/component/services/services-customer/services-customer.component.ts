@@ -27,6 +27,7 @@ export class ServicesCustomerComponent implements OnInit {
   public servicesModel: ServicesModel [] = [];
   public services: ServicesModel [] = [];
   public contracts: ContractModel[] = [];
+  public contract: ContractModel[] = [];
   public month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] ;
   public years = new Array<string>();
   public idContract = new Array<string>();
@@ -35,19 +36,24 @@ export class ServicesCustomerComponent implements OnInit {
   // @ts-ignore
   public dataCustomer: Customer = [];
   public nameCustomer: String;
-  public page = 1;
   public size = 5;
   public servicePage: any;
   public totalPages: number = 1;
+  public page = 1;
   public pages = [];
+  public checkPage = 0;
+  startDate = new Date(1990, 0, 1);
   public pageClicked: number = 0;
   public idContractSearch: number;
-  public startDateSearch = '';
-  public endDateSearch = '';
+  public startDateSearch = '2019-01-01';
+  public endDateSearch = '2020-01-01';
+  public messageTimeValidate: string;
+  public groundId: string;
+  public servicePay: ServicesModel [] = [];
 
   constructor(
-    // public floorService: FloorService,
-    // private groundService: GroundService,
+    public floorService: FloorService,
+    private groundService: GroundService,
     private servicesService: ServicesService,
     private router: Router,
     public customerService: CustomerService,
@@ -58,74 +64,102 @@ export class ServicesCustomerComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      console.log(paramMap.get('id'));
       this.customerService.findOne(parseInt(paramMap.get('id'))).subscribe(data => {
         this.dataCustomer = data;
         this.nameCustomer = this.dataCustomer.name;
         for (let i =0 ; i< this.dataCustomer.contracts.length; i++ ) {
           this.idContract.push(this.dataCustomer.contracts[i].id);
+          this.grounds.push(this.dataCustomer.contracts[i].ground);
+          this.floors.push(this.dataCustomer.contracts[i].ground.floor);
         }
-        // @ts-ignore
-        console.log(this.idContract);
+        this.idContractSearch = this.dataCustomer.contracts[0].id;
+        console.log(this.idContractSearch);
+        this.loadData(0);
       });
     });
-    this.contractService.findAll().subscribe((data : ContractModel[]) =>{
-      this.contracts = data;
-        for (let value of this.contracts) {
-          for (let i of this.idContract) {
-            // @ts-ignore
-            if (value.id == i){
-              // @ts-ignore
-              this.grounds.push(value.ground);
-              // @ts-ignore
-              this.floors.push(value.ground.floor);
-            }
-          }
-        }
-      console.log(this.grounds);
-    });
-    this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
-      this.services = data;
-      for (let value of this.services) {
-          // @ts-ignore
-        if (value.contract.customer.name == this.nameCustomer) {
-            this.servicesModel.push(value);
-          }
-      }
-      console.log(this.servicesModel)
-    });
-    for (let i = 0; i <= 5; i++) {
-      this.temp = this.dateNow.getFullYear();
-      this.years.push( String(this.temp - i));
-    }
+
+    // this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
+    //   this.services = data;
+    //   for (let value of this.services) {
+    //       // @ts-ignore
+    //     if (value.contract.customer.name == this.nameCustomer) {
+    //         this.servicesModel.push(value);
+    //       }
+    //   }
+    // });
   }
 
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
+  onNext() {
+    if (this.pageClicked == this.totalPages - 1) {
+    } else {
+      this.pageClicked++;
+    }
+    this.loadData(this.pageClicked);
+  }
 
-  loadData(page) {
-    this.servicesService.getServiceCustomer(page, this.size, this.idContractSearch, this.startDateSearch, this.endDateSearch)
+  onPrevious() {
+    if (this.pageClicked == 0) {
+    } else {
+      this.pageClicked--;
+    }
+    this.loadData(this.pageClicked);
+  }
+
+  onFirst() {
+    this.pageClicked = 0;
+    this.loadData(this.pageClicked);
+  }
+
+  onLast() {
+    this.pageClicked = this.totalPages - 1;
+    this.loadData(this.pageClicked);
+  }
+
+  checkTime(startDateSearch: Date, endDateSearch: Date) {
+    if (startDateSearch <= endDateSearch) {
+      this.checkIdContract();
+      this.loadData(0);
+    }else {
+      this.messageTimeValidate = 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc';
+    }
+  }
+  checkPages(page) {
+    console.log(page);
+    this.checkPage = page;
+  }
+
+  checkIdContract() {
+    for (let i =0 ; i< this.dataCustomer.contracts.length; i++ ) {
+      if (this.dataCustomer.contracts[i].ground.id == this.groundId ) {
+        return this.idContractSearch = this.dataCustomer.contracts[i].id;
+      }
+    }
+  }
+
+  public loadData(page) {
+    this.servicesService.getServiceCustomer(page, this.size, this.startDateSearch, this.endDateSearch, this.idContractSearch)
       .subscribe(
         data => {
           this.pageClicked = page;
           this.servicePage = data;
-          this.services = this.servicePage.content;
+          this.servicesModel = this.servicePage.content;
           this.totalPages = this.servicePage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
         }
       );
   }
-  searchServiceCustomers() {
 
-  }
 
-  checkGround() {
-
-  }
-
-  checkTime() {
-    console.log(this.startDateSearch);
-    console.log(this.endDateSearch);
+  pay(id: number) {
+    this.servicesService.findOne(id).subscribe(data => {
+      // @ts-ignore
+      this.servicePay = data;
+      // @ts-ignore
+      // this.servicePay.statusPay = 1;
+      console.log(this.servicePay);
+    });
   }
 }
