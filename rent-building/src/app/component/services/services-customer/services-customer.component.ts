@@ -52,6 +52,8 @@ export class ServicesCustomerComponent implements OnInit {
   public endDateSearch = '2020-01-01';
   public messageTimeValidate: string;
   public groundId: string;
+  // tempStartDate = '';
+  // tempEndDate = '';
   public servicePay: ServicesModel [] = [];
 
   constructor(
@@ -77,7 +79,6 @@ export class ServicesCustomerComponent implements OnInit {
           this.floors.push(this.dataCustomer.contracts[i].ground.floor);
         }
         this.idContractSearch = this.dataCustomer.contracts[0].id;
-        console.log(this.idContractSearch);
         this.loadData(0);
       });
     });
@@ -123,8 +124,6 @@ export class ServicesCustomerComponent implements OnInit {
   }
 
   checkTime(startDateSearch: Date, endDateSearch: Date) {
-    console.log(startDateSearch);
-    console.log(endDateSearch);
     if (startDateSearch <= endDateSearch) {
       this.checkIdContract();
       this.loadData(0);
@@ -180,7 +179,7 @@ export class ServicesCustomerComponent implements OnInit {
 
   openDialogInvoice(): void {
       const dialogRef = this.dialog.open(ServicesInvoiceComponent, {
-        width: '65%',
+        width: '70%',
         height: '80%',
         data: {data1:  this.dataCustomer },
         disableClose: false,

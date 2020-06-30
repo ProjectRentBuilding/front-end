@@ -25,26 +25,20 @@
     <div class="col-md-4">
       <label class="col-md-3">Từ:</label>
 
-<!--      <label>-->
-<!--        <input type="date" [(ngModel)]="startDateSearch" min="2000-01-01" max="2100-12-31" class="form-control">-->
+      <label>
+        <input type="date" [(ngModel)]="startDateSearch" min="2000-01-01" max="2100-12-31" class="form-control">
+      </label>
+<!--      <label class="input-group date" data-provide="datepicker">-->
+<!--        <input style="float: right" matInput [matDatepicker]="picker1">-->
+<!--        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>-->
 <!--      </label>-->
-      <mat-form-field appearance="fill">
-        <mat-label>Chọn thời gian</mat-label>
-        <input matInput [matDatepicker]="picker" [(ngModel)]="startDateSearch">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-      </mat-form-field>
 
     </div>
     <div class="col-md-4">
       <label class="col-md-3">Đến :</label>
-<!--      <label>-->
-<!--        <input type="date" [(ngModel)]="endDateSearch" class="form-control" min="2000-01-01" max="2100-12-31">-->
-<!--      </label>-->
-      <label class="input-group date" data-provide="datepicker">
-        <input style="float: right" matInput [matDatepicker]="picker2" [(ngModel)]="endDateSearch" readonly>
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+      <label>
+        <input type="date" [(ngModel)]="endDateSearch" class="form-control" min="2000-01-01" max="2100-12-31">
       </label>
 
     </div>

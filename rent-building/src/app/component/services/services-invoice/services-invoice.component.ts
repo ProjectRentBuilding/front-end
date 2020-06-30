@@ -28,6 +28,12 @@ export class ServicesInvoiceComponent implements OnInit {
   // @ts-ignore
   public dataCustomer: Customer = [];
   public nameCustomer: String;
+  public servicePage: any;
+  public monthYearSearch = '2019-01-01';
+  public idContractSearch: number;
+  public tempFloor= '';
+  public tempGround= '';
+  public phoneCustomer: number;
 
   constructor(
     public dialogRef: MatDialogRef<ServicesInvoiceComponent>,
@@ -37,10 +43,33 @@ export class ServicesInvoiceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.nameCustomer = this.data.data1.name;
+    this.dataCustomer = this.data.data1;
+    this.phoneCustomer = this.dataCustomer.phone;
+    for (let i =0 ; i< this.dataCustomer.contracts.length; i++ ) {
+      this.idContract.push(this.dataCustomer.contracts[i].id);
+      this.grounds.push(this.dataCustomer.contracts[i].ground);
+      this.floors.push(this.dataCustomer.contracts[i].ground.floor);
+    }
+    this.tempFloor =  this.floors[0].nameFloor;
+    this.tempGround = this.grounds[0].codeGround;
+    this.idContractSearch = this.dataCustomer.contracts[0].id;
+    this.loadData();
+  }
+  public loadData() {
+    this.servicesService.searchInvoice(this.monthYearSearch, this.idContractSearch)
+      .subscribe(data => {
+          this.servicesModel = data;
+          console.log(this.servicesModel);
+        }
+      );
 
   }
+  formatsDate: string[] = [
+    'dd/MM/yyyy',
+  ];
 
-  checkTime(startDateSearch: any, endDateSearch: any) {
-
+  search() {
+    this.loadData();
   }
 }

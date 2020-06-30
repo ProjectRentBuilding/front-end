@@ -3,12 +3,12 @@
     <div class="col-md-5">
       <label class="col-md-3"> Mặt bằng:</label>
       <label>
-        <select class="form-control">
-          <option *ngFor="let ground of grounds" value="{{ground.floor.nameFloor}}" >{{ground.floor.nameFloor}}</option>
+        <select class="form-control"  [(ngModel)]="tempFloor">
+          <option *ngFor="let ground of grounds" value="{{ground.floor.nameFloor}}">{{ground.floor.nameFloor}}</option>
         </select>
       </label>
       <label>
-        <select [(ngModel)]="groundId" class="form-control">
+        <select  class="form-control" [(ngModel)]="tempGround">
           <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.codeGround}}</option>
         </select>
       </label>
@@ -22,34 +22,21 @@
   </div>
 
   <div class="row mt-2" >
-    <div class="col-md-4">
-      <label class="col-md-3">Từ:</label>
-
-<!--      <label>-->
-<!--        <input type="date" [(ngModel)]="startDateSearch" min="2000-01-01" max="2100-12-31" class="form-control">-->
-<!--      </label>-->
-      <label class="input-group date" data-provide="datepicker">
-        <input style="float: right" matInput [matDatepicker]="picker1" [(ngModel)]="startDateSearch" readonly>
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+    <div class="col-md-6">
+      <label class="col-md-4">Ngày tháng:</label>
+      <label>
+        <input type="date" [(ngModel)]="monthYearSearch" min="2000-01-01" max="2100-12-31" class="form-control">
       </label>
-
-    </div>
-    <div class="col-md-4">
-      <label class="col-md-3">Đến :</label>
-<!--      <label>-->
-<!--        <input type="date" [(ngModel)]="endDateSearch" class="form-control" min="2000-01-01" max="2100-12-31">-->
+<!--      <label class="input-group date" data-provide="datepicker">-->
+<!--        <input style="float: right" matInput [matDatepicker]="picker1" [(ngModel)]="startDateSearch" readonly>-->
+<!--        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>-->
 <!--      </label>-->
-      <label class="input-group date" data-provide="datepicker">
-        <input style="float: right" matInput [matDatepicker]="picker1" [(ngModel)]="endDateSearch" readonly>
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
-      </label>
     </div>
-    <div class="col-md-2">
-      <button (click)="checkTime(startDateSearch, endDateSearch)" class="btn btn-dark">Xem Dịch Vụ</button>
+    <div class="col-md-3">
+      <button (click)="search()" class="btn btn-dark">Xem Dịch Vụ</button>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <button  class="btn btn-dark">In hoá đơn</button>
     </div>
   </div>
@@ -57,54 +44,66 @@
 
 <div class="container mt-5" >
   <!--  <form [formGroup]="viewServiceForm">-->
-  <form>
-    <table class="table bg-light text-center table-bordered table-striped">
-      <thead class="thead-dark">
-      <tr>
-        <th>Tên dịch vụ</th>
-        <th>Tháng năm</th>
-        <th>Chỉ số tháng trước</th>
-        <th>Chỉ số tháng sau</th>
-        <th>Đơn vị</th>
-        <th>Tiêu thụ</th>
-        <th>Đơn giá</th>
-        <th>Thành tiền</th>
-        <th>Thanh toán</th>
-      </tr>
-      </thead>
-      <tr *ngFor="let service of servicesModel">
-        <td>{{service.nameService}}</td>
-        <td>{{service.monthYear | date: formatsDate }} </td>
-        <td>{{service.indexBeforeMonth}}</td>
-        <td>{{service.indexAfterMonth}}</td>
-        <td>{{service.unit}}</td>
-        <td>{{service.consume}}</td>
-        <td>{{service.price}}</td>
-        <td>{{service.consume * service.price}}</td>
-        <td>
-          <p *ngIf="service.statusPay">Xong</p>
-          <button *ngIf="!service.statusPay" class="btn btn-secondary" (click)="pay(service.id)">Thanh toán</button>
-        </td>
-      </tr>
-    </table>
+<!--  <form>-->
+<!--    <table class="table bg-light text-center table-bordered table-striped">-->
+<!--      <thead class="thead-dark">-->
+<!--      <tr>-->
+<!--        <th>Tên dịch vụ</th>-->
+<!--        <th>Tháng năm</th>-->
+<!--        <th>Chỉ số tháng trước</th>-->
+<!--        <th>Chỉ số tháng sau</th>-->
+<!--        <th>Đơn vị</th>-->
+<!--        <th>Tiêu thụ</th>-->
+<!--        <th>Đơn giá</th>-->
+<!--        <th>Thành tiền</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tr *ngFor="let service of servicesModel">-->
+<!--        <td>{{service.nameService}}</td>-->
+<!--        <td>{{service.monthYear | date: formatsDate }} </td>-->
+<!--        <td>{{service.indexBeforeMonth}}</td>-->
+<!--        <td>{{service.indexAfterMonth}}</td>-->
+<!--        <td>{{service.unit}}</td>-->
+<!--        <td>{{service.consume}}</td>-->
+<!--        <td>{{service.price}}</td>-->
+<!--        <td>{{service.consume * service.price}}</td>-->
+<!--      </tr>-->
+<!--    </table>-->
+<!--  </form>-->
+
+  <form class="col-md-12">
+    <fieldset class="scheduler-border" >
+      <legend class="scheduler-border" style="text-align: center; margin-bottom: 10px">Hoá đơn thanh toán dịch vụ tiêu dùng </legend>
+      <label style=" margin-left: 120px">Khách hàng : </label> <label style=" margin-left: 4px">{{nameCustomer}}</label>
+      <label style=" margin-left: 50px">SĐT: </label> <label style=" margin-left: 4px">{{phoneCustomer}}</label>
+      <label style=" margin-left: 50px">Mặt bằng: </label> <label style=" margin-left: 4px">{{tempFloor}}</label> <label>, {{tempGround}}</label>
+          <table class="table bg-light text-center table-bordered table-striped">
+            <thead class="thead-secondary">
+            <tr>
+              <th>Tên dịch vụ</th>
+              <th>Tháng năm</th>
+              <th>Chỉ số tháng trước</th>
+              <th>Chỉ số tháng sau</th>
+              <th>Đơn vị</th>
+              <th>Tiêu thụ</th>
+              <th>Đơn giá</th>
+              <th>Thành tiền</th>
+            </tr>
+            </thead>
+            <tr *ngFor="let service of servicesModel" class="trInvoice">
+              <td>{{service.nameService}}</td>
+              <td>{{service.monthYear | date: formatsDate }} </td>
+              <td>{{service.indexBeforeMonth}}</td>
+              <td>{{service.indexAfterMonth}}</td>
+              <td>{{service.unit}}</td>
+              <td>{{service.consume}}</td>
+              <td>{{service.price}}</td>
+              <td>{{service.consume * service.price}}</td>
+            </tr>
+          </table>
+
+    </fieldset>
   </form>
 </div>
 
-
-<nav aria-label="Page navigation example" *ngIf="servicesModel.length!=0 && totalPages>1">
-  <ul class="pagination justify-content-md-center mt-3">
-    <li class="page-item" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
-    <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
-      <a class="page-link"><<</a>
-    </li>
-    <li class="page-item" *ngFor="let page of pages" (click)="loadData(page)"
-        [ngClass]="pageClicked == page ? 'active' : ''">
-      <a class="page-link" (click)="checkPages(page)">{{page + 1}}</a>
-    </li>
-    <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
-      <a class="page-link">>></a>
-    </li>
-    <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
-  </ul>
-</nav>
 
