@@ -24,7 +24,7 @@ export class ReportEmployeeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.employeeService.findAll().subscribe(data => {
+    this.employeeService.getSalary().subscribe(data => {
       this.employees = data;
     }, () => {
 
