@@ -1,16 +1,23 @@
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH BÁO CÁO</h3>
-<div class="col-md-10">
+<div class="col-md-12">
   <form [formGroup]="formSearch">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối thiểu..."
                formControlName="minTotal" style="margin-top: 8px;">
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối đa..."
                formControlName="maxTotal" style="margin-top: 8px;">
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control search-input" placeholder="Theo mã mặt bằng..."
+               formControlName="codeGround" style="margin-top: 8px;">
+      </div>
+    </div>
+
+    <div class="row mt-2" >
+      <div class="col-md-4">
         <mat-form-field>
           <input readonly matInput [matDatepicker]="picker" placeholder="Theo ngày bắt đầu hợp đồng..."
                  formControlName="startRentDay">
@@ -18,30 +25,31 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <mat-form-field>
-          <input readonly matInput [matDatepicker]="picker1" placeholder="Theo ngày kết thúc hợp đồng..."
+          <input readonly matInput [matDatepicker]="picker1"  placeholder="Theo ngày kết thúc hợp đồng..."
                  formControlName="endRentDay">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
       </div>
-    </div>
-    <div class="col-md-3">
-      <input type="text" class="form-control search-input" placeholder="Theo mã mặt bằng..."
-             formControlName="codeGround" style="margin-top: 8px;">
+
+      <div class="col-md-4">
+        <button type="button" class="btn btn-secondary search-button" id="onSearch" (click)="onSearch()" >
+          <i class="fa fa-search text-danger"></i>
+        </button>
+
+        <button type="button" class="btn btn-secondary ml-2 " (click)="refreshForm()" >
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+        </button>
+
+      </div>
+
+
     </div>
 
-    <div class="col-md-2">
-      <button type="button" class="btn btn-secondary search-button" id="onSearch" (click)="onSearch()" >
-        <i class="fa fa-search text-danger"></i>
-      </button>
-    </div>
-    <div class="col-md-3">
-      <button mat-icon-button color="primary" class="ml-4" (click)="refreshForm()">
-        <mat-icon>refresh</mat-icon>
-      </button>
-    </div>
+
+
   </form>
 </div>
 <h4 style="color: red">{{message}}</h4>
@@ -49,7 +57,7 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3 ">
+      <div class="col-md-4 ">
         <form>
           <table class="table table-bordered bg-light text-center table-striped" matSort (matSortChange)="sortData($event)">
             <thead class="thead-dark">
@@ -82,11 +90,11 @@
         </form>
       </div>
 
-      <div class="col-md-7">
+      <div class="col-md-8">
         <canvas id="chart" width="600" height="600"></canvas>
       </div>
     </div>
   </div>
 
 </div>
-<button (click)="printToPDF()">In thành PDF</button>
+<i class="fa fa-print" style="font-size: 180%;color: mediumblue" aria-hidden="true"></i> &nbsp;&nbsp; <button class="btn btn-success" (click)="printToPDF()">In thành PDF</button>
