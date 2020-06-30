@@ -4,15 +4,15 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-3 ">
+      <div class="col-md-12 ">
         <form>
           <table class="table table-bordered bg-light text-center table-striped" matSort (matSortChange)="sortData($event)">
             <thead class="thead-dark">
             <tr class="text-muted">
               <th style="font-weight: bold">#</th>
-              <th style="font-weight: bold" mat-sort-header="nameEmployeeCal">Tên Nhân Viên</th>
-              <th style="font-weight: bold" mat-sort-header="partCal">Vị Trí</th>
-              <th style="font-weight: bold" mat-sort-header="salaryCal">Lương</th>
+              <th style="font-weight: bold;text-align: left" mat-sort-header="nameEmployeeCal">Tên Nhân Viên</th>
+              <th style="font-weight: bold;text-align: left" mat-sort-header="partCal">Vị Trí</th>
+              <th style="font-weight: bold;text-align: left" mat-sort-header="salaryCal">Lương</th>
             </tr>
             </thead>
             <tbody>
@@ -22,28 +22,24 @@
               <td>{{(i + 1)}}</td>
               <!--                  <td >{{(i+1)+(page-1)*5}}</td>-->
               <!--      <td>{{contract.id}}</td>-->
-              <td style="text-align: center">{{employee.nameEmployeeCal}}</td>
-              <td style="text-align: center">{{employee.partCal}}</td>
-              <td>{{employee.salaryCal|currency:"VND":"symbol"}}</td>
+              <td style="text-align: left">{{employee.name}}</td>
+              <td style="text-align: left">{{employee.part}}</td>
+              <td style="text-align: left">{{employee.salary|currency:"VND":"symbol"}}</td>
             </tr>
             <tr>
               <th colspan="3">Tổng (VNĐ)</th>
-              <th>{{totalMoney|number}}</th>
+              <th style="text-align: left">{{totalSalary|number}}</th>
             </tr>
             </tbody>
           </table>
 
-
-
-
         </form>
       </div>
 
-      <div class="col-md-7">
-        <canvas id="chart" width="600" height="600"></canvas>
-      </div>
+<!--      <div class="col-md-7">-->
+<!--        <canvas id="chart" width="600" height="600"></canvas>-->
+<!--      </div>-->
     </div>
   </div>
-
 </div>
 <button (click)="printToPDF()">In thành PDF</button>
