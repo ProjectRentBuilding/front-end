@@ -1,110 +1,441 @@
-
-
-<h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH DỊCH VỤ</h3>
+<script src="services-list.component.ts"></script><h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH DỊCH VỤ</h3>
 <ng-container>
-<div class="col-md-12 mt-5 row" style="margin-bottom: 5%">
-  <div class="input-group col-md-10">
-    <form [formGroup]="searchForm">
-      <div class="row">
-        <div class="col-md-3">
-          <label>
-            <input type="text" class="form-control search-input" placeholder="Tìm theo tên dịch vụ" list="nameService"
-                   name="nameService" formControlName="searchNameService">
-          </label>
-          <datalist id="nameService">
-            <option *ngFor="let service of servicesModel" [value]="service.nameService"></option>
-          </datalist>
+  <div class="col-md-12 mt-5 row" style="margin-bottom: 5%">
+    <div class="input-group col-md-10">
+      <form [formGroup]="searchForm">
+        <div class="row">
+          <div class="col-md-3">
+            <label>
+              <input type="text" class="form-control search-input" placeholder="Tìm theo tên dịch vụ" list="nameService"
+                     name="nameService" formControlName="searchNameService">
+            </label>
+            <datalist id="nameService">
+              <option *ngFor="let service of servicesModel" [value]="service.nameService"></option>
+            </datalist>
+          </div>
+          <div class=col-md-3>
+            <label>
+              <input type="text" class="form-control search-input" placeholder="Tìm theo định kỳ" list="periodic"
+                     name="periodic" formControlName="searchPeriodic">
+            </label>
+            <datalist id="periodic">
+              <option value="1 tháng">1 tháng</option>
+              <option value="3 tháng">3 tháng</option>
+              <option value="6 tháng">6 tháng</option>
+              <option value="9 tháng">9 tháng</option>
+              <option value="12 tháng">12 tháng</option>
+            </datalist>
+          </div>
+          <div class=col-md-3>
+            <label>
+              <input type="text" class="form-control search-input" placeholder="Tìm theo tiêu thụ" list="consume"
+                     name="consume" formControlName="searchConsume">
+            </label>
+            <datalist id="consume">
+              <option *ngFor="let service of servicesModel" [value]="service.consume"></option>
+            </datalist>
+          </div>
+          <div class="col-md-3" style="margin-top: -1%">
+            <label>
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Tìm theo ngày tháng"
+                       formControlName="searchMonthYear">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </label>
+          </div>
         </div>
-        <div class=col-md-3>
-          <label>
-            <input type="text" class="form-control search-input" placeholder="Tìm theo định kỳ" list="periodic"
-                   name="periodic" formControlName="searchPeriodic">
-          </label>
-          <datalist id="periodic">
+      </form>
+    </div>
+
+    <div class="col-md-2">
+      <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
+        <i class="fa fa-search text-danger"></i></button>
+      <button (click)="resetForm()" class="btn btn-secondary search-button" style="margin-left: 10px">
+        <i class="fa fa-refresh" aria-hidden="true"></i></button>
+    </div>
+  </div>
+</ng-container>
+
+<button class="btn btn-success px-2 py-2" (click)="openDialogAddNew()">Thêm mới</button>
+
+<ng-container>
+  <form action="" [formGroup]="editServiceForm" *ngIf="editServiceForm">
+    <table style="width: 140%" class="table bg-light text-center table-striped">
+      <thead class="thead-dark">
+      <tr class="text-muted">
+        <th>Tên dịch vụ</th>
+        <th>Định kỳ</th>
+        <th>Đơn vị tính</th>
+        <th>Đơn giá</th>
+        <th>Tiêu thụ</th>
+        <th>Chỉ số tháng trước</th>
+        <th>Chỉ số tháng sau</th>
+        <th>Ngày tháng</th>
+        <th>Tên khách hàng</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <h4 style="color: red;margin-top: 4%">{{message}}</h4>
+      <ng-container *ngFor="let i=index;let item of services">
+        <tr>
+          <!--      Sửa-->
+          <!--        Id Hidden-->
+          <td *ngIf="checkEdit && item.id===flag" hidden>
+            <input formControlName="id" hidden>{{item.id}}
+          </td>
+          <!--      Tên dịch vụ-->
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.nameService}}</td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
+            <div class="add-row">
+              <input class="form-control" formControlName="nameService" placeholder="Tên dịch vụ">
+            </div>
+          </td>
+          <!--      Định kỳ-->
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.periodic}}</td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
+            <select class="form-control" formControlName="periodic">
+              <option value="">Chọn định kỳ</option>
+              <option value="1 tháng">1 tháng</option>
+              <option value="3 tháng">3 tháng</option>
+              <option value="6 tháng">6 tháng</option>
+              <option value="9 tháng">9 tháng</option>
+              <option value="12 tháng">12 tháng</option>
+            </select>
+          </td>
+          <!--        Đơn vị tính-->
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.unit}}</td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
+            <input class="form-control" formControlName="unit" placeholder="Đơn vị tính">
+          </td>
+          <!--        Đơn giá-->
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.price}}</td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag" class="add-row">
+            <input  type="number" class="form-control" formControlName="price" placeholder="Đơn giá">
+          </td>
+
+          <!--      Tiêu thụ-->
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.consume}}</td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
+            <input  type="text" class="form-control" formControlName="consume"
+                   placeholder="Tiêu thụ" disabled>
+          </td>
+          <!--      Chỉ số tháng trước-->
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.indexBeforeMonth}}</td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
+            <input  type="text" class="form-control" formControlName="indexBeforeMonth"
+                   placeholder="Chỉ số tháng trước" disabled>
+          </td>
+          <!--      Chỉ số tháng sau-->
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.indexAfterMonth}}</td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
+            <input  type="text" class="form-control" formControlName="indexAfterMonth"
+                   placeholder="Chỉ số tháng sau" disabled>
+          </td>
+          <!--      Ngày tháng-->
+          <td  *ngIf="!checkEdit || item.id!==flag">{{item.monthYear}}</td>
+          <td style="width: 12%" class="add-row" *ngIf="checkEdit && item.id===flag">
+            <input class="form-control" style="float: left;padding-left:2%;width: 70%" placeholder="Ngày tháng"
+                   type="text" formControlName="monthYear" [matDatepicker]="picker1">
+            <mat-datepicker-toggle style="float: right" matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+          </td>
+          <!--      Tên khách hàng-->
+          <td  *ngIf="!checkEdit || item.id!==flag">
+            {{item.contract.id}}-{{item.contract.customer.name}}
+          </td>
+          <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
+            <select  class=" form-control" formControlName="contractId">
+              <option value="">Chọn tên khách hàng</option>
+              <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.id}}
+                -{{contract.customer.name}}</option>
+            </select>
+          </td>
+          <td *ngIf="!checkEdit || item.id!==flag">
+            <button class="btn btn-primary" (click)="openInformationCustomer(item.contract.customer.id)">
+              Xem
+            </button>
+          </td>
+          <td *ngIf="!checkEdit || item.id!==flag">
+            <button class="btn btn-warning" (click)="checkEditService(item.id)">
+              Sửa
+            </button>
+          </td>
+          <td  *ngIf="!checkEdit || item.id!==flag">
+            <button class="btn btn-danger" (click)="openDialogDelete(item.id)">
+              Xóa
+            </button>
+          </td>
+          <td style="width: 2%" *ngIf="checkEdit && item.id===flag">
+            <button class="btn btn-primary" type="button" (click)="editService()"
+                    [disabled]="editServiceForm.invalid" style="margin-right: 10px">
+              Lưu
+            </button>
+          </td>
+          <td style="width: 2%" *ngIf="checkEdit && item.id===flag">
+            <button class="btn btn-danger" type="button" (click)="close()" style="margin-right: 10px">
+              Thoát
+            </button>
+          </td>
+        </tr>
+<!--        Hiện thông báo lỗi-->
+        <tr>
+          <td *ngIf="checkEdit && item.id===flag">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('nameService').hasError('required') && editServiceForm.get('nameService').touched">
+              Yêu cầu chọn.
+            </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('nameService').hasError('minlength') && editServiceForm.get('nameService').touched">
+              Tối thiểu 2 ký tự.
+            </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('nameService').hasError('maxlength') && editServiceForm.get('nameService').touched">
+              Tối đa 25 ký tự.
+            </p>
+          </td>
+          <td *ngIf="checkEdit && item.id===flag">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('periodic').hasError('required') && editServiceForm.get('periodic').touched">
+              Yêu cầu chọn.
+            </p>
+          </td>
+          <td *ngIf="checkEdit && item.id===flag">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('unit').hasError('required') && editServiceForm.get('unit').touched">
+              Yêu cầu nhập.
+            </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('unit').hasError('minlength') && editServiceForm.get('unit').touched">
+              Tối thiểu 2 ký tự.
+            </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('unit').hasError('maxlength') && editServiceForm.get('unit').touched">
+              Tối đa 25 ký tự.
+            </p>
+          </td>
+          <td *ngIf="checkEdit && item.id===flag">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('price').hasError('required') && editServiceForm.get('price').touched">
+              Yêu cầu nhập.
+            </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('price').hasError('min') && editServiceForm.get('price').touched">
+              Tối thiểu 3000.
+            </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('price').hasError('max') && editServiceForm.get('price').touched">
+              Tối đa 300000.
+            </p>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td *ngIf="checkEdit && item.id===flag">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('monthYear').invalid && editServiceForm.get('monthYear').touched">
+              Định dạng MM/dd/yyyy.
+            </p>
+          </td>
+          <td *ngIf="checkEdit && item.id===flag">
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('contractId').hasError('required') && editServiceForm.get('contractId').touched">
+              Yêu cầu chọn.
+            </p>
+          </td>
+        </tr>
+        <tr>
+      </ng-container>
+      </tbody>
+    </table>
+  </form>
+</ng-container>
+
+<!--Thêm mới-->
+<ng-container *ngIf="checkAdd">
+  <form action="" [formGroup]="addServiceForm" *ngIf="addServiceForm">
+    <table style="width: 140%">
+      <tbody class="border" formArrayName="service"
+             *ngFor="let item of serviceControls let i = index;">
+      <tr [formGroupName]="i">
+        <!--      Tên dịch vụ-->
+        <td class="add-row">
+          <input class="form-control" formControlName="nameService" placeholder="Tên dịch vụ">
+        </td>
+        <!--      Định kỳ-->
+        <td style="width: 12%" class="add-row">
+          <select class="form-control" formControlName="periodic">
+            <option value="">Chọn định kỳ</option>
             <option value="1 tháng">1 tháng</option>
             <option value="3 tháng">3 tháng</option>
             <option value="6 tháng">6 tháng</option>
             <option value="9 tháng">9 tháng</option>
             <option value="12 tháng">12 tháng</option>
-          </datalist>
-        </div>
-        <div class=col-md-3>
-          <label>
-            <input type="text" class="form-control search-input" placeholder="Tìm theo tiêu thụ" list="consume"
-                   name="consume" formControlName="searchConsume">
-          </label>
-          <datalist id="consume">
-            <option *ngFor="let service of servicesModel" [value]="service.consume"></option>
-          </datalist>
-        </div>
-        <div class="col-md-3" style="margin-top: -1%">
-          <label>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="Tìm theo ngày tháng"
-                     formControlName="searchMonthYear">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </label>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <div class="col-md-2">
-    <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
-      <i class="fa fa-search text-danger"></i></button>
-    <button (click)="resetForm()" class="btn btn-secondary search-button" style="margin-left: 10px">
-      <i class="fa fa-refresh" aria-hidden="true"></i></button>
-  </div>
-</div>
+          </select>
+        </td>
+        <!--      Đơn vị tính-->
+        <td class="add-row">
+          <input class="form-control" formControlName="unit" placeholder="Đơn vị tính">
+        </td>
+        <!--      Đơn giá-->
+        <td class="add-row">
+          <input type="number" class="form-control" formControlName="price" placeholder="Đơn giá">
+        </td>
+        <!--      Tiêu thụ-->
+        <td class="add-row">
+          <input type="number" class="form-control" formControlName="consume"
+                 (keyup)="checkConsume($event.target.value)" placeholder="Tiêu thụ">
+        </td>
+        <!--      Chỉ số tháng trước-->
+        <td class="add-row">
+          <input type="number" class="form-control" formControlName="indexBeforeMonth"
+                 (keyup)="checkIndexBeforeMonth($event.target.value)" placeholder="Chỉ số tháng trước">
+        </td>
+        <!--     Chỉ số tháng sau-->
+        <td class="add-row" hidden>
+          <input type="number" class="form-control" formControlName="indexAfterMonth"
+                 [(ngModel)]="indexAfterMonth">
+        </td>
+        <!--        Ngày tháng-->
+        <td class="add-row">
+          <input class="form-control" style="float: left;padding-left: 2%;width: 80%" placeholder="Ngày tháng"
+                 type="text" formControlName="monthYear" [matDatepicker]="picker1">
+          <mat-datepicker-toggle style="float: right" matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+        </td>
+        <!--        Tên khách hàng-->
+        <td class="add-row">
+          <select class=" form-control" formControlName="contractId">
+            <option value="">Chọn tên khách hàng</option>
+            <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.id}}
+              -{{contract.customer.name}}</option>
+          </select>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeService(i)">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+      <!--      Hiện thông báo lỗi thêm mới-->
+      <tr>
+        <!--        Tên dịch vụ-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('nameService').invalid && item.get('nameService').touched">
+            Nhập lỗi.
+          </p>
+        </td>
+        <!--        Định kỳ-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('periodic').invalid && item.get('periodic').touched">
+            Yêu cầu chọn
+          </p>
+        </td>
+        <!--        Đơn vị tính-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('unit').invalid && item.get('unit').touched">
+            Nhập lỗi.
+          </p>
+        </td>
+        <!--        Đơn giá-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('price').invalid && item.get('price').touched">
+            Nhập lỗi.
+          </p>
+        </td>
+        <!--        Tiêu thụ-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('consume').invalid && item.get('consume').touched">
+            Nhập lỗi.
+          </p>
+        </td>
+        <!--        Chỉ số tháng trước-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('indexBeforeMonth').invalid && item.get('indexBeforeMonth').touched">
+            Nhập lỗi.
+          </p>
+        </td>
+        <!--        Ngày tháng-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('monthYear').invalid && item.get('monthYear').touched">
+            Nhập lỗi.
+          </p>
+        </td>
+        <!--        Tên khách hàng-->
+        <td>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('contractId').invalid && item.get('contractId').touched">
+            Yêu cầu chọn.
+          </p>
+        </td>
+      </tr>
+      <!--      Hiện chi tiết lỗi-->
+      <tr>
+        <td>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('nameService').invalid && item.get('nameService').touched">
+            Tối thiểu 2 ký tự.<br>
+            Tối đa 25 ký tự.
+          </p>
+        </td>
+        <td></td>
+        <td>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('unit').invalid && item.get('unit').touched">
+            Tối thiểu 2 ký tự.<br>
+            Tối đa 25 ký tự.
+          </p>
+        </td>
+        <td>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('price').invalid && item.get('price').touched">
+            Tối thiểu 3000.<br>
+            Tối đa 300000.
+          </p>
+        </td>
+        <td>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('consume').invalid && item.get('consume').touched">
+            Tối thiểu 10000.<br>
+            Tối đa 3000000.
+          </p>
+        </td>
+        <td>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('indexBeforeMonth').invalid && item.get('indexBeforeMonth').touched">
+            Tối thiểu 10000.<br>
+            Tối đa 9000000.
+          </p>
+        </td>
+        <td>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('monthYear').invalid && item.get('monthYear').touched">
+            Định dạng<br>
+            MM/dd/yyyy
+          </p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
 </ng-container>
 
-<button class="btn btn-success px-2 py-2"  (click)="openDialogAddNew()">Thêm mới</button>
-<div>
-  <table class="table bg-light text-center table-striped">
-    <thead class="thead-dark">
-    <tr class="text-muted">
-      <th >Tên dịch vụ</th>
-      <th>Định kỳ</th>
-      <th>Đơn vị tính</th>
-      <th>Đơn giá</th>
-      <th>Tiêu thụ</th>
-      <th>Chỉ số tháng trước</th>
-      <th>Chỉ số tháng sau</th>
-      <th>Ngày tháng</th>
-      <th>Tên khách hàng</th>
-      <th colspan="3"></th>
-    </tr>
-    <tr *ngFor="let service of services">
-      <td>{{service.nameService}}</td>
-      <td>{{service.periodic}}</td>
-      <td>{{service.unit}}</td>
-      <td>{{service.price}}</td>
-      <td>{{service.consume}}</td>
-      <td>{{service.indexBeforeMonth}}</td>
-      <td>{{service.indexAfterMonth}}</td>
-      <td>{{service.monthYear}}</td>
-      <td>{{service.contactId}}</td>
-      <td>
-        <button class="btn btn-primary" type="button" (click)="openDialogDetail(service.id)" >
-          Xem
-        </button>
-      </td>
-      <td>
-        <button class="btn btn-warning" type="button" (click)="openDialogEdit(service.id)" >
-          Sửa
-        </button>
-      </td>
-      <td >
-        <button class="btn btn-danger" type="button" (click)="openDialogDelete(service.id)">
-          Xoá
-        </button>
-      </td>
-    </tr>
-    </thead>
-  </table>
-</div>
+<button class="btn btn-success" (click)="addNewArray()">
+  <i class="fa fa-plus-square" aria-hidden="true"></i>
+</button>
+<button class="btn btn-info" *ngIf="checkAdd" [disabled]="addServiceForm.invalid" (click)="addNewService()">
+  Lưu
+</button>
+
 
 <nav aria-label="Page navigation example" *ngIf="services.length!=0 && totalPages >1">
   <ul class="pagination justify-content-md-center mt-3">
@@ -122,4 +453,7 @@
     <li class="page-item" *ngIf="pageClicked!=totalPages-1" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
+
+
+
 

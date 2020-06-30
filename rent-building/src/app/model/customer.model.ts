@@ -9,4 +9,5 @@ export class Customer {
   public phone: number;
   public nameGround: string;
   public nameCompany: string;
+  public contracts: Array<any>;
 }

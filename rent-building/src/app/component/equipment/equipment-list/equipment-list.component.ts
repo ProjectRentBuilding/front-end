@@ -49,7 +49,7 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   public checkAdd = false;
   public searchAll;
   public equipment: FormArray;
-  public getarray = 1;
+  public getArray = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -149,16 +149,14 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   get equipmentControls() {
     // const a = 'controls';
     return this.formAddNewEquipment.get('equipment')['controls'];
-
   }
 
   addNewArray(): void {
-
     if (!this.checkAdd) {
       this.checkAdd = !this.checkAdd;
     } else {
-      this.getarray++;
-      console.log(this.getarray);
+      this.getArray++;
+      // console.log(this.getArray);
       this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
         this.typeEquipment = data;
       });
@@ -168,17 +166,21 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   }
 
   removeAddress(i: number) {
-    this.equipment.removeAt(i);
+    if (this.getArray == 1) {
+      this.checkAdd = false;
+    } else {
+      this.equipment.removeAt(i);
+    }
   }
 
 
   addNewEquipment() {
     this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
-    for (let tem = 0; tem < this.getarray; tem++) {
+    for (let tem = 0; tem < this.getArray; tem++) {
       this.equipmentModel.push(this.equipment.at(tem).value);
       this.equipmentService.save(this.equipment.at(tem).value).subscribe(data => {
         this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
-        if (tem === (this.getarray - 1)) {
+        if (tem === (this.getArray - 1)) {
           this.equipment.reset();
           this.onLast();
           // this.loadData(this.checkPage + 1);
@@ -193,9 +195,26 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.router.navigate([uri]));
   }
 
+  // checkEditEquipment(id) {
+  //   if (!this.checkEdit) {
+  //     this.checkEdit = !this.checkEdit;
+  //     this.flag = id;
+  //     this.equipmentOfId = id;
+  //     this.equipmentService.findOne(this.equipmentOfId).subscribe(data => {
+  //       this.formEditEquipment.patchValue(data);
+  //     });
+  //   }
+  // }
   checkEditEquipment(id) {
     if (!this.checkEdit) {
       this.checkEdit = !this.checkEdit;
+      this.flag = id;
+      this.equipmentOfId = id;
+      this.equipmentService.findOne(this.equipmentOfId).subscribe(data => {
+        this.formEditEquipment.patchValue(data);
+      });
+    }
+    if (this.flag>0) {
       this.flag = id;
       this.equipmentOfId = id;
       this.equipmentService.findOne(this.equipmentOfId).subscribe(data => {

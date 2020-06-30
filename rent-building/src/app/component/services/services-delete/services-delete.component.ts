@@ -25,7 +25,6 @@ export class ServicesDeleteComponent implements OnInit {
   ngOnInit() {
     this.nameService = this.data.data1.nameService;
     this.serviceId= this.data.data1.id;
-    console.log(this.data.data1);
   }
   deleteService() {
     this.servicesService.delete(this.serviceId).subscribe(data => {

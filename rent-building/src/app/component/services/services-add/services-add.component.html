@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container">
   <form [formGroup]="addServiceForm">
     <h1>Thêm mới thông tin Dịch vụ</h1>
     <fieldset class="scheduler-border">
@@ -6,7 +6,7 @@
       <!--      Tên dịch vụ-->
       <div class="row">
         <p class="col-md-3">Tên dịch vụ(<span>*</span>)</p>
-        <input class="col-md-5 form-control"    formControlName="nameService">
+        <input class="col-md-5 form-control" formControlName="nameService">
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('nameService').hasError('required')
        && addServiceForm.get('nameService').valueChanges">Không được để trống !!!
         </p>
@@ -14,7 +14,7 @@
       <!--      Định kỳ-->
       <div class="row">
         <p class="col-md-3">Định kỳ(<span>*</span>)</p>
-        <select class="col-md-5 form-control" formControlName="periodic">
+        <select class="col-md-5 form-control" formControlName="periodic" style="width: 150px">
           <option value="">Chọn</option>
           <option value="1 tháng">1 tháng</option>
           <option value="3 tháng">3 tháng</option>
@@ -29,7 +29,7 @@
       <!--     Đơn vị tính-->
       <div class="row">
         <p class="col-md-3">Đơn vị tính(<span>*</span>)</p>
-        <input class="col-md-5 form-control"   formControlName="unit">
+        <input class="col-md-5 form-control" formControlName="unit">
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('unit').hasError('required')
        && addServiceForm.get('unit').valueChanges">Không được để trống !!!
         </p>
@@ -37,55 +37,58 @@
       <!--      Đơn giá-->
       <div class="row">
         <p class="col-md-3">Đơn giá(VND)(<span>*</span>)</p>
-        <input  class="col-md-5 form-control"  type="number" formControlName="price">
+        <input class="col-md-5 form-control" type="number" formControlName="price">
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('price').hasError('required')
        && addServiceForm.get('price').valueChanges">Không được để trống !!!
         </p>
       </div>
-<!--      Chỉ số tháng trước-->
+      <!--      Chỉ số tháng trước-->
       <div class="row">
         <p class="col-md-3">Chỉ số tháng trước(<span>*</span>)</p>
-        <input  class="col-md-5 form-control"  type="number" formControlName="indexBeforeMonth"
-                (change)="checkIndexBeforeMonth($event.target.value)">
+        <input class="col-md-5 form-control" type="number" formControlName="indexBeforeMonth"
+               (keyup)="checkIndexBeforeMonth($event.target.value)">
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('indexBeforeMonth').hasError('required')
        && addServiceForm.get('indexBeforeMonth').valueChanges">Không được để trống !!!
         </p>
       </div>
-<!--      Tiêu thụ-->
+      <!--      Tiêu thụ-->
       <div class="row">
         <p class="col-md-3">Tiêu thụ(<span>*</span>)</p>
-        <input  class="col-md-5 form-control"  type="number" formControlName="consume"
-                (change)="checkConsume($event.target.value)">
+        <input class="col-md-5 form-control" type="number" formControlName="consume"
+               (keyup)="checkConsume($event.target.value)">
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('consume').hasError('required')
        && addServiceForm.get('consume').valueChanges">Không được để trống !!!
         </p>
       </div>
-<!--      Chỉ số tháng sau-->
+      <!--      Chỉ số tháng sau-->
       <div class="row">
         <p class="col-md-3">Chỉ số tháng sau(<span>*</span>)</p>
-        <input  class="col-md-5 form-control"
-                type="number" formControlName="indexAfterMonth" disabled [(ngModel)]="indexAfterMonth">
+        <input class="col-md-5 form-control"
+               type="number" formControlName="indexAfterMonth" disabled [(ngModel)]="indexAfterMonth">
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('indexAfterMonth').hasError('required')
        && addServiceForm.get('indexAfterMonth').valueChanges">Không được để trống !!!
         </p>
       </div>
-<!--      Ngày tháng-->
+      <!--      Ngày tháng-->
       <div class="row">
         <p class="col-md-3">Ngày tháng(<span>*</span>)</p>
-        <input  class="col-md-5 form-control"
-                type="text" formControlName="monthYear" [matDatepicker]="picker1">
-        <mat-datepicker-toggle style="color: white" matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <input class=" col-md-5 form-control" style="float: left"
+               type="text" formControlName="monthYear" [matDatepicker]="picker1">
+        <mat-datepicker-toggle matSuffix [for]="picker1" style="float: left;margin-left: -5%;margin-top: -1%"></mat-datepicker-toggle>
         <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
+
+
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('monthYear').hasError('required')
        && addServiceForm.get('monthYear').valueChanges">Không được để trống !!!
         </p>
       </div>
-<!--      Tên khách hàng-->
+      <!--      Tên khách hàng-->
       <div class="row">
         <p class="col-md-3">Tên khách hàng(<span>*</span>)</p>
-        <select  class="col-md-5 form-control" formControlName="contractId">
+        <select class="col-md-5 form-control" formControlName="contractId">
           <option value="">Chọn</option>
-          <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.id}}-{{contract.customer.name}}</option>
+          <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.id}}
+            -{{contract.customer.name}}</option>
 
         </select>
         <p class=" text-danger" role="alert" *ngIf="addServiceForm.get('contractId').hasError('required')
@@ -94,7 +97,7 @@
       </div>
     </fieldset>
     <label class="row " style="margin-left: 70%;margin-top: 5%">
-      <button  style="margin-right: 15%" class="btn btn-success mt-3" (click)="onAddService()">
+      <button style="margin-right: 15%" class="btn btn-success mt-3" (click)="onAddService()">
         Lưu
       </button>
       <button class="btn btn-danger mt-3" (click)="clearFilters()">Làm lại</button>

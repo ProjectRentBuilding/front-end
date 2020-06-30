@@ -4,40 +4,51 @@
       <label class="col-md-3"> Mặt bằng:</label>
       <label>
         <select>
-          <option *ngFor="let floor of floors" value="{{floor.nameFloor}}">{{floor.nameFloor}}</option>
+          <option *ngFor="let floor of floors" value="{{floor.nameFloor}}" (click)="checkGround(floor.nameFloor)">{{floor.nameFloor}}</option>
         </select>
       </label>
-      <select>
-        <option *ngFor="let ground of grounds" value="{{ground.codeGround}}">{{ground.codeGround}}</option>
-      </select>
+      <label>
+        <select>
+          <option *ngFor="let ground of grounds" value="{{ground.codeGround}}">{{ground.codeGround}}</option>
+        </select>
+      </label>
     </div>
+    <ng-container>
     <div class="col-md-5">
-      Tên khách hàng
-      <input type="text" class="form-control infoPlaceholder" disabled style="width: 60%; float: right">
+      Tên khách hàng:
+      <input type="text" id="nameCus" class="form-control infoPlaceholder" disabled style="width: 60%; float: right" [(ngModel)]="nameCustomer">
     </div>
+    </ng-container>
   </div>
 
   <div class="row mt-2" >
     <div class="col-md-5">
       <label class="col-md-3">Từ:</label>
 
-      <select>
-        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>
-      </select>
-      <select>
-        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>
-      </select>
+      <label>
+        <input type="date" [ngModel]="startDateSearch">
+      </label>
+<!--      <select>-->
+<!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
+<!--      </select>-->
+<!--      <select>-->
+<!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
+<!--      </select>-->
     </div>
     <div class="col-md-5">
       <label class="col-md-3">Đến :</label>
-      <select>
-        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>
-      </select>
-      <select>
-        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>
-      </select>
+      <label>
+        <input type="date" [ngModel]="endDateSearch">
+      </label>
+<!--      <select>-->
+<!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
+<!--      </select>-->
+<!--      <select>-->
+<!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
+<!--      </select>-->
     </div>
   </div>
+  <button (click)="checkTime()">Check</button>
 </div>
 
 <div class="container mt-5" >
@@ -57,15 +68,16 @@
         <th>Thanh toán</th>
       </tr>
       </thead>
-      <tr>
-        <td > </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
+      <tr *ngFor="let service of servicesModel">
+        <td>{{service.nameService}}</td>
+        <td>{{service.monthYear | date: formatsDate }} </td>
+        <td>{{service.indexBeforeMonth}}</td>
+        <td>{{service.indexAfterMonth}}</td>
+        <td>{{service.unit}}</td>
+        <td>{{service.consume}}</td>
+        <td>{{service.price}}</td>
+        <td>{{service.consume * service.price}}</td>
+        <td><input type="checkbox" [checked]="service.statusPay" [disabled]="true"></td>
       </tr>
     </table>
   </form>
