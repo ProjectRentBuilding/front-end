@@ -1,11 +1,10 @@
-
 <div class="container" style="margin-top: 50px">
   <div class="row">
     <div class="col-md-5">
       <label class="col-md-3"> Mặt bằng:</label>
       <label>
         <select>
-          <option *ngFor="let  ground of grounds" value="{{ground.floor.nameFloor}}" >{{ground.floor.nameFloor}}</option>
+          <option *ngFor="let  ground of grounds" value="{{ground.floor.nameFloor}}">{{ground.floor.nameFloor}}</option>
         </select>
       </label>
       <label>
@@ -17,47 +16,37 @@
     <ng-container>
       <div class="col-md-5">
         Tên khách hàng:
-        <input type="text" id="nameCus" class="form-control infoPlaceholder" disabled style="width: 60%; float: right" [(ngModel)]="nameCustomer">
+        <input type="text" id="nameCus" class="form-control infoPlaceholder" disabled style="width: 60%; float: right"
+               [(ngModel)]="nameCustomer">
       </div>
     </ng-container>
   </div>
 
-  <div class="row mt-2" >
+  <div class="row mt-2">
     <div class="col-md-5">
       <label class="col-md-3">Từ:</label>
 
       <label>
         <input type="date" [ngModel]="startDateSearch">
       </label>
-      <!--      <select>-->
-      <!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
-      <!--      </select>-->
-      <!--      <select>-->
-      <!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
-      <!--      </select>-->
     </div>
     <div class="col-md-5">
       <label class="col-md-3">Đến :</label>
       <label>
         <input type="date" [ngModel]="endDateSearch">
       </label>
-      <!--      <select>-->
-      <!--        <option *ngFor="let item of month" value="{{item}}">Tháng {{item}}</option>-->
-      <!--      </select>-->
-      <!--      <select>-->
-      <!--        <option *ngFor="let year of years" value="{{year}}">Năm {{year}}</option>-->
-      <!--      </select>-->
     </div>
   </div>
-<!--  <button (click)="checkTime()">Check</button>-->
 </div>
 
-<div class="container mt-5" >
-  <!--  <form [formGroup]="viewServiceForm">-->
+<div class="container mt-5">
   <ng-container class="container">
-    <ul class="list-inline" *ngFor="let nameService of servicesDistinct">
-      <li style="float: left;margin-left: 2%"><button class="btn btn-success">{{nameService}}</button></li>
-    </ul>
+      <ul class="list-inline" >
+        <li *ngFor="let nameService of servicesDistinct" style="float: left;border-radius: inherit;border: red 2px double ">
+          <button class="btn btn-success" value="{{nameService}}"
+                  (click)="searchNameService($event.target.value)">{{nameService}}</button>
+        </li>
+      </ul>
   </ng-container>
   <form>
     <table class="table bg-light text-center table-bordered table-striped">
@@ -76,16 +65,33 @@
       <tr *ngFor="let service of servicesModel">
         <td>{{service.nameService}}</td>
         <td>{{service.monthYear | date: formatsDate }} </td>
-        <td>{{service.indexBeforeMonth}}</td>
-        <td>{{service.indexAfterMonth}}</td>
+        <td>{{service.indexBeforeMonth|number}}</td>
+        <td>{{service.indexAfterMonth|number}}</td>
         <td>{{service.unit}}</td>
-        <td>{{service.consume}}</td>
-        <td>{{service.price}}</td>
-        <td>{{service.consume * service.price}}</td>
+        <td>{{service.consume|number}}</td>
+        <td>{{service.price|number}}</td>
+        <td>{{service.consume * service.price|number}}</td>
       </tr>
     </table>
   </form>
 </div>
+
+<nav aria-label="Page navigation example" *ngIf="servicesModel.length!=0 && totalPages >1">
+  <ul class="pagination justify-content-md-center mt-3">
+    <li class="page-item" *ngIf="pageClicked!=0" (click)="onFirst()"><a class="page-link">Trang đầu</a></li>
+    <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+      <a class="page-link"><<</a>
+    </li>
+    <li class="page-item" *ngFor="let page of pages" (click)="loadData(page)"
+        [ngClass]="pageClicked == page ? 'active' : ''">
+      <a class="page-link">{{page + 1}}</a>
+    </li>
+    <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+      <a class="page-link">>></a>
+    </li>
+    <li class="page-item" *ngIf="pageClicked!=totalPages-1" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
+  </ul>
+</nav>
 
 
 

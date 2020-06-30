@@ -228,7 +228,6 @@ export class FloorListComponent implements OnInit, OnDestroy {
     this.floorService.findOne(id).subscribe(dataOfFloorModel => {
       const dialogRef = this.dialog.open(FloorDeleteComponent, {
         width: '35%',
-        height: '35%',
         data: {data1: dataOfFloorModel},
         disableClose: true,
       });
