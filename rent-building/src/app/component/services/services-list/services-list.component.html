@@ -29,7 +29,7 @@
           <div class=col-md-3>
             <label>
               <input type="text" class="form-control search-input" placeholder="Tìm theo tiêu thụ" list="consume"
-                     name="consume" formControlName="searchConsume">
+                     name="consume" formControlName="searchConsume" >
             </label>
             <datalist id="consume">
               <option *ngFor="let service of servicesModel" [value]="service.consume"></option>
@@ -39,7 +39,7 @@
             <label>
               <mat-form-field>
                 <input matInput [matDatepicker]="picker" placeholder="Tìm theo ngày tháng"
-                       formControlName="searchMonthYear">
+                       formControlName="searchMonthYear" readonly>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -135,7 +135,7 @@
                    placeholder="Chỉ số tháng sau" disabled>
           </td>
           <!--      Ngày tháng-->
-          <td  *ngIf="!checkEdit || item.id!==flag">{{item.monthYear}}</td>
+          <td  *ngIf="!checkEdit || item.id!==flag">{{item.monthYear|date:'dd/MM/yyyy'}}</td>
           <td style="width: 12%" class="add-row" *ngIf="checkEdit && item.id===flag">
             <input class="form-control" style="float: left;padding-left:2%;width: 70%" placeholder="Ngày tháng"
                    type="text" formControlName="monthYear" [matDatepicker]="picker1">

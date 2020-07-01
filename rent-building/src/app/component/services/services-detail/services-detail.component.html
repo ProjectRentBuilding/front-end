@@ -3,13 +3,9 @@
     <div class="col-md-5">
       <label class="col-md-3"> Mặt bằng:</label>
       <label>
-        <select>
-          <option *ngFor="let  ground of grounds" value="{{ground.floor.nameFloor}}">{{ground.floor.nameFloor}}</option>
-        </select>
-      </label>
-      <label>
-        <select>
-          <option *ngFor="let ground of grounds" value="{{ground.codeGround}}">{{ground.codeGround}}</option>
+        <select (change)="setIdContractSearch($event.target.value)">
+          <option *ngFor="let  ground of grounds" value="{{ground.codeGround}}" >{{ground.floor.nameFloor}}
+           {{ground.codeGround}}</option>
         </select>
       </label>
     </div>
@@ -27,22 +23,26 @@
       <label class="col-md-3">Từ:</label>
 
       <label>
-        <input type="date" [ngModel]="startDateSearch">
+        <input type="date" [(ngModel)]="startDateSearch">
       </label>
     </div>
     <div class="col-md-5">
       <label class="col-md-3">Đến :</label>
       <label>
-        <input type="date" [ngModel]="endDateSearch">
+        <input type="date" [(ngModel)]="endDateSearch">
       </label>
     </div>
+    <div class="col-md-10">
+      <p style="color: red;margin-left: 20%">{{message}}</p>
+    </div>
   </div>
+  <button style="margin-left: 70%" class="btn btn-danger" (click)="searchMonthYearService()">Tìm kiếm</button>
 </div>
 
 <div class="container mt-5">
   <ng-container class="container">
       <ul class="list-inline" >
-        <li *ngFor="let nameService of servicesDistinct" style="float: left;border-radius: inherit;border: red 2px double ">
+        <li *ngFor="let nameService of servicesDistinct" style="float: left;border-radius: inherit;border: black 2px double ">
           <button class="btn btn-success" value="{{nameService}}"
                   (click)="searchNameService($event.target.value)">{{nameService}}</button>
         </li>
@@ -62,6 +62,7 @@
         <th>Thành tiền</th>
       </tr>
       </thead>
+      <h4 style="color: red;margin-top: 4%;width: 150%">{{messageService}}</h4>
       <tr *ngFor="let service of servicesModel">
         <td>{{service.nameService}}</td>
         <td>{{service.monthYear | date: formatsDate }} </td>
