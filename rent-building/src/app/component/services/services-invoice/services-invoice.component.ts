@@ -34,6 +34,7 @@ export class ServicesInvoiceComponent implements OnInit {
   public tempFloor= '';
   public tempGround= '';
   public phoneCustomer: number;
+  public totalMoney: number = 0;
 
   constructor(
     public dialogRef: MatDialogRef<ServicesInvoiceComponent>,
@@ -61,9 +62,11 @@ export class ServicesInvoiceComponent implements OnInit {
       .subscribe(data => {
           this.servicesModel = data;
           console.log(this.servicesModel);
+            for (let value of this.servicesModel) {
+            this.totalMoney += value.consume * value.price;
+            }
         }
       );
-
   }
   formatsDate: string[] = [
     'dd/MM/yyyy',
