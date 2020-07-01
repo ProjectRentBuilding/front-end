@@ -10,12 +10,10 @@ import {CustomerService} from "../../../service/customer.service";
 import {EmployeeService} from "../../../service/employee.service";
 import {EmployeeModel} from "../../../model/employee";
 import {map, startWith} from "rxjs/operators";
-import {DatePipe} from "@angular/common";
 import {CustomerAddComponent} from "../../customer/customer-add/customer-add.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ContractListComponent} from '../contract-list/contract-list.component';
 import {ImgurApiService} from "../../../service/imgur-api.service";
-import {invalid} from "@angular/compiler/src/render3/view/util";
 
 @Component({
   selector: 'app-contract-add',
@@ -23,7 +21,7 @@ import {invalid} from "@angular/compiler/src/render3/view/util";
   styleUrls: ['./contract-add.component.css']
 })
 export class ContractAddComponent implements OnInit {
-  public currentDayValue = new Date();
+  // public currentDayValue = new Date();
   public subscription: Subscription;
   public formAddNewContract: FormGroup;
   public startDayCheck: Date;
@@ -45,14 +43,14 @@ export class ContractAddComponent implements OnInit {
   private customerIdPicker: any;
   title = 'angular-material-autocomplete';
   public filterCustomer: Observable<Customer[]>;
-  public contractListComponent: ContractListComponent;
+  // public contractListComponent: ContractListComponent;
 
   myControl = new FormControl();
   // options: string[] = ['Cash', 'Credit Card', 'Paypal'];
   options: string[] = [];
 
 
-  filteredOptions: Observable<string[]>;
+  // filteredOptions: Observable<string[]>;
 
 
   constructor(
@@ -126,7 +124,7 @@ export class ContractAddComponent implements OnInit {
   }
 
   afterPickImage(data : any) {
-    console.log(data.data.link);
+    // console.log(data.data.link);
     // this.formAddNewContract.value.urlImage = (data.data.link);
     this.formAddNewContract.patchValue({
       urlImage: data.data.link

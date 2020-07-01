@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ContractService} from '../../../service/contract.service';
 import {MatDialog} from '@angular/material/dialog';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
