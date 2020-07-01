@@ -28,8 +28,6 @@ export class BuildingListComponent implements OnInit, OnDestroy {
   public buildings: BuildingModel[] = [];
   public buildings1: BuildingModel[] = [];
 
-  public searchText="";
-
   private searchForm: FormGroup;
   private searchNameBuilding = "";
   private searchTaxCode = "";

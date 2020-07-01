@@ -3,15 +3,15 @@
     <div class="col-md-5">
       <label class="col-md-3"> Mặt bằng:</label>
       <label>
-        <select class="form-control">
-          <option *ngFor="let ground of grounds" value="{{ground.floor.nameFloor}}" >{{ground.floor.nameFloor}}</option>
+        <select class="form-control" (change)="setGroundId($event.target.value)">
+          <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.floor.nameFloor}} | {{ground.codeGround}}</option>
         </select>
       </label>
-      <label>
-        <select [(ngModel)]="groundId" class="form-control">
-          <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.codeGround}}</option>
-        </select>
-      </label>
+<!--      <label>-->
+<!--        <select [(ngModel)]="groundId" class="form-control">-->
+<!--          <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.codeGround}}</option>-->
+<!--        </select>-->
+<!--      </label>-->
     </div>
     <ng-container>
     <div class="col-md-5">
@@ -22,17 +22,11 @@
   </div>
 
   <div class="row mt-2" >
-    <div class="col-md-5">
+    <div class="col-md-4">
       <label class="col-md-3">Từ:</label>
-
       <label>
         <input type="date" [(ngModel)]="startDateSearch" min="2000-01-01" max="2100-12-31" class="form-control">
       </label>
-<!--      <label class="input-group date" data-provide="datepicker">-->
-<!--        <input style="float: right" matInput [matDatepicker]="picker1">-->
-<!--        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>-->
-<!--        <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>-->
-<!--      </label>-->
 
     </div>
     <div class="col-md-4">
@@ -44,6 +38,9 @@
     </div>
     <div class="col-md-2">
       <button (click)="checkTime(startDateSearch, endDateSearch)" class="btn btn-dark">Xem Dịch Vụ</button>
+    </div>
+    <div class="col-md-2">
+      <button (click)="openDialogInvoice()" class="btn btn-dark">Hoá đơn</button>
     </div>
   </div>
 </div>
@@ -68,12 +65,12 @@
       <tr *ngFor="let service of servicesModel">
         <td>{{service.nameService}}</td>
         <td>{{service.monthYear | date: formatsDate }} </td>
-        <td>{{service.indexBeforeMonth}}</td>
-        <td>{{service.indexAfterMonth}}</td>
+        <td>{{service.indexBeforeMonth|number}}</td>
+        <td>{{service.indexAfterMonth|number}}</td>
         <td>{{service.unit}}</td>
-        <td>{{service.consume}}</td>
-        <td>{{service.price}}</td>
-        <td>{{service.consume * service.price}}</td>
+        <td>{{service.consume|number}}</td>
+        <td>{{service.price|number}}</td>
+        <td>{{service.consume * service.price|number}}</td>
         <td>
           <p *ngIf="service.statusPay">Xong</p>
           <button *ngIf="!service.statusPay" class="btn btn-secondary" (click)="pay(service.id)">Thanh toán</button>
@@ -100,19 +97,4 @@
     <li class="page-item" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

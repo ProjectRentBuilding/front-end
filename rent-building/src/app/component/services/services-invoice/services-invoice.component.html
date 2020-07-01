@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <label class="col-md-4"> Mặt bằng:</label>
+      <label>
+        <select class="form-control" (change)="setGroundId($event.target.value)">
+          <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.floor.nameFloor}} | {{ground.codeGround}}</option>
+        </select>
+      </label>
+<!--      <label>-->
+<!--        <select  class="form-control" [(ngModel)]="tempGround">-->
+<!--          <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.codeGround}}</option>-->
+<!--        </select>-->
+<!--      </label>-->
+    </div>
+    <ng-container>
+      <div class="col-md-5">
+        Tên khách hàng:
+        <input type="text" id="nameCus" class="form-control infoPlaceholder" disabled style="width: 60%; float: right" [(ngModel)]="nameCustomer">
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="row mt-2" >
+    <div class="col-md-6">
+      <label class="col-md-4">Ngày tháng:</label>
+      <label>
+        <input type="date" [(ngModel)]="monthYearSearch" min="2000-01-01" max="2100-12-31" class="form-control">
+      </label>
+
+    </div>
+    <div class="col-md-3">
+      <button (click)="search()" class="btn btn-dark">Xem Dịch Vụ</button>
+    </div>
+    <div class="col-md-3">
+      <button  class="btn btn-dark" (click)="exportAs('pdf', 'portrait')">In hoá đơn</button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5" id="mytable">
+  <form class="col-md-12">
+    <fieldset class="scheduler-border" >
+      <legend class="scheduler-border" style="text-align: center; margin-bottom: 10px">Hoá đơn thanh toán dịch vụ tiêu dùng </legend>
+      <label style=" margin-left: 100px">Khách hàng : </label> <label style=" margin-left: 4px">{{nameCustomer}}</label>
+      <label style=" margin-left: 50px">SĐT: </label> <label style=" margin-left: 4px">{{phoneCustomer}}</label>
+      <label style=" margin-left: 50px">Mặt bằng: </label> <label style=" margin-left: 4px">{{tempFloor}}</label> <label>, {{tempGround}}</label>
+          <table class="table bg-light text-center table-bordered table-striped">
+            <thead class="thead-secondary">
+            <tr>
+              <th>Tên dịch vụ</th>
+              <th>Tháng năm</th>
+              <th>Chỉ số tháng trước</th>
+              <th>Chỉ số tháng sau</th>
+              <th>Đơn vị</th>
+              <th>Tiêu thụ</th>
+              <th>Đơn giá</th>
+              <th>Thành tiền</th>
+            </tr>
+            </thead>
+            <tr *ngFor="let service of servicesModel" class="trInvoice">
+              <td>{{service.nameService}}</td>
+              <td>{{service.monthYear | date: formatsDate }} </td>
+              <td>{{service.indexBeforeMonth|number}}</td>
+              <td>{{service.indexAfterMonth|number}}</td>
+              <td>{{service.unit}}</td>
+              <td>{{service.consume|number}}</td>
+              <td>{{service.price|number}}</td>
+              <td>{{service.consume * service.price|number}}</td>
+            </tr>
+          </table>
+    </fieldset>
+  </form>
+  <div style="text-align: center; font-size:16px"> <a style="font-size:16px">Tổng tiền : </a> <a disabled="true" style="font-size:16px">{{totalMoney|number}}</a></div>
+</div>
+
+

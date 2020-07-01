@@ -28,8 +28,9 @@
           </div>
           <div class=col-md-3>
             <label>
-              <input type="text" class="form-control search-input" placeholder="Tìm theo tiêu thụ" list="consume"
-                     name="consume" formControlName="searchConsume">
+              <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control search-input" placeholder="Tìm theo tiêu thụ" list="consume"
+                     name="consume" formControlName="searchConsume" >
             </label>
             <datalist id="consume">
               <option *ngFor="let service of servicesModel" [value]="service.consume"></option>
@@ -39,7 +40,7 @@
             <label>
               <mat-form-field>
                 <input matInput [matDatepicker]="picker" placeholder="Tìm theo ngày tháng"
-                       formControlName="searchMonthYear">
+                       formControlName="searchMonthYear" readonly>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -111,31 +112,33 @@
             <input class="form-control" formControlName="unit" placeholder="Đơn vị tính">
           </td>
           <!--        Đơn giá-->
-          <td *ngIf="!checkEdit || item.id!==flag">{{item.price}}</td>
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.price|number}}</td>
           <td style="width: 12%" *ngIf="checkEdit && item.id===flag" class="add-row">
-            <input  type="number" class="form-control" formControlName="price" placeholder="Đơn giá">
+            <input  type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))"
+                    class="form-control" formControlName="price" placeholder="Đơn giá">
           </td>
 
           <!--      Tiêu thụ-->
-          <td *ngIf="!checkEdit || item.id!==flag">{{item.consume}}</td>
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.consume|number}}</td>
           <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
             <input  type="text" class="form-control" formControlName="consume"
                    placeholder="Tiêu thụ" disabled>
           </td>
           <!--      Chỉ số tháng trước-->
-          <td *ngIf="!checkEdit || item.id!==flag">{{item.indexBeforeMonth}}</td>
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.indexBeforeMonth|number}}</td>
           <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
             <input  type="text" class="form-control" formControlName="indexBeforeMonth"
                    placeholder="Chỉ số tháng trước" disabled>
           </td>
           <!--      Chỉ số tháng sau-->
-          <td *ngIf="!checkEdit || item.id!==flag">{{item.indexAfterMonth}}</td>
+          <td *ngIf="!checkEdit || item.id!==flag">{{item.indexAfterMonth|number}}</td>
           <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
             <input  type="text" class="form-control" formControlName="indexAfterMonth"
                    placeholder="Chỉ số tháng sau" disabled>
           </td>
           <!--      Ngày tháng-->
-          <td  *ngIf="!checkEdit || item.id!==flag">{{item.monthYear}}</td>
+          <td  *ngIf="!checkEdit || item.id!==flag">{{item.monthYear|date:'dd/MM/yyyy'}}</td>
           <td style="width: 12%" class="add-row" *ngIf="checkEdit && item.id===flag">
             <input class="form-control" style="float: left;padding-left:2%;width: 70%" placeholder="Ngày tháng"
                    type="text" formControlName="monthYear" [matDatepicker]="picker1">
@@ -143,14 +146,14 @@
             <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
           </td>
           <!--      Tên khách hàng-->
+<!--          {{item.contract.id}}- -->
           <td  *ngIf="!checkEdit || item.id!==flag">
-            {{item.contract.id}}-{{item.contract.customer.name}}
+           {{item.contract.customer.name}}
           </td>
           <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
             <select  class=" form-control" formControlName="contractId">
               <option value="">Chọn tên khách hàng</option>
-              <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.id}}
-                -{{contract.customer.name}}</option>
+              <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.customer.name}}</option>
             </select>
           </td>
           <td *ngIf="!checkEdit || item.id!==flag">
@@ -179,6 +182,7 @@
               Thoát
             </button>
           </td>
+          <td *ngIf="checkEdit && item.id===flag"></td>
         </tr>
 <!--        Hiện thông báo lỗi-->
         <tr>
@@ -230,9 +234,9 @@
               Tối đa 300000.
             </p>
           </td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td *ngIf="checkEdit && item.id===flag"></td>
+          <td *ngIf="checkEdit && item.id===flag"></td>
+          <td *ngIf="checkEdit && item.id===flag"></td>
           <td *ngIf="checkEdit && item.id===flag">
             <p class="alert alert-danger" role="alert"
                *ngIf="editServiceForm.get('monthYear').invalid && editServiceForm.get('monthYear').touched">
@@ -245,6 +249,7 @@
               Yêu cầu chọn.
             </p>
           </td>
+          <td *ngIf="checkEdit && item.id===flag" colspan="3"></td>
         </tr>
         <tr>
       </ng-container>
@@ -281,16 +286,19 @@
         </td>
         <!--      Đơn giá-->
         <td class="add-row">
-          <input type="number" class="form-control" formControlName="price" placeholder="Đơn giá">
+          <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" formControlName="price" placeholder="Đơn giá">
         </td>
         <!--      Tiêu thụ-->
         <td class="add-row">
-          <input type="number" class="form-control" formControlName="consume"
+          <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" formControlName="consume"
                  (keyup)="checkConsume($event.target.value)" placeholder="Tiêu thụ">
         </td>
         <!--      Chỉ số tháng trước-->
         <td class="add-row">
-          <input type="number" class="form-control" formControlName="indexBeforeMonth"
+          <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" formControlName="indexBeforeMonth"
                  (keyup)="checkIndexBeforeMonth($event.target.value)" placeholder="Chỉ số tháng trước">
         </td>
         <!--     Chỉ số tháng sau-->
@@ -324,43 +332,98 @@
         <!--        Tên dịch vụ-->
         <td>
           <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('nameService').invalid && item.get('nameService').touched">
-            Nhập lỗi.
+             *ngIf="item.get('nameService').errors?.required &&
+               item.get('nameService').touched">
+            Yêu cầu nhập.
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('nameService').errors?.minlength &&
+               item.get('nameService').touched">
+            Nhập lỗi
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('nameService').errors?.maxlength &&
+               item.get('nameService').touched">
+            Nhập lỗi
           </p>
         </td>
         <!--        Định kỳ-->
         <td>
           <p class="alert alert-danger" role="alert"
              *ngIf="item.get('periodic').invalid && item.get('periodic').touched">
-            Yêu cầu chọn
+            Yêu cầu chọn.
           </p>
         </td>
         <!--        Đơn vị tính-->
         <td>
           <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('unit').invalid && item.get('unit').touched">
-            Nhập lỗi.
+             *ngIf="item.get('unit').errors?.required &&
+               item.get('unit').touched">
+            Yêu cầu nhập.
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('unit').errors?.minlength &&
+               item.get('unit').touched">
+            Nhập lỗi
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('unit').errors?.maxlength &&
+               item.get('unit').touched">
+            Nhập lỗi
           </p>
         </td>
         <!--        Đơn giá-->
         <td>
           <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('price').invalid && item.get('price').touched">
-            Nhập lỗi.
+             *ngIf="item.get('price').errors?.required &&
+               item.get('price').touched">
+            Yêu cầu nhập.
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('price').errors?.min &&
+               item.get('price').touched">
+            Nhập lỗi
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('price').errors?.max &&
+               item.get('price').touched">
+            Nhập lỗi
           </p>
         </td>
         <!--        Tiêu thụ-->
         <td>
           <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('consume').invalid && item.get('consume').touched">
-            Nhập lỗi.
+             *ngIf="item.get('consume').errors?.required &&
+               item.get('consume').touched">
+            Yêu cầu nhập.
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('consume').errors?.min &&
+               item.get('consume').touched">
+            Nhập lỗi
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('consume').errors?.max &&
+               item.get('consume').touched">
+            Nhập lỗi
           </p>
         </td>
         <!--        Chỉ số tháng trước-->
         <td>
           <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('indexBeforeMonth').invalid && item.get('indexBeforeMonth').touched">
-            Nhập lỗi.
+             *ngIf="item.get('indexBeforeMonth').errors?.required &&
+               item.get('indexBeforeMonth').touched">
+            Yêu cầu nhập.
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('indexBeforeMonth').errors?.min &&
+               item.get('indexBeforeMonth').touched">
+            Nhập lỗi
+          </p>
+          <p class="alert alert-danger" role="alert"
+             *ngIf="item.get('indexBeforeMonth').errors?.max &&
+               item.get('indexBeforeMonth').touched">
+            Nhập lỗi
           </p>
         </td>
         <!--        Ngày tháng-->
@@ -382,45 +445,69 @@
       <tr>
         <td>
           <p class="alert alert-primary" role="alert"
-             *ngIf="item.get('nameService').invalid && item.get('nameService').touched">
-            Tối thiểu 2 ký tự.<br>
+             *ngIf="item.get('nameService').errors?.minlength &&
+               item.get('nameService').touched">
+            Tối thiểu 2 ký tự.
+          </p>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('nameService').errors?.maxlength &&
+               item.get('nameService').touched">
             Tối đa 25 ký tự.
           </p>
         </td>
         <td></td>
         <td>
           <p class="alert alert-primary" role="alert"
-             *ngIf="item.get('unit').invalid && item.get('unit').touched">
-            Tối thiểu 2 ký tự.<br>
+             *ngIf="item.get('unit').errors?.minlength &&
+               item.get('unit').touched">
+            Tối thiểu 2 ký tự.
+          </p>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('unit').errors?.maxlength &&
+               item.get('unit').touched">
             Tối đa 25 ký tự.
           </p>
         </td>
         <td>
           <p class="alert alert-primary" role="alert"
-             *ngIf="item.get('price').invalid && item.get('price').touched">
-            Tối thiểu 3000.<br>
+             *ngIf="item.get('price').errors?.min &&
+               item.get('price').touched">
+            Tối thiểu 3000.
+          </p>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('price').errors?.max &&
+               item.get('price').touched">
             Tối đa 300000.
           </p>
         </td>
         <td>
           <p class="alert alert-primary" role="alert"
-             *ngIf="item.get('consume').invalid && item.get('consume').touched">
-            Tối thiểu 10000.<br>
+             *ngIf="item.get('consume').errors?.min &&
+               item.get('consume').touched">
+            Tối thiểu 10000.
+          </p>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('consume').errors?.max &&
+               item.get('consume').touched">
             Tối đa 3000000.
           </p>
         </td>
         <td>
           <p class="alert alert-primary" role="alert"
-             *ngIf="item.get('indexBeforeMonth').invalid && item.get('indexBeforeMonth').touched">
-            Tối thiểu 10000.<br>
+             *ngIf="item.get('indexBeforeMonth').errors?.min &&
+               item.get('indexBeforeMonth').touched">
+            Tối thiểu 10000.
+          </p>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('indexBeforeMonth').errors?.max &&
+               item.get('indexBeforeMonth').touched">
             Tối đa 9000000.
           </p>
         </td>
         <td>
           <p class="alert alert-primary" role="alert"
              *ngIf="item.get('monthYear').invalid && item.get('monthYear').touched">
-            Định dạng<br>
-            MM/dd/yyyy
+            Định dạng MM/dd/yyyy
           </p>
         </td>
       </tr>

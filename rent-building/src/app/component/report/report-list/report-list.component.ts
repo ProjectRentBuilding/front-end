@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ContractService} from '../../../service/contract.service';
 import {MatDialog} from '@angular/material/dialog';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
@@ -55,12 +54,6 @@ export class ReportListComponent implements OnInit {
         this.reports = data;
       }, () => {
       }, () => {
-
-        // var button = document.getElementById("onSearch");
-        // button.addEventListener("click", function () {
-        //   myChart.destroy();
-        // });
-
         this.sortedData = this.reports.slice();
         const xlable = [];
         const ylable = [];
@@ -76,11 +69,6 @@ export class ReportListComponent implements OnInit {
 
         const canvas = <HTMLCanvasElement>document.getElementById('chart');
         const ctx = canvas.getContext('2d');
-
-        // if(window.bar != undefined)
-        //   window.bar.destroy();
-        // window.bar = new Chart(ctx , {});
-
         if (typeof (this.myChart) != "undefined") {
           this.myChart.destroy();
         }
@@ -138,16 +126,6 @@ export class ReportListComponent implements OnInit {
 
   printToPDF() {
     const options = {
-      // name : 'baocao.pdf',
-      // image : {type : 'jpeg', quality: 0.98},
-      // html2canvas: {},
-      // jsPDF : {unit: 'in', format: 'A4', orientation: 'landscape'}
-
-      // margin:       0.25,
-      // filename:     'filename',
-      // image:        { type: 'jpeg', quality: 0.98 },
-      // html2canvas:  { dpi: 96, letterRendering: true },
-      // jsPDF:        { unit: 'in', format: 'a3', orientation: 'portrait' }
 
       name: 'baocao.pdf',
       image: {type: 'jpeg'},
@@ -166,14 +144,6 @@ export class ReportListComponent implements OnInit {
 
   refreshForm() {
     this.totalMoney = 0;
-    // this.startRentDay = "";
-    // this.endRentDay = "";
-    // this.minTotal = "";
-    // this.maxTotal = "";
-    // this.codeGround = "";
-    //
-    // this.loadData();
-
     this.reportService.getAllReport().subscribe(data => {
         this.reports = data;
       }, () => {
@@ -191,8 +161,6 @@ export class ReportListComponent implements OnInit {
           xlable.push(this.reports[i].codeGroundCal);
           ylable.push(this.reports[i].totalCal);
         }
-        // console.log(this.totalMoney);
-
 
         const canvas = <HTMLCanvasElement>document.getElementById('chart');
         const ctx = canvas.getContext('2d');
@@ -324,10 +292,6 @@ export class ReportListComponent implements OnInit {
 
           this.totalMoney = 0;
 
-          // for (let i = 0; i < this.reports.length; i++) {
-          //   this.totalMoney += this.reports[i].totalCal;
-          // }
-
           if (this.reports.length == 0) {
             this.message = "Không tìm thấy kết quả nào phù hợp.";
           } else {
@@ -394,7 +358,9 @@ export class ReportListComponent implements OnInit {
   }
 
 }
-
+// @ts-ignore
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+// @ts-ignore
+

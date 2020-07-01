@@ -11,7 +11,7 @@ import {Subscription} from "rxjs";
 })
 export class ContractDeleteComponent implements OnInit {
 
-  public customerName;
+  // public customerName;
   public contractId;
   public endDayCheck: Date;
   public currentDay = Date.now();
@@ -53,11 +53,6 @@ export class ContractDeleteComponent implements OnInit {
   }
 
   deleteContract() {
-    // this.contractService.delete(this.contractId).subscribe(data => {
-    //   this.dialogRef.close();
-    // });
-
-
     let subTime;
     subTime = new Date(this.endDayCheck);
 

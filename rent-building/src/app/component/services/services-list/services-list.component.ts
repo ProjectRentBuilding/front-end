@@ -192,7 +192,6 @@ export class ServicesListComponent implements OnInit, OnDestroy {
         this.resultMonthYear = "" + monthYear.getFullYear() + "-" + (monthYear.getMonth() + 1) + "-" + monthYear.getDay();
       }
       this.searchMonthYear = this.resultMonthYear;
-      console.log(this.searchForm.value);
       this.loadData(page);
     }
   }
@@ -257,6 +256,9 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   removeService(i) {
     if (this.getArray == 1) {
       this.checkAdd = false;
+      this.addServiceForm = this.fb.group({
+        service: this.fb.array([this.createService()])
+      });
     } else {
       this.service.removeAt(i);
     }
@@ -275,7 +277,6 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   addNewService() {
     this.service = this.addServiceForm.get('service') as FormArray;
     for (let tem = 0; tem < this.getArray; tem++) {
-      console.log(this.service.at(tem).value);
       this.servicesService.save(this.service.at(tem).value).subscribe(data => {
         this.servicesService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
         if (tem === (this.getArray - 1)) {
@@ -284,7 +285,7 @@ export class ServicesListComponent implements OnInit, OnDestroy {
         }
       });
     }
-    this.redirectTo('services');
+    // this.redirectTo('services');
   }
 
   get serviceControls() {

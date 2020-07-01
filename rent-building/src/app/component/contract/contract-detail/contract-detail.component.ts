@@ -51,7 +51,6 @@ export class ContractDetailComponent implements OnInit {
 
       this.employeeService.findOne(Number(this.contract.employeeId)).subscribe(data2 => {
         this.employee = data2;
-        // console.log(this.employee);
       });
 
       this.groundService.findOne(Number(this.contract.groundId)).subscribe(data3 => {

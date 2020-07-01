@@ -27,7 +27,7 @@ export class ServicesDetailComponent implements OnInit {
   // @ts-ignore
   public dataCustomer: Customer = [];
   public services: ServicesModel [] = [];
-  public servicesDistinct= new Array<string>();
+  public servicesDistinct = new Array<string>();
   public servicesModel: ServicesModel [] = [];
   public nameCustomer: String;
   public idContract = new Array<string>();
@@ -35,12 +35,15 @@ export class ServicesDetailComponent implements OnInit {
   public servicePage: any;
   public totalPages: number = 1;
   public pages = [];
-  size=5;
+  size = 5;
   public pageClicked: number = 0;
   idContractSearch;
   nameService = "";
-  startDateSearch="2000-01-01";
-  endDateSearch="2020-01-01";
+  startDateSearch = "2000-01-01";
+  endDateSearch = "2020-01-01";
+  message = "";
+  messageService = "";
+  checkValidateInputYear = false;
 
   constructor(
     private fb: FormBuilder,
@@ -48,38 +51,27 @@ export class ServicesDetailComponent implements OnInit {
     public customerService: CustomerService,
     public contractService: ContractService,
     private servicesService: ServicesService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.servicesService.getServiceDistinct().subscribe((data: string[]) => {
       this.servicesDistinct = data;
-      this.nameService=this.servicesDistinct[0];
+      this.nameService = this.servicesDistinct[0];
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.customerService.findOne(parseInt(paramMap.get('id'))).subscribe(data => {
         this.dataCustomer = data;
         this.nameCustomer = this.dataCustomer.name;
-        for (let i =0 ; i< this.dataCustomer.contracts.length; i++ ) {
+        for (let i = 0; i < this.dataCustomer.contracts.length; i++) {
           this.idContract.push(this.dataCustomer.contracts[i].id);
           this.grounds.push(this.dataCustomer.contracts[i].ground);
           this.floors.push(this.dataCustomer.contracts[i].ground.floor);
         }
-        this.idContractSearch=this.dataCustomer.contracts[0].id;
+        this.idContractSearch = this.dataCustomer.contracts[0].id;
         this.loadData(0);
       });
     });
-
-    // this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
-    //       this.services = data;
-    //       for (let value of this.services) {
-    //         // @ts-ignore
-    //         if (value.contract.customer.name == this.nameCustomer) {
-    //           this.servicesModel.push(value);
-    //         }
-    //       }
-    //     });
-
-
   }
 
   formatsDate: string[] = [
@@ -87,8 +79,7 @@ export class ServicesDetailComponent implements OnInit {
   ];
 
   loadData(page) {
-    console.log(this.nameService+"2");
-    this.servicesService.searchInformationService(page, this.size, this.idContractSearch,this.nameService,this.startDateSearch, this.endDateSearch)
+    this.servicesService.searchInformationService(page, this.size, this.idContractSearch, this.nameService, this.startDateSearch, this.endDateSearch)
       .subscribe(
         data => {
           this.pageClicked = page;
@@ -96,15 +87,20 @@ export class ServicesDetailComponent implements OnInit {
           this.servicesModel = this.servicePage.content;
           this.totalPages = this.servicePage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+          if (this.servicesModel.length == 0) {
+            this.messageService = "Không tìm thấy kết quả nào phù hợp";
+          } else {
+            this.messageService = "";
+          }
         }
       );
   }
 
   searchNameService(value) {
-    this.nameService=value;
+    this.nameService = value;
     this.loadData(0);
-
   }
+
   onNext() {
     if (this.pageClicked == this.totalPages - 1) {
     } else {
@@ -129,5 +125,42 @@ export class ServicesDetailComponent implements OnInit {
   onLast() {
     this.pageClicked = this.totalPages - 1;
     this.loadData(this.pageClicked);
+  }
+
+  searchMonthYearService() {
+    if (parseInt(this.endDateSearch.substring(0, 4)) < parseInt(this.startDateSearch.substring(0, 4)) ||
+      parseInt(this.endDateSearch.substring(0, 4)) == parseInt(this.startDateSearch.substring(0, 4)) &&
+      parseInt(this.endDateSearch.substring(5, 7)) < parseInt(this.startDateSearch.substring(5, 7)) ||
+      parseInt(this.endDateSearch.substring(0, 4)) == parseInt(this.startDateSearch.substring(0, 4)) &&
+      parseInt(this.endDateSearch.substring(5, 7)) == parseInt(this.startDateSearch.substring(5, 7)) &&
+      parseInt(this.endDateSearch.substring(8, 10)) < parseInt(this.startDateSearch.substring(8, 10)) ||
+      parseInt(this.endDateSearch.substring(0, 4)) == parseInt(this.startDateSearch.substring(0, 4)) &&
+      parseInt(this.endDateSearch.substring(5, 7)) == parseInt(this.startDateSearch.substring(5, 7)) &&
+      parseInt(this.endDateSearch.substring(8, 10)) == parseInt(this.startDateSearch.substring(8, 10))) {
+      this.message = "Nhập số năm Từ ngày nhỏ hơn Đến ngày";
+      this.checkValidateInputYear = true;
+    } else if (parseInt(this.endDateSearch.substring(0, 4)) > 2021) {
+      this.message = "Nhập số năm Đến ngày nhỏ hơn 2022";
+      this.checkValidateInputYear = true;
+    } else if (parseInt(this.startDateSearch.substring(0, 4)) < 2000) {
+      this.message = "Nhập số năm Từ ngày lớn hơn 1999";
+      this.checkValidateInputYear = true;
+    } else {
+      this.message = "";
+      this.checkValidateInputYear = false;
+      this.loadData(0);
+    }
+  }
+
+  setIdContractSearch(value) {
+    for (let i = 0; i < this.dataCustomer.contracts.length; i++) {
+      console.log(value);
+      console.log(this.dataCustomer.contracts[i]);
+      if (this.dataCustomer.contracts[i].ground.codeGround == value) {
+        this.idContractSearch = this.dataCustomer.contracts[i].id;
+        break;
+      }
+      console.log(this.idContractSearch);
+    }
   }
 }

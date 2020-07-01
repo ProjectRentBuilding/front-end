@@ -10,11 +10,8 @@ import {GroundService} from '../../../service/ground.service';
 import {GroundModel} from '../../../model/ground.model';
 import {ContractService} from '../../../service/contract.service';
 import {ContractModel} from '../../../model/contract';
-import {TypeEquipmentModel} from '../../../model/typeEquipment.model';
-import {BuildingAddComponent} from '../../building/building-add/building-add.component';
 import {CustomerAddComponent} from '../customer-add/customer-add.component';
 import {CustomerDetailGroundComponent} from '../customer-detail-ground/customer-detail-ground.component';
-import {log} from 'util';
 
 
 @Component({
@@ -116,7 +113,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       rentStatus: false
     });
     this.searchForm = this.formBuilder.group({
-      searchName: ['', [Validators.pattern('^[a-zA-Z ]{1,150}$')]],
+      searchName: ['', [Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]{1,150}$')]],
       searchIdCard: ['', [Validators.pattern('[0-9]{1,10}')]],
     });
   }
