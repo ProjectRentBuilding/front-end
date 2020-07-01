@@ -101,7 +101,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   createEmployee(): FormGroup {
     return this.formBuilder.group({
       id: [''],
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.pattern(/[a-zA-Z]/)]],
       idCard: ['', Validators.required],
       email: ['', Validators.required],
       phone: ['', Validators.required],
