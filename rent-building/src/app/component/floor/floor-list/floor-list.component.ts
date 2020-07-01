@@ -180,10 +180,10 @@ export class FloorListComponent implements OnInit, OnDestroy {
         this.floorService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
         if (tem === (this.getArray - 1)) {
           this.floor.reset();
-          this.pageClicked = this.totalPages - 1;
-          this.loadData(this.pageClicked);
+          this.onLast();
         }
       });
+      // this.redirectTo('floors');
     }
   }
 
@@ -241,6 +241,9 @@ export class FloorListComponent implements OnInit, OnDestroy {
   removeFloor(i: number) {
     if (this.getArray == 1) {
       this.checkAdd = false;
+      this.addFloorForm = this.formBuilder.group({
+        floor: this.formBuilder.array([this.createFloor()])
+      });
     } else {
       this.floor.removeAt(i);
     }
