@@ -33,20 +33,15 @@ export class ReportEmployeeComponent implements OnInit {
       for (let i = 0; i <this.employees.length ; i++) {
         this.totalSalary += this.employees[i].salary;
       }
-
-
-
     });
-
-
   }
 
   printToPDF() {
     const options = {
       name: 'bangluong.pdf',
       image: {type: 'jpeg'},
-      html2canvas: {scales: 1, width: 7000, height: 5000},
-      jsPDF: {orientation: 'portrait', unit: 'mm', format: [1000, 1000]}
+      html2canvas: {scales: 1, width: 3000, height: 3000},
+      jsPDF: {orientation: 'portrait', unit: 'mm', format: [300, 300]}
     };
 
     const element: Element = document.getElementById('html2pdfidemployee');
@@ -55,7 +50,6 @@ export class ReportEmployeeComponent implements OnInit {
       .from(element)
       .set(options)
       .save();
-
   }
 
   sortData(sort: Sort) {
