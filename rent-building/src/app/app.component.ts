@@ -24,12 +24,19 @@ export class AppComponent {
       this.tab = 'tab4';
     } else if (check === 5) {
       this.tab = 'tab5';
-    } else if (check === 6){
+    } else if (check === 6) {
       this.tab = 'tab6';
-    } else {
+    } else if (check === 7) {
       this.tab = 'tab7';
+    } else if (check === 8) {
+      this.tab = 'tab8';
+    } else if (check === 9) {
+      this.tab = 'tab9';
+    } else if (check === 10) {
+      this.tab = 'tab10';
+    } else {
+      this.tab = 'tab11';
     }
-
   }
 }
 

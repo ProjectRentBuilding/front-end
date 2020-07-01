@@ -249,6 +249,7 @@
           <td class="add-row" >
             <input type="text" class="form-control infoPlaceholder"  formControlName="name"
                    placeholder="Tên nhân viên ">
+
           </td>
 
 <!--      loại nhân viên ẩn-->
@@ -336,9 +337,21 @@
         <tr>
           <td>
             <p class="text-danger"
-               *ngIf="employee.get('name').invalid && employee.get('name').touched">
+               *ngIf="formAddNewEmployee.get('name').hasError('required') && formAddNewEmployee.get('name').valueChanges">
               Name không để trống!
             </p>
+            <p class="text-danger"
+               *ngIf="formAddNewEmployee.get('name').hasError('pattern') && formAddNewEmployee.get('name').valueChanges">
+              Name không đúng định dạng!
+            </p>
+
+
+<!--            <p class=" text-danger" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('required')-->
+<!--       && editBuildingForm.get('taxCode').valueChanges">Nhập đúng định dạng:MST-xxx !!!-->
+<!--            </p>-->
+<!--            <p class=" text-danger" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('pattern')-->
+<!--       && editBuildingForm.get('taxCode').valueChanges">Nhập đúng định dạng:MST-xxx !!!-->
+<!--            </p>-->
           </td>
           <td>
             <p class="text-danger"

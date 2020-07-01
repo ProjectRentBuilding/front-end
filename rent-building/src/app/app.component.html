@@ -86,32 +86,67 @@
 <!--            <a href="#" class="text-white">Ngoc Tan</a>-->
 <!--          </div>-->
           <ul class="navbar-nav flex-column mt-4 myDIV ">
-            <li routerLinkActive="active" class="nav-item sidebar-link "><a href=""
-                                                                            class="nav-link text-white py-2 mb-2 current sidebar-title"><i
-              class="fa fa-home icon-size text-light fa-lg mr-3"></i>Rent Building</a></li>
-            <li  (click)="onClick(1)"   [ngClass]="{'active1': tab==='tab1'}" class="nav-item  sidebar-link "><a [routerLink]="['/customers']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-users text-light fa-lg mr-3"></i>Danh sách khách hàng</a></li>
-            <li (click)="onClick(2)"   [ngClass]="{'active1': tab==='tab2'}" class="nav-item sidebar-link"><a [routerLink]="['/equipments-building']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa icon-size fa-wrench text-light fa-lg mr-3"></i>Danh sách thiết bị</a></li>
-            <li (click)="onClick(3)"   [ngClass]="{'active1': tab==='tab3'}" class="nav-item sidebar-link"><a [routerLink]="['/contracts/paging']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa icon-size fa-pencil-square-o text-light fa-lg mr-3"></i>Danh sách hợp đồng</a></li>
-            <li  (click)="onClick(4)"   [ngClass]="{'active1': tab==='tab4'}" class="nav-item sidebar-link"><a [routerLink]="['/buildings']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-building icon-size text-light fa-lg mr-3"></i>Danh sách tòa nhà</a></li>
-            <li (click)="onClick(5)"   [ngClass]="{'active1': tab==='tab5'}" class="nav-item sidebar-link"><a [routerLink]="['/floors']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-cubes icon-size text-light fa-lg mr-3"></i>Danh sách tầng</a></li>
-            <li (click)="onClick(6)"   [ngClass]="{'active1': tab==='tab6'}" class="nav-item sidebar-link"><a [routerLink]="['/grounds']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-university icon-size text-light fa-lg mr-3"></i>Danh sách mặt bằng</a></li>
+<!--            <li routerLinkActive="active" class="nav-item sidebar-link ">-->
+<!--              <a href="" class="nav-link text-white py-2 mb-2 current sidebar-title"><i-->
+<!--              class="fa fa-home icon-size text-light fa-lg mr-3"></i>Rent Building</a>-->
+<!--            </li>-->
 
-            <li class="nav-item sidebar-link"><a [routerLink]="['/employees']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-university icon-size text-light fa-lg mr-3"></i>Nhân viên văn phòng</a></li>
+            <li  (click)="onClick(1)"   [ngClass]="{'active1': tab==='tab1'}" class="nav-item  sidebar-link ">
+              <a [routerLink]="['/customers']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+              class="fa fa-users text-light fa-lg mr-3"></i>Danh sách khách hàng</a>
+            </li>
 
-            <li (click)="onClick(7)"   [ngClass]="{'active1': tab==='tab7'}" class="nav-item sidebar-link"><a [routerLink]="['/services']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-university icon-size text-light fa-lg mr-3"></i>Danh sách dịch vụ</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/employees/paging1']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-cog icon-size text-light fa-lg mr-3"></i>Nhân viên phục vụ</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/reports/search']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
-              class="fa fa-file icon-size text-light fa-lg mr-3 "></i>Báo cáo</a></li>
-            <li class="nav-item sidebar-link"><a [routerLink]="['/reports/employee']" class="nav-link text-white py-2 mb-2 sidebar-title"><i class="fa fa-money icon-size text-light fa-lg mr-3 " aria-hidden="true"></i>Lương nhân viên</a></li>
+            <li (click)="onClick(2)"   [ngClass]="{'active1': tab==='tab2'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/equipments-building']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+              class="fa icon-size fa-wrench text-light fa-lg mr-3"></i>Danh sách thiết bị</a>
+            </li>
+
+            <li (click)="onClick(3)"   [ngClass]="{'active1': tab==='tab3'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/contracts/paging']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+              class="fa icon-size fa-pencil-square-o text-light fa-lg mr-3"></i>Danh sách hợp đồng</a>
+            </li>
+
+            <li  (click)="onClick(4)"   [ngClass]="{'active1': tab==='tab4'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/buildings']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+              class="fa fa-building icon-size text-light fa-lg mr-3"></i>Danh sách tòa nhà</a>
+            </li>
+
+            <li (click)="onClick(5)"   [ngClass]="{'active1': tab==='tab5'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/floors']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+              class="fa fa-cubes icon-size text-light fa-lg mr-3"></i>Danh sách tầng</a>
+            </li>
+
+            <li (click)="onClick(6)"   [ngClass]="{'active1': tab==='tab6'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/grounds']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+              class="fa fa-university icon-size text-light fa-lg mr-3"></i>Danh sách mặt bằng</a>
+            </li>
+
+            <li  (click)="onClick(7)"   [ngClass]="{'active1': tab==='tab7'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/employees']" class="nav-link text-white py-2 mb-2 sidebar-title">
+                <i class="fa fa-desktop  icon-size text-light fa-lg mr-3" aria-hidden="true"></i>Nhân viên văn phòng</a>
+            </li>
+
+            <li  (click)="onClick(8)"   [ngClass]="{'active1': tab==='tab8'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/employees/paging1']" class="nav-link text-white py-2 mb-2 sidebar-title">
+                <i class="fa fa-coffee  icon-size text-light fa-lg mr-3" aria-hidden="true"></i>Nhân viên phục vụ</a>
+            </li>
+
+            <li (click)="onClick(9)"   [ngClass]="{'active1': tab==='tab9'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/services']" class="nav-link text-white py-2 mb-2 sidebar-title">
+                <i class="fa fa-handshake-o icon-size text-light fa-lg mr-3" aria-hidden="true"></i>Danh sách dịch vụ</a>
+            </li>
+
+
+            <li  (click)="onClick(10)"   [ngClass]="{'active1': tab==='tab10'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/reports/search']" class="nav-link text-white py-2 mb-2 sidebar-title"><i
+              class="fa fa-file icon-size text-light fa-lg mr-3 "></i>Báo cáo</a>
+            </li>
+
+            <li  (click)="onClick(11)"   [ngClass]="{'active1': tab==='tab11'}" class="nav-item sidebar-link">
+              <a [routerLink]="['/reports/employee']" class="nav-link text-white py-2 mb-2 sidebar-title">
+                <i class="fa fa-money icon-size text-light fa-lg mr-3 " aria-hidden="true"></i>Lương nhân viên</a>
+            </li>
+
           </ul>
         </div>
 
