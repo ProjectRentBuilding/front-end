@@ -67,7 +67,7 @@ import { ServicesInvoiceComponent } from './component/services/services-invoice/
 import { EmployeeServeComponent } from './component/employee/employee-serve/employee-serve.component';
 import { EmployeeServeListComponent } from './component/employee/employee-serve-list/employee-serve-list.component';
 import { EmployeeServeDeleteComponent } from './component/employee/employee-serve-delete/employee-serve-delete.component';
-
+import { ExportAsModule } from 'ngx-export-as';
 
 @NgModule({
   declarations: [
@@ -138,7 +138,8 @@ import { EmployeeServeDeleteComponent } from './component/employee/employee-serv
         MatInputModule,
         MatCheckboxModule,
         MatAutocompleteModule,
-        MatIconModule
+        MatIconModule,
+        ExportAsModule
     ],
   providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
   bootstrap: [AppComponent],

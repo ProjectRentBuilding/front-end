@@ -238,8 +238,12 @@
         </td>
         <td>
           <p class="text-danger"
-             *ngIf="equipment.get('amount').invalid && equipment.get('amount').touched">
-            Số lượng phải là số và không được để trống!
+             *ngIf="equipment.get('amount').errors?.required && equipment.get('amount').touched">
+            Số lượng không được để trống!
+          </p>
+          <p class="text-danger"
+             *ngIf="equipment.get('amount').errors?.pattern && equipment.get('amount').touched">
+            Số lượng phải là số!
           </p>
         </td>
         <td>
