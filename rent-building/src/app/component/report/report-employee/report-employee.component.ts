@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Sort} from "@angular/material/sort";
-import {EmployeeModel} from "../../../model/employee";
 import * as html2pdf from 'html2pdf.js';
 import {EmployeeService} from "../../../service/employee.service";
 
