@@ -7,6 +7,7 @@ import {FloorModel} from '../../../model/floor.model';
 import {ServicesModel} from '../../../model/services.model';
 import {ContractModel} from '../../../model/contract';
 import {Customer} from '../../../model/customer.model';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-services-invoice',
@@ -35,6 +36,7 @@ export class ServicesInvoiceComponent implements OnInit {
   public tempGround= '';
   public phoneCustomer: number;
   public totalMoney: number = 0;
+
 
   constructor(
     public dialogRef: MatDialogRef<ServicesInvoiceComponent>,
@@ -71,7 +73,23 @@ export class ServicesInvoiceComponent implements OnInit {
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
+  printToPDF() {
+    const options = {
 
+      name: 'baocao.pdf',
+      image: {type: 'jpeg'},
+      html2canvas: {scales: 1, width: 7000, height: 5000},
+      jsPDF: {orientation: 'portrait', unit: 'mm', format: [1000, 1000]}
+    };
+
+    const element: Element = document.getElementById('invoice94');
+
+    html2pdf()
+      .from(element)
+      .set(options)
+      .save();
+
+  }
   search() {
     this.loadData();
   }

@@ -37,12 +37,12 @@
       <button (click)="search()" class="btn btn-dark">Xem Dịch Vụ</button>
     </div>
     <div class="col-md-3">
-      <button  class="btn btn-dark">In hoá đơn</button>
+      <button  class="btn btn-dark" (click)="printToPDF()">In hoá đơn</button>
     </div>
   </div>
 </div>
 
-<div class="container mt-5" >
+<div class="container mt-5" id="invoice94">
   <!--  <form [formGroup]="viewServiceForm">-->
 <!--  <form>-->
 <!--    <table class="table bg-light text-center table-bordered table-striped">-->
