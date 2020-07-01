@@ -12,7 +12,6 @@ import {ContractModel} from '../../../model/contract';
 import {ContractService} from '../../../service/contract.service';
 import {ServicesModel} from '../../../model/services.model';
 import {ServicesService} from '../../../service/services.service';
-import {ServicesEditComponent} from '../services-edit/services-edit.component';
 import {ServicesInvoiceComponent} from '../services-invoice/services-invoice.component';
 import {MatDialog} from '@angular/material/dialog';
 
