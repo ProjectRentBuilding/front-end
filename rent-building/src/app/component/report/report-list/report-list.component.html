@@ -1,16 +1,18 @@
 <h3 class="text-muted text-center mb-3 mt-5">DANH SÁCH BÁO CÁO</h3>
-<div class="col-md-12">
+<div class="col-md-12 col-lg-12 col-xl-12 ">
   <form [formGroup]="formSearch">
     <div class="row">
-      <div class="col-md-4">
-        <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối thiểu..."
+      <div class="col-md-4 ">
+        <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control search-input" placeholder="Theo tổng thu tối thiểu..."
                formControlName="minTotal" style="margin-top: 8px;">
       </div>
-      <div class="col-md-4">
-        <input type="number" class="form-control search-input" placeholder="Theo tổng thu tối đa..."
+      <div class="col-md-4  ">
+        <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control search-input" placeholder="Theo tổng thu tối đa..."
                formControlName="maxTotal" style="margin-top: 8px;">
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4  ">
         <input type="text" class="form-control search-input" placeholder="Theo mã mặt bằng..."
                formControlName="codeGround" style="margin-top: 8px;">
       </div>
@@ -57,14 +59,14 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-4 ">
+      <div class="col-md-4 col-xl-4 col-lg-4 ">
         <form>
           <table class="table table-bordered bg-light text-center table-striped" matSort (matSortChange)="sortData($event)">
             <thead class="thead-dark">
             <tr class="text-muted">
-              <th style="font-weight: bold">#</th>
-              <th style="font-weight: bold" mat-sort-header="codeGroundCal">Tên Mặt Bằng</th>
-              <th style="font-weight: bold" mat-sort-header="totalCal">Tổng Thu</th>
+              <th style="font-weight: bold;text-align: left">#</th>
+              <th style="font-weight: bold;text-align: left" mat-sort-header="codeGroundCal">Tên Mặt Bằng</th>
+              <th style="font-weight: bold;text-align: left" mat-sort-header="totalCal">Tổng Thu</th>
             </tr>
             </thead>
             <tbody>
@@ -74,8 +76,8 @@
               <td>{{(i + 1)}}</td>
               <!--                  <td >{{(i+1)+(page-1)*5}}</td>-->
               <!--      <td>{{contract.id}}</td>-->
-              <td style="text-align: center">{{report.codeGroundCal}}</td>
-              <td>{{report.totalCal|currency:"VND":"symbol"}}</td>
+              <td style="text-align: left">{{report.codeGroundCal}}</td>
+              <td style="text-align: left">{{report.totalCal|currency:"VND":"symbol"}}</td>
             </tr>
             <tr>
               <th colspan="2">Tổng (VNĐ)</th>
@@ -90,9 +92,10 @@
         </form>
       </div>
 
-      <div class="col-md-8">
-        <canvas id="chart" width="600" height="600"></canvas>
+      <div class="col-md-8 col-xl-8 col-lg-8 ">
+        <canvas id="chart" width="40%" height="40%"></canvas>
       </div>
+
     </div>
   </div>
 
