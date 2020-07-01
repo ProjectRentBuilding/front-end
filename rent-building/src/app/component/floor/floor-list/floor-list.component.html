@@ -24,7 +24,8 @@
         </div>
         <div class="col-md-3">
           <label>
-            <input type="number" class="form-control search-input" placeholder="Tìm theo tên diện tích"
+            <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control search-input" placeholder="Tìm theo tên diện tích"
                    formControlName="searchArea">
           </label>
         </div>
@@ -226,38 +227,14 @@
             <option value="">Chọn tên tòa nhà</option>
             <option *ngFor="let building of buildings" [value]="building.id">{{building.fullName}}</option>
           </select>
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('buildingId').hasError('required') && addFloorForm.get('buildingId').touched">-->
-          <!--            Tên tòa nhà không được để trống.-->
-          <!--          </p>-->
         </td>
         <!--      Tên Tầng-->
         <td class="add-row" style="width: 14%">
           <input type="text" class="form-control" formControlName="nameFloor" placeholder="Tên tầng lầu">
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('nameFloor').hasError('required') && addFloorForm.get('nameFloor').touched">-->
-          <!--            Tên tầng lầu không được để trống.-->
-          <!--          </p>-->
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('nameFloor').hasError('minlength') && addFloorForm.get('nameFloor').touched">-->
-          <!--            Tên tầng lầu tối thiểu 2 ký tự.-->
-          <!--          </p>-->
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('nameFloor').hasError('maxlength') && addFloorForm.get('nameFloor').touched">-->
-          <!--            Tên tầng lầu tối đa 25 ký tự.-->
-          <!--          </p>-->
         </td>
         <!--      Mã tầng lầu-->
         <td class="add-row">
           <input type="text" class="form-control" formControlName="codeFloor" placeholder="Mã tầng lầu">
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('codeFloor').hasError('required') && addFloorForm.get('codeFloor').touched">-->
-          <!--            Mã tầng lầu không được để trống.-->
-          <!--          </p>-->
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('codeFloor').hasError('pattern') && addFloorForm.get('codeFloor').touched">-->
-          <!--            Mã tầng lầu phải đúng định dạng:MTLxxx.-->
-          <!--          </p>-->
         </td>
         <!--      Diện tích-->
         <td class="add-row">
@@ -275,10 +252,6 @@
             <option value="Đang vào ở">Đang vào ở</option>
             <option value="Đang sửa chữa">Đang sửa chữa</option>
           </select>
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('statusFloor').hasError('required') && addFloorForm.get('statusFloor').touched">-->
-          <!--            Trạng thái không được để trống.-->
-          <!--          </p>-->
         </td>
         <!--      Loại tầng-->
         <td class="add-row" style="width: 14%">
@@ -286,10 +259,6 @@
             <option value="">Chọn loại tầng</option>
             <option *ngFor="let typeFloor of typeFloors" [value]="typeFloor.id">{{typeFloor.nameTypeFloor}}</option>
           </select>
-          <!--          <p class="text-danger"-->
-          <!--             *ngIf="addFloorForm.get('typeFloorId').hasError('required') && addFloorForm.get('typeFloorId').touched">-->
-          <!--            Loại tầng không được để trống.-->
-          <!--          </p>-->
         </td>
         <td>
           <button type="button" class="btn btn-danger btn-sm" (click)="removeFloor(i)">
@@ -406,10 +375,3 @@
     <li class="page-item" *ngIf="pageClicked!=totalPages-1" (click)="onLast()"><a class="page-link">Trang cuối</a></li>
   </ul>
 </nav>
-
-<!--    pagination-->
-<!--<pagination-controls class="pagination justify-content-center" id="listing_pagination" (pageChange)="page = $event"-->
-<!--                     previousLabel="Trang trước"-->
-<!--                     nextLabel="Trang sau">-->
-
-<!--</pagination-controls>-->
