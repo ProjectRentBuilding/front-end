@@ -29,6 +29,7 @@
         <div class="col-md-3">
           <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo bộ phận..."
                  formControlName="partSearch" style="margin-top: 8px;">
+
         </div>
       </div>
     </form>
@@ -37,6 +38,8 @@
     <button type="button" class="btn btn-secondary search-button" (click)="onSearch(0)">
       <i class="fa fa-search text-danger"></i>
     </button>
+    <span><button (click)="cancelAdd()" class="btn btn-secondary search-button" style="margin-left: 10px"><i class="fa fa-refresh" aria-hidden="true"></i></button></span>
+
   </div>
 </div>
 <h1 class="justify-content-center" style="color: red">{{this.message}}</h1>
@@ -44,6 +47,7 @@
   <div style="width: 100%;background: #435D7D">
     <h3 class="text-light text-center py-3 mt-5" style="font-family: Varela Round ">DANH SÁCH NHÂN VIÊN VĂN PHÒNG</h3>
     <button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button>
+
   </div>
   <ng-container>
     <form action="" [formGroup]="formEditEmployee" (ngSubmit)="logValue()" *ngIf="formEditEmployee">
@@ -270,7 +274,7 @@
 
 
           <td class="add-row" >
-            <input style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="birthday" placeholder=" Ngày sinh" matInput
+            <input readonly style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="birthday" placeholder=" Ngày sinh" matInput
                    [matDatepicker]="picker1">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
@@ -291,7 +295,8 @@
           </td>
 
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder" formControlName="salary" placeholder="Nhập luong ">
+            <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control infoPlaceholder" formControlName="salary" placeholder="Nhập luong ">
           </td>
 
 
@@ -310,14 +315,14 @@
           </td>
 
           <td class="add-row">
-            <input style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="startWord" placeholder=" Ngày vào làm" matInput
+            <input readonly style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="startWord" placeholder=" Ngày vào làm" matInput
                    [matDatepicker]="picker4">
             <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
             <mat-datepicker #picker4 startView="year" [startAt]="startDate"></mat-datepicker>
 
           </td>
           <td class="add-row" >
-            <input type="text" formControlName="userBuilding" ngModel="{{this.employeeService.arraySentUsername[i]}}">
+            <input type="text" hidden formControlName="userBuilding" ngModel="{{this.employeeService.arraySentUsername[i]}}">
             <button class="btn btn-primary" (click)="openDialogRegister()">Đăng ký tài khoản</button>
           </td>
           <input hidden type="text"  >
@@ -336,44 +341,63 @@
 
         <tr>
           <td>
+
             <p class="text-danger"
-               *ngIf="formAddNewEmployee.get('name').hasError('required') && formAddNewEmployee.get('name').valueChanges">
+                    *ngIf="employee.get('name').errors?.pattern && employee.get('name').touched">
+            Name sai định dạng !
+          </p>
+            <p class="text-danger"
+               *ngIf="employee.get('name').errors?.required && employee.get('name').touched">
               Name không để trống!
             </p>
             <p class="text-danger"
-               *ngIf="formAddNewEmployee.get('name').hasError('pattern') && formAddNewEmployee.get('name').valueChanges">
-              Name không đúng định dạng!
+               *ngIf="employee.get('name').errors?.minlength && employee.get('name').touched">
+              Name tối thiểu 4 kí tự!
+            </p>
+            <p class="text-danger"
+               *ngIf="employee.get('name').errors?.maxlength && employee.get('name').touched">
+              Name tối đa 30 kí tự!
             </p>
 
 
-<!--            <p class=" text-danger" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('required')-->
-<!--       && editBuildingForm.get('taxCode').valueChanges">Nhập đúng định dạng:MST-xxx !!!-->
-<!--            </p>-->
-<!--            <p class=" text-danger" role="alert" *ngIf="editBuildingForm.get('taxCode').hasError('pattern')-->
-<!--       && editBuildingForm.get('taxCode').valueChanges">Nhập đúng định dạng:MST-xxx !!!-->
-<!--            </p>-->
           </td>
+
+<!--          cmnd-->
           <td>
             <p class="text-danger"
-               *ngIf="employee.get('idCard').invalid && employee.get('idCard').touched">
-              CMND không để trống!
+               *ngIf="employee.get('idCard').errors?.pattern && employee.get('idCard').touched">
+              Cmnd sai định dạng !
+            </p>
+            <p class="text-danger"
+               *ngIf="employee.get('idCard').errors?.required && employee.get('idCard').touched">
+              Cmnd không để trống!
+            </p>
+          </td>
+
+          <td>
+            <p class="text-danger"
+               *ngIf="employee.get('email').errors?.email && employee.get('email').touched">
+              Email không đúng định dạng!
+            </p>
+            <p class="text-danger"
+               *ngIf="employee.get('email').errors?.required && employee.get('email').touched">
+              Email không để trống!
             </p>
           </td>
           <td>
             <p class="text-danger"
-               *ngIf="employee.get('email').invalid && employee.get('email').touched">
-              Emailkhông được trống
+               *ngIf="employee.get('phone').errors?.required && employee.get('phone').touched">
+              Số điện thoại không để trống!
+            </p>
+            <p class="text-danger"
+               *ngIf="employee.get('phone').errors?.pattern && employee.get('phone').touched">
+              Số điện thoại không đúng định dạng!
             </p>
           </td>
+
           <td>
             <p class="text-danger"
-               *ngIf="employee.get('phone').invalid && employee.get('phone').touched">
-              Phone không được để trống!
-            </p>
-          </td>
-          <td>
-            <p class="text-danger"
-               *ngIf="employee.get('birthday').invalid && employee.get('birthday').touched">
+               *ngIf="employee.get('gender').invalid && employee.get('gender').touched">
               Ngày sinh không được để trống!
             </p>
           </td>
@@ -415,7 +439,7 @@
 </button>
 
 <button class="btn btn-info px-4 py-2 mr-2 " (click)="addNewEmployee()" *ngIf="checkAdd">Lưu</button>
-<span><button  class="btn btn-success px-4 py-2" (click)="openDialogAdd()">Thêm mới</button></span>
+<!--<span><button  class="btn btn-success px-4 py-2" (click)="openDialogAdd()">Thêm mới</button></span>-->
 
 <!--phan trang-->
 <nav aria-label="Page navigation example" *ngIf="employees.length!=0 && totalPages>1">
