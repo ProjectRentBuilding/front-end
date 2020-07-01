@@ -192,7 +192,6 @@ export class ServicesListComponent implements OnInit, OnDestroy {
         this.resultMonthYear = "" + monthYear.getFullYear() + "-" + (monthYear.getMonth() + 1) + "-" + monthYear.getDay();
       }
       this.searchMonthYear = this.resultMonthYear;
-      console.log(this.searchForm.value);
       this.loadData(page);
     }
   }

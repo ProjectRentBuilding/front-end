@@ -41,6 +41,8 @@ export class ServicesDetailComponent implements OnInit {
   nameService = "";
   startDateSearch="2000-01-01";
   endDateSearch="2020-01-01";
+  message="";
+  messageService="";
 
   constructor(
     private fb: FormBuilder,
@@ -68,26 +70,11 @@ export class ServicesDetailComponent implements OnInit {
         this.loadData(0);
       });
     });
-
-    // this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
-    //       this.services = data;
-    //       for (let value of this.services) {
-    //         // @ts-ignore
-    //         if (value.contract.customer.name == this.nameCustomer) {
-    //           this.servicesModel.push(value);
-    //         }
-    //       }
-    //     });
-
-
   }
-
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
-
   loadData(page) {
-    console.log(this.nameService+"2");
     this.servicesService.searchInformationService(page, this.size, this.idContractSearch,this.nameService,this.startDateSearch, this.endDateSearch)
       .subscribe(
         data => {
@@ -96,6 +83,11 @@ export class ServicesDetailComponent implements OnInit {
           this.servicesModel = this.servicePage.content;
           this.totalPages = this.servicePage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
+          if (this.servicesModel.length == 0) {
+            this.messageService = "Không tìm thấy kết quả nào phù hợp";
+          } else {
+            this.messageService = "";
+          }
         }
       );
   }
@@ -103,7 +95,6 @@ export class ServicesDetailComponent implements OnInit {
   searchNameService(value) {
     this.nameService=value;
     this.loadData(0);
-
   }
   onNext() {
     if (this.pageClicked == this.totalPages - 1) {
@@ -129,5 +120,41 @@ export class ServicesDetailComponent implements OnInit {
   onLast() {
     this.pageClicked = this.totalPages - 1;
     this.loadData(this.pageClicked);
+  }
+
+  searchMonthYearService() {
+    if(parseInt(this.endDateSearch.substring(0, 4))<parseInt(this.startDateSearch.substring(0, 4))||
+      parseInt(this.endDateSearch.substring(0, 4))==parseInt(this.startDateSearch.substring(0, 4))&&
+      parseInt(this.endDateSearch.substring(5, 7))<parseInt(this.startDateSearch.substring(5, 7))||
+      parseInt(this.endDateSearch.substring(0, 4))==parseInt(this.startDateSearch.substring(0, 4))&&
+      parseInt(this.endDateSearch.substring(5, 7))==parseInt(this.startDateSearch.substring(5, 7))&&
+      parseInt(this.endDateSearch.substring(8, 10))<parseInt(this.startDateSearch.substring(8, 10))||
+      parseInt(this.endDateSearch.substring(0, 4))==parseInt(this.startDateSearch.substring(0, 4))&&
+      parseInt(this.endDateSearch.substring(5, 7))==parseInt(this.startDateSearch.substring(5, 7))&&
+      parseInt(this.endDateSearch.substring(8, 10))==parseInt(this.startDateSearch.substring(8, 10))){
+      this.message="Nhập số năm Từ ngày nhỏ hơn Đến ngày"
+    }else if(parseInt(this.endDateSearch.substring(0, 4))>2021){
+      this.message="Nhập số năm Đến ngày nhỏ hơn 2022";
+    }else if(parseInt(this.startDateSearch.substring(0, 4))<2000){
+      this.message="Nhập số năm Từ ngày lớn hơn 1999";
+    }
+    else{
+        this.message = "";
+      this.loadData(0);
+    }
+  }
+  setIdContractSearch(value) {
+    console.log(this.idContractSearch);
+    console.log(value);
+    for (let i = 0; i < this.dataCustomer.contracts.length; i++) {
+      console.log(this.dataCustomer.contracts[i]);
+      console.log(value);
+      if (this.dataCustomer.contracts[i].ground.codeGround == value) {
+        this.idContractSearch=this.dataCustomer.contracts[i].id;
+      }
+      console.log(this.idContractSearch);
+      break;
+    }
+    console.log(this.idContractSearch);
   }
 }
