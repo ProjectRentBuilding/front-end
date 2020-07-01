@@ -63,6 +63,7 @@ import { ServicesEditComponent } from './component/services/services-edit/servic
 import { ServicesDeleteComponent } from './component/services/services-delete/services-delete.component';
 import { ReportEmployeeComponent } from './component/report/report-employee/report-employee.component';
 import { ServicesCustomerComponent } from './component/services/services-customer/services-customer.component';
+import { ServicesInvoiceComponent } from './component/services/services-invoice/services-invoice.component';
 import { EmployeeServeComponent } from './component/employee/employee-serve/employee-serve.component';
 import { EmployeeServeListComponent } from './component/employee/employee-serve-list/employee-serve-list.component';
 import { EmployeeServeDeleteComponent } from './component/employee/employee-serve-delete/employee-serve-delete.component';
@@ -114,9 +115,11 @@ import { EmployeeServeDeleteComponent } from './component/employee/employee-serv
     ServicesDeleteComponent,
     ReportEmployeeComponent,
     ServicesCustomerComponent,
+    ServicesInvoiceComponent,
     EmployeeServeComponent,
     EmployeeServeListComponent,
     EmployeeServeDeleteComponent
+
   ],
     imports: [
         BrowserModule,
@@ -166,6 +169,7 @@ import { EmployeeServeDeleteComponent } from './component/employee/employee-serv
     ServicesDeleteComponent,
     EmployeeRegisterComponent,
     ServicesCustomerComponent,
+    ServicesInvoiceComponent,
     EmployeeServeDeleteComponent
   ]
 })
