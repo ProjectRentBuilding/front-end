@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" >
+<html lang="en" xmlns:b="http://www.w3.org/1999/XSL/Transform">
 
 <head>
   <meta charset="utf-8">
@@ -23,8 +23,28 @@
 <body>
 
 <app-root>
-</app-root>
 
+</app-root>
+<b:if cond='data:blog.searchLabel'>
+
+  <div class='waveWrapper bsw-wave-ani'>
+    <div id='label-intro'>
+      <div class='label-intro'>
+        <div class='noi-dung'>
+
+      </div>
+    </div>
+    <div class='bsw-wavebg bsw-bgt'>
+      <div class='wave bsw-wavetop' style='background-image: url(&apos;http://front-end-noobs.com/jecko/img/wave-top.png&apos;)'/>
+    </div>
+    <div class='bsw-wavebg bsw-bgm'>
+      <div class='wave bsw-wave-mid' style='background-image: url(&apos;http://front-end-noobs.com/jecko/img/wave-mid.png&apos;)'/>
+    </div>
+    <div class='bsw-wavebg bsw-bgb'>
+      <div class='wave bsw-wave-bot' style='background-image: url(&apos;http://front-end-noobs.com/jecko/img/wave-bot.png&apos;)'/>
+    </div>
+  </div>
+</b:if>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

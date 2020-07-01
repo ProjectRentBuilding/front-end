@@ -192,8 +192,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   openDialogRegister(): void {
     const dialogRef = this.dialog.open(EmployeeRegisterComponent, {
-      width: '500px',
-      height: '320px',
+      width: '40%',
+      height: '70%',
       disableClose: false,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -270,11 +270,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.checkPage = page;
   }
 
-  resetEmployee() {
-    this.employeeService.findOne(this.employeeOfId).subscribe(data => {
-      this.formAddNewEmployee.patchValue(data);
+  resetEmployee(employeeOfId) {
+    this.employeeService.findOne(employeeOfId).subscribe(data => {
+      this.formEditEmployee.patchValue(data);
     });
-    // console.log(this.formAddNewEmployee.value);
+    console.log(employeeOfId);
   }
 
   cancelAdd() {

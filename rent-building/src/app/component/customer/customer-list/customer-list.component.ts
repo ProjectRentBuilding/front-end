@@ -242,7 +242,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   resetCustomer() {
     this.customerService.findOne(this.customerOfId).subscribe(data => {
-      this.formAddNewCustomer.patchValue(data);
+      this.formEditCustomer.patchValue(data);
     });
     console.log(this.formAddNewCustomer.value);
   }

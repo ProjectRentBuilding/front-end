@@ -46,6 +46,10 @@ table thead  th,td{
   padding-left: 20px;
 
 }
+.infoPlaceholderSearch::-webkit-input-placeholder {
+  font-size: 85%;
+
+}
 .add-row{
   padding: 0 !important;
 }
@@ -58,4 +62,15 @@ table thead  th,td{
 .mat-input-element{
   padding-left: 30px !important;
 }
+.red-border-class{
+  border:2px solid red;
+
+}
+.mat-dialog-container{
+  background-color: red !important;
+}
+
+
+
+
 
