@@ -188,4 +188,9 @@ export class ServicesCustomerComponent implements OnInit {
         this.loadData(this.pageClicked);
       });
   }
+
+
+  setGroundId(value: any) {
+    this.groundId = value;
+  }
 }

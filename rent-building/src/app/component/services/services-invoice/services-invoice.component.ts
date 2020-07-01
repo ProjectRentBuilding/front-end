@@ -8,6 +8,8 @@ import {ServicesModel} from '../../../model/services.model';
 import {ContractModel} from '../../../model/contract';
 import {Customer} from '../../../model/customer.model';
 import * as html2pdf from 'html2pdf.js';
+import { ExportAsService, ExportAsConfig, SupportedExtensions } from 'ngx-export-as';
+
 
 @Component({
   selector: 'app-services-invoice',
@@ -36,9 +38,19 @@ export class ServicesInvoiceComponent implements OnInit {
   public tempGround= '';
   public phoneCustomer: number;
   public totalMoney: number = 0;
-
+  config: ExportAsConfig = {
+    type: 'pdf',
+    elementIdOrContent: 'mytable',
+    options: {
+      jsPDF: {
+        orientation: 'landscape'
+      },
+      pdfCallbackFn: this.pdfCallbackFn // to add header and footer
+    }
+  };
 
   constructor(
+    private exportAsService: ExportAsService,
     public dialogRef: MatDialogRef<ServicesInvoiceComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private servicesService: ServicesService,
@@ -73,24 +85,46 @@ export class ServicesInvoiceComponent implements OnInit {
   formatsDate: string[] = [
     'dd/MM/yyyy',
   ];
-  printToPDF() {
-    const options = {
 
-      name: 'baocao.pdf',
-      image: {type: 'jpeg'},
-      html2canvas: {scales: 1, width: 7000, height: 5000},
-      jsPDF: {orientation: 'portrait', unit: 'mm', format: [1000, 1000]}
-    };
-
-    const element: Element = document.getElementById('invoice94');
-
-    html2pdf()
-      .from(element)
-      .set(options)
-      .save();
-
+  exportAsString(type: SupportedExtensions, opt?: string) {
+    this.config.elementIdOrContent = '<div> test string </div>';
+    this.exportAs(type, opt);
+    setTimeout(() => {
+      this.config.elementIdOrContent = 'mytable';
+    }, 1000);
   }
+
+  exportAs(type: SupportedExtensions, opt?: string) {
+    this.config.type = type;
+    if (opt) {
+      this.config.options.jsPDF.orientation = opt;
+    }
+    this.exportAsService.save(this.config, 'myFile').subscribe(() => {
+      // save started
+    });
+  }
+
+  pdfCallbackFn (pdf: any) {
+    // example to add page number as footer to every page of pdf
+    const noOfPages = pdf.internal.getNumberOfPages();
+    for (let i = 1; i <= noOfPages; i++) {
+      pdf.setPage(i);
+      pdf.text('Page ' + i + ' of ' + noOfPages, pdf.internal.pageSize.getWidth() - 100, pdf.internal.pageSize.getHeight() - 30);
+    }
+  }
+
   search() {
     this.loadData();
+  }
+
+  setGroundId(value: any) {
+    for (let item of this.grounds) {
+      if (item.id == value ) {
+        this.tempGround = item.codeGround;
+        // @ts-ignore
+        this.tempFloor = item.floor.nameFloor;
+        break;
+      }
+    }
   }
 }
