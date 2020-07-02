@@ -266,11 +266,11 @@ export class EmployeeServeListComponent implements OnInit, OnDestroy {
     this.checkPage = page;
   }
 
-  resetEmployee() {
-    this.employeeService.findOne(this.employeeOfId).subscribe(data => {
-      this.formAddNewEmployee.patchValue(data);
+  resetEmployee(employeeOfId) {
+    this.employeeService.findOne(employeeOfId).subscribe(data => {
+      this.formEditEmployee.patchValue(data);
     });
-    // console.log(this.formAddNewEmployee.value);
+    console.log(employeeOfId);
   }
 
   cancelAdd() {

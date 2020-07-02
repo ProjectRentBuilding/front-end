@@ -15,19 +15,19 @@
     <form [formGroup]="formSearch">
       <div class="row">
         <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo tên nhân viên..."
+          <input type="text" class="form-control search-input infoPlaceholderSearch" placeholder="Tìm kiếm theo tên nhân viên..."
                  formControlName="nameEmployeeSearch" style="margin-top: 8px;">
         </div>
         <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo CMND..."
+          <input type="text" class="form-control search-input infoPlaceholderSearch" placeholder="Tìm kiếm theo CMND..."
                  formControlName="idCardSearch" style="margin-top: 8px;">
         </div>
         <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo địa chỉ..."
+          <input type="text" class="form-control search-input infoPlaceholderSearch" placeholder="Tìm kiếm theo địa chỉ..."
                  formControlName="addressSearch" style="margin-top: 8px;">
         </div>
         <div class="col-md-3">
-          <input type="text" class="form-control search-input" placeholder="Tìm kiếm theo bộ phận..."
+          <input type="text" class="form-control search-input infoPlaceholderSearch" placeholder="Tìm kiếm theo bộ phận..."
                  formControlName="partSearch" style="margin-top: 8px;">
         </div>
       </div>
@@ -79,7 +79,7 @@
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.name}}</td>
           <td *ngIf="checkEdit  && employee.id===flag ">
             <input type="text" class="form-control" formControlName="name">
-            <p class="alert alert-danger" role="alert"
+            <p class="text-danger" role="alert"
                *ngIf="formEditEmployee.get('name').invalid && formEditEmployee.get('name').touched">
               Tên không được để trống!
             </p>
@@ -91,7 +91,7 @@
                    class="form-control"
                    formControlName="idCard"
             >
-            <p class="alert alert-danger" role="alert"
+            <p class="text-danger" role="alert"
                *ngIf="formEditEmployee.get('idCard').invalid && formEditEmployee.get('idCard').touched">
               CMND không được để trống!
             </p>
@@ -103,7 +103,7 @@
                    class="form-control"
                    formControlName="email"
             >
-            <p class="alert alert-danger" role="alert"
+            <p class="text-danger" role="alert"
                *ngIf="formEditEmployee.get('email').invalid && formEditEmployee.get('email').touched">
               Emailkhông được để trống!
             </p>
@@ -117,7 +117,7 @@
                    class="form-control"
                    formControlName="phone"
             >
-            <p class="alert alert-danger" role="alert"
+            <p class="text-danger" role="alert"
                *ngIf="formEditEmployee.get('phone').invalid && formEditEmployee.get('phone').touched">
               Phone không được để trống!
             </p>
@@ -127,7 +127,7 @@
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.birthday | date:'dd/MM/yyyy'}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
 
-            <input style="float: right" class="form-control  "  formControlName="birthday"  matInput
+            <input readonly style="float: right" class="form-control  "  formControlName="birthday"  matInput
                    [matDatepicker]="picker1">
 
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -141,8 +141,9 @@
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.gender}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
             <select class="form-control"  formControlName="gender">
-              <option  value="">Giới tính</option>
-              <option value="Nam" selected>Nam</option>
+
+              <option style="color: white" disabled value="{{employee.gender}}">{{employee.gender}}</option>
+              <option value="Nam" >Nam</option>
               <option value="Nữ">Nữ</option>
             </select>
             <p class="text-danger"
@@ -167,7 +168,7 @@
             <input type="text" class="form-control"
                    formControlName="levelSalary"
             >
-            <p class="alert alert-danger" role="alert"
+            <p class="text-danger" role="alert"
                *ngIf="formEditEmployee.get('levelSalary').invalid && formEditEmployee.get('levelSalary').touched">
               Cấp bậc lương không được để trống!
             </p>
@@ -176,27 +177,27 @@
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.part}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
             <select class="form-control" formControlName="part">
-              <option  value="">Bộ phận</option>
+              <option style="color: white" disabled value="{{employee.part}}">{{employee.part}}</option>
               <option value="Marketing">Marketing</option>
               <option value="Sale">Sale</option>
               <option value="Quản lý">Quản lý</option>
             </select>
-            <!--            <p class="alert alert-danger" role="alert"-->
-            <!--               *ngIf="formEditEmployee.get('part').invalid && formEditEmployee.get('part').touched">-->
-            <!--              Tên bộ phận không được để trống!-->
-            <!--            </p>-->
+            <p class="text-danger" role="alert"
+               *ngIf="formEditEmployee.get('part').invalid && formEditEmployee.get('part').touched">
+              Tên bộ phận không được để trống!
+            </p>
           </td>
 
           <!--          Ngày bắt đầu làm việc-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.startWord | date:'dd/MM/yyyy'}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
 
-            <input style="float: right" class="form-control  "  formControlName="startWord"  matInput
+            <input readonly style="float: right" class="form-control  "  formControlName="startWord"  matInput
                    [matDatepicker]="picker1">
 
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
-            <p class="alert alert-danger" role="alert"
+            <p class="text-danger" role="alert"
                *ngIf="formEditEmployee.get('startWord').invalid && formEditEmployee.get('startWord').touched">
               Ngày bắt đầu làm không để trống!
             </p>
@@ -230,7 +231,7 @@
             </button>
             <button *ngIf="checkEdit && employee.id===flag" class="btn btn-secondary ml-3"
                     type="button"
-                    (click)="resetEmployee()">Làm lại
+                    (click)="resetEmployee(employee.id)">Làm lại
             </button>
           </td>
         </tr>
@@ -249,29 +250,35 @@
         <tr [formGroupName]="i">
           <!--    <tr *ngIf="checkAdd" style="border-top: 5px solid slateblue">-->
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder"  formControlName="name"
+            <input [ngClass]="{'red-border-class': employee.get('name').errors && employee.get('name').touched }"
+                   type="text" class="form-control infoPlaceholder"  formControlName="name"
                    placeholder="Tên nhân viên ">
+
           </td>
 
           <!--      loại nhân viên ẩn-->
-          <input type="text" hidden formControlName="typeEmployee" >
+          <input  type="text" hidden formControlName="typeEmployee" >
           <td class="add-row">
-            <input type="text" class="form-control infoPlaceholder" formControlName="idCard" placeholder="Nhập CMND ">
+            <input  [ngClass]="{'red-border-class': employee.get('idCard').errors && employee.get('idCard').touched }"
+                    type="text" class="form-control infoPlaceholder" formControlName="idCard" placeholder="Nhập CMND " >
           </td>
 
 
           <td class="add-row">
-            <input type="text" class="form-control infoPlaceholder" formControlName="email" placeholder="Nhập email">
+            <input  [ngClass]="{'red-border-class': employee.get('email').errors && employee.get('email').touched }"
+                    type="text" class="form-control infoPlaceholder" formControlName="email" placeholder="Nhập email">
           </td>
 
 
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder" formControlName="phone" placeholder="Nhập phone">
+            <input [ngClass]="{'red-border-class': employee.get('phone').errors && employee.get('phone').touched }"
+                   type="text" class="form-control infoPlaceholder" formControlName="phone" placeholder="Nhập phone">
           </td>
 
 
           <td class="add-row" >
-            <input readonly style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="birthday" placeholder=" Ngày sinh" matInput
+            <input [ngClass]="{'red-border-class': employee.get('birthday').errors && employee.get('birthday').touched }"
+                   readonly style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="birthday" placeholder=" Ngày sinh" matInput
                    [matDatepicker]="picker1">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
@@ -280,7 +287,8 @@
 
           <td class="add-row" >
             <!--            <input type="text" class="form-control infoPlaceholder" formControlName="gender" placeholder="Nhập giới tính ">-->
-            <select class="form-control" name="" id="" formControlName="gender">
+            <select  [ngClass]="{'red-border-class': employee.get('gender').errors && employee.get('gender').touched }"
+                     class="form-control" name="" id="" formControlName="gender">
               <option  value="">Giới tính</option>
               <option value="Nam" selected>Nam</option>
               <option value="Nữ">Nữ</option>
@@ -288,37 +296,45 @@
           </td>
 
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder" formControlName="address" placeholder="Nhập địa chỉ ">
+            <input [ngClass]="{'red-border-class': employee.get('address').errors && employee.get('address').touched }"
+                   type="text" class="form-control infoPlaceholder" formControlName="address" placeholder="Nhập địa chỉ ">
           </td>
 
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder" formControlName="salary" placeholder="Nhập luong ">
+            <input [ngClass]="{'red-border-class': employee.get('salary').errors && employee.get('salary').touched }"
+                   type="number" onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control infoPlaceholder" formControlName="salary"
+                   placeholder="Nhập luong ">
           </td>
 
 
           <td class="add-row" >
-            <input type="text" class="form-control infoPlaceholder" formControlName="levelSalary" placeholder="Cấp bậc lương" >
+            <input [ngClass]="{'red-border-class': employee.get('levelSalary').errors && employee.get('levelSalary').touched }"
+                   type="text" class="form-control infoPlaceholder" formControlName="levelSalary" placeholder="Cấp bậc lương" >
           </td>
 
 
           <td class="add-row" >
-            <select class="form-control" name="" formControlName="part">
-              <option  value="">Bộ phận</option>
-              <option value="Marketing" selected>Marketing</option>
+            <select [ngClass]="{'red-border-class': employee.get('part').errors && employee.get('part').touched }"
+                    class="form-control" name="" formControlName="part">
+              <option  value="" disabled>Bộ phận</option>
+              <option value="Marketing" >Marketing</option>
               <option value="Sale">Sale</option>
               <option value="Quản lý">Quản lý</option>
             </select>
           </td>
 
           <td class="add-row">
-            <input readonly style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="startWord" placeholder=" Ngày vào làm" matInput
+            <input [ngClass]="{'red-border-class': employee.get('startWord').errors && employee.get('startWord').touched }"
+                   readonly style="float: right" class="form-control infoPlaceholder infoPlaceholder1 " formControlName="startWord"
+                   placeholder=" Ngày vào làm" matInput
                    [matDatepicker]="picker4">
             <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
             <mat-datepicker #picker4 startView="year" [startAt]="startDate"></mat-datepicker>
 
           </td>
           <td class="add-row" >
-            <input type="text" formControlName="userBuilding" ngModel="{{this.employeeService.arraySentUsername[i]}}">
+            <input type="text" hidden formControlName="userBuilding" ngModel="{{this.employeeService.arraySentUsername[i]}}">
             <button class="btn btn-primary" (click)="openDialogRegister()">Đăng ký tài khoản</button>
           </td>
           <input hidden type="text"  >
@@ -393,7 +409,7 @@
 
           <td>
             <p class="text-danger"
-               *ngIf="employee.get('gender').invalid && employee.get('gender').touched">
+               *ngIf="employee.get('birthday').errors?.required && employee.get('birthday').touched">
               Ngày sinh không được để trống!
             </p>
           </td>
@@ -407,6 +423,18 @@
             <p class="text-danger"
                *ngIf="employee.get('address').invalid && employee.get('address').touched">
               Tên địa chỉ không để trống!
+            </p>
+          </td>
+          <td>
+            <p class="text-danger"
+               *ngIf="employee.get('salary').invalid && employee.get('salary').touched">
+              Lương không để trống!
+            </p>
+          </td>
+          <td>
+            <p class="text-danger"
+               *ngIf="employee.get('levelSalary').invalid && employee.get('levelSalary').touched">
+              Cấp bậc lương không để trống!
             </p>
           </td>
           <td>

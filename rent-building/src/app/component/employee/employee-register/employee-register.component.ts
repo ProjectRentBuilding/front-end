@@ -25,6 +25,7 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
   public messageUserCheck = '';
   public checkValidateUserName: boolean;
 
+
   constructor(
     public dialogRef: MatDialogRef<EmployeeRegisterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -43,6 +44,7 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
     return this.addUserBuildingForm = this.fb.group({
       username: ['', Validators.required],
       passwordUser: ['', Validators.required],
@@ -64,9 +66,9 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
   onAddUserBuilding() {
 
 
-      this.userBuildingService.save(this.addUserBuildingForm.value).subscribe(data => {
-        this.afterAddUserBuilding();
-      });
+    this.userBuildingService.save(this.addUserBuildingForm.value).subscribe(data => {
+      this.afterAddUserBuilding();
+    });
   }
 
   afterAddUserBuilding() {
@@ -84,6 +86,7 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
   }
 
   checkUserName() {
+
     this.messageUserCheck = '';
     this.checkValidateUserName = false;
     this.userBuildingService.findAll().subscribe(data => {
@@ -95,15 +98,15 @@ export class EmployeeRegisterComponent implements OnInit, OnDestroy {
           this.nameUserBuildings.push(this.arrayUserBuilding[i].username);
         }
         console.log(this.nameUserBuildings);
+        for (let i = 0; i < this.nameUserBuildings.length; i++) {
+          if (this.addUserBuildingForm.value.username === (this.nameUserBuildings[i])) {
+            this.messageUserCheck = 'Tên đăng nhập đã tồn tại';
+            this.checkValidateUserName = true;
+            // this.addUserBuildingForm.setErrors({'invalid': false});
+          }
+        }
       }
     );
-    for (let i = 0; i < this.nameUserBuildings.length; i++) {
-      if (this.addUserBuildingForm.value.username === (this.nameUserBuildings[i])) {
-        this.messageUserCheck = 'Tên đăng nhập đã tồn tại';
-        this.checkValidateUserName = true;
-        this.addUserBuildingForm.setErrors({'invalid': false});
-      }
-    }
   }
 }
 

@@ -59,3 +59,16 @@ table thead  th,td{
   padding-left: 30px !important;
 }
 
+.red-border-class{
+  border:2px solid red;
+
+}
+.mat-dialog-container{
+  background-color: red !important;
+}
+
+
+.infoPlaceholderSearch::-webkit-input-placeholder {
+  font-size: 85%;
+
+}
