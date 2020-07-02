@@ -7,7 +7,6 @@ import {FloorModel} from '../../../model/floor.model';
 import {ServicesModel} from '../../../model/services.model';
 import {ContractModel} from '../../../model/contract';
 import {Customer} from '../../../model/customer.model';
-import * as html2pdf from 'html2pdf.js';
 import { ExportAsService, ExportAsConfig, SupportedExtensions } from 'ngx-export-as';
 
 
@@ -23,8 +22,8 @@ export class ServicesInvoiceComponent implements OnInit {
   public services: ServicesModel [] = [];
   public contracts: ContractModel[] = [];
   public contract: ContractModel[] = [];
-  public tempMonthYear: String;
-  public tempNameService: String;
+  // public tempMonthYear: String;
+  // public tempNameService: String;
   public idContract = new Array<string>();
   public temp: number;
   public dateNow: Date = new Date();
@@ -32,12 +31,14 @@ export class ServicesInvoiceComponent implements OnInit {
   public dataCustomer: Customer = [];
   public nameCustomer: String;
   public servicePage: any;
-  public monthYearSearch = '2019-01-01';
+  public monthYearSearch = '';
   public idContractSearch: number;
   public tempFloor= '';
   public tempGround= '';
   public phoneCustomer: number;
   public totalMoney: number = 0;
+  public flagInvoice = false;
+  public tempMonth = '';
   config: ExportAsConfig = {
     type: 'pdf',
     elementIdOrContent: 'mytable',
@@ -60,6 +61,7 @@ export class ServicesInvoiceComponent implements OnInit {
   ngOnInit() {
     this.nameCustomer = this.data.data1.name;
     this.dataCustomer = this.data.data1;
+    this.monthYearSearch = this.data.data2;
     this.phoneCustomer = this.dataCustomer.phone;
     for (let i =0 ; i< this.dataCustomer.contracts.length; i++ ) {
       this.idContract.push(this.dataCustomer.contracts[i].id);
@@ -72,13 +74,13 @@ export class ServicesInvoiceComponent implements OnInit {
     this.loadData();
   }
   public loadData() {
+    this.tempMonth = this.monthYearSearch.slice(5,7) +'-'+this.monthYearSearch.slice(0,4);
     this.servicesService.searchInvoice(this.monthYearSearch, this.idContractSearch)
       .subscribe(data => {
           this.servicesModel = data;
-          console.log(this.servicesModel);
-            for (let value of this.servicesModel) {
+          for (let value of this.servicesModel) {
             this.totalMoney += value.consume * value.price;
-            }
+          }
         }
       );
   }
@@ -126,5 +128,9 @@ export class ServicesInvoiceComponent implements OnInit {
         break;
       }
     }
+  }
+
+  checkInvoice() {
+    this.flagInvoice = true;
   }
 }
