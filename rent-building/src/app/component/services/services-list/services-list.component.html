@@ -63,7 +63,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control sea
 
 <ng-container>
   <form action="" [formGroup]="editServiceForm" *ngIf="editServiceForm">
-    <table style="width: 140%" class="table bg-light text-center table-striped">
+    <table class="table bg-light text-center table-bordered table-striped">
       <thead class="thead-dark">
       <tr class="text-muted">
         <th>Tên dịch vụ</th>
@@ -118,7 +118,6 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control sea
 event.keyCode === 46 ? true : !isNaN(Number(event.key))"
                     class="form-control" formControlName="price" placeholder="Đơn giá">
           </td>
-
           <!--      Tiêu thụ-->
           <td *ngIf="!checkEdit || item.id!==flag">{{item.consume|number}}</td>
           <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
@@ -147,7 +146,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"
           </td>
           <!--      Tên khách hàng-->
 <!--          {{item.contract.id}}- -->
-          <td  *ngIf="!checkEdit || item.id!==flag">
+          <td  *ngIf="!checkEdit  || item.id!==flag">
            {{item.contract.customer.name}}
           </td>
           <td style="width: 12%" *ngIf="checkEdit && item.id===flag">
@@ -157,7 +156,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"
             </select>
           </td>
           <td *ngIf="!checkEdit || item.id!==flag">
-            <button class="btn btn-primary" (click)="openInformationCustomer(item.contract.customer.id)">
+            <button class="btn btn-primary" (click)="openInformationCustomer(item.contract.customer.id,item.monthYear)">
               Xem
             </button>
           </td>
@@ -261,17 +260,18 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"
 <!--Thêm mới-->
 <ng-container *ngIf="checkAdd">
   <form action="" [formGroup]="addServiceForm" *ngIf="addServiceForm">
-    <table style="width: 140%">
+    <table >
       <tbody class="border" formArrayName="service"
              *ngFor="let item of serviceControls let i = index;">
       <tr [formGroupName]="i">
         <!--      Tên dịch vụ-->
         <td class="add-row">
-          <input class="form-control" formControlName="nameService" placeholder="Tên dịch vụ">
+          <input [ngClass]="{'red-border-class': item.get('nameService').invalid && item.get('nameService').touched }" class="form-control" formControlName="nameService" placeholder="Tên dịch vụ">
         </td>
         <!--      Định kỳ-->
         <td style="width: 12%" class="add-row">
-          <select class="form-control" formControlName="periodic">
+          <select [ngClass]="{'red-border-class': item.get('periodic').invalid && item.get('periodic').touched }"
+                  class="form-control" formControlName="periodic">
             <option value="">Chọn định kỳ</option>
             <option value="1 tháng">1 tháng</option>
             <option value="3 tháng">3 tháng</option>
@@ -282,22 +282,26 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"
         </td>
         <!--      Đơn vị tính-->
         <td class="add-row">
-          <input class="form-control" formControlName="unit" placeholder="Đơn vị tính">
+          <input [ngClass]="{'red-border-class': item.get('unit').invalid && item.get('unit').touched }"
+                 class="form-control" formControlName="unit" placeholder="Đơn vị tính">
         </td>
         <!--      Đơn giá-->
         <td class="add-row">
-          <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+          <input [ngClass]="{'red-border-class': item.get('price').invalid && item.get('price').touched }"
+                 type="number" onkeydown="javascript: return event.keyCode === 8 ||
 event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" formControlName="price" placeholder="Đơn giá">
         </td>
         <!--      Tiêu thụ-->
         <td class="add-row">
-          <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+          <input [ngClass]="{'red-border-class': item.get('consume').invalid && item.get('consume').touched }"
+                 type="number" onkeydown="javascript: return event.keyCode === 8 ||
 event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" formControlName="consume"
                  (keyup)="checkConsume($event.target.value)" placeholder="Tiêu thụ">
         </td>
         <!--      Chỉ số tháng trước-->
         <td class="add-row">
-          <input type="number" onkeydown="javascript: return event.keyCode === 8 ||
+          <input [ngClass]="{'red-border-class': item.get('indexBeforeMonth').invalid && item.get('indexBeforeMonth').touched }"
+                 type="number" onkeydown="javascript: return event.keyCode === 8 ||
 event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" formControlName="indexBeforeMonth"
                  (keyup)="checkIndexBeforeMonth($event.target.value)" placeholder="Chỉ số tháng trước">
         </td>
@@ -308,14 +312,16 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" fo
         </td>
         <!--        Ngày tháng-->
         <td class="add-row">
-          <input class="form-control" style="float: left;padding-left: 2%;width: 80%" placeholder="Ngày tháng"
-                 type="text" formControlName="monthYear" [matDatepicker]="picker1">
-          <mat-datepicker-toggle style="float: right" matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <input [ngClass]="{'red-border-class': item.get('monthYear').invalid && item.get('monthYear').touched }"
+                 class="form-control infoPlaceholder1" style="float: left" placeholder="Ngày tháng"
+                 type="text" formControlName="monthYear" [matDatepicker]="picker1" readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker1" style="margin-left: -25%"></mat-datepicker-toggle>
           <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
         </td>
         <!--        Tên khách hàng-->
         <td class="add-row">
-          <select class=" form-control" formControlName="contractId">
+          <select [ngClass]="{'red-border-class': item.get('contractId').invalid && item.get('contractId').touched }"
+                  class=" form-control" formControlName="contractId">
             <option value="">Chọn tên khách hàng</option>
             <option *ngFor="let contract of contracts" [value]="contract.id">{{contract.id}}
               -{{contract.customer.name}}</option>

@@ -1,12 +1,9 @@
 
 table thead  th,td{
-  vertical-align: middle;
-}
-/*table {*/
-/*  display: block;*/
-/*    overflow-x: auto;*/
-/*    white-space: nowrap;*/
-/*}*/
+   vertical-align: middle;
+ }
+
+
 
 .search-input {
   background: transparent;
@@ -45,11 +42,23 @@ td select{
 .text-danger{
   text-align: center;
 }
-/*input.ng-valid{*/
-/*  background: #12b517;*/
-/*}*/
+
 div div input{
   margin-left: 5%;
 }
+.red-border-class{
+  border: red solid 2px;
+}
 
+.infoPlaceholder1::-webkit-input-placeholder {
+  margin-left: 5%;
 
+}
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.form-control{
+  width: 200px !important;
+}

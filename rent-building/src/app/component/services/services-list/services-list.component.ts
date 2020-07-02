@@ -11,6 +11,7 @@ import {ContractModel} from "../../../model/contract";
 import {Router} from "@angular/router";
 
 
+
 @Component({
   selector: 'app-services-list',
   templateUrl: './services-list.component.html',
@@ -50,6 +51,7 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   public searchMonthYear = "2000-01-01";
   public message = "";
   public resultMonthYear;
+
 
   constructor(
     private servicesService: ServicesService,
@@ -303,7 +305,9 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   }
 
 
-  openInformationCustomer(id: number) {
-    this.routerService.navigate(['information_customer', id]);
+  openInformationCustomer(id,monthYear) {
+    this.routerService.navigate(['information_customer',id,monthYear]);
   }
+
+
 }
