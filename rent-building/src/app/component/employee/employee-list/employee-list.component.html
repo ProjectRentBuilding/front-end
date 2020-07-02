@@ -72,6 +72,7 @@
           <th>Ngày Sinh</th>
           <th>Giới tính</th>
           <th>Địa Chỉ (<span style="color: red">*</span>)</th>
+          <th>Lương (<span style="color: red">*</span>)</th>
           <th>Cấp bậc lương</th>
           <th>Bộ phận(<span style="color: red">*</span>)</th>
           <th>Ngày làm việc</th>
@@ -171,7 +172,16 @@
               Địa chỉ không được để trống!
             </p>
           </td>
-
+<!--lương-->
+          <td *ngIf="!checkEdit || employee.id!==flag">{{employee.salary}}</td>
+          <td *ngIf="checkEdit && employee.id===flag">
+            <input onkeydown="javascript: return event.keyCode === 8 ||
+event.keyCode === 46 ? true : !isNaN(Number(event.key))" type="text" class="form-control" formControlName="salary">
+            <p class="text-danger"
+               *ngIf="formEditEmployee.get('salary').invalid && formEditEmployee.get('salary').touched">
+             Lương không được để trống!
+            </p>
+          </td>
           <!--        Cấp bậc lương-->
           <td *ngIf="!checkEdit || employee.id!==flag">{{employee.levelSalary}}</td>
           <td *ngIf="checkEdit && employee.id===flag">
