@@ -46,3 +46,14 @@ vertical-align: middle;
 .text-danger{
   font-size:70%;
 }
+.form-control{
+  width: 200px !important;
+}
+.infoPlaceholder1::-webkit-input-placeholder {
+  padding-left: 20px;
+
+}
+.red-border-class{
+  border:2px solid red;
+
+}
