@@ -83,10 +83,10 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   createCustomer(): FormGroup {
     return this.formBuilder.group({
       id: [''],
-      name: ['', Validators.required],
-      idCard: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]{1,40}$'), Validators.minLength(4), Validators.maxLength(30)]],
+      idCard: ['', [Validators.required, Validators.pattern('^[0-9]{9,10}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^[0][1-9]{9}$')]],
       birthday: ['', Validators.required],
       address: ['', Validators.required],
       website: ['', Validators.required],
@@ -242,7 +242,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
 
   resetCustomer() {
     this.customerService.findOne(this.customerOfId).subscribe(data => {
-      this.formAddNewCustomer.patchValue(data);
+      this.formEditCustomer.patchValue(data);
     });
     console.log(this.formAddNewCustomer.value);
   }

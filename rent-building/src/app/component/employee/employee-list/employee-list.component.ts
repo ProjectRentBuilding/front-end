@@ -101,15 +101,15 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
   createEmployee(): FormGroup {
     return this.formBuilder.group({
       id: [''],
-      name: ['', [Validators.required, Validators.pattern(/[a-zA-Z]/)]],
-      idCard: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]{1,40}$'), Validators.minLength(4), Validators.maxLength(30)]],
+      idCard: ['', [Validators.required, Validators.pattern('^[0-9]{9,10}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^[0][1-9]{9}$')]],
       birthday: ['', Validators.required],
       address: ['', Validators.required],
       gender: ['', Validators.required],
       levelSalary: ['', Validators.required],
-      salary: ['', Validators.required],
+      salary: ['', [Validators.required]],
       part: ['', Validators.required],
       startWord: ['', Validators.required],
       userBuilding: [''],
@@ -192,8 +192,8 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
 
   openDialogRegister(): void {
     const dialogRef = this.dialog.open(EmployeeRegisterComponent, {
-      width: '500px',
-      height: '320px',
+      width: '40%',
+      height: '70%',
       disableClose: false,
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -270,11 +270,11 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.checkPage = page;
   }
 
-  resetEmployee() {
-    this.employeeService.findOne(this.employeeOfId).subscribe(data => {
-      this.formAddNewEmployee.patchValue(data);
+  resetEmployee(employeeOfId) {
+    this.employeeService.findOne(employeeOfId).subscribe(data => {
+      this.formEditEmployee.patchValue(data);
     });
-    // console.log(this.formAddNewEmployee.value);
+    console.log(employeeOfId);
   }
 
   cancelAdd() {
@@ -401,6 +401,10 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
       );
     this.loadData(page);
 
+  }
+  resetForm() {
+    this.formSearch.reset();
+    this.onSearch(0);
   }
 
 }

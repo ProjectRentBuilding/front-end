@@ -59,7 +59,8 @@
 <div>
   <div style="width: 100%;background: #435D7D">
 <h3 class="text-light text-center py-3 mt-5" style="font-family: Varela Round ">DANH SÁCH KHÁCH HÀNG</h3>
-  <button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button>
+    <button  class="btn btn-success px-2 py-2 mb-1" (click)="openDialogAdd()">Thêm mới</button>
+  <span><button class="btn btn-danger  px-2 py-2 ml-1 mb-1 py-2 px-2" (click)="deleteAll()">Xoá tất cả</button></span>
   </div>
 <ng-container>
   <form action="" [formGroup]="formEditCustomer" (ngSubmit)="logValue()" *ngIf="formEditCustomer">
@@ -137,7 +138,7 @@
         <td *ngIf="!checkEdit || customer.id!==flag">{{customer.birthday | date:'dd/MM/yyyy'}}</td>
         <td *ngIf="checkEdit && customer.id===flag">
 
-          <input class="form-control" formControlName="birthday" placeholder="Choose a date" matInput
+          <input readonly style="float: right" class="form-control infoPlaceholder1" formControlName="birthday" placeholder="Choose a date" matInput
                  [matDatepicker]="picker1">
 
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -236,7 +237,7 @@
       <tr [formGroupName]="i">
         <!--    <tr *ngIf="checkAdd" style="border-top: 5px solid slateblue">-->
         <td class="add-row">
-          <input type="text" class="form-control infoPlaceholder" formControlName="name"
+          <input [ngClass]="{'red-border-class': customer.get('name').errors && customer.get('name').touched }" type="text" class="form-control infoPlaceholder" formControlName="name"
                  placeholder="Nhập tên khách hàng ">
           <!--          <p-->
           <!--            *ngIf="formAddNewCustomer.controls.name.errors?.required && formAddNewCustomer.controls.name.touched"-->
@@ -245,49 +246,49 @@
 
         </td>
         <td class="add-row">
-          <input type="text" class="form-control infoPlaceholder" formControlName="idCard" placeholder="Nhập CMND ">
+          <input [ngClass]="{'red-border-class': customer.get('idCard').errors && customer.get('idCard').touched }" type="text" class="form-control infoPlaceholder" formControlName="idCard" placeholder="Nhập CMND ">
           <!--          <p-->
           <!--            *ngIf="formAddNewCustomer.controls.idCard.errors?.required && formAddNewCustomer.controls.idCard.touched"-->
           <!--            class="text-danger">Vui lòng nhập CMND!!!</p>-->
 
         </td>
         <td class="add-row">
-          <input type="text" class="form-control infoPlaceholder" formControlName="email" placeholder="Nhập email">
+          <input [ngClass]="{'red-border-class': customer.get('email').errors && customer.get('email').touched }" type="text" class="form-control infoPlaceholder" formControlName="email" placeholder="Nhập email">
           <!--          <p-->
           <!--            *ngIf="formAddNewCustomer.controls.email.errors?.required && formAddNewCustomer.controls.email.touched"-->
           <!--            class="text-danger">Vui lòng nhập email!!!</p>-->
 
         </td>
         <td>
-          <input type="text" class="form-control infoPlaceholder" formControlName="phone" placeholder="Nhập phone">
+          <input  [ngClass]="{'red-border-class': customer.get('phone').errors && customer.get('phone').touched }" type="text" class="form-control infoPlaceholder" formControlName="phone" placeholder="Nhập phone">
           <!--          <p-->
           <!--            *ngIf="formAddNewCustomer.controls.phone.errors?.required && formAddNewCustomer.controls.phone.touched"-->
           <!--            class="text-danger">Vui lòng nhập phone!!!</p>-->
 
         </td>
         <td class="add-row">
-          <input style="float: right" class="form-control infoPlaceholder" formControlName="birthday" placeholder="Nhập ngày sinh" matInput
+          <input [ngClass]="{'red-border-class': customer.get('birthday').errors && customer.get('birthday').touched }" style="float: right" class="form-control infoPlaceholder infoPlaceholder1" formControlName="birthday" placeholder="Nhập ngày sinh" matInput
                  [matDatepicker]="picker1">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
 
         </td>
         <td class="add-row">
-          <input type="text" class="form-control infoPlaceholder" formControlName="address" placeholder="Nhập địa chỉ ">
+          <input [ngClass]="{'red-border-class': customer.get('address').errors && customer.get('address').touched }" type="text" class="form-control infoPlaceholder" formControlName="address" placeholder="Nhập địa chỉ ">
           <!--          <p-->
           <!--            *ngIf="formAddNewCustomer.controls.address.errors?.required && formAddNewCustomer.controls.address.touched"-->
           <!--            class="text-danger">Vui lòng nhập address!!!</p>-->
 
         </td>
         <td class="add-row">
-          <input type="text" class="form-control infoPlaceholder" formControlName="website" placeholder="Tên Website">
+          <input [ngClass]="{'red-border-class': customer.get('website').errors && customer.get('website').touched }" type="text" class="form-control infoPlaceholder" formControlName="website" placeholder="Tên Website">
           <!--          <p-->
           <!--            *ngIf="formAddNewCustomer.controls.website.errors?.required && formAddNewCustomer.controls.website.touched"-->
           <!--            class="text-danger">Vui lòng nhập website!!!</p>-->
 
         </td>
         <td class="add-row">
-          <input type="text" class="form-control infoPlaceholder" formControlName="nameCompany"
+          <input  [ngClass]="{'red-border-class': customer.get('nameCompany').errors && customer.get('nameCompany').touched }" type="text" class="form-control infoPlaceholder" formControlName="nameCompany"
                  placeholder="Tên công ty">
           <!--          <p-->
           <!--            *ngIf="formAddNewCustomer.controls.nameCompany.errors?.required && formAddNewCustomer.controls.nameCompany.touched"-->
@@ -305,26 +306,46 @@
       <tr>
         <td>
           <p class="text-danger"
-               *ngIf="customer.get('name').invalid && customer.get('name').touched">
-                Name không để trống!
+             *ngIf="customer.get('name').errors?.pattern && customer.get('name').touched">
+            Name sai định dạng !
+          </p>
+          <p class="text-danger"
+             *ngIf="customer.get('name').errors?.required && customer.get('name').touched">
+            Name không để trống!
+          </p>
+          <p class="text-danger"
+             *ngIf="customer.get('name').errors?.minlength && customer.get('name').touched">
+            Name tối thiểu 4 kí tự!
+          </p>
+          <p class="text-danger"
+             *ngIf="customer.get('name').errors?.maxlength && customer.get('name').touched">
+            Name tối đa 30 kí tự!
           </p>
         </td>
         <td>
           <p class="text-danger"
-             *ngIf="customer.get('idCard').invalid && customer.get('idCard').touched">
-            CMND không để trống!
+             *ngIf="customer.get('idCard').errors?.pattern && customer.get('idCard').touched">
+            Cmnd sai định dạng !
+          </p>
+          <p class="text-danger"
+             *ngIf="customer.get('idCard').errors?.required && customer.get('idCard').touched">
+            Cmnd không để trống!
           </p>
         </td>
         <td>
           <p class="text-danger"
-             *ngIf="customer.get('email').invalid && customer.get('email').touched">
-            Emailkhông được trống
+             *ngIf="customer.get('email').errors?.email && customer.get('email').touched">
+            Email không đúng định dạng!
           </p>
         </td>
         <td>
           <p class="text-danger"
-             *ngIf="customer.get('phone').invalid && customer.get('phone').touched">
-            Phone không được để trống!
+             *ngIf="customer.get('phone').errors?.required && customer.get('phone').touched">
+            Số điện thoại không để trống!
+          </p>
+          <p class="text-danger"
+             *ngIf="customer.get('phone').errors?.pattern && customer.get('phone').touched">
+            Số điện thoại không đúng định dạng!
           </p>
         </td>
         <td>
@@ -361,7 +382,7 @@
 <button class="btn btn-success px-4 py-2 mr-2" (click)="addNewArray()" >  <i class="fa fa-plus-square" aria-hidden="true"></i></button>
 
 <button class="btn btn-info px-4 py-2 mr-2 " (click)="addNewCustomer()" *ngIf="checkAdd" [disabled]="formAddNewCustomer.invalid">Lưu</button>
-<span><button  class="btn btn-success px-4 py-2" (click)="openDialogAdd()">Thêm mới</button></span>
+
 
 
 <!--    pagination-->
