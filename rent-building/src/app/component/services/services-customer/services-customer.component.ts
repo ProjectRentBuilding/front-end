@@ -14,6 +14,7 @@ import {ServicesModel} from '../../../model/services.model';
 import {ServicesService} from '../../../service/services.service';
 import {ServicesInvoiceComponent} from '../services-invoice/services-invoice.component';
 import {MatDialog} from '@angular/material/dialog';
+import { ServicesPaymentComponent } from '../services-payment/services-payment.component';
 
 @Component({
   selector: 'app-services-customer',
@@ -31,7 +32,7 @@ export class ServicesCustomerComponent implements OnInit {
   public contracts: ContractModel[] = [];
   public contract: ContractModel[] = [];
   public tempMonthYear: String;
-  public tempNameService: String;
+  // public tempNameService: String;
   public idContract = new Array<string>();
   public temp: number;
   public dateNow: Date = new Date();
@@ -51,8 +52,6 @@ export class ServicesCustomerComponent implements OnInit {
   public endDateSearch = '2020-01-01';
   public messageTimeValidate: string;
   public groundId: string;
-  // tempStartDate = '';
-  // tempEndDate = '';
   public servicePay: ServicesModel [] = [];
 
   constructor(
@@ -81,16 +80,6 @@ export class ServicesCustomerComponent implements OnInit {
         this.loadData(0);
       });
     });
-
-    // this.servicesService.findAll().subscribe((data: ServicesModel[]) => {
-    //   this.services = data;
-    //   for (let value of this.services) {
-    //       // @ts-ignore
-    //     if (value.contract.customer.name == this.nameCustomer) {
-    //         this.servicesModel.push(value);
-    //       }
-    //   }
-    // });
   }
 
   formatsDate: string[] = [
@@ -150,29 +139,31 @@ export class ServicesCustomerComponent implements OnInit {
           this.pageClicked = page;
           this.servicePage = data;
           this.servicesModel = this.servicePage.content;
+          if (this.servicesModel.length >0) {
+            this.tempMonthYear = this.servicesModel[0].monthYear;
+          }
           this.totalPages = this.servicePage.totalPages;
           this.pages = Array.apply(null, {length: this.totalPages}).map(Number.call, Number);
         }
       );
   }
 
+  openDialogPayment(): void {
+    const dialogRef = this.dialog.open(ServicesPaymentComponent, {
+      width: '400px',
+      height: '300px',
+      data: {data1:  this.servicePay , data2: this.dataCustomer},
+      disableClose: false,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 
   pay(id: number) {
     this.servicesService.findOne(id).subscribe(data => {
       // @ts-ignore
       this.servicePay = data;
-      // @ts-ignore
-      this.tempMonthYear = this.servicePay.monthYear;
-      // @ts-ignore
-      this.tempNameService  = this.servicePay.nameService;
-      // @ts-ignore
-      this.servicePay.statusPay = 1;
-      console.log(this.servicePay);
-      // @ts-ignore
-      this.servicesService.update(this.servicePay, id).subscribe(data => {
-        this.servicesService.showNotification('', 'Thanh toán thành công dịch vụ '+ this.tempNameService.toUpperCase() + ' , ngày '+ this.tempMonthYear);
-        this.loadData(this.pageClicked);
-      });
+      this.openDialogPayment();
     });
   }
 
@@ -180,7 +171,7 @@ export class ServicesCustomerComponent implements OnInit {
       const dialogRef = this.dialog.open(ServicesInvoiceComponent, {
         width: '70%',
         height: '80%',
-        data: {data1:  this.dataCustomer },
+        data: {data1:  this.dataCustomer, data2: this.tempMonthYear},
         disableClose: false,
       });
       dialogRef.afterClosed().subscribe(result => {
@@ -189,8 +180,8 @@ export class ServicesCustomerComponent implements OnInit {
       });
   }
 
-
   setGroundId(value: any) {
     this.groundId = value;
   }
+
 }

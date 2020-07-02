@@ -68,6 +68,8 @@ import { EmployeeServeComponent } from './component/employee/employee-serve/empl
 import { EmployeeServeListComponent } from './component/employee/employee-serve-list/employee-serve-list.component';
 import { EmployeeServeDeleteComponent } from './component/employee/employee-serve-delete/employee-serve-delete.component';
 import { ExportAsModule } from 'ngx-export-as';
+import { ServicesPaymentComponent } from './component/services/services-payment/services-payment.component';
+
 
 @NgModule({
   declarations: [
@@ -118,7 +120,8 @@ import { ExportAsModule } from 'ngx-export-as';
     ServicesInvoiceComponent,
     EmployeeServeComponent,
     EmployeeServeListComponent,
-    EmployeeServeDeleteComponent
+    EmployeeServeDeleteComponent,
+    ServicesPaymentComponent,
 
   ],
     imports: [
@@ -171,7 +174,9 @@ import { ExportAsModule } from 'ngx-export-as';
     EmployeeRegisterComponent,
     ServicesCustomerComponent,
     ServicesInvoiceComponent,
-    EmployeeServeDeleteComponent
+    EmployeeServeDeleteComponent,
+    ServicesPaymentComponent
+
   ]
 })
 export class AppModule {
