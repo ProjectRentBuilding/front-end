@@ -29,7 +29,7 @@ import {EmployeeServeListComponent} from './component/employee/employee-serve-li
 const routes: Routes = [
   {path: 'equipments', component: EquipmentListComponent},
   {path: 'services', component: ServicesListComponent},
-  {path: 'information_customer/:id', component: ServicesDetailComponent},
+  {path: 'information_customer/:id/:monthYear', component: ServicesDetailComponent},
   {path: 'services-customer', component: ServicesCustomerComponent},
   {path: 'services-customer/:id', component: ServicesCustomerComponent},
   {path: 'equipments-building', component: EquipmentBuildingComponent},
