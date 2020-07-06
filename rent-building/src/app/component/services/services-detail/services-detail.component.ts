@@ -21,8 +21,6 @@ import { ExportAsService, ExportAsConfig, SupportedExtensions } from 'ngx-export
 })
 export class ServicesDetailComponent implements OnInit {
   public subscription: Subscription;
-  public years = new Array<string>();
-  public temp: number;
   public dateNow: Date = new Date();
   public id: number;
   public grounds: GroundModel[] = [];
@@ -79,7 +77,6 @@ export class ServicesDetailComponent implements OnInit {
         this.nameCustomer = this.dataCustomer.name;
         this.startDateSearch = paramMap.get('monthYear');
         this.endDateSearch = formatDate(this.dateNow, 'yyyy-MM-dd', 'en-US');
-        this.endDateSearch="2020-12-12";
         for (let i = 0; i < this.dataCustomer.contracts.length; i++) {
           this.idContract.push(this.dataCustomer.contracts[i].id);
           this.grounds.push(this.dataCustomer.contracts[i].ground);
@@ -151,6 +148,9 @@ export class ServicesDetailComponent implements OnInit {
     } else if (parseInt(this.startDateSearch.substring(0, 4)) < 2000) {
       this.message = "Nhập số năm Từ ngày lớn hơn 1999";
       this.checkValidateInputYear = true;
+    } else if (parseInt(this.endDateSearch.substring(0, 4)) > 2024) {
+      this.message = "Nhập số năm Đến ngày nhỏ hơn 2025";
+      this.checkValidateInputYear = true;
     } else {
       this.message = "";
       this.checkValidateInputYear = false;
@@ -160,13 +160,10 @@ export class ServicesDetailComponent implements OnInit {
 
   setIdContractSearch(value) {
     for (let i = 0; i < this.dataCustomer.contracts.length; i++) {
-      console.log(value);
-      console.log(this.dataCustomer.contracts[i]);
       if (this.dataCustomer.contracts[i].ground.codeGround == value) {
         this.idContractSearch = this.dataCustomer.contracts[i].id;
         break;
       }
-      console.log(this.idContractSearch);
     }
   }
   exportAs(type: SupportedExtensions, opt?: string) {

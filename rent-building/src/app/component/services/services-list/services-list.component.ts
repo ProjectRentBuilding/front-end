@@ -206,9 +206,11 @@ export class ServicesListComponent implements OnInit, OnDestroy {
 
   public createService(): FormGroup {
     return this.fb.group({
-      nameService: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      nameService: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25),
+        Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]+$')]],
       periodic: ['', [Validators.required]],
-      unit: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      unit: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25),
+        Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ/³ ]+$')]],
       price: ['', [Validators.required, Validators.min(3000), Validators.max(300000)]],
       indexBeforeMonth: ['', [Validators.required, Validators.min(10000), Validators.max(9000000)]],
       indexAfterMonth: ['', [Validators.required, Validators.min(10000), Validators.max(9000000)]],
