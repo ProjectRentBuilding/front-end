@@ -139,9 +139,14 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"
           <!--      Ngày tháng-->
           <td  *ngIf="!checkEdit || item.id!==flag">{{item.monthYear|date:'dd/MM/yyyy'}}</td>
           <td style="width: 12%" class="add-row" *ngIf="checkEdit && item.id===flag">
-            <input class="form-control" style="float: left;padding-left:2%;width: 70%" placeholder="Ngày tháng"
+<!--            <input class="form-control" style="float: left;padding-left:2%;width: 70%" placeholder="Ngày tháng"-->
+<!--                   type="text" formControlName="monthYear" [matDatepicker]="picker1">-->
+<!--            <mat-datepicker-toggle style="float: right" matSuffix [for]="picker1"></mat-datepicker-toggle>-->
+<!--            <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>-->
+            <input [ngClass]="{'red-border-class': editServiceForm.get('monthYear').invalid && editServiceForm.get('monthYear').touched }"
+                   class="form-control infoPlaceholder1" style="float: left" placeholder="Ngày tháng"
                    type="text" formControlName="monthYear" [matDatepicker]="picker1">
-            <mat-datepicker-toggle style="float: right" matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker-toggle matSuffix [for]="picker1" style="margin-left: -25%"></mat-datepicker-toggle>
             <mat-datepicker #picker1 startView="year" [startAt]="startDate"></mat-datepicker>
           </td>
           <!--      Tên khách hàng-->
@@ -198,6 +203,10 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"
                *ngIf="editServiceForm.get('nameService').hasError('maxlength') && editServiceForm.get('nameService').touched">
               Tối đa 25 ký tự.
             </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('nameService').hasError('pattern') && editServiceForm.get('nameService').touched">
+              Không nhập số,ký tự đặc biệt.
+            </p>
           </td>
           <td *ngIf="checkEdit && item.id===flag">
             <p class="alert alert-danger" role="alert"
@@ -217,6 +226,10 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))"
             <p class="alert alert-danger" role="alert"
                *ngIf="editServiceForm.get('unit').hasError('maxlength') && editServiceForm.get('unit').touched">
               Tối đa 25 ký tự.
+            </p>
+            <p class="alert alert-danger" role="alert"
+               *ngIf="editServiceForm.get('unit').hasError('pattern') && editServiceForm.get('unit').touched">
+              Không nhập số,ký tự đặc biệt.
             </p>
           </td>
           <td *ngIf="checkEdit && item.id===flag">
@@ -343,12 +356,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" fo
             Yêu cầu nhập.
           </p>
           <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('nameService').errors?.minlength &&
-               item.get('nameService').touched">
-            Nhập lỗi
-          </p>
-          <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('nameService').errors?.maxlength &&
+             *ngIf="(item.get('nameService').errors?.minlength ||item.get('nameService').errors?.pattern||item.get('nameService').errors?.maxlength)&&
                item.get('nameService').touched">
             Nhập lỗi
           </p>
@@ -368,12 +376,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" fo
             Yêu cầu nhập.
           </p>
           <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('unit').errors?.minlength &&
-               item.get('unit').touched">
-            Nhập lỗi
-          </p>
-          <p class="alert alert-danger" role="alert"
-             *ngIf="item.get('unit').errors?.maxlength &&
+             *ngIf="(item.get('unit').errors?.minlength ||item.get('unit').errors?.pattern||item.get('unit').errors?.maxlength)&&
                item.get('unit').touched">
             Nhập lỗi
           </p>
@@ -436,7 +439,7 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" fo
         <td>
           <p class="alert alert-danger" role="alert"
              *ngIf="item.get('monthYear').invalid && item.get('monthYear').touched">
-            Nhập lỗi.
+            Yêu cầu chọn.
           </p>
         </td>
         <!--        Tên khách hàng-->
@@ -460,6 +463,11 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" fo
                item.get('nameService').touched">
             Tối đa 25 ký tự.
           </p>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('nameService').errors?.pattern &&
+               item.get('nameService').touched">
+            Không nhập số,ký tự đặc biệt.
+          </p>
         </td>
         <td></td>
         <td>
@@ -472,6 +480,11 @@ event.keyCode === 46 ? true : !isNaN(Number(event.key))" class="form-control" fo
              *ngIf="item.get('unit').errors?.maxlength &&
                item.get('unit').touched">
             Tối đa 25 ký tự.
+          </p>
+          <p class="alert alert-primary" role="alert"
+             *ngIf="item.get('unit').errors?.pattern &&
+               item.get('unit').touched">
+            Không nhập số,ký tự đặc biệt.
           </p>
         </td>
         <td>
