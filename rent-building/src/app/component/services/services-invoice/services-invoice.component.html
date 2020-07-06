@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5">
-      <label class="col-md-4"> Mặt bằng:</label>
+    <div class="col-md-6">
+      <label class="col-md-4">Mặt bằng:</label>
       <label>
         <select class="form-control" (change)="setGroundId($event.target.value)">
           <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.floor.nameFloor}} | {{ground.codeGround}}</option>
@@ -14,9 +14,9 @@
 <!--      </label>-->
     </div>
     <ng-container>
-      <div class="col-md-5">
-        Tên khách hàng:
-        <input type="text" id="nameCus" class="form-control infoPlaceholder" disabled style="width: 60%; float: right" [(ngModel)]="nameCustomer">
+      <div class="col-md-6">
+        <label class="col-md-5" style="padding-left: 0;">Tên khách hàng: </label>
+        <label><input type="text" class="form-control infoPlaceholder" disabled [(ngModel)]="nameCustomer"></label>
       </div>
     </ng-container>
   </div>
@@ -33,7 +33,15 @@
       <button (click)="search()" class="btn btn-dark">Xem Dịch Vụ</button>
     </div>
     <div class="col-md-3">
-      <button  class="btn btn-dark" (click)="exportAs('pdf', 'portrait')">In hoá đơn</button>
+      <button  class="btn btn-dark" (click)="checkInvoice()">In hoá đơn</button>
+    </div>
+    <div *ngIf="flagInvoice" style="margin-left: 150px">
+      <label style="font-weight: bold">Chọn định dạng in:</label>
+      <button class="btn btn-danger ml-3" (click)="exportAs('pdf', 'landscape')" >PDF</button>
+      <button class="btn btn-primary ml-3" (click)="exportAs('txt')" >TXT</button>
+      <button class="btn btn-success ml-3" (click)="exportAs('xlsx')" >EXCEL</button>
+      <button class="btn btn-warning ml-3" (click)="exportAs('json')" >JSON</button>
+      <button class="btn btn-info ml-3" (click)="exportAs('xml')" >XML</button>
     </div>
   </div>
 </div>
@@ -41,7 +49,7 @@
 <div class="container mt-5" id="mytable">
   <form class="col-md-12">
     <fieldset class="scheduler-border" >
-      <legend class="scheduler-border" style="text-align: center; margin-bottom: 10px">Hoá đơn thanh toán dịch vụ tiêu dùng </legend>
+      <h2 class="scheduler-border" style="text-align: center; margin-bottom: 30px">Hoá đơn thanh toán dịch vụ tiêu dùng tháng {{tempMonth}}</h2>
       <label style=" margin-left: 100px">Khách hàng : </label> <label style=" margin-left: 4px">{{nameCustomer}}</label>
       <label style=" margin-left: 50px">SĐT: </label> <label style=" margin-left: 4px">{{phoneCustomer}}</label>
       <label style=" margin-left: 50px">Mặt bằng: </label> <label style=" margin-left: 4px">{{tempFloor}}</label> <label>, {{tempGround}}</label>

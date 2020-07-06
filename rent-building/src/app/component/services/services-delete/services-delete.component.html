@@ -2,7 +2,9 @@
 <hr>
 <p class="my-3">Bạn có chắc chắc muốn xóa dịch vụ có id là <span
   class="text-primary font-weight-bold">{{serviceId}}</span> và tên dịch vụ là <span
-  class="text-primary font-weight-bold">{{nameService}}</span> không? <br> Lưu ý: Thao tác không thể hoàn tác!!!</p>
+  class="text-primary font-weight-bold">{{nameService}}</span> có ngày đăng ký dịch vụ là
+  <span class="text-primary font-weight-bold">{{checkMonthYear|date : formatsDate}}</span> không? <br>
+  <span class="text-danger font-weight-bold">Lưu ý:</span>{{statusService}}</p>
 <div class="row d-flex justify-content-end">
   <button mat-raised-button class="btn btn-danger mr-3" id="modal-action-button" style="width: 100px" (click)="deleteService()" >Xác nhận</button>
   <button mat-raised-button class="btn btn-warning mr-3" id="modal-cancel-button" style="width: 100px" mat-dialog-close >Hủy</button>

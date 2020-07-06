@@ -1,9 +1,9 @@
 <div class="container" style="margin-top: 50px">
   <div class="row">
-    <div class="col-md-5">
-      <label class="col-md-3"> Mặt bằng:</label>
+    <div class="col-md-4">
+      <label class="col-md-4"> Mặt bằng:</label>
       <label>
-        <select class="form-control" (change)="setGroundId($event.target.value)">
+        <select class="form-control" (change)="setGroundId($event.target.value)" style="width: 172px;">
           <option *ngFor="let ground of grounds" value="{{ground.id}}">{{ground.floor.nameFloor}} | {{ground.codeGround}}</option>
         </select>
       </label>
@@ -15,15 +15,17 @@
     </div>
     <ng-container>
     <div class="col-md-5">
-      Tên khách hàng:
-      <input type="text" id="nameCus" class="form-control infoPlaceholder" disabled style="width: 60%; float: right" [(ngModel)]="nameCustomer">
+      <label class="col-md-5">Tên khách hàng:</label>
+      <label>
+        <input type="text" class="form-control infoPlaceholder" disabled [(ngModel)]="nameCustomer">
+      </label>
     </div>
     </ng-container>
   </div>
 
   <div class="row mt-2" >
     <div class="col-md-4">
-      <label class="col-md-3">Từ:</label>
+      <label class="col-md-4">Từ:</label>
       <label>
         <input type="date" [(ngModel)]="startDateSearch" min="2000-01-01" max="2100-12-31" class="form-control">
       </label>
