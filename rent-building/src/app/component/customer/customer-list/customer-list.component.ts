@@ -113,8 +113,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       rentStatus: false
     });
     this.searchForm = this.formBuilder.group({
-      searchName: ['', [Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]{1,150}$')]],
-      searchIdCard: ['', [Validators.pattern('[0-9]{1,10}')]],
+      searchName: ['', [Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]{1,50}$'), Validators.maxLength(50)]],
+      searchIdCard: ['', [Validators.pattern('[0-9]{1,11}'), Validators.max(10000000000)]],
     });
   }
 
@@ -241,6 +241,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   resetCustomer() {
+    console.log(this.customerOfId);
     this.customerService.findOne(this.customerOfId).subscribe(data => {
       this.formEditCustomer.patchValue(data);
     });
@@ -388,11 +389,5 @@ export class CustomerListComponent implements OnInit, OnDestroy {
         this.router.navigate(['services-customer', id]);
       }
     });
-    // for (let i = 0; i < this.data.data1.contracts.length; i++) {
-    //   this.customerGrounds.push(this.data.data1.contracts[i].ground.codeGround);
-    //   this.customerStatusContract.push(this.data.data1.contracts[i].statusContract);
-    //   // console.log(this.customerGrounds);
-    // }
-
   }
 }

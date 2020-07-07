@@ -25,14 +25,14 @@
 
   <div class="row mt-2" >
     <div class="col-md-4">
-      <label class="col-md-4">Từ:</label>
+      <label class="col-md-4">Từ ngày:</label>
       <label>
         <input type="date" [(ngModel)]="startDateSearch" min="2000-01-01" max="2100-12-31" class="form-control">
       </label>
 
     </div>
     <div class="col-md-4">
-      <label class="col-md-3">Đến :</label>
+      <label class="col-md-4">Đến ngày:</label>
       <label>
         <input type="date" [(ngModel)]="endDateSearch" class="form-control" min="2000-01-01" max="2100-12-31">
       </label>
@@ -42,8 +42,11 @@
       <button (click)="checkTime(startDateSearch, endDateSearch)" class="btn btn-dark">Xem Dịch Vụ</button>
     </div>
     <div class="col-md-2">
-      <button (click)="openDialogInvoice()" class="btn btn-dark">Hoá đơn</button>
+      <button (click)="openDialogInvoice()" class="btn btn-dark">Xem Hoá Đơn</button>
     </div>
+  </div>
+  <div style="margin-left: 10%;margin-top: 5%" class="col-md-7">
+    <p *ngIf="checkDate" class="alert alert-danger" role="alert" style="color: red;text-align: center">{{messageTimeValidate}}</p>
   </div>
 </div>
 

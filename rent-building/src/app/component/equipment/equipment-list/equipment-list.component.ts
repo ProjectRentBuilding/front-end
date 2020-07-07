@@ -68,9 +68,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
     this.groundService.findAll().subscribe((data: GroundModel[]) => {
       this.grounds = data;
     });
-    // this.equipmentService.findAll().subscribe((data: EquipmentModel[]) => {
-    //   this.equipmentModel = data;
-    // });
     this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
       this.typeEquipment = data;
     });
@@ -156,7 +153,6 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
       this.checkAdd = !this.checkAdd;
     } else {
       this.getArray++;
-      // console.log(this.getArray);
       this.subscription = this.typeElementService.findAll().subscribe((data: TypeEquipmentModel[]) => {
         this.typeEquipment = data;
       });
@@ -168,11 +164,13 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
   removeAddress(i: number) {
     if (this.getArray == 1) {
       this.checkAdd = false;
+      this.formAddNewEquipment = this.formBuilder.group({
+        equipment: this.formBuilder.array([this.createEquipment()])
+      });
     } else {
       this.equipment.removeAt(i);
     }
   }
-
 
   addNewEquipment() {
     this.equipment = this.formAddNewEquipment.get('equipment') as FormArray;
@@ -182,12 +180,13 @@ export class EquipmentListComponent implements OnInit, OnDestroy {
         this.equipmentService.showNotification('', 'Thêm mới thành công, chúc mừng bạn');
         if (tem === (this.getArray - 1)) {
           this.equipment.reset();
+          this.checkAdd = false;
           this.onLast();
           // this.loadData(this.checkPage + 1);
         }
       });
     }
-    console.log(this.formAddNewEquipment);
+    // console.log(this.formAddNewEquipment);
   }
 
   redirectTo(uri: string) {
