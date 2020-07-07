@@ -6,4 +6,23 @@ table {
 .mat-form-field-appearance-legacy {
   width: 75%!important;
 }
+/*.form-control{*/
+/*  width: 200px !important;*/
+/*}*/
+.infoPlaceholderSearch::-webkit-input-placeholder {
+  font-size: 85%;
+}
+.search-input {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #eed8de;
+  transition: all .4s;
+}
+
+.search-input:focus {
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 2px solid #dc3545;
+}
 

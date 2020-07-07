@@ -11,6 +11,7 @@ import {ContractModel} from "../../../model/contract";
 import {Router} from "@angular/router";
 
 
+
 @Component({
   selector: 'app-services-list',
   templateUrl: './services-list.component.html',
@@ -50,6 +51,7 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   public searchMonthYear = "2000-01-01";
   public message = "";
   public resultMonthYear;
+
 
   constructor(
     private servicesService: ServicesService,
@@ -204,9 +206,11 @@ export class ServicesListComponent implements OnInit, OnDestroy {
 
   public createService(): FormGroup {
     return this.fb.group({
-      nameService: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      nameService: ['', [Validators.required,Validators.minLength(2),Validators.maxLength(25),
+        Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]+$')]],
       periodic: ['', [Validators.required]],
-      unit: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      unit: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25),
+        Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ/³ ]+$')]],
       price: ['', [Validators.required, Validators.min(3000), Validators.max(300000)]],
       indexBeforeMonth: ['', [Validators.required, Validators.min(10000), Validators.max(9000000)]],
       indexAfterMonth: ['', [Validators.required, Validators.min(10000), Validators.max(9000000)]],
@@ -303,7 +307,9 @@ export class ServicesListComponent implements OnInit, OnDestroy {
   }
 
 
-  openInformationCustomer(id: number) {
-    this.routerService.navigate(['information_customer', id]);
+  openInformationCustomer(id,monthYear) {
+    this.routerService.navigate(['information_customer',id,monthYear]);
   }
+
+
 }

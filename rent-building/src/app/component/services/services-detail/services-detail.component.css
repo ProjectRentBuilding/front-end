@@ -1,0 +1,7 @@
+table thead  th,td{
+  vertical-align: middle;
+}
+
+table {
+  white-space: nowrap;
+}

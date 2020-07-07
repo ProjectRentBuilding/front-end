@@ -29,6 +29,9 @@ export class GroundDetailComponent implements OnInit {
   public contracts: ContractModel[];
   public grounds;
   public building:BuildingModel;
+  public nameBuilding;
+  public nameFloor;
+  public nameTypeGround;
 
   constructor(
     public dialogRef: MatDialogRef<GroundDetailComponent>,
@@ -61,16 +64,24 @@ export class GroundDetailComponent implements OnInit {
       priceManager:[''],
       endDay:['']
     });
-    this.loadData();
+    this.load();
   }
-  loadData() {
+
+  load() {
     this.id = this.data.data1.id;
     this.viewGroundForm.patchValue(this.data.data1);
-    this.typeGroundService.findOne(this.data.data1.typeGroundId).subscribe(data => this.typeGround = data);
-    this.floorService.findOne(this.data.data1.floorId).subscribe(data => this.floor = data);
-    this.buildingService.findOne(this.data.data1.buildingId).subscribe(data => this.building = data);
-
-
+    this.typeGroundService.findOne(this.data.data1.typeGroundId).subscribe(data => {
+      this.typeGround = data;
+      this.nameTypeGround = this.typeGround.nameTypeGround;
+    });
+    this.floorService.findOne(this.data.data1.floorId).subscribe(data => {
+      this.floor = data;
+      this.nameFloor = this.floor.nameFloor;
+    });
+    this.buildingService.findOne(this.data.data1.buildingId).subscribe(data => {
+      this.building = data;
+      this.nameBuilding = this.building.fullName;
+    });
   }
   ngOnDestroy() {
     if (this.subscription) {

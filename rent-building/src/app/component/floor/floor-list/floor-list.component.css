@@ -41,15 +41,14 @@ td select {
   text-align: center;
 }
 
-/*input.ng-valid{*/
-/*  background: #12b517;*/
-/*}*/
 div div input {
   margin-left: 5%;
 }
-
 table thead th, td {
   vertical-align: middle;
+}
+table {
+  white-space: nowrap;
 }
 
 
