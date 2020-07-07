@@ -44,7 +44,7 @@ vertical-align: middle;
   padding: 0 !important;
 }
 .text-danger{
-  font-size:70%;
+  font-size:inherit;
 }
 .form-control{
   width: 200px !important;

@@ -35,7 +35,7 @@ export class ServicesCustomerComponent implements OnInit {
   // public tempNameService: String;
   public idContract = new Array<string>();
   public temp: number;
-  public dateNow: Date = new Date();
+  public checkDate = false;
   // @ts-ignore
   public dataCustomer: Customer = [];
   public nameCustomer: String;
@@ -113,10 +113,12 @@ export class ServicesCustomerComponent implements OnInit {
 
   checkTime(startDateSearch: Date, endDateSearch: Date) {
     if (startDateSearch <= endDateSearch) {
+      this.checkDate = false;
       this.checkIdContract();
       this.loadData(0);
     }else {
-      this.messageTimeValidate = 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc';
+      this.checkDate = true;
+      this.messageTimeValidate = 'Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc';
     }
   }
   checkPages(page) {

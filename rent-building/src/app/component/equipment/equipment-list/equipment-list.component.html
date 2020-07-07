@@ -117,7 +117,7 @@
           <input type="text" class="form-control" formControlName="nameEquipment">
           <p class="text-danger"
              *ngIf="formEditEquipment.get('nameEquipment').invalid && formEditEquipment.get('nameEquipment').touched">
-            Loại không được để trống!
+            Tên thiết bị không được để trống!
           </p>
         </td>
         <td *ngIf="!checkEdit || equipment.id!==flag ">
@@ -191,17 +191,20 @@
              *ngFor="let equipment of equipmentControls; let i = index;">
       <tr [formGroupName]="i">
         <td>
-          <select class="form-control" formControlName="typeEquipmentId" style="width:150px">
+          <select [ngClass]="{'red-border-class': equipment.get('typeEquipmentId').invalid && equipment.get('typeEquipmentId').touched }"
+                  class="form-control" formControlName="typeEquipmentId" style="width:150px">
             <option>Vui lòng chọn:</option>
             <option *ngFor="let type of typeEquipment,let i=index" [value]="type.id">{{i+1}}.{{type.nameType}}</option>
           </select>
         </td>
         <td>
-          <input type="text" class="form-control" formControlName="nameEquipment" required placeholder="Tên thiết bị">
+          <input [ngClass]="{'red-border-class': equipment.get('nameEquipment').invalid && equipment.get('nameEquipment').touched}"
+                 type="text" class="form-control" formControlName="nameEquipment" required placeholder="Tên thiết bị">
 
         </td>
         <td>
-          <input type="text" class="form-control" formControlName="amount" required placeholder="Số lượng">
+          <input [ngClass]="{'red-border-class': equipment.get('amount').invalid && equipment.get('amount').touched }"
+                 type="text" class="form-control" formControlName="amount" required placeholder="Số lượng">
 
         </td>
         <td hidden>
@@ -211,11 +214,11 @@
           <input type="text" class="form-control" formControlName="note" placeholder="Ghi chú">
         </td>
         <td>
-          <select class="form-control" formControlName="groundId" style="width:150px;">
+          <select [ngClass]="{'red-border-class': equipment.get('groundId').invalid && equipment.get('groundId').touched}"
+                  class="form-control" formControlName="groundId" style="width:150px;">
             <option>Vui lòng chọn:</option>
             <option *ngFor="let ground of grounds,let i=index" [value]="ground.id">{{i+1}}.{{ground.codeGround}}</option>
           </select>
-
         </td>
         <td>
           <button type="button" class="btn btn-danger btn-sm" (click)="removeAddress(i)">
@@ -235,6 +238,7 @@
              *ngIf="equipment.get('nameEquipment').invalid && equipment.get('nameEquipment').touched">
             Tên thiết bị không được để trống!
           </p>
+
         </td>
         <td>
           <p class="text-danger"

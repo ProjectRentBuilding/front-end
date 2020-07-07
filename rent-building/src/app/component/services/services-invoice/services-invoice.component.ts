@@ -131,6 +131,6 @@ export class ServicesInvoiceComponent implements OnInit {
   }
 
   checkInvoice() {
-    this.flagInvoice = true;
+    this.flagInvoice = !this.flagInvoice;
   }
 }

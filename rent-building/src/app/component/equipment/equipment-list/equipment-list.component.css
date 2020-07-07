@@ -35,3 +35,6 @@ table thead  th,td{
   font-weight: lighter;
   color:#AFB2B3;
 }
+.red-border-class{
+  border: red solid 2px;
+}

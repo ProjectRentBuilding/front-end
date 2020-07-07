@@ -113,8 +113,8 @@ export class CustomerListComponent implements OnInit, OnDestroy {
       rentStatus: false
     });
     this.searchForm = this.formBuilder.group({
-      searchName: ['', [Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]{1,150}$')]],
-      searchIdCard: ['', [Validators.pattern('[0-9]{1,10}')]],
+      searchName: ['', [Validators.pattern('^[a-zA-ZÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐáàảãạâấầẩẫậăắằẳẵặéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựýỳỷỹỵđ ]{1,50}$'), Validators.maxLength(50)]],
+      searchIdCard: ['', [Validators.pattern('[0-9]{1,11}'), Validators.max(10000000000)]],
     });
   }
 
