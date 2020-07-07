@@ -216,7 +216,6 @@ export class EmployeeServeListComponent implements OnInit, OnDestroy {
         }
       });
     }
-    this.cancelAdd();
     console.log(this.userName.length);
     // this.loadDataUserBuildings();
     // this.ngOnInit();
@@ -228,7 +227,7 @@ export class EmployeeServeListComponent implements OnInit, OnDestroy {
     // this.cancelAdd();
 
     this.employeeService.arraySentUsername = [];
-
+    this.cancelAdd();
   }
 
   redirectTo(uri: string) {
