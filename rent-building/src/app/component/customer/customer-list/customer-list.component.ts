@@ -241,6 +241,7 @@ export class CustomerListComponent implements OnInit, OnDestroy {
   }
 
   resetCustomer() {
+    console.log(this.customerOfId);
     this.customerService.findOne(this.customerOfId).subscribe(data => {
       this.formEditCustomer.patchValue(data);
     });
@@ -388,11 +389,5 @@ export class CustomerListComponent implements OnInit, OnDestroy {
         this.router.navigate(['services-customer', id]);
       }
     });
-    // for (let i = 0; i < this.data.data1.contracts.length; i++) {
-    //   this.customerGrounds.push(this.data.data1.contracts[i].ground.codeGround);
-    //   this.customerStatusContract.push(this.data.data1.contracts[i].statusContract);
-    //   // console.log(this.customerGrounds);
-    // }
-
   }
 }

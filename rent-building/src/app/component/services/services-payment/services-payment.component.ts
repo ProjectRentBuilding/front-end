@@ -11,7 +11,7 @@ import {formatDate} from '@angular/common';
   styleUrls: ['./services-payment.component.css']
 })
 export class ServicesPaymentComponent implements OnInit {
-  public servicePay: ServicesModel[] ;
+  public servicePay: ServicesModel;
   public tempMonthYear: String;
   public tempNameService: String;
   public servicesModel: ServicesModel [] = [];
@@ -33,14 +33,13 @@ export class ServicesPaymentComponent implements OnInit {
     this.idService = this.servicePay.id;
     this.idCustomer = this.data.data2.id;
     this.nameCustomer = this.data.data2.name;
-    // @ts-ignore
     this.tempMonthYear  = formatDate(this.servicePay.monthYear,'dd-MM-yyyy','en_US')
     this.tempNameService  = this.servicePay.nameService;
-    this.servicePay.statusPay = 1;
+    this.servicePay.statusPay = true;
   }
 
   payment() {
-    // @ts-ignore
+
     this.servicesService.update(this.servicePay, this.servicePay.id).subscribe(data => {
       this.afterDeleteService();
     });
