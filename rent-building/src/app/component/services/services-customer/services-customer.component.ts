@@ -32,7 +32,6 @@ export class ServicesCustomerComponent implements OnInit {
   public contracts: ContractModel[] = [];
   public contract: ContractModel[] = [];
   public tempMonthYear: String;
-  // public tempNameService: String;
   public idContract = new Array<string>();
   public temp: number;
   public checkDate = false;
@@ -51,8 +50,8 @@ export class ServicesCustomerComponent implements OnInit {
   public startDateSearch = '2019-01-01';
   public endDateSearch = '2020-01-01';
   public messageTimeValidate: string;
-  public groundId: string;
-  public servicePay: ServicesModel [] = [];
+  public groundId: number;
+  public servicePay: ServicesModel;
 
   constructor(
     public floorService: FloorService,
@@ -163,7 +162,6 @@ export class ServicesCustomerComponent implements OnInit {
 
   pay(id: number) {
     this.servicesService.findOne(id).subscribe(data => {
-      // @ts-ignore
       this.servicePay = data;
       this.openDialogPayment();
     });

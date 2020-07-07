@@ -36,9 +36,10 @@ export class ServicesInvoiceComponent implements OnInit {
   public tempFloor= '';
   public tempGround= '';
   public phoneCustomer: number;
-  public totalMoney: number = 0;
+  public totalMoney: number;
   public flagInvoice = false;
   public tempMonth = '';
+  public groundId: number;
   config: ExportAsConfig = {
     type: 'pdf',
     elementIdOrContent: 'mytable',
@@ -74,6 +75,8 @@ export class ServicesInvoiceComponent implements OnInit {
     this.loadData();
   }
   public loadData() {
+    this.checkIdContract();
+    this.totalMoney = 0;
     this.tempMonth = this.monthYearSearch.slice(5,7) +'-'+this.monthYearSearch.slice(0,4);
     this.servicesService.searchInvoice(this.monthYearSearch, this.idContractSearch)
       .subscribe(data => {
@@ -119,7 +122,16 @@ export class ServicesInvoiceComponent implements OnInit {
     this.loadData();
   }
 
+  checkIdContract() {
+    for (let i =0 ; i< this.dataCustomer.contracts.length; i++ ) {
+      if (this.dataCustomer.contracts[i].ground.id == this.groundId ) {
+        return this.idContractSearch = this.dataCustomer.contracts[i].id;
+      }
+    }
+  }
+
   setGroundId(value: any) {
+    this.groundId = value;
     for (let item of this.grounds) {
       if (item.id == value ) {
         this.tempGround = item.codeGround;
