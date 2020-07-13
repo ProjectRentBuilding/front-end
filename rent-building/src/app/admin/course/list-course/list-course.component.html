@@ -1,0 +1,111 @@
+<div class="mat-app-background basic-container">
+    <div class="w3-container w3-lobster font-effect-brick-sign">
+        <h3 class="w3-xxlarge">Danh sách khóa học</h3>
+    </div>
+    <div fxLayout fxLayoutAlign="center center">
+        <input class="form-control" type="text" [(ngModel)]="search" placeholder="Tìm kiếm theo tên khóa học">
+        <button class="btn btn-outline-success" (click)="searchName()">Tìm kiếm</button>
+        <button *ngIf="isSearch === true" class="btn btn-outline-danger ml-1" (click)="backToSearch()">Quay về</button>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+            <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+                <div>
+                    <button mat-button class="btn-create" (click)='openDialogCreate()' color="primary"><i
+                            class="material-icons">add_circle_outline</i>Course</button>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <table mat-table [dataSource]="DataSource" matSort class="mat-elevation-z8 table-course">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Mã khóa học </th>
+            <td mat-cell *matCellDef="let element" [routerLink]="[ '/admin/view-class', element.id ]">
+                {{element.id}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nameCourse">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Tên khóa học </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field><input matInput color="warn" [(ngModel)]="element.nameCourse"></mat-form-field>
+                    <mat-error *ngIf="element.id==elementIdError" class="error-message">
+                        {{listError.nameCourse}}
+                    </mat-error>
+            </td>
+            
+        </ng-container>
+        <ng-container matColumnDef="deleted">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Đã xóa </th>
+            <td mat-cell *matCellDef="let element">
+                <mat-form-field>
+                <mat-select [(ngModel)]="element.deleted">
+                    <mat-option [value]="true">true</mat-option>
+                    <mat-option [value]="false">false</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+            </td>
+        
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="headerTable"> Chức năng </th>
+            <td mat-cell *matCellDef="let element; let i = index;">
+                <mat-icon (click)="updateCourse(element)">edit</mat-icon>
+                <mat-icon style="margin-left: 20px;" (click)="showModalDelete(element)">delete</mat-icon>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="headerTable"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+<div class="paging-course">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item" (click)="onFirst()"><a class="page-link">First</a></li>
+            <li class="page-item" (click)="onPrevious()" [ngClass]="pageClicked==0?'disabled':''">
+                <a class="page-link">Previous</a>
+            </li>
+            <li *ngIf="pageClicked != 0" class="page-item" (click)="onSubmit(pages[pageClicked-1])">
+                <a class="page-link">{{pageClicked}}</a>
+            </li>
+            <li [ngClass]="(pageClicked == pages[pageClicked]) ? 'active' : ''" class="page-item"
+                (click)="onSubmit(pages[pageClicked])">
+                <a class="page-link">{{pageClicked+1}}</a>
+            </li>
+            <li *ngIf="pageClicked < pages.length -1" class="page-item" (click)="onSubmit(pages[pageClicked+1])">
+                <a class="page-link">{{pageClicked+2}}</a>
+            </li>
+            <li *ngIf="pageClicked < pages.length -2" class="page-item">
+                <a class="page-link">...</a>
+            </li>
+            <li *ngIf="pageClicked < pages.length-2" class="page-item" (click)="onLast()">
+                <a class="page-link">{{pages[pages.length-1]+1}}</a>
+            </li>
+            <li class="page-item" (click)="onNext()" [ngClass]="pageClicked==totalPages-1?'disabled':''">
+                <a class="page-link">Next</a>
+            </li>
+            <li class="page-item" (click)="onLast()"><a class="page-link">Last</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Xóa khóa học</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                Bạn có chắc là muốn xóa khóa học {{course.nameCourse}} này?
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                    (click)="deleteCourse(course.id)">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>

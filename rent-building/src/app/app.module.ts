@@ -69,7 +69,9 @@ import { EmployeeServeListComponent } from './component/employee/employee-serve-
 import { EmployeeServeDeleteComponent } from './component/employee/employee-serve-delete/employee-serve-delete.component';
 import { ExportAsModule } from 'ngx-export-as';
 import { ServicesPaymentComponent } from './component/services/services-payment/services-payment.component';
-
+import { LoginComponent } from './component/login/login.component';
+import { AuthServiceConfig } from 'angular-6-social-login';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +124,8 @@ import { ServicesPaymentComponent } from './component/services/services-payment/
     EmployeeServeListComponent,
     EmployeeServeDeleteComponent,
     ServicesPaymentComponent,
+    LoginComponent,
+    AdminComponent
 
   ],
     imports: [
@@ -144,7 +148,10 @@ import { ServicesPaymentComponent } from './component/services/services-payment/
         MatIconModule,
         ExportAsModule
     ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'}],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, {provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check'},{
+    provide: AuthServiceConfig,
+  }],
+
   bootstrap: [AppComponent],
   entryComponents: [
     ContractDeleteComponent,

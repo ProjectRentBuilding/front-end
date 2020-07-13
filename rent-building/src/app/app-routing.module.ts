@@ -24,6 +24,7 @@ import {ServicesDetailComponent} from "./component/services/services-detail/serv
 import {ReportEmployeeComponent} from './component/report/report-employee/report-employee.component';
 import {ServicesCustomerComponent} from './component/services/services-customer/services-customer.component';
 import {EmployeeServeListComponent} from './component/employee/employee-serve-list/employee-serve-list.component';
+import {LoginComponent} from "./component/login/login.component";
 
 
 const routes: Routes = [
@@ -33,6 +34,9 @@ const routes: Routes = [
   {path: 'services-customer', component: ServicesCustomerComponent},
   {path: 'services-customer/:id', component: ServicesCustomerComponent},
   {path: 'equipments-building', component: EquipmentBuildingComponent},
+  {
+    path: "login", component: LoginComponent,
+  },
   {
     path: 'buildings',
     component: BuildingListComponent,

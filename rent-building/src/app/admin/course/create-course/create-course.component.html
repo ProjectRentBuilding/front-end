@@ -1,0 +1,23 @@
+<h3>Tạo mới khóa học</h3>
+<hr>
+<div class="wrapper">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisters()">
+        <div>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Tên khóa học" formControlName="nameCourse">
+                <mat-error *ngFor="let validation of validation_messages.nameCourse">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('nameCourse').hasError(validation.type) && (registerForm.get('nameCourse').dirty || registerForm.get('nameCourse').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.nameCourse}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
+<div class="d-flex justify-content-center">
+    <button mat-dialog-close class="btn btn-warning mr-3">Hủy</button>
+    <button class="btn btn-primary" (click)="createCourse()">Tạo mới</button>
+</div>

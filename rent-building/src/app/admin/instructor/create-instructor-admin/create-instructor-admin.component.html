@@ -1,0 +1,106 @@
+<h3>Tạo mới giáo viên</h3>
+<hr>
+<div class="wrapper">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisters()">
+        <div>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Tên giáo viên" formControlName="nameInstructor">
+                <mat-error *ngFor="let validation of validation_messages.nameInstructor">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('nameInstructor').hasError(validation.type) && (registerForm.get('nameInstructor').dirty || registerForm.get('nameInstructor').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.nameInstructor}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Địa chỉ giáo viên" formControlName="address">
+                <mat-error *ngFor="let validation of validation_messages.address">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('address').hasError(validation.type) && (registerForm.get('address').dirty || registerForm.get('address').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.address}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Số điện thoại giáo viên" formControlName="phoneNumber">
+                <mat-error *ngFor="let validation of validation_messages.phoneNumber">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('phoneNumber').hasError(validation.type) && (registerForm.get('phoneNumber').dirty || registerForm.get('phoneNumber').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.phoneNumber}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input type="number" matInput placeholder="Lương giáo viên" formControlName="salary">
+                <mat-error *ngFor="let validation of validation_messages.salary">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('salary').hasError(validation.type) && (registerForm.get('salary').dirty || registerForm.get('salary').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.salary}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Trình độ giáo viên" formControlName="level">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Email giáo viên" formControlName="email">
+                <mat-error *ngFor="let validation of validation_messages.email">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.email}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <textarea matInput placeholder="Mô tả giáo viên" formControlName="description"></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Chuyên ngành giáo viên" formControlName="specialize">
+                <mat-error *ngFor="let validation of validation_messages.specialize">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('specialize').hasError(validation.type) && (registerForm.get('specialize').dirty || registerForm.get('specialize').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.specialize}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Username" formControlName="username">
+                <mat-error *ngFor="let validation of validation_messages.username">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('username').hasError(validation.type) && (registerForm.get('username').dirty || registerForm.get('username').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.username}}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput type="password" placeholder="Password" formControlName="password">
+                <mat-error *ngFor="let validation of validation_messages.password">
+                    <mat-error class="error-message"
+                        *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                        {{validation.message}}</mat-error>
+                </mat-error>
+                <mat-error class="error-message">
+                    {{listError.password}}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="d-flex justify-content-center">
+        <button mat-dialog-close class="btn btn-warning mr-3">Hủy</button>
+        <button class="btn btn-primary" (click)="createCourse()">Tạo mới</button>
+    </div>
+</div>
