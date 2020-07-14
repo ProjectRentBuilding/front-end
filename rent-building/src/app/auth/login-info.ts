@@ -1,9 +1,9 @@
 export class AuthLoginInfo {
     username: String;
-    password: String;
- 
-    constructor(username: String, password: String) {
+    passwordUser: String;
+
+    constructor(username: String, passwordUser: String) {
         this.username = username;
-        this.password = password;
+        this.passwordUser = passwordUser;
     }
 }

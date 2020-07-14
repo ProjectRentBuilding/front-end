@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   userInfo: AuthLoginInfo;
+  message="";
 
   constructor(private auth: AuthJwtService, private fb: FormBuilder,
               private tokenStorage: TokenStorageService, private router: Router) { }
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
-      password: ['', Validators.required]
+      passwordUser: ['', Validators.required]
     });
   }
   onSubmit() {
@@ -36,24 +37,30 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('username');
   }
   get fpassword() {
-    return this.loginForm.get('password');
+    return this.loginForm.get('passwordUser');
   }
   public login(userInfo) {
+    console.log(userInfo)
     this.auth.attemptAuth(userInfo).subscribe(
       data => {
         this.tokenStorage.saveAuthorities(data.authorities);
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.username);
         if(this.tokenStorage.getAuthorities().indexOf("ROLE_ADMIN")!=-1) {
-          this.router.navigateByUrl("/admin")
+          // this.router.navigateByUrl("/")
+          this.redirectTo("admin");
         }
         console.log(this.tokenStorage.getAuthorities())
       },
       error => {
         console.log("Error ", error);
+        this.message = "Tên đăng nhập không tồn tại hoặc sai mật khẩu";
       }
     );
-
+  }
+  redirectTo(uri: string) {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+      this.router.navigate([uri]));
   }
 
 }
