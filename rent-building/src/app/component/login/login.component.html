@@ -1,0 +1,26 @@
+<h2 class="text-center" style="margin-top: 5%">Đăng nhập tài khoản</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="col-md-6 offset-md-3">
+  <div class="form-group row">
+    <label class="col">
+      Tài khoản
+      <input type="email" class="form-control" formControlName="username">
+    </label>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('username').invalid && loginForm.get('username').touched">
+    Tên không hợp lệ!
+  </div>
+  <div class="form-group row">
+    <label class="col">
+      Mật khẩu
+      <input type="password" class="form-control" formControlName="passwordUser">
+    </label>
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="loginForm.get('passwordUser').invalid && loginForm.get('passwordUser').touched">
+    Mật khẩu không hợp lệ!
+  </div>
+  <p style="color:red">{{message}}</p>
+  <div class="form-group">
+    <button class="btn btn-info" type="submit">Xác nhận</button>
+  </div>
+</form>
